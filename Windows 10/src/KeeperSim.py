@@ -1,16 +1,20 @@
 '''
- * File     : keeper_sim.py
- * Datum    : 25.09.2019
- * Version  : 1.1
+ * File     : KeeperSim.py (keeper_sim.py)
+ * Datum    : 14-1-2019
+ * Version  : 1.2
  * Modifier : Daniël Boon
  * Used IDE : Visual Studio Code (Python 3.6.7)
- * Function : Simulates the the enviorment of foosball as for the keeper. 
+ * Function : Simulates the environment of foosball as for the keeper. 
 			  This simulation has the intention to train an AI to play the game.
               
 			  Use the W,A,S,D keys to move the keeper.
 			  Press C to start the simulation.
-                      
-    
+* Versie controle:
+    Verhoudingen van het veld aangepast
+    Balradius gewijzigd
+    Alle dimensies van de keeper gewijzigd
+    Naam veranderd van keeper_sim.py to KeeperSim.py                  
+    Snelheid keeper horizontale beweging veranderd
 Used libraries/repositories:
     - PyBox2D (PyBox2D - Jan 15, 2018):
         https://github.com/pybox2d/pybox2d
@@ -30,10 +34,10 @@ from random import random
 from math import (cos,sin,pi)
 from time import time
 from numba import jit
-from framework import (Framework, Keys, main)
+from Backend.Framework import (Framework, Keys, main)
 from Box2D.Box2D import (b2CircleShape, b2EdgeShape, b2FixtureDef)
 
-KEEPER_SPEED = 40
+KEEPER_SPEED = 30
 FORCE_MAX = 200
 FORCE_MIN = 40
 
@@ -49,21 +53,21 @@ class keeper_sim (Framework):
     def __init__(self,up_speed=100,down_speed=-100):
         super(keeper_sim, self).__init__()
 
-        # Veld opstellen
+        # Veld opstellen 
         ground = self.world.CreateStaticBody(
-            shapes=[b2EdgeShape(vertices=[(-19.35, 0), (19.35, 0)]),
-                    b2EdgeShape(vertices=[(-19.35, 0), (-19.35, 6.16)]),
-                    b2EdgeShape(vertices=[(-19.35, 17.42), (-19.35, 11.26)]),
-                    b2EdgeShape(vertices=[(19.35, 0), (19.35, 6.16)]),
-                    b2EdgeShape(vertices=[(19.35, 17.42), (19.35, 11.26)]),
-                    b2EdgeShape(vertices=[(-19.35, 17.42), (19.35, 17.42)]),
+            shapes=[b2EdgeShape(vertices=[(-19.35, 0), (19.35, 0)]), # bovenste lijn
+                    b2EdgeShape(vertices=[(-19.35, 0), (-19.35, 6.67)]), #Linker lijn bovenkant
+                    b2EdgeShape(vertices=[(-19.35, 20.0), (-19.35, 13.33)]),  #Linker lijn onderkant
+                    b2EdgeShape(vertices=[(19.35, 0), (19.35, 6.67)]),  #Rechter lijn bovenkant
+                    b2EdgeShape(vertices=[(19.35, 20.0), (19.35, 13.33)]), #Rechter lijn onderkant
+                    b2EdgeShape(vertices=[(-19.35, 20.0), (19.35, 20.0)]), #onderste lijn
                     ])
 
         # ball straal instellen
-        self.radius = radius = 0.5
+        self.radius = radius = 0.8
         
         # keeper maken
-        self.CreateKeeper((-15,8.71))
+        self.CreateKeeper((-16.72,10.0))
         
         # zet zwaarte kracht 0 voor top-down
         self.world.gravity = (0, 0)
@@ -80,7 +84,7 @@ class keeper_sim (Framework):
     @jit(nopython=False)
     def Keyboard(self, key):
         if key == Keys.K_c:
-            self.SetBall((0.0 , random() * 17.42))
+            self.SetBall((0.0 , random() * 20.0))
         if key == Keys.K_w:
             control.y = KEEPER_SPEED
         if key == Keys.K_s:
@@ -110,7 +114,7 @@ class keeper_sim (Framework):
     #maak keeper object in veld
     @jit(nopython=False)
     def CreateKeeper(self, pos):
-        dimensions=(0.48, 0.74)
+        dimensions=(0.14, 0.5)
         self.body = self.world.CreateDynamicBody(position=pos, linearDamping = 0.5)
         self.body.allowSleep = False
         self.body.awake = True
@@ -123,7 +127,7 @@ class keeper_sim (Framework):
     def SetBall(self, pos):
         goal_lenght = 4.5
         goal = goal_lenght * random()
-        goal += (8.71 - (goal_lenght/2))
+        goal += (10.0 - (goal_lenght/2))
         spawn = 0, (random() * 30 + 30)
         fixture = b2FixtureDef(shape=b2CircleShape(radius=self.radius,
                                                    pos=(0, 0)),
@@ -136,7 +140,7 @@ class keeper_sim (Framework):
         )
         power = (FORCE_MAX-FORCE_MIN) * random() + FORCE_MIN
         force = ((-19.35-pos[0])*power,(pos[1]-goal)*-power)
-        self.ball.ApplyForce(force, (-19.35,8.71), True)
+        self.ball.ApplyForce(force, (-19.35,10.0), True)
         self.time_change = round(time()) + 1
 
     #kom bij iedere frame in deze functie (bepaling keeper positie/snelheid
@@ -145,21 +149,21 @@ class keeper_sim (Framework):
         Framework.Step(self, settings)
         
         #bepaling snelheid keeper bij verticale beweging
-        if (control.y < 0) and (self.body.position.y > 6.16 ):
+        if (control.y < 0) and (self.body.position.y > 7.08 ):
             vel.y = control.y
-        elif (control.y > 0) and (self.body.position.y < 11.26):
+        elif (control.y > 0) and (self.body.position.y < 12.92):
             vel.y = control.y
         else:
             vel.y = 0
         
         #bepaling snelheid keeper bij horizontale beweging (+maak doorlaatbaar wanneer de keeper te hoog staat)
-        if control.x and (settings.hz > 0.0):
+        if control.x and (settings.hz > 0.0): #0.0
             blub = 2
             if (control.x > 0) and ((KEEPER_SPEED * self.time/blub) < pi): #A
                 #print("A")
                 self.time += 1.0 / settings.hz
                 vel.x = (KEEPER_SPEED * sin(KEEPER_SPEED * self.time/blub))
-                if (KEEPER_SPEED * self.time/blub) > 2.7925268032:
+                if (KEEPER_SPEED * self.time/blub) > 3:#2.7925268032:
                     self.fixture.sensor = True
                 else:
                     self.fixture.sensor = False
@@ -167,7 +171,7 @@ class keeper_sim (Framework):
                 #print("D")
                 self.time -= 1.0 / settings.hz
                 vel.x = (-KEEPER_SPEED * sin(KEEPER_SPEED * (self.time/blub)))
-                if (KEEPER_SPEED * self.time/blub) < 0.3490658504:
+                if (KEEPER_SPEED * self.time/blub) < 0.2: #0.3490658504:
                     self.fixture.sensor = True
                 else:
                     self.fixture.sensor = False
@@ -182,8 +186,8 @@ class keeper_sim (Framework):
                 self.goals += 1
                 self.ball.position.x = 0
                 self.world.DestroyBody(self.ball)
-                self.SetBall((0.0 , random() * 17.42))
-                self.body.position = (-15,8.71)
+                self.SetBall((0.0 , random() * 20))
+                self.body.position = (-16.72,10.0)
                 self.time = pi/KEEPER_SPEED
                 self.fixture.sensor = False
             # is de bal geblocked? blocked++ en setball
@@ -192,8 +196,8 @@ class keeper_sim (Framework):
                 self.ball.linearVelocity.x = -1
                 self.ball.linearVelocity.y = -0.5
                 self.world.DestroyBody(self.ball)
-                self.SetBall((0.0 , random() * 17.42))
-                self.body.position = (-15,8.71)
+                self.SetBall((0.0 , random() * 20.0))
+                self.body.position = (-16.72,10.0)
                 self.time = pi/KEEPER_SPEED
                 self.fixture.sensor = False
         except:
@@ -203,4 +207,5 @@ class keeper_sim (Framework):
         self.Print('blocked = %d' % self.blocks)
 
 if __name__ == "__main__":
+    print("start")
     main(keeper_sim)

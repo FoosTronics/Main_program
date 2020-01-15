@@ -513,7 +513,7 @@ def main(test_class):
     Loads the test class and executes it.
     """
     print("Loading %s..." % test_class.name)
-    test = test_class()
+    test = test_class
     if fwSettings.onlyInit:
         return
     test.run()

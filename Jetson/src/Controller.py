@@ -19,17 +19,29 @@ Used external libraries/repositories:
 '''
 #pylint: disable=E1101
 import time
-from threading import Thread
-# import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 import numpy as np
 from math import pi
 import struct
-from src.usb import Driver
-from src.usb import Commands
-from src.mpu6050 import MPU6050
+from backends.stepper_controller.src.USBPerformax_multiple_drivers import Driver
+from backends.stepper_controller.src.USBPerformax_multiple_drivers import Commands
+# from src.mpu6050 import  MPU6050
+from tkinter import *
+import pygame
+from pygame.locals import (
+    K_w,
+    K_a,
+    K_s,
+    K_d,
+    K_h,
+    K_p,
+    K_v,
+    K_ESCAPE,
+    KEYDOWN,
+    QUIT,
+)
 
-
-class Controller:
+class p_controller:
     """Met behulp van deze class kan er van twee coördinaat punten de benodigde keeper positie bepaald worden.
        Hierbij wordt: extra-polation toegepast, coördinaat naar mm geconvert, de keeper stap positie bepaald en de drivers aangestuurd.
     
@@ -41,8 +53,8 @@ class Controller:
         """initalisatie voor driver communicatie en verhouding bepalingen
         """
         met_drivers = False
-        self.driver = Driver(2)
-        self.gyroscoop = MPU6050(debug=True)
+        self.driver = Driver(0)
+        # self.gyroscoop = MPU6050()
         if self.driver.stepper_init():
             print("door init heen!")
             met_drivers = True
@@ -54,9 +66,9 @@ class Controller:
             print("ERROR, PANIEK! --> geen stepper motor drivers gevonden!")
             exit()
 
-        # pygame.init()
-        # self.screen = pygame.display.set_mode([500, 500])
-        # self.clock = pygame.time.Clock()
+        pygame.init()
+        self.screen = pygame.display.set_mode([500, 500])
+        self.clock = pygame.time.Clock()
 
         self.TABLE_LENGTH = 540 #mm
         self.y_length = 200 #coördinates
@@ -72,34 +84,6 @@ class Controller:
         self.ONE_ROTATION = self.D_GEAR*pi
         self.ONE_STEP = self.ONE_ROTATION/self.MOTOR_TOTAL_STEPS
 
-        # object variables
-        self.step_pos = [0, 0]
-        self.new_pos = [0, 0]
-        self.stopped = False
-
-        # start controller process
-        t = Thread(target=self.controller_process, args=())
-        t.daemon = True
-        t.start()
-
-    def controller_process(self):
-        """
-        Procedure dat in een nieuwe thread gestart moet worden. De motor voor laterale bewegingen krijgt een richting mee i.p.v.
-        absolute positie.
-        """
-        while self.driver.is_open:
-            if self.stopped:
-                self.driver.close_connections()
-                break
-
-            self.get_current_pos(0)
-            if self.new_pos[0] == self.step_pos[0]:
-                self.driver.transceive_message(0, Commands.STOP)
-            elif self.new_pos[0] < self.step_pos[0]:
-                self.driver.transceive_message(0, Commands.LIMIT_MIN)
-            elif self.new_pos[0] > self.step_pos[0]:
-                self.driver.transceive_message(0, Commands.LIMIT_PLUS)
-
     def test_lin_movement(self, co):
         """bepaald keeper positie en stuur opdracht naar drivers
         
@@ -110,93 +94,90 @@ class Controller:
             int: returns het berekende step_positie (deze waarde is ter debug en mag genegeerd worden, want de drivers worden in deze funtie al aangestuurd.)
         """
 
-        # font = pygame.font.SysFont("arial", 15)
-        # TEXT_COLOR = (255, 255, 255)
-        # text = font.render("y coördinaat: ",True,TEXT_COLOR)
-        # self.screen.blit(text, (10, 10))
+        font = pygame.font.SysFont("arial", 15)
+        TEXT_COLOR = (255, 255, 255)
+        text = font.render("y coördinaat: ",True,TEXT_COLOR)
+        self.screen.blit(text, (10, 10))
 
         # step_data = self.driver.transceive_message(Commands.GET_PX).decode("utf-8") 
         # step = int(step_data)#int.from_bytes(step_data, byteorder='big', signed=True)#struct.unpack('<B', step_data)
         #print(step)
-        step_pos = int(round((co* self.ratio_y_to_MM)/ self.ONE_STEP))
+        step_pos = int(round((co * self.ratio_y_to_MM)/ self.ONE_STEP))
 
-        # text = font.render(str(step_pos),True,TEXT_COLOR)
-        # self.screen.blit(text, (10, 20))
-        # pygame.display.flip()
-        # self.clock.tick(60)
+        text = font.render(str(step_pos),True,TEXT_COLOR)
+        self.screen.blit(text, (10, 20))
+        pygame.display.flip()
+        self.clock.tick(60)
 
         self.driver.transceive_message(0, Commands.SET_X, step_pos)
         return step_pos
 
-    def step_correction(self):
-        angle = self.gyroscoop.getXRotation()
-        # angle = self.gyroscoop.getYRotation()
-        # check angle rotation of gyroscoop
-        if int(angle) != 0:
-            # calculate step size for correction
-            step_size = int(self.MOTOR_STEP * angle * self.MICRO_STEP)
-            # move to corrected position
-            self.driver.transceive_message(1, Commands.SET_X, step_size)
-            # reset motordriver steps to zero
-            self.driver.transceive_message(1, Commands.SET_PX, 0)
+    # def step_correction(self):
+    #     """Haalt stapcorrectie van de gyroscoop op regelt de hendel terug naar 0 graden (begin positie).
+    #     """
+    #     angle = self.gyroscoop.getXRotation()   #krijg de hoek van x terug.
+    #     # angle = self.gyroscoop.getYRotation()
+    #     # check angle rotation of gyroscoop
+    #     if int(angle) != 0:
+    #         # calculate step size for correction
+    #         step_size = int(self.MOTOR_STEP * angle * self.MICRO_STEP)
+    #         # move to corrected position
+    #         self.driver.transceive_message(1, Commands.SET_X, step_size)
+    #         # reset motordriver steps to zero
+    #         self.driver.transceive_message(1, Commands.SET_PX, 0)
 
     def shoot(self):
-        self.driver.transceive_message(1, Commands.SET_X, 48)
-        while int(self.driver.transceive_message(1, Commands.GET_PS).decode("utf-8")):
-            pass
-        self.driver.transceive_message(1, Commands.SET_X, -48)
-        while int(self.driver.transceive_message(1, Commands.GET_PS).decode("utf-8")):
-            pass
-        self.driver.transceive_message(1, Commands.SET_X, 0)
-        # change motordriver position when steps are lost
-        self.step_correction()
-    
+        if(len(self.driver.handlers)==2):
+            self.driver.transceive_message(1, Commands.SET_X, 48)
+            while(int(self.driver.transceive_message(1, Commands.GET_PS).decode("utf-8"))):
+                pass
+            self.driver.transceive_message(1, Commands.SET_X, -48)
+            while(int(self.driver.transceive_message(1, Commands.GET_PS).decode("utf-8"))):
+                pass
+            self.driver.transceive_message(1, Commands.SET_X, 0)
+            # change motordriver position when steps are lost
+            # self.step_correction()
+
     def bitfield(self, n):
-        array = [int(digit) for digit in bin(n)[2:]]  # [2:] to chop off the "0b" part
+        array = [int(digit) for digit in bin(n)[2:]] # [2:] to chop off the "0b" part 
         for i in range(11-len(array)):
             array.insert(0, 0)
         return array
-    
-    def go_home(self):
-        self.driver.transceive_message(0, Commands.HOME_PLUS)
-        
-        while True:
+
+    def go_home(self, direction=0):
+        if(direction==0):
+            self.driver.transceive_message(0, Commands.HOME_PLUS)
+        else:
+            self.driver.transceive_message(0, Commands.HOME_MIN)
+
+        while(1):
+            print(int(self.driver.transceive_message(0, Commands.GET_MST).decode("utf-8")))
             mst_code = self.bitfield(int(self.driver.transceive_message(0, Commands.GET_MST).decode("utf-8")))
-            print("motor status:", mst_code)
+            # print(mst_code)
             try:
-                if mst_code[6]:
-                    # bij min limit; doe H+
+                if(mst_code[6]):
+                    print("bij min limit; doe H+")
                     self.driver.transceive_message(0, Commands.HOME_PLUS)
-                elif mst_code[5]:
-                    # bij plus limit; doe H-
+                elif(mst_code[5]):
+                    print("bij plus limit; doe H-")
                     self.driver.transceive_message(0, Commands.HOME_MIN)
-                elif (not int(self.driver.transceive_message(0, Commands.GET_PS).decode("utf-8"))) or (mst_code[7]):
-                    # set step position ad zero
-                    self.driver.transceive_message(0, Commands.SET_PX, 0)
+                elif((not int(self.driver.transceive_message(0, Commands.GET_PS).decode("utf-8"))) or (mst_code[7])):
                     print("bij home; break")
                     break
             except:
                 pass
-            time.sleep(0.01)
+            time.sleep(0.1)
 
-    def get_current_pos(self, device_number):
-        """Haal huidige stappositie van motordriver op.
 
-        Args:
-            device_number (int): aangesloten motordriver nummer: 0 voor laterale beweging en 1 voor roterende beweging.
-        """
-        self.step_pos[device_number] = int(self.driver.transceive_message(device_number, Commands.GET_PS).decode("utf-8"))
-
-    def linear_extrapolation(self, pnt1, pnt2, value_x=5, max_y=32, min_y=-32):
+    def linear_extrapolation(self, pnt1, pnt2, value_x=5, max_y=32):
         """extra-polation om keeper coördinaten te bepalen
-
+        
         Args:
             pnt1 ((int, int)): x, y coördinaten punt 1 van bal
             pnt2 ((int, int)): x, y coördinaten punt 2 van bal
             value_x (int, optional): coördinaat waar keeper staat in x. Defaults to 5.
-            max_y (int, optional): maximale coördinaat afstand waar de keeper kan komen. Defaults to 32.
-            min_y (int, optional): minimale coördinaat afstand waar de keeper kan komen. Defaults to 32.
-
+            max_y (int, optional): halve coördinaat afstand waar de keeper kan komen. Defaults to 32.
+        
         Returns:
             (int, int): x, y van keeper coördinaat positie
         """
@@ -204,40 +185,25 @@ class Controller:
         # keep is the pixel position of keeper rod on the x-axis
         keep_x = value_x
 
-        # value1 = ((pnt1[1] * (pnt2[0] - keep_x) + pnt2[1] * (keep_x - pnt1[0])))
+        value1 = ((pnt1[1] * (pnt2[0] - keep_x) + pnt2[1] * (keep_x - pnt1[0])))
         value2 = (pnt2[0] - pnt1[0])
-        if value2 != 0:
-            # keep_y = (value1 / value2)
-            delta_y = pnt1[1] - pnt2[1]
-            keep_y = pnt2[1] + (pnt2[0] * delta_y / value2) - (self.y_length / 2)
-        else:
-            keep_y = pnt1[1]
 
-        if (value2 > 0) or (keep_y > max_y) or (keep_y < min_y):
-            return None, None  # geen snijpunt waar keeper bij kan
+        # check if divide by zero
+        if value2 != 0:
+            keep_y = (value1 / value2)
+        else:
+            keep_y = pnt1[1] 
+
+        if (value2>0) or (abs(keep_y)>max_y):
+            return None, None #geen snijpunt waar keeper bij kan
         else:
             return keep_x, keep_y
 
-
 if __name__ == "__main__":
-    from tkinter import *
-    import pygame
-    from pygame.locals import (
-       K_w,
-       K_a,
-       K_s,
-       K_d,
-       K_h,
-       K_p,
-       K_v,
-       K_ESCAPE,
-       KEYDOWN,
-       QUIT,
-    )
     """test code voor p_controller class met vier sliders om de coördinaten van punt 1 en 2 van de bal te bepalen.
     """
 
-    pc = Controller()
+    pc = p_controller()
 
     half_dis = (pc.ratio_MM_to_y*pc.KEEPER_DIS)/2
     half_dis = int(half_dis)-1

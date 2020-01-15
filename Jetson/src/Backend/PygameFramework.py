@@ -1,3 +1,46 @@
+"""In this file is the main loop of the fooball simulation.
+In this file is only the 'def run(self)' function modified (the rest was not modified).  
+
+Simulates the the enviorment of foosball as for the keeper. 
+This simulation has the intention to train an AI to play the game.
+
+Use the W,A,S,D keys to move the keeper.
+Press C to start the simulation.
+
+File:
+    pygame_framework.py
+Date:
+    16.12.2019
+Version:
+    V1.4
+Modifier:
+    Daniël Boon
+Used_IDE:
+    Visual Studio Code (Python 3.6.7 64-bit)
+
+Used libraries/repositories:
+    - PyBox2D (PyBox2D - Jan 15, 2018):
+        https://github.com/pybox2d/pybox2d
+    - Numba 0.35.0 (Numba - Sept 17, 2019)
+        https://github.com/numba/numba
+    - pygame 1.9.6 (pygame - Apr 25, 2019):
+        https://github.com/pygame/pygame
+
+Global Keys:
+    F1     - toggle menu (can greatly improve fps)
+    Space  - shoot projectile
+    Z/X    - zoom
+    Escape - quit
+
+Other keys can be set by the individual test.
+
+Mouse:
+    Left click  - select/drag body (creates mouse joint)
+    Right click - pan
+    Shift+Left  - drag to create a directed projectile
+    Scroll      - zoom
+
+"""
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
@@ -18,26 +61,12 @@
 # misrepresented as being the original software.
 # 3. This notice may not be removed or altered from any source distribution.
 
-"""
-Global Keys:
-    F1     - toggle menu (can greatly improve fps)
-    Space  - shoot projectile
-    Z/X    - zoom
-    Escape - quit
 
-Other keys can be set by the individual test.
-
-Mouse:
-    Left click  - select/drag body (creates mouse joint)
-    Right click - pan
-    Shift+Left  - drag to create a directed projectile
-    Scroll      - zoom
-
-"""
 
 from __future__ import (print_function, absolute_import, division)
 import sys
 import warnings
+#from main import Foostronics
 
 try:
     import pygame_sdl2
@@ -65,6 +94,8 @@ except Exception as ex:
     print('Unable to load PGU; menu disabled.')
     print('(%s) %s' % (ex.__class__.__name__, ex))
     GUIEnabled = False
+
+
 
 
 class PygameDraw(b2DrawExtended):
@@ -341,6 +372,8 @@ class PygameFramework(FrameworkBase):
                 self.gui_app.event(event)  # Pass the event to the GUI
 
         return True
+    
+    #TODO: Vanaf hier wordt de AI geprogrammeerd.
 
     def run(self):
         """
@@ -359,7 +392,43 @@ class PygameFramework(FrameworkBase):
 
         running = True
         clock = pygame.time.Clock()
+
+        
+        
+        # Initialize the decay rate (that will use to reduce epsilon) 
+        decay_step = 0
+                    # Set step to 0
+        step = 0
+        
+       
+        running = self.checkEvents()
+        self.screen.fill((0, 0, 0))
+
+        # Check keys that should be checked every loop (not only on initial
+        # keydown)
+        self.CheckKeys()
+
+        # Run the simulation loop
+        self.SimulationLoop()
+
+        if GUIEnabled and self.settings.drawMenu:
+            self.gui_app.paint(self.screen)
+
+        pygame.display.flip()
+        clock.tick(self.settings.c_hz)
+        self.fps = clock.get_fps()
+
+        # Make a new episode and observe the first state
+        #game.new_episode()
+
+        fs = self.fs
         while running:
+            self.ball, self.body, self.control, self.action = fs.run(self.ball, self.body, self.control, self.target, self.goals, self.blocks)
+
+            # time.sleep(0.03)
+            # print(possible_actions[2])
+            # print(action)
+
             running = self.checkEvents()
             self.screen.fill((0, 0, 0))
 
@@ -374,9 +443,18 @@ class PygameFramework(FrameworkBase):
                 self.gui_app.paint(self.screen)
 
             pygame.display.flip()
-            clock.tick(self.settings.hz)
+            clock.tick(self.settings.c_hz)
             self.fps = clock.get_fps()
 
+            step += 1
+                
+            # Increase decay_step
+            decay_step +=1
+            
+            # Predict the action to take and take it
+            # pc.driver.transceive_message(0, Commands.STOP)
+            # time.sleep(2)
+        fs.sess.close()
         self.world.contactListener = None
         self.world.destructionListener = None
         self.world.renderer = None
@@ -402,7 +480,7 @@ class PygameFramework(FrameworkBase):
                 if GUIEnabled:
                     self.gui_table.updateGUI(self.settings)
             else:              # Inform the test of the key press
-                self.Keyboard(key)
+                self.Keyboard(key, self.settings)
         else:
             self.KeyboardUp(key)
 

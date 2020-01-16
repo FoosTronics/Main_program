@@ -1,11 +1,17 @@
 """
 Library met functies waarin niet geschreven meer mag worden
 
-File:       raster.py
-Author:     Kelvin Sweere
-Date:	    3/10/2019
-Version     0.1
-Test:       Not tested!
+File:
+    Extra.py
+Datum:
+    16-1-2020
+Versie:
+    1.0
+        Header aangepast
+Auteur:
+    Kelvin Sweere
+Used_IDE:
+    Visual Studio Code (Python 3.6.7 64-bit)
 """
 
 import cv2 as cv

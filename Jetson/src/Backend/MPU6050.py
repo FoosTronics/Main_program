@@ -1,23 +1,23 @@
-#!/bin/bash
-"""Class voor de MPU6050 gyroscoop.
+
+"""
+Class voor de MPU6050 gyroscoop.
 
 Leest d.m.v. I2C de MPU6050 gyroscoop uit. Kan gebruikt worden met een timer thread
 en een functie. 
-
-Programmer(s):
+File:
+    MPU6050.py
+Datum:
+    16-1-2020
+Versie:
+    1.0
+        Header gewijzigd
+Modifier:
     Kelvin Sweere
-Date:
-    9-12-2019
-Tester:
-    ...
-Test Done:
-    Not yet
-
-Python Packages:
-    - smbus (i2c)
-    - math
-    - threading 
+Used_IDE:
+    Visual Studio Code (Python 3.6.7 64-bit)
+ 
 """
+#!/bin/bash
 
 import smbus, math, threading
 import time

@@ -1,20 +1,23 @@
-"""In this file is the main loop of the fooball simulation.
-In this file is only the 'def run(self)' function modified (the rest was not modified).  
+"""
+This file contains the main loop for the fooball simulation.
+Only the 'def run(self)' function is modified from the main source (the rest was not modified).  
 
-Simulates the the enviorment of foosball as for the keeper. 
+Simulates the environment of foosball as for the keeper. 
 This simulation has the intention to train an AI to play the game.
 
 Use the W,A,S,D keys to move the keeper.
 Press C to start the simulation.
 
 File:
-    pygame_framework.py
+    PygameFramework.py
 Date:
-    16.12.2019
+    16-1-2020
 Version:
-    V1.4
+    V1.0
+        Verwijzingen naar bestandsnamen gewijzigd
+        Header aangepast
 Modifier:
-    Daniël Boon
+    Daniël Boon    
 Used_IDE:
     Visual Studio Code (Python 3.6.7 64-bit)
 

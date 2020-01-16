@@ -1,3 +1,19 @@
+"""
+ 
+File:
+    USB.py
+Datum:
+    16-1-2020
+Versie:
+    1.0
+        Header toegevoegd
+Modifier:
+    Chileam Bohnen
+Used_IDE:
+    Visual Studio Code (Python 3.6.7 64-bit)
+ 
+"""
+
 import usb1
 from enum import Enum, auto
 import time

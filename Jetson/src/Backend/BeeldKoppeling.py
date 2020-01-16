@@ -1,14 +1,22 @@
 '''
- * File     : beeld_koppeling.py
- * Datum    : 13-12-2019
- * Version  : 0.1
- * Modifier : Kelvin Sweere
- * Python version : V3.6.9
- * omschrijving: Koppelt de beeldherkenning aan de simulatie. Vertaalt hierbij de bal cordinaten in pixel positie
- van de beeldherkenning naar cordinaten voor de simulatie. 
+Omschrijving: Koppelt de beeldherkenning aan de simulatie. Vertaalt hierbij de bal cordinaten in pixel positie
+van de beeldherkenning naar cordinaten voor de simulatie. 
 
- Wanneer debug_flag=True zal de bal bestuurd kunnen worden d.m.v. trackbars. Wanneer deze True is zal een vooraf gedifineerde
- video worden afgespeeld.
+Wanneer debug_flag=True zal de bal bestuurd kunnen worden d.m.v. trackbars. Wanneer deze True is zal een vooraf gedifineerde
+video worden afgespeeld.
+
+File:
+    BeeldKoppeling.py
+Datum:
+    13-12-2019
+Versie:
+    0.1
+Modifier:
+    Kelvin Sweere
+Used_IDE:
+    Visual Studio Code (Python 3.6.7 64-bit)
+ 
+ 
 
 * schema via Lucidchart: NLE/AI/Bal update met beeldherkenning/BeeldKoppeling
 '''

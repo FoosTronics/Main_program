@@ -1,4 +1,5 @@
-"""In this file is the ai functionalilty
+"""
+In this file is the ai functionalilty
 
 Simulates the the enviorment of foosball as for the keeper. 
 This simulation has the intention to train an AI to play the game.
@@ -7,11 +8,12 @@ Use the W,A,S,D keys to move the keeper.
 Press C to start the simulation.
 
 File:
-    deep_q_learning_3.py
-Date:
-    16.12.2019
-Version:
-    V1.4
+    DeepQLearning.py
+Datum:
+    16-1-2020
+Versie:
+    V1.0
+        Header aangepast
 Modifier:
     Daniël Boon
 Used_IDE:

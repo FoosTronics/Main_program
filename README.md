@@ -12,14 +12,6 @@ De Windows applicatie gaat over het testen van bijvoorbeeld AI en simulatie of v
 ## Motivatie
 Het project is gekozen om meer inzicht te verkrijgen in: AI, beeldherkenning, mechanica en hardware. 
 
-## Applicatie starten 
-
-```python
-activate py36
-
-python main.py
-```
-
 ## Packages
 | Package       | Versie              | 
 | ------------- | -------------       | 
@@ -44,3 +36,10 @@ python main.py
 | motordriver           | Arcus Technology ACE-SDE  |
 | gyroscoop             | mpu6050                   |
  
+ ## Applicatie starten 
+
+```python
+activate py36
+
+python main.py
+```

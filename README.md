@@ -1,4 +1,4 @@
-# ![pageres](Windows 10/extra/promo.jpg)
+![Image description](https://github.com/FoosTronics/Main_program/tree/master/Windows%2010/extra/promo.jpg)
 
 #TODO: kijken of dit toegevoegd kan worden. 
 

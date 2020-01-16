@@ -9,7 +9,7 @@ Jetson Nano is de main applicatie waarop de motoren, gyroscoop, etc. op kunnen w
 
 De Windows applicatie gaat over het testen van bijvoorbeeld AI en simulatie of voor test runnen.
 
-# Motivatie
+## Motivatie
 Het project is gekozen om meer inzicht te verkrijgen in: AI, beeldherkenning, mechanica en hardware. 
 
 ## Applicatie starten 

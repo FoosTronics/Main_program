@@ -21,6 +21,9 @@
             Headers veranderd. 
         1.5:
             Functies met underscore gemaakt ipv C++ lowerCamelCase style.
+        1.51:
+            Jit van Numba verwijdert
+            Verhoudingen van simulatieveld aangepast
 """ 
 '''
 Used libraries/repositories:
@@ -45,16 +48,15 @@ from .Backend.Framework import (Framework, Keys, main)
 from random import random
 from math import (cos,sin,pi)
 from time import time
-from numba import jit
 from Box2D.Box2D import (b2CircleShape, b2EdgeShape, b2FixtureDef)
 from datetime import datetime
 import tkinter as tk 
 from tkinter.filedialog import askopenfilename
 tk.Tk().withdraw()
 
-KEEPER_SPEED = 40
-FORCE_MAX = 100
-FORCE_MIN = 60
+KEEPER_SPEED = 30
+FORCE_MAX = 200
+FORCE_MIN = 40
 
 class Control:
     """houd bij welke richting is gekozen voor de keeper om naar toe te gaan
@@ -83,21 +85,21 @@ class KeeperSim(Framework):
         
         super(KeeperSim, self).__init__()
 
-        # Veld opstellen
+        # Veld opstellen 
         ground = self.world.CreateStaticBody(
-            shapes=[b2EdgeShape(vertices=[(-19.35, 0), (19.35, 0)]),
-                    b2EdgeShape(vertices=[(-19.35, 0), (-19.35, 6.16)]),
-                    b2EdgeShape(vertices=[(-19.35, 17.42), (-19.35, 11.26)]),
-                    b2EdgeShape(vertices=[(19.35, 0), (19.35, 6.16)]),
-                    b2EdgeShape(vertices=[(19.35, 17.42), (19.35, 11.26)]),
-                    b2EdgeShape(vertices=[(-19.35, 17.42), (19.35, 17.42)]),
+            shapes=[b2EdgeShape(vertices=[(-19.35, 0), (19.35, 0)]), # bovenste lijn
+                    b2EdgeShape(vertices=[(-19.35, 0), (-19.35, 6.67)]), #Linker lijn bovenkant
+                    b2EdgeShape(vertices=[(-19.35, 20.0), (-19.35, 13.33)]),  #Linker lijn onderkant
+                    b2EdgeShape(vertices=[(19.35, 0), (19.35, 6.67)]),  #Rechter lijn bovenkant
+                    b2EdgeShape(vertices=[(19.35, 20.0), (19.35, 13.33)]), #Rechter lijn onderkant
+                    b2EdgeShape(vertices=[(-19.35, 20.0), (19.35, 20.0)]), #onderste lijn
                     ])
 
         # bal straal instellen
-        self.radius = radius = 0.5
+        self.radius = radius = 0.8
         
         # keeper maken
-        self.create_keeper((-15, 8.71))
+        self.create_keeper((-16.72,10.0))
         self.scaler = 15/19.35
         self.target = 0 #eindpunt voor het schot van de bal.
         
@@ -123,14 +125,13 @@ class KeeperSim(Framework):
         self.force_param = shoot_bool   #schieten als beeldherkenning uitstaat!
         
         # check of cordinaten van de beeldherkenning moeten worden gebruikt, anders midden.
-        b_x, b_y = (0.0, 8.71) if shoot_bool else (0.0 , random() * 17.42)   
+        b_x, b_y = (0.0, 8.71) if shoot_bool else (0.0 , random() * 20.0)   
         
         self.set_ball((b_x, b_y))  #crieeër de bal.
 
     def set_Foostronics(self, Foostronics):
         self.fs = Foostronics(self)
 
-    @jit(nopython=False)
     def Keyboard(self, key, settings):
         """wanneer een key wordt ingedrukt, kom in deze functie
         c = spawn ball
@@ -182,7 +183,6 @@ class KeeperSim(Framework):
             if filename:
                 self.saver.restore(self.sess, filename)
         
-    @jit(nopython=False)
     def KeyboardUp(self, key):
         """wanneer een key wordt losgelaten, kom in deze functie
         
@@ -201,7 +201,6 @@ class KeeperSim(Framework):
         
         self.body.linearVelocity = vel
 
-    @jit(nopython=False)
     def create_keeper(self, pos):
         """maak keeper object in veld
         
@@ -261,7 +260,7 @@ class KeeperSim(Framework):
         """
         goal_lenght = 4.5   #constant
         goal = goal_lenght * random()
-        goal += (8.71 - (goal_lenght/2))
+        goal += (10.0 - (goal_lenght/2))
 
         power = (FORCE_MAX-FORCE_MIN) * random() + FORCE_MIN
         force = ((-19.35-pos[0])*power,(pos[1]-goal)*-power)
@@ -272,7 +271,6 @@ class KeeperSim(Framework):
 
 
     #zet bal met random kracht op doel gericht in het veld
-    @jit(nopython=False)
     def set_ball(self, pos):
         """Maak een bal aan. Hierbij is self.ball.x & self.ball.y de cordinaten van de bal.
         
@@ -286,7 +284,7 @@ class KeeperSim(Framework):
         #als er een kracht op moet worden gezet, doe dat dan.
         if self.force_param:
             force = self._calculate_force_ball(pos)
-            self.ball.ApplyForce(force, (-19.35,8.71), True)
+            self.ball.ApplyForce(force, (-19.35,10.0), True)
 
         self.time_change = round(time()) + 1
 
@@ -296,9 +294,9 @@ class KeeperSim(Framework):
         """
         if self.shoot_bool:
             # Reset bal op punt 0,0 als er nog geen bal wordt gedetecteerd.
-            self.set_ball((0.0, 8.71))
+            self.set_ball((0.0, 10.0))
         else:
-            self.set_ball((0.0 , random() * 17.42))    
+            self.set_ball((0.0 , random() * 20.0))    
     
 
     #kom bij iedere frame in deze functie (bepaling keeper positie/snelheid
@@ -312,9 +310,9 @@ class KeeperSim(Framework):
         Framework.Step(self, settings)  #
         
         #bepaling snelheid keeper bij verticale beweging
-        if ((self.control.y < 0) and (self.body.position.y > 6.16 )):
+        if ((self.control.y < 0) and (self.body.position.y > 7.08 )):
             vel.y = self.control.y
-        elif ((self.control.y > 0) and (self.body.position.y < 11.26)):
+        elif ((self.control.y > 0) and (self.body.position.y < 12.92)):
             vel.y = self.control.y
         else:
             vel.y = 0
@@ -326,16 +324,16 @@ class KeeperSim(Framework):
                 #print("A")
                 self.time += 1.0 / settings.hz
                 vel.x = (KEEPER_SPEED * sin(KEEPER_SPEED * self.time/blub))
-                if (KEEPER_SPEED * self.time/blub) > 2.7925268032:
-                    self.fixture.sensor = False #True
+                if (KEEPER_SPEED * self.time/blub) > 3: #2.7925268032:
+                    self.fixture.sensor = True
                 else:
                     self.fixture.sensor = False
             elif (self.control.x < 0) and ((KEEPER_SPEED * (self.time/blub)) > 0): #D
                 #print("D")
                 self.time -= 1.0 / settings.hz
                 vel.x = (-KEEPER_SPEED * sin(KEEPER_SPEED * (self.time/blub)))
-                if (KEEPER_SPEED * self.time) < 0.3490658504:
-                    self.fixture.sensor = False #True
+                if (KEEPER_SPEED * self.time) < 0.2: #0.3490658504:
+                    self.fixture.sensor = True
                 else:
                     self.fixture.sensor = False
             else:
@@ -352,7 +350,7 @@ class KeeperSim(Framework):
                 self.world.DestroyBody(self.ball)
                 #self.world.DestroyBody(self.ball_target)
                 self._reset_ball()   #reset de bal op het veld.
-                self.body.position = (-15,8.71)
+                self.body.position = (-16.72,10.0)
                 self.time = pi/KEEPER_SPEED
                 self.fixture.sensor = False
 
@@ -366,7 +364,7 @@ class KeeperSim(Framework):
                     self.world.DestroyBody(self.ball)
                     #self.world.DestroyBody(self.ball_target)
                     self._reset_ball()   #reset de bal op het veld.
-                    self.body.position = (-15,8.71)
+                    self.body.position = (-16.72,10.0)
                     self.time = pi/KEEPER_SPEED
                     self.fixture.sensor = False
 

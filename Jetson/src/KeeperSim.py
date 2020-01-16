@@ -54,9 +54,9 @@ import tkinter as tk
 from tkinter.filedialog import askopenfilename
 tk.Tk().withdraw()
 
-KEEPER_SPEED = 30
-FORCE_MAX = 200
-FORCE_MIN = 40
+KEEPER_SPEED = 15
+FORCE_MAX = 50
+FORCE_MIN = 20
 
 class Control:
     """houd bij welke richting is gekozen voor de keeper om naar toe te gaan
@@ -71,7 +71,7 @@ class KeeperSim(Framework):
     Args:
         Framework (FrameworkBase): The base of the main testbed framework.
     """
-    name = "Keeper_sim"
+    name = "KeeperSim"
     description = "Press c to start the game"
 
     def __init__(self,up_speed=100, down_speed=-100, shoot_bool=True):
@@ -96,7 +96,7 @@ class KeeperSim(Framework):
                     ])
 
         # bal straal instellen
-        self.radius = radius = 0.8
+        self.radius = radius = 0.5
         
         # keeper maken
         self.create_keeper((-16.72,10.0))
@@ -127,7 +127,7 @@ class KeeperSim(Framework):
         # check of cordinaten van de beeldherkenning moeten worden gebruikt, anders midden.
         b_x, b_y = (0.0, 8.71) if shoot_bool else (0.0 , random() * 20.0)   
         
-        self.set_ball((b_x, b_y))  #crieeër de bal.
+        self.set_ball((b_x, b_y))  #creeeër de bal.
 
     def set_Foostronics(self, Foostronics):
         self.fs = Foostronics(self)
@@ -148,7 +148,7 @@ class KeeperSim(Framework):
             settings (class): class met parameter intellingen 
         """
         if key == Keys.K_c:
-            # self.SetBall((0.0 , random() * 17.42), force_param=False)
+            # self.SetBall((0.0 , random() * 20.0), force_param=False)
             self._reset_ball()
         if key == Keys.K_w:
             self.control.y = KEEPER_SPEED
@@ -207,7 +207,7 @@ class KeeperSim(Framework):
         Args:
             pos ((int, int)): x y coördinaten waar keeper moet komen te staan
         """
-        dimensions=(0.48, 0.74)
+        dimensions=(0.12, 0.55)
         self.body = self.world.CreateDynamicBody(position=pos, linearDamping = 0.5)
         self.body.allowSleep = False
         self.body.awake = True
@@ -234,7 +234,7 @@ class KeeperSim(Framework):
             self.tp = None
 
     def _create_ball(self, pos):
-        """Crieëren van een bal in Box2D omgeving.
+        """Creeëren van een bal in Box2D omgeving.
         
         Args:
             pos (tuple): x,y cordinaten van de bal.

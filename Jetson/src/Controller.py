@@ -1,25 +1,27 @@
-"""Met behulp van deze class kan er van twee coördinaat punten de benodigde keeper positie bepaald worden.
-Hierbij wordt: extra-polation toegepast, coördinaat naar mm geconvert, de keeper stap positie bepaald en de drivers aangestuurd.
+"""
+    With this class you can the keeper with two cordiates of the ball. The keeper can move beceause of extrapolation with cordinates that
+    are converterd to mm. The end position is used to control the keeper. 
 
-File:
-    P_controller.py
-Date:
-    7.11.2019
-Version:
-    V1.1
-Authors:
-    Daniël Boon
-Used_IDE:
-    Visual Studio Code (Python 3.6.7 64-bit)
+    File:
+        P_controller.py
+    Date:
+        7.11.2019
+    Version:
+        V1.1
+    Authors:
+        Daniël Boon
+    Used_IDE:
+        Visual Studio Code (Python 3.6.7 64-bit)
+    Schemetic:
+        -
+    Version management:
+        1.1:
+            -
 """ 
-'''
-Used external libraries/repositories:
-    - pygame 1.9.6 (pygame - Apr 25, 2019):
-        https://github.com/pygame/pygame
-'''
+
 #pylint: disable=E1101
 import time
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import numpy as np
 from math import pi
 import struct

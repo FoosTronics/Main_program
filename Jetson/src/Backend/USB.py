@@ -1,28 +1,24 @@
 """
- 
-File:
-    USB.py
-Datum:
-    16-1-2020
-Versie:
-    1.0
-        Header toegevoegd
-Modifier:
-    Chileam Bohnen
-Used_IDE:
-    Visual Studio Code (Python 3.6.7 64-bit)
- 
+    Backend to communicate with the USB drivers. 
+
+    File:
+        USB.py
+    Datum:
+        16-1-2020
+    Versie:
+        1.0
+    Authors:
+        Chileam Bohnen
+    Used_IDE:
+        Visual Studio Code (Python 3.6.7 64-bit)
+    Version management:
+        1.0:
+            Header toegevoegd
 """
 
 import usb1
-from enum import Enum, auto
+from enum import Enum
 import time
-import numpy as np
-
-"""
-
-"""
-
 
 class Driver:
     """[summary]"""

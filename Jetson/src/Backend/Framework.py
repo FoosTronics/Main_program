@@ -1,17 +1,21 @@
 '''
+    Framework for Box2D simulation.
 
-File:
-    Framework.py
-Datum:
-    16-1-2020
-Versie:
-    1.0
-        Header toegevoegd
-Modifier:
-    Daniël Boon
-Used_IDE:
-    Visual Studio Code (Python 3.6.7 64-bit)
- 
+    File:
+        Framework.py
+    Date:
+        16-1-2020
+    Version:
+        1.0
+    Modifier:
+        Daniël Boon
+    Used_IDE:
+        Visual Studio Code (Python 3.6.7 64-bit)
+    Schematic:
+        -
+    Version management:
+        1.0:
+            Headers toegevoegd
 '''
 
 #!/usr/bin/env python

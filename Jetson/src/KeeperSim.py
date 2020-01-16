@@ -1,29 +1,33 @@
-"""Simulates the the enviorment of foosball as for the keeper. 
-This simulation has the intention to train an AI to play the game.
+"""
+    Simulates the the enviorment of foosball as for the keeper. 
+    This simulation has the intention to train an AI to play the game.
 
-Use the W,A,S,D keys to move the keeper.
-Press C to start the simulation.
+    Use the W,A,S,D keys to move the keeper.
+    Press C to start the simulation.
 
-File:
-    keeper_sim.py
-Date:
-    16.12.2019
-Version:
-    V1.4
-Modifier:
-    Daniël Boon
-    Kelvin Sweere
-Used_IDE:
-    Visual Studio Code (Python 3.6.7 64-bit)
+    File:
+        keeper_sim.py
+    Date:
+        16.12.2019
+    Version:
+        V1.4
+    Modifier:
+        Daniël Boon
+        Kelvin Sweere
+    Used_IDE:
+        Visual Studio Code (Python 3.6.7 64-bit)
+    Version Management:
+        1.4:
+            Headers veranderd. 
 """ 
 '''
 Used libraries/repositories:
-    - PyBox2D (PyBox2D - Jan 15, 2018):
-        https://github.com/pybox2d/pybox2d
-    - Numba 0.35.0 (Numba - Sept 17, 2019)
-        https://github.com/numba/numba
-    - pygame 1.9.6 (pygame - Apr 25, 2019):
-        https://github.com/pygame/pygame
+        - PyBox2D (PyBox2D - Jan 15, 2018):
+            https://github.com/pybox2d/pybox2d
+        - Numba 0.35.0 (Numba - Sept 17, 2019)
+            https://github.com/numba/numba
+        - pygame 1.9.6 (pygame - Apr 25, 2019):
+            https://github.com/pygame/pygame
 '''
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
@@ -46,13 +50,11 @@ import tkinter as tk
 from tkinter.filedialog import askopenfilename
 tk.Tk().withdraw()
 
-
 KEEPER_SPEED = 40
 FORCE_MAX = 100
 FORCE_MIN = 60
 
-
-class control:
+class Control:
     """houd bij welke richting is gekozen voor de keeper om naar toe te gaan
     """
     x = 0.0
@@ -106,7 +108,7 @@ class KeeperSim(Framework):
         self.time_change = 0
         self.goals = 0
         self.blocks = 0
-        self.control = control()
+        self.control = Control()
         self.action = [0,0,0,0,0]
         self.ratio = 0
         self.tp = None
@@ -313,12 +315,6 @@ class KeeperSim(Framework):
             vel.y = self.control.y
         else:
             vel.y = 0
-
-
-
-        # ! --- IDEAS ---
-        # TODO: de bal (dmv de slidebars) gaat door de keeper heen.
-        # TODO: wanneer de keeper de bal raakt een puntje erbij?
 
         #bepaling snelheid keeper bij horizontale beweging (+maak doorlaatbaar wanneer de keeper te hoog staat)
         if self.control.x and (settings.hz > 0.0):

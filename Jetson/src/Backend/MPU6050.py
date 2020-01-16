@@ -1,21 +1,22 @@
 
 """
-Class voor de MPU6050 gyroscoop.
+    Class for the MPU6050 gyroscope. 
 
-Leest d.m.v. I2C de MPU6050 gyroscoop uit. Kan gebruikt worden met een timer thread
-en een functie. 
-File:
-    MPU6050.py
-Datum:
-    16-1-2020
-Versie:
-    1.0
-        Header gewijzigd
-Modifier:
-    Kelvin Sweere
-Used_IDE:
-    Visual Studio Code (Python 3.6.7 64-bit)
- 
+    Reads with I2C the regiseters. Can used in a timer thread or in a function.
+
+    File:
+        MPU6050.py
+    Date:
+        16-1-2020
+    Version:
+        1.0
+    Modifier:
+        Kelvin Sweere
+    Used_IDE:
+        Visual Studio Code (Python 3.6.7 64-bit)
+    Version management:
+        1.0:
+            Headers gewijzigd. 
 """
 #!/bin/bash
 

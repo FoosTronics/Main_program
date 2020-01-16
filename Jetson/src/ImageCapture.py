@@ -1,21 +1,25 @@
+"""
+    Reads picture from (video) memory. 
+
+    File:
+      ImageProcessing.py
+    Date:
+        15.11.2019
+    Version:
+        V1.0
+    Authors:
+        Chileam Bohnen
+    Used_IDE:
+        PyCharm (Python 3.6.9 64-bit)
+    Schemetic:
+        -
+    Version Management:
+        1.0:
+            Headers veranderd.
+"""
+
 import cv2
 import time
-
-"""
-Afbeeldingen ophalen uit video geheugen
-
-File:
-    ImageProcessing.py
-Date:
-    15.11.2019
-Version:
-    V1.0
-Authors:
-    Chileam Bohnen
-Used_IDE:
-    PyCharm (Python 3.6.9 64-bit)
-"""
-
 
 class ImageCapture:
     """

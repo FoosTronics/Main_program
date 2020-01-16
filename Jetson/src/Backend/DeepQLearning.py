@@ -1,24 +1,29 @@
 """
-In this file is the ai functionalilty
+    This file is the ai functionalilty.
 
-Simulates the the enviorment of foosball as for the keeper. 
-This simulation has the intention to train an AI to play the game.
+    Simulates the the enviorment of foosball as for the keeper. 
+    This simulation has the intention to train an AI to play the game.
 
-Use the W,A,S,D keys to move the keeper.
-Press C to start the simulation.
+    Use the W,A,S,D keys to move the keeper.
+    Press C to start the simulation.
 
-File:
-    DeepQLearning.py
-Datum:
-    16-1-2020
-Versie:
-    V1.0
-        Header aangepast
-Modifier:
-    Daniël Boon
-Used_IDE:
-    Visual Studio Code (Python 3.6.7 64-bit)
-""" 
+    File:
+        DeepQLearning.py
+    Date:
+        16-1-2020
+    Version:
+        1.0
+    Modifier:
+        Daniël Boon
+    Used_IDE:
+        Visual Studio Code (Python 3.6.7 64-bit)
+    Schematic:
+        Lucidchart: NLE/AI/LLD AI
+    Version management:
+        1.0:
+            Headers up-to-date.
+"""
+
 
 import tensorflow as tf      # Deep Learning library
 import numpy as np           # Handle matrices
@@ -227,8 +232,6 @@ class Memory():
         
         return [self.buffer[i] for i in index]
 
-
-
 """
 This function will do the part
 With ϵ select a random action atat, otherwise select at=argmaxaQ(st,a)
@@ -237,8 +240,8 @@ def predict_action(explore_start, explore_stop, decay_rate, decay_step, state, a
     """bepaal ai actie of random actie
     
     Args:
-        explore_start (float): begin persentage ratio random actie tot ai bepaalde actie
-        explore_stop (float): eind persentage ratio random actie tot ai bepaalde actie
+        explore_start (float): begin persentage ratio random actie tot AI bepaalde actie
+        explore_stop (float): eind persentage ratio random actie tot AI bepaalde actie
         decay_rate (float): snelheid van explore_start tot explore_stop
         decay_step (int): hoeveelheid gemaakte steps
         state (numpy array): numpy array van state

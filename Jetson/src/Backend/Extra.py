@@ -1,17 +1,23 @@
 """
-Library met functies waarin niet geschreven meer mag worden
+    Library of extra functionalities for the vision application. 
+    Developed by third-party developers.         
 
-File:
-    Extra.py
-Datum:
-    16-1-2020
-Versie:
-    1.0
-        Header aangepast
-Auteur:
-    Kelvin Sweere
-Used_IDE:
-    Visual Studio Code (Python 3.6.7 64-bit)
+    File:
+        Extra.py
+    Date:
+        16-1-2020
+    Version:
+        1.0
+    Modifier:
+        Kelvin Sweere
+    Used_IDE:
+        Visual Studio Code (Python 3.6.7 64-bit)
+    Schematic:
+        -
+    Version management:
+        1.0:
+            Headers aangepast
+        
 """
 
 import cv2 as cv

@@ -15,7 +15,7 @@
     Used_IDE:
         Visual Studio Code (Python 3.6.7 64-bit)
 
-    Version:
+    Version management:
         1.1:
             functie: _initAISettings() toegevoegd voor de parameters van de AI in de init.
 """ 
@@ -121,7 +121,7 @@ class Foostronics:
             pass
     
     def _initAISettings(self):
-         ### MODEL HYPERPARAMETERS
+        ### MODEL HYPERPARAMETERS
         # Our input is a stack of 4 frames hence 84x84x4 (Width, height, channels)
         state_size = [4, 4]
         action_size = 4  # game.get_available_buttons_size()              # 3 possible actions: left, right, shoot

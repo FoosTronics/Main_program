@@ -1,16 +1,27 @@
 """
-Code voor het volgen van de bal op het speelveld
+    Detecting the ball on the field. 
 
-File:       BallDetectClass.py
-Author:     Sipke Vellinga
-Date:	    15-11-2019
-Version     3.1
-Test:       Niet getest!
-
-- __init__ aangepast
-- def getimageFrame en def getvideoFrame samengevoegd
-- def showFrame opgeschoond
+    File:
+        BallDetectClass.py
+    Date:
+        15-11-2019
+    Version:
+        3.1
+    Authors:
+        Sipke Vellinga
+    Used_IDE:
+        Pycharm (Python 3.6.7 64-bit)
+    Schematic:
+        -
+    Version management:
+        2.1:
+            __init__ aangepast
+        3.0:
+            def getimageFrame en def getvideoFrame samengevoegd
+        3.1:
+            def showFrame opgeschoond
 """
+
 import numpy as np
 import cv2
 import imutils

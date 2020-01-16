@@ -1,29 +1,30 @@
-'''
-Omschrijving: Koppelt de beeldherkenning aan de simulatie. Vertaalt hierbij de bal cordinaten in pixel positie
-van de beeldherkenning naar cordinaten voor de simulatie. 
+"""
+    Omschrijving: Koppelt de beeldherkenning aan de simulatie. Vertaalt hierbij de bal cordinaten in pixel positie
+    van de beeldherkenning naar cordinaten voor de simulatie. 
 
-Wanneer debug_flag=True zal de bal bestuurd kunnen worden d.m.v. trackbars. Wanneer deze True is zal een vooraf gedifineerde
-video worden afgespeeld.
+    Wanneer debug_flag=True zal de bal bestuurd kunnen worden d.m.v. trackbars. Wanneer deze True is zal een vooraf gedifineerde
+    video worden afgespeeld.
 
-File:
-    BeeldKoppeling.py
-Datum:
-    13-12-2019
-Versie:
-    0.1
-Modifier:
-    Kelvin Sweere
-Used_IDE:
-    Visual Studio Code (Python 3.6.7 64-bit)
- 
- 
+    File:
+        BeeldKoppeling.py
+    Date:
+        13-12-2019
+    Version:
+        1.0
+    Modifier:
+        Kelvin Sweere
+    Used_IDE:
+        Visual Studio Code (Python 3.6.7 64-bit)
+    Schematic:
+        Lucidchart: NLE/AI/Bal update met beeldherkenning
+    Version management:
+        1.0:
+            Release Jetson Nano.
 
-* schema via Lucidchart: NLE/AI/Bal update met beeldherkenning/BeeldKoppeling
-'''
+"""
 
 import cv2
 #from BallDetection import BallDetection
-import time
 
 class BeeldKoppeling():
     """Class die beeldherkenning koppelt aan de simulatie.

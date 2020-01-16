@@ -1,21 +1,28 @@
 #pylint disable=E1101
 
 """
-Code voor het vinden van de contouren rond de tafel.
-Hierin wordt de grootste contour gevonden, waarbij de img wordt gecropt en gereturnt.
+    Code to find the contours of the table. This can be done in the init of the application. 
 
-File:       find_countours.py
-Author:     Kelvin Sweere & Chileam Bohnen
-Date:	    13-11-2019
-Version     1.0
-Test:       Failed
-Tester:     Daniël Boon
+    File:
+        find_countours.py
+    Date:
+        13-11-2019
+    Version:
+        1.0
+    Modifier / Authors:
+        Kelvin Sweere
+        Chileam Bohnen
+    Used_IDE:
+        Pycharm (Python 3.6.7 64-bit)
+    Schematic:
+        -
+    Version management:
+        1.0:
+            Headers veranderd.
 """
-
 
 import numpy as np
 import cv2
-from datetime import datetime
 from .Backend.Extra import *
 
 if __name__ == "__main__":

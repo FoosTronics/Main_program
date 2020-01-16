@@ -16,12 +16,12 @@ Tester:     Daniël Boon
 import numpy as np
 import cv2
 from datetime import datetime
-from extra.rst_lib import *
+from .Backend.Extra import *
 
 if __name__ == "__main__":
     from glob import glob
 
-class Raster:
+class FindContours:
     def __init__(self, debug=False):
         """Init van de Raster class
         

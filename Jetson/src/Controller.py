@@ -23,8 +23,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 from math import pi
 import struct
-from backends.stepper_controller.src.USBPerformax_multiple_drivers import Driver
-from backends.stepper_controller.src.USBPerformax_multiple_drivers import Commands
+from .Backend.USB import Driver
+from .Backend.USB import Commands
+
 # from src.mpu6050 import  MPU6050
 from tkinter import *
 import pygame

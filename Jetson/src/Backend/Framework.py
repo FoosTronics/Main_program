@@ -21,6 +21,9 @@
 """
 The framework's base is FrameworkBase. See its help for more information.
 """
+#from .PygameFramework import PygameFramework as Framework
+from .Settings import fwSettings
+
 from time import time
 
 from Box2D.Box2D import (b2World, b2AABB, b2CircleShape, b2Color, b2Vec2)
@@ -28,8 +31,6 @@ from Box2D.Box2D import (b2ContactListener, b2DestructionListener, b2DrawExtende
 from Box2D.Box2D import (b2Fixture, b2FixtureDef, b2Joint)
 from Box2D.Box2D import (b2GetPointStates, b2QueryCallback, b2Random)
 from Box2D.Box2D import (b2_addState, b2_dynamicBody, b2_epsilon, b2_persistState)
-
-from settings import fwSettings
 
 
 class fwDestructionListener(b2DestructionListener):
@@ -525,12 +526,11 @@ if __name__ == '__main__':
     exit(1)
 
 
-# Your framework classes should follow this format. If it is the 'foobar'
-# framework, then your file should be 'backends/foobar_framework.py' and you
-# should have a class 'FoobarFramework' that subclasses FrameworkBase. Ensure
-# proper capitalization for portability.
-import backends
-
+# # Your framework classes should follow this format. If it is the 'foobar'
+# # framework, then your file should be 'backends/foobar_framework.py' and you
+# # should have a class 'FoobarFramework' that subclasses FrameworkBase. Ensure
+# # proper capitalization for portability.
+#
 try:
     framework_name = '%s_framework' % (fwSettings.backend.lower())
     __import__('backends', globals(), fromlist=[framework_name], level=1)
@@ -541,4 +541,4 @@ except Exception as ex:
     print('Unable to import the back-end %s: %s' % (fwSettings.backend, ex))
     print('Attempting to fall back on the pygame back-end.')
 
-    from backends.pygame_framework import PygameFramework as Framework
+    from .PygameFramework import PygameFramework as Framework

@@ -33,14 +33,14 @@ Used libraries/repositories:
 
 
 #pylint: disable=E1101
+from .Backend.Framework import (Framework, Keys, main)
+#import deep_q_learning
 
 from random import random
 from math import (cos,sin,pi)
 from time import time
 from numba import jit
-from framework import (Framework, Keys, main)
 from Box2D.Box2D import (b2CircleShape, b2EdgeShape, b2FixtureDef)
-#import deep_q_learning
 from datetime import datetime
 import tkinter as tk 
 from tkinter.filedialog import askopenfilename
@@ -51,13 +51,15 @@ KEEPER_SPEED = 40
 FORCE_MAX = 100
 FORCE_MIN = 60
 
+
 class control:
     """houd bij welke richting is gekozen voor de keeper om naar toe te gaan
     """
     x = 0.0
     y = 0.0
 
-class keeper_sim (Framework):
+
+class KeeperSim(Framework):
     """maakt de simulatie objecten aan, regelt de keeper begingen, bal schieten en of er wel of niet gescoord is.
     
     Args:
@@ -75,7 +77,7 @@ class keeper_sim (Framework):
             shoot_bool (bool, optional): keuze of beeldherkenning wordt gebruikt voor de simulatie. Standaard uit (False).
         """
         
-        super(keeper_sim, self).__init__()
+        super(KeeperSim, self).__init__()
 
         # Veld opstellen
         ground = self.world.CreateStaticBody(
@@ -110,7 +112,7 @@ class keeper_sim (Framework):
         self.tp = None
 
         #TODO: debug waarde!
-        shoot_bool = False   #boolean die bepaald of er wordt geschoten (False is schieten!)
+        shoot_bool = True   #boolean die bepaald of er wordt geschoten (False is schieten!)
         # ! ---------------
 
         self.shoot_bool = not(shoot_bool)  #flag die checkt of beeldherkenning aanstaat.
@@ -227,8 +229,6 @@ class keeper_sim (Framework):
             self.world.DestroyBody(self.tp)
             self.tp = None
 
-
-
     def _createBall(self, pos):
         """Crieëren van een bal in Box2D omgeving.
         
@@ -244,7 +244,6 @@ class keeper_sim (Framework):
             fixtures=fixture,
             linearDamping = 0.5
         )
-
 
     def _calculateForceBall(self, pos):
         """Bereken de kracht die op de bal moet komen te staan.
@@ -391,5 +390,6 @@ class keeper_sim (Framework):
         self.Print(('|%d|%d|%d|' % (0,self.action[3],self.action[2])))
         self.Print(('|  |%d|  |' % (self.action[1])))
 
+
 if __name__ == "__main__":
-    main(keeper_sim)
+    main(KeeperSim)

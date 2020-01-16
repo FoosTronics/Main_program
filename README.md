@@ -1,11 +1,16 @@
 # ![pageres](https://github.com/FoosTronics/Main_program/blob/master/Windows%2010/extra/promo.jpg)
 
 # FoosTronics
+> AI besturing van tafelvoetbal
+
 FoosTronics is een NLE minor project waarbij de keeper van een fysieke voetbaltafel wordt bestuurd doormiddel van een AI. Hierbij is beeldherkenning gebruikt om de bal te detecteren. 
 
 Jetson Nano is de main applicatie waarop de motoren, gyroscoop, etc. op kunnen worden aangesloten.
 
 De Windows applicatie gaat over het testen van bijvoorbeeld AI en simulatie of voor test runnen.
+
+# Motivatie
+Het project is gekozen om meer inzicht te verkrijgen in: AI, beeldherkenning, mechanica en hardware. 
 
 ## Applicatie starten 
 

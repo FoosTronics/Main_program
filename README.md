@@ -33,3 +33,14 @@ python main.py
 | imutils       | 0.5.3               |               
 | numba         | 0.45.1              |               
 | pygame        | 1.9.6               |               
+
+## Hardware componenten
+| Component             | Versie                    | 
+| -------------         | -------------             | 
+| Jetson                | Nano                      |      
+| RPI Cam               | V2.1                      |
+| stappenmotor 2.3 inch | KH56KM2                   | 
+| stappenmotor 1.7 inch | 17PU-H502                 |
+| motordriver           | Arcus Technology ACE-SDE  |
+| gyroscoop             | mpu6050                   |
+ 

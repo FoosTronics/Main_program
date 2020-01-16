@@ -83,19 +83,12 @@ import pygame
 from pygame.locals import (QUIT, KEYDOWN, KEYUP, MOUSEBUTTONDOWN,
                            MOUSEBUTTONUP, MOUSEMOTION, KMOD_LSHIFT)
 
-from framework import (FrameworkBase, Keys)
-from settings import fwSettings
+from .Framework import FrameworkBase, Keys
+#from .Framework import (FrameworkBase, Keys)
+from .Settings import fwSettings
 from Box2D import (b2DrawExtended, b2Vec2)
 
-try:
-    from .pygame_gui import (fwGUI, gui)
-    GUIEnabled = True
-except Exception as ex:
-    print('Unable to load PGU; menu disabled.')
-    print('(%s) %s' % (ex.__class__.__name__, ex))
-    GUIEnabled = False
-
-
+GUIEnabled = False
 
 
 class PygameDraw(b2DrawExtended):

@@ -15,15 +15,17 @@ Used_IDE:
 """ 
 #pylint: disable=E1101
 
-from keeper_sim import keeper_sim
-from framework import main
-import deep_q_learning_3 as DQL
+from src.KeeperSim import KeeperSim
+from src.Backend.Framework import main
+import src.Backend.DeepQLearning as DQL
+from src.Backend.USB import Commands
+from src.Controller import p_controller
+
 import matplotlib.pylab as plt
 from datetime import datetime
-from backends.stepper_controller.P_controller import p_controller
-from backends.stepper_controller.src.USBPerformax_multiple_drivers import Commands
+
 import time
-from beeld_koppeling import BeeldKoppeling
+from src.Backend.BeeldKoppeling import BeeldKoppeling
 
 KEEPER_SPEED = 40
 
@@ -35,8 +37,10 @@ class Foostronics:
         Args:
             keeper_sim (class): adress van draaiende keeper simulatie om variabelen op te halen.
         """
-        self.ks = keeper_sim
-        self.bk = BeeldKoppeling(debug_flag=False)     # class die de beeldherkenning afhandeld. debug_flag=True (trackbars worden afgemaakt).
+        self.ks = KeeperSim()
+
+        # TODO: BeeldKoppeling wordt vervangen
+        self.bk = BeeldKoppeling(debug_flag=True)     # class die de beeldherkenning afhandeld. debug_flag=True (trackbars worden afgemaakt).
 
         self.possible_actions = DQL.create_environment()
 
@@ -135,7 +139,8 @@ class Foostronics:
             self.met_drivers = True
         except:
             pass
-    
+
+    # TODO opdelen in functies en waarom staat dit niet in de simulatie files?
     def run(self, ball, keeper, control, target, goals, blocks):
         """Deze functie wordt om iedere frame aangeroepen en kan gezien worden als de mainloop.
         
@@ -222,9 +227,9 @@ class Foostronics:
             if(self.met_drivers):
                 self.pc.driver.transceive_message(0, Commands.STOP)
                 self.pc.shoot()
-            elif(1):
+            elif(1):    # True?
                 pass
-            else:
+            else:   # de code tussen 231 en 266 wordt niets mee gedaan.
                 control.x = -KEEPER_SPEED
                 while(1):
                     # time.sleep(0.03)
@@ -403,10 +408,9 @@ class Foostronics:
         return ball, keeper, control, action
 
 
-
 if __name__ == "__main__":
     """start main code
     """
-    ks = keeper_sim()
+    ks = KeeperSim()
     ks.set_Foostronics(Foostronics)
     main(ks)

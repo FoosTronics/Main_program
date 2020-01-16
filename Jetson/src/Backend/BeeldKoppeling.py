@@ -14,7 +14,7 @@
 '''
 
 import cv2
-from BallDetectClass import BallDetection
+#from BallDetection import BallDetection
 import time
 
 class BeeldKoppeling():

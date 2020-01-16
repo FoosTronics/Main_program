@@ -1,8 +1,5 @@
-# imports
 import cv2
 import time
-
-from src.FileVideoStream import *
 
 """
 Afbeeldingen ophalen uit video geheugen
@@ -19,12 +16,13 @@ Used_IDE:
     PyCharm (Python 3.6.9 64-bit)
 """
 
+
 class ImageCapture:
     """
     Klasse voor het maken en ophalen van afbeeldingen met behulp van een webcam of raspi cam.
     """
 
-    def __init__(self, res, file=None, save=False):
+    def __init__(self, res=(640, 360), file=None, save=False):
         """
         Initalisatie van klasse object
         
@@ -39,7 +37,7 @@ class ImageCapture:
         self.FPS            = 60.0
         self.STABILIZATION  = False
         self.SHUTTER_TIME   = 0
-        self.camera         = FileVideoStream
+        self.camera         = None
         self.fourcc         = cv2.VideoWriter_fourcc(*'XVID')
         self.writer         = None
         self.frame          = []
@@ -58,7 +56,7 @@ class ImageCapture:
             return
 
         if self.FILE is not None:
-            self.camera = FileVideoStream(self.FILE, 16).start()
+            self.camera = cv2.VideoCapture(self.FILE)
         else:
             gstream_string = self._gstreamer_pipeline()
             self.camera = cv2.VideoCapture(gstream_string, cv2.CAP_GSTREAMER)
@@ -90,7 +88,7 @@ class ImageCapture:
             capture_width=1280,
             capture_height=720,
             display_width=640,
-            display_height=480,
+            display_height=360,
             framerate=120,
             flip_method=2,
     ):
@@ -111,6 +109,7 @@ class ImageCapture:
             "format=BGRx ! videoconvert ! video/x-raw, format=BGR ! appsink"
             )
 
+
 if __name__ == "__main__":
     file_name = "output_fast.avi"
     
@@ -128,20 +127,3 @@ if __name__ == "__main__":
         key = cv2.waitKey(10)
         if key == 27:
             break
-    
-    # print("")
-    # print("cv2.VideoCapture in new thread")
-    # print("==================================================================")
-    
-    # fvs = FileVideoStream(file_name, 2).start()
-    # time.sleep(0.1)
-    
-    # while not fvs.stopped:
-    #    start_time = time.time()
-    #    frame = fvs.read()
-    #    print("get_frame:", (time.time() - start_time) * 1000, "ms")
-    #    cv2.imshow("frame", frame)
-    #    print("Queue size:", fvs.Q.qsize())
-    #    key = cv2.waitKey(1)
-    #    if key == 27:
-    #        break

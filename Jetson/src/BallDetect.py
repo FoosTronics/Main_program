@@ -116,6 +116,7 @@ class BallDetection: #of Beeldherkenning?
             self.frame = cv2.resize(self.frame, self.dim)
             return self.frame
 
+    # TODO Video frame via ImageCapture
     # def getvideoFrame(self):
     #     """
     #     Haalt een frame op van een vooraf gedefinieerd medium (file) zoals een afbeelding, video of livestream.

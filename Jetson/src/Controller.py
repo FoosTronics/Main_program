@@ -3,11 +3,11 @@
     are converterd to mm. The end position is used to control the keeper. 
 
     File:
-        P_controller.py
+        PController.py
     Date:
-        7.11.2019
+        16-1-2020
     Version:
-        V1.1
+        V1.2
     Authors:
         Daniël Boon
     Used_IDE:
@@ -17,6 +17,8 @@
     Version management:
         1.1:
             -
+        1.2:
+            class p_controller veranderd naar CamelCase (PController)
 """ 
 
 #pylint: disable=E1101
@@ -44,7 +46,7 @@ from pygame.locals import (
     QUIT,
 )
 
-class p_controller:
+class PController:
     """Met behulp van deze class kan er van twee coördinaat punten de benodigde keeper positie bepaald worden.
        Hierbij wordt: extra-polation toegepast, coördinaat naar mm geconvert, de keeper stap positie bepaald en de drivers aangestuurd.
     
@@ -203,10 +205,10 @@ class p_controller:
             return keep_x, keep_y
 
 if __name__ == "__main__":
-    """test code voor p_controller class met vier sliders om de coördinaten van punt 1 en 2 van de bal te bepalen.
+    """test code voor PController class met vier sliders om de coördinaten van punt 1 en 2 van de bal te bepalen.
     """
 
-    pc = p_controller()
+    pc = PController()
 
     half_dis = (pc.ratio_MM_to_y*pc.KEEPER_DIS)/2
     half_dis = int(half_dis)-1

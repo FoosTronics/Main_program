@@ -8,7 +8,7 @@
     Date:
         16.1.2020
     Version:
-        V1.1
+        V1.2
     Author:
         Daniël Boon
         Kelvin Sweere
@@ -18,6 +18,10 @@
     Version management:
         1.1:
             functie: _initAISettings() toegevoegd voor de parameters van de AI in de init.
+        1.2:
+            Constantes zijn hoofdletters.
+
+
 """ 
 #pylint: disable=E1101
 
@@ -25,7 +29,7 @@ from src.KeeperSim import KeeperSim
 from src.Backend.Framework import main
 import src.Backend.DeepQLearning as DQL
 from src.Backend.USB import Commands
-from src.Controller import p_controller
+from src.Controller import PController
 
 import matplotlib.pylab as plt
 from datetime import datetime
@@ -55,7 +59,8 @@ class Foostronics:
         # Initialize deque with zero-images one array for each image
         self.stacked_states = DQL.deque([DQL.np.zeros(4, dtype=DQL.np.float) for i in range(self.stack_size)], maxlen=4) 
 
-        self._initAISettings()  #init alle parameters voor de AI.
+        # init alle parameters voor de AI.
+        STATE_SIZE, ACTION_SIZE, LEARNING_RATE, MEMORY_SIZE = self._initAISettings()
        
         ### MODIFY THIS TO FALSE IF YOU JUST WANT TO SEE THE TRAINED AGENT
         training = True
@@ -67,10 +72,10 @@ class Foostronics:
         DQL.tf.reset_default_graph()
 
         # Instantiate the DQNetwork
-        self.DQNetwork = DQL.DQNetwork(state_size, action_size, learning_rate)
+        self.DQNetwork = DQL.DQNetwork(STATE_SIZE, ACTION_SIZE, LEARNING_RATE)
         
         # Instantiate memory
-        self.memory = DQL.Memory(max_size = memory_size)
+        self.memory = DQL.Memory(max_size = MEMORY_SIZE)
 
         # Setup TensorBoard Writer
         self.writer = DQL.tf.summary.FileWriter("/tensorboard/dqn/1")
@@ -115,7 +120,7 @@ class Foostronics:
         self.points_array = []
         self.met_drivers = False
         try:
-            self.pc = p_controller()
+            self.pc = PController()
             self.met_drivers = True
         except:
             pass
@@ -123,19 +128,19 @@ class Foostronics:
     def _initAISettings(self):
         ### MODEL HYPERPARAMETERS
         # Our input is a stack of 4 frames hence 84x84x4 (Width, height, channels)
-        state_size = [4, 4]
-        action_size = 4  # game.get_available_buttons_size()              # 3 possible actions: left, right, shoot
-        #TODO: was 0.0002
-        learning_rate = 0.01      # Alpha (aka learning rate)
+        STATE_SIZE = [4, 4]
+        ACTION_SIZE = 4  # game.get_available_buttons_size()              # 3 possible actions: left, right, shoot
+        #NOTE: was 0.0002
+        LEARNING_RATE = 0.01      # Alpha (aka learning rate)
 
         ### TRAINING HYPERPARAMETERS
         total_episodes = 500        # Total episodes for training
         self.max_steps = 1000              # Max possible steps in an episode
-        #TODO: was 64
+        #NOTE: was 64
         self.batch_size = 32
 
         # Exploration parameters for epsilon greedy strategy
-        #TODO: explore_start was 1.0
+        #NOTE: explore_start was 1.0
         self.explore_start = 1.0            # exploration probability at start
         self.explore_stop = 0.01            # minimum exploration probability
         self.decay_rate = 0.0001            # exponential decay rate for exploration prob
@@ -146,8 +151,9 @@ class Foostronics:
         ### MEMORY HYPERPARAMETERS
         # Number of experiences stored in the Memory when initialized for the first time
         pretrain_length = self.batch_size
-        memory_size = 10000          # Number of experiences the Memory can keep
+        MEMORY_SIZE = 10000          # Number of experiences the Memory can keep
 
+        return (STATE_SIZE, ACTION_SIZE, LEARNING_RATE, MEMORY_SIZE)
 
 
     # TODO opdelen in functies en waarom staat dit niet in de simulatie files?

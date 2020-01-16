@@ -1,17 +1,23 @@
-"""Hoofdclass FoosTronics en main code. 
-De onderdelen voor beeldherkenning, AI en motor aansturing komen in dit bestand bijelkaar.
-In dit bestand bestaat voor grootendeels uit de regeling van de AI.
+"""
+    Hoofdclass FoosTronics en main code. 
+    De onderdelen voor beeldherkenning, AI en motor aansturing komen in dit bestand bijelkaar.
+    In dit bestand bestaat voor grootendeels uit de regeling van de AI.
 
-File:
-    main.py
-Date:
-    14.1.2020
-Version:
-    V1.0
-Modifier:
-    Daniël Boon
-Used_IDE:
-    Visual Studio Code (Python 3.6.7 64-bit)
+    File:
+        main.py
+    Date:
+        16.1.2020
+    Version:
+        V1.1
+    Author:
+        Daniël Boon
+        Kelvin Sweere
+    Used_IDE:
+        Visual Studio Code (Python 3.6.7 64-bit)
+
+    Version:
+        1.1:
+            functie: _initAISettings() toegevoegd voor de parameters van de AI in de init.
 """ 
 #pylint: disable=E1101
 
@@ -49,45 +55,19 @@ class Foostronics:
         # Initialize deque with zero-images one array for each image
         self.stacked_states = DQL.deque([DQL.np.zeros(4, dtype=DQL.np.float) for i in range(self.stack_size)], maxlen=4) 
 
-                
-        ### MODEL HYPERPARAMETERS
-        state_size = [4, 4]      # Our input is a stack of 4 frames hence 84x84x4 (Width, height, channels) 
-        action_size = 4 #game.get_available_buttons_size()              # 3 possible actions: left, right, shoot
-        #TODO: was 0.0002
-        learning_rate =  0.01      # Alpha (aka learning rate)
-
-        ### TRAINING HYPERPARAMETERS
-        total_episodes = 500        # Total episodes for training
-        self.max_steps = 1000              # Max possible steps in an episode
-        #TODO: was 64
-        self.batch_size = 32
-
-        # Exploration parameters for epsilon greedy strategy
-        #TODO: explore_start was 1.0
-        self.explore_start = 1.0            # exploration probability at start
-        self.explore_stop = 0.01            # minimum exploration probability 
-        self.decay_rate = 0.0001            # exponential decay rate for exploration prob
-
-        # Q learning hyperparameters
-        self.gamma = 0.95               # Discounting rate
-
-        ### MEMORY HYPERPARAMETERS
-        pretrain_length = self.batch_size   # Number of experiences stored in the Memory when initialized for the first time
-        memory_size = 10000          # Number of experiences the Memory can keep
-
+        self._initAISettings()  #init alle parameters voor de AI.
+       
         ### MODIFY THIS TO FALSE IF YOU JUST WANT TO SEE THE TRAINED AGENT
         training = True
 
         ## TURN THIS TO TRUE IF YOU WANT TO RENDER THE ENVIRONMENT
         episode_render = False
 
-
         # Reset the graph
         DQL.tf.reset_default_graph()
 
         # Instantiate the DQNetwork
         self.DQNetwork = DQL.DQNetwork(state_size, action_size, learning_rate)
-
         
         # Instantiate memory
         self.memory = DQL.Memory(max_size = memory_size)
@@ -139,6 +119,36 @@ class Foostronics:
             self.met_drivers = True
         except:
             pass
+    
+    def _initAISettings(self):
+         ### MODEL HYPERPARAMETERS
+        # Our input is a stack of 4 frames hence 84x84x4 (Width, height, channels)
+        state_size = [4, 4]
+        action_size = 4  # game.get_available_buttons_size()              # 3 possible actions: left, right, shoot
+        #TODO: was 0.0002
+        learning_rate = 0.01      # Alpha (aka learning rate)
+
+        ### TRAINING HYPERPARAMETERS
+        total_episodes = 500        # Total episodes for training
+        self.max_steps = 1000              # Max possible steps in an episode
+        #TODO: was 64
+        self.batch_size = 32
+
+        # Exploration parameters for epsilon greedy strategy
+        #TODO: explore_start was 1.0
+        self.explore_start = 1.0            # exploration probability at start
+        self.explore_stop = 0.01            # minimum exploration probability
+        self.decay_rate = 0.0001            # exponential decay rate for exploration prob
+
+        # Q learning hyperparameters
+        self.gamma = 0.95               # Discounting rate
+
+        ### MEMORY HYPERPARAMETERS
+        # Number of experiences stored in the Memory when initialized for the first time
+        pretrain_length = self.batch_size
+        memory_size = 10000          # Number of experiences the Memory can keep
+
+
 
     # TODO opdelen in functies en waarom staat dit niet in de simulatie files?
     def run(self, ball, keeper, control, target, goals, blocks):

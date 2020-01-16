@@ -6,7 +6,7 @@
     Date:
         15-11-2019
     Version:
-        3.1
+        3.2
     Authors:
         Sipke Vellinga
     Used_IDE:
@@ -20,6 +20,8 @@
             def getimageFrame en def getvideoFrame samengevoegd
         3.1:
             def showFrame opgeschoond
+        3.2:
+            Functies met underscore gemaakt ipv C++ lowerCamelCase style.
 """
 
 import numpy as np
@@ -103,16 +105,16 @@ class BallDetection: #of Beeldherkenning?
         """
         #self.getFrame()
         #self.get_trackbarpos()
-        self.imageFilter()
+        self.image_filter()
         self.ball_detect()
-        #self.showFrame()
+        #self.show_frame()
 
         return self.center
 
     def new_frame(self, img):
         self.frame = img
 
-    def getFrame(self):
+    def get_frame(self):
         """
         Haalt een frame binnen en resized deze
         Returns: Geeft de geresizede image terug
@@ -141,7 +143,7 @@ class BallDetection: #of Beeldherkenning?
     #         self.frame = cv2.resize(frame_capture, self.dim)
     #         return self.frame
 
-    def imageFilter(self):
+    def image_filter(self):
         """
         Set van beeldfilters waarmee een mask wordt gecreeerd om de bal te kunnen volgen.
         """
@@ -157,7 +159,7 @@ class BallDetection: #of Beeldherkenning?
 
     def ball_detect(self):
         """
-        Volgt de bal op het speelveld met behulp van de functie imageFilter
+        Volgt de bal op het speelveld met behulp van de functie image_filter
         #Adrian Rosebrock https://www.pyimagesearch.com/2015/09/14/ball-tracking-with-opencv/
         """
         # Vind de contouren in het masker en
@@ -188,9 +190,9 @@ class BallDetection: #of Beeldherkenning?
         if self.center == (0, 0):
             self.center = center2
 
-    def showFrame(self):
+    def show_frame(self):
         """
-        Laat het beeld zien dat met de getFrame functie is opgehaald
+        Laat het beeld zien dat met de get_frame functie is opgehaald
         """
         print(self.center)
         cv2.putText(self.frame, str(self.center), (10, 30),

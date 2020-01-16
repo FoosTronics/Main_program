@@ -41,9 +41,6 @@ warnings.filterwarnings('ignore')
 Here we create our environment
 """
 def create_environment():
-    
-
-    fsdjklsdlkj =43     
     # game = DoomGame()
     
     # # Load the correct configuration
@@ -62,7 +59,7 @@ def create_environment():
     possible_actions = [up, down, shoot, still]
     
     return possible_actions
-       
+
 
 def test_environment(self):
     """Performing random action to test the environment
@@ -139,11 +136,12 @@ def stack_states(stacked_states, new_state, is_new_episode, stack_size):
 
 
 class DQNetwork:
-    """ai funtionaliteiten
+    """
+    AI funtionaliteiten
     """
     
     def __init__(self, state_size, action_size, learning_rate, name='DQNetwork'):
-        """initialiseer ai parameters
+        """initialiseer AI parameters.
         
         Args:
             state_size (int): hoeveelheid voorgaande states onthouden
@@ -168,10 +166,10 @@ class DQNetwork:
             self.flatten = tf.layers.flatten(self.inputs_)
             
             self.fc = tf.layers.dense(inputs = self.flatten,
-                                  units = 16,
-                                  activation = tf.nn.elu,
-                                       kernel_initializer=tf.contrib.layers.xavier_initializer(),
-                                name="fc1")
+                                    units = 16,
+                                    activation = tf.nn.elu,
+                                    kernel_initializer=tf.contrib.layers.xavier_initializer(),
+                                    name="fc1")
             
             
             self.output = tf.layers.dense(inputs = self.fc, 
@@ -182,7 +180,6 @@ class DQNetwork:
   
             # Q is our predicted Q value.
             self.Q = tf.reduce_sum(tf.multiply(self.output, self.actions_), axis=1)
-            
             
             # The loss is the difference between our predicted Q_values and the Q_target
             # Sum(Qtarget - Q)^2
@@ -205,7 +202,7 @@ class Memory():
         # print(len(self.buffer))
     
     def add(self, experience):
-        """voeg ai ervaring toe
+        """voeg AI ervaring toe
         
         Args:
             experience (array[5]): array van (state, action, reward, next_state, done)

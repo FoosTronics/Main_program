@@ -10,7 +10,7 @@
     Date:
         16.12.2019
     Version:
-        V1.4
+        V1.5
     Modifier:
         Daniël Boon
         Kelvin Sweere
@@ -19,6 +19,8 @@
     Version Management:
         1.4:
             Headers veranderd. 
+        1.5:
+            Functies met underscore gemaakt ipv C++ lowerCamelCase style.
 """ 
 '''
 Used libraries/repositories:
@@ -95,7 +97,7 @@ class KeeperSim(Framework):
         self.radius = radius = 0.5
         
         # keeper maken
-        self.CreateKeeper((-15,8.71))
+        self.create_keeper((-15, 8.71))
         self.scaler = 15/19.35
         self.target = 0 #eindpunt voor het schot van de bal.
         
@@ -119,10 +121,11 @@ class KeeperSim(Framework):
 
         self.shoot_bool = not(shoot_bool)  #flag die checkt of beeldherkenning aanstaat.
         self.force_param = shoot_bool   #schieten als beeldherkenning uitstaat!
+        
         # check of cordinaten van de beeldherkenning moeten worden gebruikt, anders midden.
         b_x, b_y = (0.0, 8.71) if shoot_bool else (0.0 , random() * 17.42)   
         
-        self.SetBall((b_x, b_y))  #crieeër de bal.
+        self.set_ball((b_x, b_y))  #crieeër de bal.
 
     def set_Foostronics(self, Foostronics):
         self.fs = Foostronics(self)
@@ -145,7 +148,7 @@ class KeeperSim(Framework):
         """
         if key == Keys.K_c:
             # self.SetBall((0.0 , random() * 17.42), force_param=False)
-            self._resetBall()
+            self._reset_ball()
         if key == Keys.K_w:
             self.control.y = KEEPER_SPEED
         if key == Keys.K_s:
@@ -199,7 +202,7 @@ class KeeperSim(Framework):
         self.body.linearVelocity = vel
 
     @jit(nopython=False)
-    def CreateKeeper(self, pos):
+    def create_keeper(self, pos):
         """maak keeper object in veld
         
         Args:
@@ -231,7 +234,7 @@ class KeeperSim(Framework):
             self.world.DestroyBody(self.tp)
             self.tp = None
 
-    def _createBall(self, pos):
+    def _create_ball(self, pos):
         """Crieëren van een bal in Box2D omgeving.
         
         Args:
@@ -247,7 +250,7 @@ class KeeperSim(Framework):
             linearDamping = 0.5
         )
 
-    def _calculateForceBall(self, pos):
+    def _calculate_force_ball(self, pos):
         """Bereken de kracht die op de bal moet komen te staan.
         
         Args:
@@ -270,32 +273,32 @@ class KeeperSim(Framework):
 
     #zet bal met random kracht op doel gericht in het veld
     @jit(nopython=False)
-    def SetBall(self, pos):
+    def set_ball(self, pos):
         """Maak een bal aan. Hierbij is self.ball.x & self.ball.y de cordinaten van de bal.
         
         Args:
-            pos (tuple):                    positie van de bal.
-            force_param (bool, optional):   debug param die bepaald of er een kracht op de bal moet worden gezet.
+            pos (tuple):                    Positie van de bal.
+            force_param (bool, optional):   Debug param die bepaald of er een kracht op de bal moet worden gezet.
         """
         #crieëer de bal
-        self._createBall(pos)
+        self._create_ball(pos)
 
         #als er een kracht op moet worden gezet, doe dat dan.
         if self.force_param:
-            force = self._calculateForceBall(pos)
+            force = self._calculate_force_ball(pos)
             self.ball.ApplyForce(force, (-19.35,8.71), True)
 
         self.time_change = round(time()) + 1
 
 
-    def _resetBall(self):
+    def _reset_ball(self):
         """Functie die de bal reset aan de hand van of er beeldherkenning wordt gebruikt.
         """
         if self.shoot_bool:
             # Reset bal op punt 0,0 als er nog geen bal wordt gedetecteerd.
-            self.SetBall((0.0, 8.71))
+            self.set_ball((0.0, 8.71))
         else:
-            self.SetBall((0.0 , random() * 17.42))    
+            self.set_ball((0.0 , random() * 17.42))    
     
 
     #kom bij iedere frame in deze functie (bepaling keeper positie/snelheid
@@ -348,7 +351,7 @@ class KeeperSim(Framework):
                 # ? dit is hetzelfde als de try elif -> dus functie!
                 self.world.DestroyBody(self.ball)
                 #self.world.DestroyBody(self.ball_target)
-                self._resetBall()   #reset de bal op het veld.
+                self._reset_ball()   #reset de bal op het veld.
                 self.body.position = (-15,8.71)
                 self.time = pi/KEEPER_SPEED
                 self.fixture.sensor = False
@@ -362,7 +365,7 @@ class KeeperSim(Framework):
                     # ?  dit is hetzelfde als de try if -> dus functie!
                     self.world.DestroyBody(self.ball)
                     #self.world.DestroyBody(self.ball_target)
-                    self._resetBall()   #reset de bal op het veld.
+                    self._reset_ball()   #reset de bal op het veld.
                     self.body.position = (-15,8.71)
                     self.time = pi/KEEPER_SPEED
                     self.fixture.sensor = False

@@ -17,6 +17,8 @@
     Version management:
         1.0:
             Headers gewijzigd. 
+        1.1:
+            Functies met underscore gemaakt ipv C++ lowerCamelCase style.
 """
 #!/bin/bash
 
@@ -47,15 +49,14 @@ class MPU6050:
         # params voor de thread
         self.THREAD_REG_TIME = 0.2   # moet boven self._init_thread()
         
-        if(self._tryToConnect()):    #test of iets is aangesloten
+        if(self._try_to_connect()):    #test of iets is aangesloten
             self.bus.write_byte_data(self.address, 0x6b, 0)    #wake-up sensor with register 0x6b (power_mgmt_1)
-            self._getAllRegisterValues()
-            #TODO: nog niet getest!
-            self._init_hoek_cor()
-            # ! ------------------
+            self._get_all_register_values()
+            self._init_angle_cor()
 
             if self.thread_act: #de thread mag alleen draaien als connectors goed zijn aangesloten.
                 self._init_thread()
+
 
     def _init_thread(self):
         """Init de timer thread
@@ -65,21 +66,24 @@ class MPU6050:
         self.t_t.daemon = True  # Waneer de thread niet meer wordt gebruikt, kill it with fire!
         self.t_t.start()    # Start de thread.
 
+
     def _thread_for_registers(self):
         """
         Geactiveerde functie door de thread. Handelt het lezen + corrigeren steppers af.
         """
 
-        self._getAllRegisterValues()
+        self._get_all_register_values()
 
         self.t_t.run() # zorg dat de thread opnieuw kan wordt gerunt. 
     
-    def _init_hoek_cor(self):
-        self.init_hoek_x = self.getXRotation()
-        self.init_hoek_y = self.getYRotation()
+
+    def _init_angle_cor(self):
+        self.init_hoek_x = self.get_x_rotation()
+        self.init_hoek_y = self.get_y_rotation()
         if self.debug:
             print("Hoek x = ", self.init_hoek_x, ' vanaf nu 0 graden')
             print("Hoek y = ", self.init_hoek_y, ' vanaf nu 0 graden')
+
 
     def _read_word(self, adr):
         """lezen van de bus.
@@ -94,6 +98,7 @@ class MPU6050:
         low = self.bus.read_byte_data(self.address, adr+1)
         val = (high << 8) + low     
         return val
+
 
     def _read_word_2c(self, adr):
         """leest twee registers uit d.m.v. de functie _read_word(adr)
@@ -110,7 +115,8 @@ class MPU6050:
         else:
             return val  
     
-    def _getAllRegisterValues(self):
+
+    def _get_all_register_values(self):
         """Leest alle registers uit van de MPU6050.
         """
         self.gyro_xout = self._read_word_2c(0x43)
@@ -138,20 +144,23 @@ class MPU6050:
         """
         return math.sqrt((a*a)+(b*b))
     
+
     def _get_y_rotation(self):
         radians = math.atan2(self.accel_xout_scaled, self._dist(self.accel_yout_scaled,self.accel_zout_scaled))
         return -math.degrees(radians)   
     
+
     def _get_x_rotation(self):
         radians = math.atan2(self.accel_yout_scaled, self._dist(self.accel_xout_scaled,self.accel_zout_scaled))
         return math.degrees(radians)
     
-    def getYRotation(self):
+
+    def get_y_rotation(self):
         """
         Return de hoek van de de y-as van de MPU6050.
         """
         if not self.thread_act:
-            self._getAllRegisterValues() # wordt niet meer gebruikt i.v.m. de thread
+            self._get_all_register_values() # wordt niet meer gebruikt i.v.m. de thread
         
         try:
             self.y_hoek = self._get_y_rotation()
@@ -162,12 +171,12 @@ class MPU6050:
         return self.y_hoek - self.init_hoek_y
 
 
-    def getXRotation(self):
+    def get_x_rotation(self):
         """
         Return de hoek van de de x-as van de MPU6050.
         """
         if not self.thread_act:
-            self._getAllRegisterValues() # wordt niet meer gebruikt i.v.m. de thread
+            self._get_all_register_values() # wordt niet meer gebruikt i.v.m. de thread
         
         try:
             self.x_hoek = self._get_x_rotation()
@@ -177,7 +186,8 @@ class MPU6050:
         # return min de hoekverdraaiing zoals op het begin.
         return self.x_hoek - self.init_hoek_x
    
-    def _tryToConnect(self):
+
+    def _try_to_connect(self):
         """Probeer verbinding te maken met de MPU6050. 
         
         Returns:
@@ -199,8 +209,8 @@ if __name__ == "__main__":
     gyro = MPU6050(i2c_address=0x68, threading=True, debug=True)    #init class
         
     while True:
-        print("y rotation = ", int(gyro.getYRotation()))
-        print("x rotation = ", int(gyro.getXRotation()))
+        print("y rotation = ", int(gyro.get_y_rotation()))
+        print("x rotation = ", int(gyro.get_x_rotation()))
 
         time.sleep(0.5)
     

@@ -33,11 +33,13 @@ class FindContours:
         """Init van de Raster class
         
         Args:
-            img (np.array): image die moet worden gecropt. Deze moet een size hebben van 640 bij 480.
+            debug (bool, optional): Keuze of trackbars worden aangemaakt. Defaults to False.
         """
+
         self.biggest_contour = None
         self.gray_threshold = 160
         self.gray_cropped_threshold = 100   #was 120! --> oorzaak failed test 13-11-2019
+        # TODO: De width en height zijn volgensmij verouderde waardes - Kelvin
         self.WIDTH = 640    #constante, hoogte van het beeld
         self.HEIGHT = 480   #constante, breedte van het beeld
         self.mask = None

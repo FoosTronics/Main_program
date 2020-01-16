@@ -179,7 +179,7 @@ class Foostronics:
                 # wanneer de beeldherkenning aanstaat. Krijg de balpositie.
         if self.ks.shoot_bool:     #voer uit als de beeldherkenning aan hoort.
             ball_pos_old = ball.position
-            ball.position = self.bk.getPosVision()
+            ball.position = self.bk.get_pos_vision()
             # * print de cordinaten van de simulatie.
             # print(self.bk.x_s, self.bk.y_s)
 

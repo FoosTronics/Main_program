@@ -1,4 +1,4 @@
-'''
+"""
     Framework for Box2D simulation.
 
     File:
@@ -6,7 +6,7 @@
     Date:
         16-1-2020
     Version:
-        1.0
+        1.1
     Modifier:
         Daniël Boon
     Used_IDE:
@@ -16,7 +16,9 @@
     Version management:
         1.0:
             Headers toegevoegd
-'''
+        1.1:
+            Commentaar toegevoegd in Google docstring format. 
+"""
 
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
@@ -64,6 +66,11 @@ class fwDestructionListener(b2DestructionListener):
         self.test = test
 
     def SayGoodbye(self, obj):
+        """Delete een Box2D object.
+        
+        Args:
+            obj (@@@): object die moet worden verwijderd uit de simulatie.
+        """
         if isinstance(obj, b2Joint):
             if self.test.mouseJoint == obj:
                 self.test.mouseJoint = None
@@ -72,7 +79,6 @@ class fwDestructionListener(b2DestructionListener):
         elif isinstance(obj, b2Fixture):
             self.test.FixtureDestroyed(obj)
 
-
 class fwQueryCallback(b2QueryCallback):
 
     def __init__(self, p):
@@ -80,7 +86,16 @@ class fwQueryCallback(b2QueryCallback):
         self.point = p
         self.fixture = None
 
+    # TODO: Dit is onbekend voor mij.   @@@
     def ReportFixture(self, fixture):
+        """[summary]
+        
+        Args:
+            fixture ([type]): [description]
+        
+        Returns:
+            [type]: [description]
+        """
         body = fixture.body
         if body.type == b2_dynamicBody:
             inside = fixture.TestPoint(self.point)
@@ -162,11 +177,13 @@ class FrameworkBase(b2ContactListener):
         pass
 
     def Step(self, settings):
-        """
-        The main physics step.
+        """The main physics step.
 
         Takes care of physics drawing (callbacks are executed after the world.Step() )
         and drawing additional information.
+        
+        Args:
+            settings (Class): instellingen van de simulatie. 
         """
 
         self.stepCount += 1
@@ -314,16 +331,21 @@ class FrameworkBase(b2ContactListener):
                                      sum(self.t_steps) / len(self.t_steps))
                                )
 
+    
+    # TODO: Dit is onbekend voor mij.   @@@
     def ShiftMouseDown(self, p):
-        """
-        Indicates that there was a left click at point p (world coordinates)
+        """Indicates that there was a left click at point p (world coordinates)
         with the left shift key being held down.
+        
+        Args:
+            p ([type]): [description]
         """
         self.mouseWorld = p
 
         if not self.mouseJoint:
             self.SpawnBomb(p)
 
+    # TODO: Dit is onbekend voor mij.   @@@
     def MouseDown(self, p):
         """
         Indicates that there was a left click at point p (world coordinates)
@@ -350,6 +372,7 @@ class FrameworkBase(b2ContactListener):
                 maxForce=1000.0 * body.mass)
             body.awake = True
 
+    # TODO: Dit is onbekend voor mij.   @@@
     def MouseUp(self, p):
         """
         Left mouse button up.
@@ -361,6 +384,7 @@ class FrameworkBase(b2ContactListener):
         if self.bombSpawning:
             self.CompleteBombSpawn(p)
 
+    # TODO: Dit is onbekend voor mij.   @@@
     def MouseMove(self, p):
         """
         Mouse moved to point p, in world coordinates.
@@ -368,6 +392,8 @@ class FrameworkBase(b2ContactListener):
         self.mouseWorld = p
         if self.mouseJoint:
             self.mouseJoint.target = p
+
+    # TODO: Dit is onbekend voor mij.   @@@
 
     def SpawnBomb(self, worldPt):
         """
@@ -378,6 +404,8 @@ class FrameworkBase(b2ContactListener):
         """
         self.bombSpawnPoint = worldPt.copy()
         self.bombSpawning = True
+
+    # TODO: Dit is onbekend voor mij.   @@@
 
     def CompleteBombSpawn(self, p):
         """
@@ -391,6 +419,8 @@ class FrameworkBase(b2ContactListener):
         vel *= multiplier
         self.LaunchBomb(self.bombSpawnPoint, vel)
         self.bombSpawning = False
+
+    # TODO: Dit is onbekend voor mij.   @@@
 
     def LaunchBomb(self, position, velocity):
         """
@@ -411,6 +441,8 @@ class FrameworkBase(b2ContactListener):
                 restitution=0.1)
 
         )
+
+    # TODO: Dit is onbekend voor mij.   @@@
 
     def LaunchRandomBomb(self):
         """
@@ -440,11 +472,14 @@ class FrameworkBase(b2ContactListener):
         self.Step(self.settings)
 
     def ConvertScreenToWorld(self, x, y):
-        """
-        Return a b2Vec2 in world coordinates of the passed in screen
-        coordinates x, y
+        """Return a b2Vec2 in world coordinates of the passed in screen
 
-        NOTE: Renderer subclasses must implement this
+        Args:
+            x (int): x cordinaat.
+            y (int): y cordinaat.
+        
+        Raises:
+            NotImplementedError: Error dat het nog niet is aangemaakt.
         """
         raise NotImplementedError()
 

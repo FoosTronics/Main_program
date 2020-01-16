@@ -9,7 +9,7 @@
     Date:
         16-1-2020
     Version:
-        1.0
+        1.2
     Modifier:
         Kelvin Sweere
     Used_IDE:
@@ -19,6 +19,8 @@
             Headers gewijzigd. 
         1.1:
             Functies met underscore gemaakt ipv C++ lowerCamelCase style.
+        1.2:
+            Docstrings in Google-format (aangevuld)
 """
 #!/bin/bash
 
@@ -30,15 +32,15 @@ class MPU6050:
         """Init van de class. 
         
         Args:
-            i2c_address (hexadecimal): I2C adress van de gyroscoop. Standard I2C adress van de mpu6050 is 0x68.
+            i2c_address (hexadecimal, optional): I2C adress van de gyroscoop. Standard I2C adress van de mpu6050 is 0x68.
             threading (bool): Keuze om het threaden aan te zetten. Variabelen die deze param aanpast is: THREAD_REG_TIME. Standaard False.
             debug (bool): Keuze om debug berichten weer te geven. Standaard False.
         """
         # params voor i2c bus.
-        self.bus = smbus.SMBus(1)   #gevonden met i2cdetect voor de mpu6050 gyro.
+        self.bus = smbus.SMBus(1)        #gevonden met i2cdetect voor de mpu6050 gyro.
         self.address = i2c_address      # This is the address value read via the i2cdetect command
         self.thread_act = threading     # thread active?
-        self.debug = debug
+        self.debug = debug              
 
         # params voor de hoeken.
         self.init_hoek_x = 0    # start hoek x
@@ -46,8 +48,8 @@ class MPU6050:
         self.y_hoek = 0         # huidige y hoek
         self.x_hoek = 0         # huidige x hoek
 
-        # params voor de thread
-        self.THREAD_REG_TIME = 0.2   # moet boven self._init_thread()
+        # params voor de thread in secondes.
+        self.THREAD_REG_TIME = 0.2   # warning? -> moet boven self._init_thread()
         
         if(self._try_to_connect()):    #test of iets is aangesloten
             self.bus.write_byte_data(self.address, 0x6b, 0)    #wake-up sensor with register 0x6b (power_mgmt_1)
@@ -64,14 +66,13 @@ class MPU6050:
         # * t_t = thread_timing
         self.t_t = threading.Timer(self.THREAD_REG_TIME, self._thread_for_registers)
         self.t_t.daemon = True  # Waneer de thread niet meer wordt gebruikt, kill it with fire!
-        self.t_t.start()    # Start de thread.
+        self.t_t.start()        # Start de thread.
 
 
     def _thread_for_registers(self):
         """
-        Geactiveerde functie door de thread. Handelt het lezen + corrigeren steppers af.
+        Geactiveerde functie door de thread. Leest de waardes van de gyroscoop.
         """
-
         self._get_all_register_values()
 
         self.t_t.run() # zorg dat de thread opnieuw kan wordt gerunt. 
@@ -211,7 +212,5 @@ if __name__ == "__main__":
     while True:
         print("y rotation = ", int(gyro.get_y_rotation()))
         print("x rotation = ", int(gyro.get_x_rotation()))
-
         time.sleep(0.5)
-    
-    # beweeg in de tussentijd de gyroscoop!
+        # beweeg in de tussentijd de gyroscoop!

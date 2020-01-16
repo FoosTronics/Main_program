@@ -24,12 +24,16 @@ import cv2 as cv
 import numpy as np
 
 def intersection(line1, line2):
+    """Vindt de intersection tussen twee lijnen doormiddel van de Hesse normal form. 
+    
+    Args:
+        line1 (tuple): x,y cordinaten van lijn 1. 
+        line2 (tuple): x,y cordinaten van lijn 2.
+    
+    Returns:
+        x,y (tuple) : tuple van de x & y snijpunten.
     """
-        Finds the intersection of two lines given in Hesse normal form.
-    :param line1:
-    :param line2:
-    :return: x, y
-    """
+
     rho1, theta1 = line1
     rho2, theta2 = line2
 
@@ -42,11 +46,20 @@ def intersection(line1, line2):
     x0, y0 = int(np.round(x0)), int(np.round(y0))
     return (x0, y0)
 
-#teken rechte lijnen die voorkomen in de afbeelding.
-def hough_line_transform(edges):
     """
     :param edges:
     :return cpy, x_y_cor:
+    """
+#teken rechte lijnen die voorkomen in de afbeelding.
+def hough_line_transform(edges):
+    """Voert het hough line transformatie algoritme uit.    
+    
+    Args:
+        edges (tuple): cordinaten die worden gebruikt voor cv.HoughLines transform.
+    
+    Returns:
+        cpy (np.array): Getekende lijn op een zwart veld.
+        cor (tuple): rho & theta waarde van de lijn.
     """
     #maximale lengtes van de x,y cordianten.
     cdst = cv.cvtColor(edges, cv.COLOR_GRAY2BGR)
@@ -73,17 +86,11 @@ def hough_line_transform(edges):
         cor.append([(rho, theta)])
     return cpy, cor
 
-def resize_img(img, scale_percent):
-    # scale een image in procenten.
-    width = int(img.shape[1] * scale_percent / 100)
-    height = int(img.shape[0] * scale_percent / 100)
-    dim = (width, height)
-    return cv.resize(img, dim)
-
 def nothing(x):
-    """
-    Functienaam voor het aanmaken van de trackbar. De trackbar genereert een pointer
+    """Functienaam voor het aanmaken van de trackbar. De trackbar genereert een pointer
     die deze functie aanroept wanneer de slider van positie verandert.
-    #underscore is voor lokaal gebruik
+    
+    Args:
+        x (None): Variablen die moet worden meegegeven van OpenCV.
     """
     pass

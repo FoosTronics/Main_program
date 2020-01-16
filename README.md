@@ -1,19 +1,13 @@
-![Image description](https://github.com/FoosTronics/Main_program/tree/master/Windows%2010/extra/promo.jpg)
-
-#TODO: kijken of dit toegevoegd kan worden. 
-
-[![Build Status](https://travis-ci.org/sindresorhus/pageres.svg?branch=master)](https://travis-ci.org/sindresorhus/pageres) [![Coverage Status](https://coveralls.io/repos/sindresorhus/pageres/badge.svg?branch=master)](https://coveralls.io/r/sindresorhus/pageres?branch=master) [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/xojs/xo)
-
+# ![pageres](https://github.com/FoosTronics/Main_program/blob/master/Windows%2010/extra/promo.jpg)
 
 # FoosTronics
-Volledig werkende eindbestanden om te spelen met de FoosTronics tafel
+FoosTronics is een NLE minor project waarbij de keeper van een fysieke voetbaltafel wordt bestuurd doormiddel van een AI. Hierbij is beeldherkenning gebruikt om de bal te detecteren. 
 
 Jetson Nano is de main applicatie waarop de motoren, gyroscoop, etc. op kunnen worden aangesloten.
 
 De Windows applicatie gaat over het testen van bijvoorbeeld AI en simulatie of voor test runnen.
 
-
-## Gebruik
+## Applicatie starten 
 
 ```python
 activate py36
@@ -21,3 +15,16 @@ activate py36
 python main.py
 ```
 
+## Packages
+| Package       | Versie              | 
+| ------------- | -------------       | 
+| OpenCV (cv2)  | 4.1.1               |              
+| TensorFlow    | 1.14.1-dev20190625  | 
+| numpy         | 1.16.5              |               
+| matplotlib    | 3.1.1               |                
+| Box2D         | 2.3.2               |               
+| smbus         |                     |               
+| usb1          |                     |               
+| imutils       | 0.5.3               |               
+| numba         | 0.45.1              |               
+| pygame        | 1.9.6               |               

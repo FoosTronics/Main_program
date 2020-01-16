@@ -35,7 +35,9 @@ Het project is gekozen om meer inzicht te verkrijgen in: AI, beeldherkenning, me
 | stappenmotor 1.7 inch | 17PU-H502                 |
 | motordriver           | Arcus Technology ACE-SDE  |
 | gyroscoop             | mpu6050                   |
- 
+
+> opbouw van het frame is te vinden onder ...
+
  ## Applicatie starten 
 
 ```python

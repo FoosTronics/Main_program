@@ -1,29 +1,41 @@
-"""Hoofdclass FoosTronics en main code. 
-De onderdelen voor beeldherkenning, AI en motor aansturing komen in dit bestand bijelkaar.
-In dit bestand bestaat voor grootendeels uit de regeling van de AI.
+"""
+    Hoofdclass FoosTronics en main code. 
+    De onderdelen voor beeldherkenning, AI en motor aansturing komen in dit bestand bijelkaar.
+    In dit bestand bestaat voor grootendeels uit de regeling van de AI.
 
-File:
-    main.py
-Date:
-    14.1.2020
-Version:
-    V1.0
-Modifier:
-    Daniël Boon
-Used_IDE:
-    Visual Studio Code (Python 3.6.7 64-bit)
+    File:
+        main.py
+    Date:
+        16.1.2020
+    Version:
+        V1.2
+    Author:
+        Daniël Boon
+        Kelvin Sweere
+    Used_IDE:
+        Visual Studio Code (Python 3.6.7 64-bit)
+
+    Version management:
+        1.1:
+            functie: _initAISettings() toegevoegd voor de parameters van de AI in de init.
+        1.2:
+            Constantes zijn hoofdletters.
+
+
 """ 
 #pylint: disable=E1101
 
-from keeper_sim import keeper_sim
-from framework import main
-import deep_q_learning_3 as DQL
+from src.KeeperSim import KeeperSim
+from src.Backend.Framework import main
+import src.Backend.DeepQLearning as DQL
+from src.Backend.USB import Commands
+from src.Controller import PController
+
 import matplotlib.pylab as plt
 from datetime import datetime
-from backends.stepper_controller.P_controller import p_controller
-from backends.stepper_controller.src.USBPerformax_multiple_drivers import Commands
+
 import time
-from beeld_koppeling import BeeldKoppeling
+from src.Backend.BeeldKoppeling import BeeldKoppeling
 
 KEEPER_SPEED = 40
 
@@ -35,8 +47,10 @@ class Foostronics:
         Args:
             keeper_sim (class): adress van draaiende keeper simulatie om variabelen op te halen.
         """
-        self.ks = keeper_sim
-        self.bk = BeeldKoppeling(debug_flag=False)     # class die de beeldherkenning afhandeld. debug_flag=True (trackbars worden afgemaakt).
+        self.ks = KeeperSim()
+
+        # TODO: BeeldKoppeling wordt vervangen
+        self.bk = BeeldKoppeling(debug_flag=True)     # class die de beeldherkenning afhandeld. debug_flag=True (trackbars worden afgemaakt).
 
         self.possible_actions = DQL.create_environment()
 
@@ -45,48 +59,23 @@ class Foostronics:
         # Initialize deque with zero-images one array for each image
         self.stacked_states = DQL.deque([DQL.np.zeros(4, dtype=DQL.np.float) for i in range(self.stack_size)], maxlen=4) 
 
-                
-        ### MODEL HYPERPARAMETERS
-        state_size = [4, 4]      # Our input is a stack of 4 frames hence 84x84x4 (Width, height, channels) 
-        action_size = 4 #game.get_available_buttons_size()              # 3 possible actions: left, right, shoot
-        #TODO: was 0.0002
-        learning_rate =  0.01      # Alpha (aka learning rate)
-
-        ### TRAINING HYPERPARAMETERS
-        total_episodes = 500        # Total episodes for training
-        self.max_steps = 1000              # Max possible steps in an episode
-        #TODO: was 64
-        self.batch_size = 32
-
-        # Exploration parameters for epsilon greedy strategy
-        #TODO: explore_start was 1.0
-        self.explore_start = 1.0            # exploration probability at start
-        self.explore_stop = 0.01            # minimum exploration probability 
-        self.decay_rate = 0.0001            # exponential decay rate for exploration prob
-
-        # Q learning hyperparameters
-        self.gamma = 0.95               # Discounting rate
-
-        ### MEMORY HYPERPARAMETERS
-        pretrain_length = self.batch_size   # Number of experiences stored in the Memory when initialized for the first time
-        memory_size = 10000          # Number of experiences the Memory can keep
-
+        # init alle parameters voor de AI.
+        STATE_SIZE, ACTION_SIZE, LEARNING_RATE, MEMORY_SIZE = self._initAISettings()
+       
         ### MODIFY THIS TO FALSE IF YOU JUST WANT TO SEE THE TRAINED AGENT
         training = True
 
         ## TURN THIS TO TRUE IF YOU WANT TO RENDER THE ENVIRONMENT
         episode_render = False
 
-
         # Reset the graph
         DQL.tf.reset_default_graph()
 
         # Instantiate the DQNetwork
-        self.DQNetwork = DQL.DQNetwork(state_size, action_size, learning_rate)
-
+        self.DQNetwork = DQL.DQNetwork(STATE_SIZE, ACTION_SIZE, LEARNING_RATE)
         
         # Instantiate memory
-        self.memory = DQL.Memory(max_size = memory_size)
+        self.memory = DQL.Memory(max_size = MEMORY_SIZE)
 
         # Setup TensorBoard Writer
         self.writer = DQL.tf.summary.FileWriter("/tensorboard/dqn/1")
@@ -131,11 +120,43 @@ class Foostronics:
         self.points_array = []
         self.met_drivers = False
         try:
-            self.pc = p_controller()
+            self.pc = PController()
             self.met_drivers = True
         except:
             pass
     
+    def _initAISettings(self):
+        ### MODEL HYPERPARAMETERS
+        # Our input is a stack of 4 frames hence 84x84x4 (Width, height, channels)
+        STATE_SIZE = [4, 4]
+        ACTION_SIZE = 4  # game.get_available_buttons_size()              # 3 possible actions: left, right, shoot
+        #NOTE: was 0.0002
+        LEARNING_RATE = 0.01      # Alpha (aka learning rate)
+
+        ### TRAINING HYPERPARAMETERS
+        total_episodes = 500        # Total episodes for training
+        self.max_steps = 1000              # Max possible steps in an episode
+        #NOTE: was 64
+        self.batch_size = 32
+
+        # Exploration parameters for epsilon greedy strategy
+        #NOTE: explore_start was 1.0
+        self.explore_start = 1.0            # exploration probability at start
+        self.explore_stop = 0.01            # minimum exploration probability
+        self.decay_rate = 0.0001            # exponential decay rate for exploration prob
+
+        # Q learning hyperparameters
+        self.gamma = 0.95               # Discounting rate
+
+        ### MEMORY HYPERPARAMETERS
+        # Number of experiences stored in the Memory when initialized for the first time
+        pretrain_length = self.batch_size
+        MEMORY_SIZE = 10000          # Number of experiences the Memory can keep
+
+        return (STATE_SIZE, ACTION_SIZE, LEARNING_RATE, MEMORY_SIZE)
+
+
+    # TODO opdelen in functies en waarom staat dit niet in de simulatie files?
     def run(self, ball, keeper, control, target, goals, blocks):
         """Deze functie wordt om iedere frame aangeroepen en kan gezien worden als de mainloop.
         
@@ -158,7 +179,7 @@ class Foostronics:
                 # wanneer de beeldherkenning aanstaat. Krijg de balpositie.
         if self.ks.shoot_bool:     #voer uit als de beeldherkenning aan hoort.
             ball_pos_old = ball.position
-            ball.position = self.bk.getPosVision()
+            ball.position = self.bk.get_pos_vision()
             # * print de cordinaten van de simulatie.
             # print(self.bk.x_s, self.bk.y_s)
 
@@ -172,12 +193,12 @@ class Foostronics:
         target = self.state[1][0]+(((-15-self.state[0][0])/vel_x) * vel_y)
         
         if(ks.tp):
-            ks.DeleteTargetpoint()
+            ks.delete_targetpoint()
 
         if((vel_x > 0) or (target > 11.26) or (target < 6.16)):
             target = DQL.np.nan
         elif(not DQL.np.isnan(target)):
-            ks.CreateTargetpoint((-15, target))
+            ks.create_targetpoint((-15, target))
 
         print(target)
 
@@ -222,9 +243,9 @@ class Foostronics:
             if(self.met_drivers):
                 self.pc.driver.transceive_message(0, Commands.STOP)
                 self.pc.shoot()
-            elif(1):
+            elif(1):    # True?
                 pass
-            else:
+            else:   # de code tussen 231 en 266 wordt niets mee gedaan.
                 control.x = -KEEPER_SPEED
                 while(1):
                     # time.sleep(0.03)
@@ -403,10 +424,9 @@ class Foostronics:
         return ball, keeper, control, action
 
 
-
 if __name__ == "__main__":
     """start main code
     """
-    ks = keeper_sim()
+    ks = KeeperSim()
     ks.set_Foostronics(Foostronics)
     main(ks)

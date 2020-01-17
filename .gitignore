@@ -7,6 +7,7 @@ __pycache__/
 *.so
 
 # Distribution / packaging
+AI_models/
 .Python
 build/
 develop-eggs/

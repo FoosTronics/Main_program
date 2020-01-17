@@ -1,22 +1,31 @@
-"""In this file is the ai functionalilty
+"""
+    This file is the AI functionalilty.
 
-Simulates the the enviorment of foosball as for the keeper. 
-This simulation has the intention to train an AI to play the game.
+    Simulates the the enviorment of foosball as for the keeper. 
+    This simulation has the intention to train an AI to play the game.
 
-Use the W,A,S,D keys to move the keeper.
-Press C to start the simulation.
+    Use the W,A,S,D keys to move the keeper.
+    Press C to start the simulation.
 
-File:
-    deep_q_learning_3.py
-Date:
-    16.12.2019
-Version:
-    V1.4
-Modifier:
-    Daniël Boon
-Used_IDE:
-    Visual Studio Code (Python 3.6.7 64-bit)
-""" 
+    File:
+        DeepQLearning.py
+    Date:
+        16-1-2020
+    Version:
+        1.1
+    Modifier:
+        Daniël Boon
+        Kelvin Sweere (deels docstrings)
+    Used_IDE:
+        Visual Studio Code (Python 3.6.7 64-bit)
+    Schematic:
+        Lucidchart: NLE/AI/LLD AI
+    Version management:
+        1.0:
+            Headers up-to-date.
+        1.1:
+            Docstrings aangepast naar Google-format. 
+"""
 
 import tensorflow as tf      # Deep Learning library
 import numpy as np           # Handle matrices
@@ -30,13 +39,12 @@ import matplotlib.pyplot as plt # Display graphs
 import warnings # This ignore all the warning messages that are normally printed during the training because of skiimage
 warnings.filterwarnings('ignore') 
 
-"""
-Here we create our environment
-"""
 def create_environment():
+    """Functie om de Box2D environment te creeeren. 
     
-
-    fsdjklsdlkj =43     
+    Returns:
+        possible_actions (list): lijst van mogelijke acties.
+    """
     # game = DoomGame()
     
     # # Load the correct configuration
@@ -55,7 +63,7 @@ def create_environment():
     possible_actions = [up, down, shoot, still]
     
     return possible_actions
-       
+
 
 def test_environment(self):
     """Performing random action to test the environment
@@ -94,29 +102,34 @@ def test_environment(self):
     # game.close()
 
 
+
 def stack_states(stacked_states, new_state, is_new_episode, stack_size):
     """remember last 4 states in array
-    
+
     Args:
         stacked_states (deque[4]): deque array van afgelopen laatste 4 states
         new_state (numpy array): numpy array van nieuwe state
         is_new_episode (bool): aangeven of er een nieuwe episode begint
         stack_size (int): hoeveelheid voorgaande states onthouden
-    
+
     Returns:
-        (deque[4]): deque array van nieuwe laatste 4 states
+        stacked_state (list): @@@
+        stacked_states (deque[list]):  @@@
     """
-    
     if is_new_episode:
         # Clear our stacked_states
         stacked_states = deque([np.zeros(4, dtype=np.float) for i in range(stack_size)], maxlen=4) 
         
-        # Because we're in a new episode, copy the same frame 4x
+        # Because we're in a new episode, copy the same frame 4x.
+        for i in range(4):
+            stacked_states.append(new_state)
+        """
+        # Oude waarde.
         stacked_states.append(new_state)
         stacked_states.append(new_state)
         stacked_states.append(new_state)
         stacked_states.append(new_state)
-        
+        """
         # Stack the frames
         stacked_state = np.stack(stacked_states, axis=1)
         
@@ -132,11 +145,12 @@ def stack_states(stacked_states, new_state, is_new_episode, stack_size):
 
 
 class DQNetwork:
-    """ai funtionaliteiten
+    """
+    AI funtionaliteiten
     """
     
     def __init__(self, state_size, action_size, learning_rate, name='DQNetwork'):
-        """initialiseer ai parameters
+        """initialiseer AI parameters.
         
         Args:
             state_size (int): hoeveelheid voorgaande states onthouden
@@ -161,10 +175,10 @@ class DQNetwork:
             self.flatten = tf.layers.flatten(self.inputs_)
             
             self.fc = tf.layers.dense(inputs = self.flatten,
-                                  units = 16,
-                                  activation = tf.nn.elu,
-                                       kernel_initializer=tf.contrib.layers.xavier_initializer(),
-                                name="fc1")
+                                    units = 16,
+                                    activation = tf.nn.elu,
+                                    kernel_initializer=tf.contrib.layers.xavier_initializer(),
+                                    name="fc1")
             
             
             self.output = tf.layers.dense(inputs = self.fc, 
@@ -176,29 +190,27 @@ class DQNetwork:
             # Q is our predicted Q value.
             self.Q = tf.reduce_sum(tf.multiply(self.output, self.actions_), axis=1)
             
-            
             # The loss is the difference between our predicted Q_values and the Q_target
             # Sum(Qtarget - Q)^2
             self.loss = tf.reduce_mean(tf.square(self.target_Q - self.Q))
             
             self.optimizer = tf.train.RMSPropOptimizer(self.learning_rate).minimize(self.loss)
 
-
 class Memory():
-    """onthoud alle ervaringen
+    """onthoud alle ervaringen.
     """
     def __init__(self, max_size):
-        """initialiseer memory size
+        """initialiseer memory grootte. 
         
         Args:
-            max_size (int): hoeveelheid laatste acties en states onthouden
+            max_size (int): hoeveelheid laatste acties en states om te onthouden.
         """
         # print(max_size)
         self.buffer = deque(maxlen = max_size)
         # print(len(self.buffer))
     
     def add(self, experience):
-        """voeg ai ervaring toe
+        """voeg AI ervaring toe.
         
         Args:
             experience (array[5]): array van (state, action, reward, next_state, done)
@@ -206,7 +218,7 @@ class Memory():
         self.buffer.append(experience)
     
     def sample(self, batch_size):
-        """haal memory buffer op
+        """haal memory buffer op.
         
         Args:
             batch_size (int): hoeveelheid ervaringen er opgehaalt moeten worden
@@ -226,17 +238,12 @@ class Memory():
         return [self.buffer[i] for i in index]
 
 
-
-"""
-This function will do the part
-With ϵ select a random action atat, otherwise select at=argmaxaQ(st,a)
-"""
 def predict_action(explore_start, explore_stop, decay_rate, decay_step, state, actions, sess, DQNetwork):
-    """bepaal ai actie of random actie
+    """bepaal AI actie of random actie
     
     Args:
-        explore_start (float): begin persentage ratio random actie tot ai bepaalde actie
-        explore_stop (float): eind persentage ratio random actie tot ai bepaalde actie
+        explore_start (float): begin persentage ratio random actie tot AI bepaalde actie
+        explore_stop (float): eind persentage ratio random actie tot AI bepaalde actie
         decay_rate (float): snelheid van explore_start tot explore_stop
         decay_step (int): hoeveelheid gemaakte steps
         state (numpy array): numpy array van state
@@ -245,9 +252,10 @@ def predict_action(explore_start, explore_stop, decay_rate, decay_step, state, a
         DQNetwork (class): DQNetwork class
     
     Returns:
-        (list, float): gekozen actie en waarde explore probability
+        action (list): list waarin een boolean aangeeft welke actie genomen dient te worden.
+        explore_probability (float): randomwaarde die aangeeft of een randomactie uitgevoerd moet worden.
     """
-    ## EPSILON GREEDY STRATEGY
+    # * EPSILON GREEDY STRATEGY
     # Choose action a from state s using epsilon greedy.
     ## First we randomize a number
     exp_exp_tradeoff = np.random.rand()

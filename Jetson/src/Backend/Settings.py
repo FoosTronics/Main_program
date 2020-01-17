@@ -1,3 +1,22 @@
+"""
+    Settings for Box2D and the pygame. 
+
+    File:
+        Settings.py
+    Date:
+        16-1-2020
+    Version:
+        V1.0
+    Modifier:
+        Daniël Boon    
+    Used_IDE:
+        Visual Studio Code (Python 3.6.7 64-bit)
+    Version management:
+        1.0:
+            Verwijzingen naar bestandsnamen gewijzigd
+                Header toegevoegd
+"""
+
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #

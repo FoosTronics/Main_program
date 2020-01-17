@@ -30,8 +30,7 @@ import smbus, math, threading
 import time
 
 class MPU6050:
-    """
-    Class om de mpu6050 gyroscoop aan te sturen dmv I2C. 
+    """Class om de mpu6050 gyroscoop aan te sturen dmv I2C. 
 
     **Author**: 
         Kelvin Sweere \n

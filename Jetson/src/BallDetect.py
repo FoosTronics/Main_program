@@ -4,7 +4,7 @@
     File:
         BallDetectClass.py
     Date:
-        15-11-2019
+        17-11-2019
     Version:
         3.3
     Modifier:
@@ -25,8 +25,10 @@
             Functies met underscore gemaakt ipv C++ lowerCamelCase style.
         3.3:
             Google docstring format toegepast op functies.
-        3.4:
+        3.40:
             Nieuwe afbeeldingen en/of camera frames worden met de functie new_frame() in geladen.
+        3.41
+            Doxygen commentaar toegevoegd.
 """
 
 import numpy as np
@@ -36,7 +38,16 @@ import imutils
 center2 = (0, 0)
 
 class BallDetection: #of Beeldherkenning?
+    """Class om de bal uit een image te extraheren.
 
+    **Author**:         \n
+        Sipke Vellinga  \n
+        Chileam Bohnen  \n
+    **Version**:
+        3.41            \n
+    **Date**:
+        17-1-2020  
+    """
     def __init__(self, file=None):
         """
         Lijst van vaste parameters
@@ -71,13 +82,12 @@ class BallDetection: #of Beeldherkenning?
         die deze functie aanroept wanneer de slider van positie verandert.
         
         Args:
-            x (int): variabelen die wordt meegegeven met OpenCV.
+            x: (int) variabelen die wordt meegegeven met OpenCV.
         """
         pass
 
     def create_trackbar(self):
-        """
-        Maakt een trackbar aan waarmee de parameters van de gedefinieerde kleurruimte
+        """Maakt een trackbar aan waarmee de parameters van de gedefinieerde kleurruimte
         veranderd kunnen worden.
         """
         cv2.namedWindow('Trackbar')
@@ -92,8 +102,7 @@ class BallDetection: #of Beeldherkenning?
         cv2.createTrackbar('highV', 'Trackbar', self.ihighV, 255, self._callback)
 
     def get_trackbarpos(self):
-        """
-        Slaat de ingestelde waardes van de trackbar op in de variabelen.
+        """Slaat de ingestelde waardes van de trackbar op in de variabelen.
         """
         self.ilowY = cv2.getTrackbarPos('lowY', 'Trackbar')
         self.ihighY = cv2.getTrackbarPos('highY', 'Trackbar')
@@ -108,7 +117,7 @@ class BallDetection: #of Beeldherkenning?
         """Roept de functies aan die nodig zijn om de bal te detecteren.
         
         Returns:
-            tuple: Geeft de x,y pixel positie van de bal terug.
+            (tuple) geeft de x,y pixel positie van de bal terug.
         """
         #self.get_frame()
         self.get_trackbarpos()
@@ -123,15 +132,15 @@ class BallDetection: #of Beeldherkenning?
         Hier zal de bal vanaf worden geëxtraheerd.
         
         Args:
-            img (np.array): image van de foto.
+            img: (np.array) image van de foto.
         """
         self.frame = img
 
     def get_img(self):
         """Haalt een gecropped image binnen.
-            
-            Returns: 
-                (np.array) = Geeft de verkleinde image terug.
+        
+        Returns: 
+            (np.array) geeft de verkleinde image terug.
         """
         if self.frame_capture == 'video':
             ret, frame_capture = self.cap.read()
@@ -181,11 +190,10 @@ class BallDetection: #of Beeldherkenning?
             Adrian Rosebrock https://www.pyimagesearch.com/2015/09/14/ball-tracking-with-opencv/
         
         Returns:
-            center2 (tuple)]: x,y cordinaten van de bal op een frame.
+            (tuple): x,y coördinaten van de bal op een frame.
         
-        Raises:
-            TypeError:
-                Voeg eerst een frame toe d.m.v. de functie new_frame(img).
+        Note:
+            **TypeError**: voeg eerst een frame toe dmv de functie new_frame(img).
         """
         # Vind de contouren in het masker en
         # initialiseer het huidige (x, y) middelpunt van de bal
@@ -227,7 +235,6 @@ class BallDetection: #of Beeldherkenning?
         #     if self.frame_capture == 'video':
         #         self.cap.release()
         #     cv2.destroyAllWindows()
-
 
 
 if __name__ == "__main__":

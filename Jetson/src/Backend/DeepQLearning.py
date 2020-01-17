@@ -15,7 +15,6 @@
         1.1
     Modifier:
         Daniël Boon
-        Kelvin Sweere (deels docstrings)
     Used_IDE:
         Visual Studio Code (Python 3.6.7 64-bit)
     Schematic:
@@ -42,6 +41,16 @@ import warnings # This ignore all the warning messages that are normally printed
 warnings.filterwarnings('ignore') 
 
 class DQLBase:
+    """
+    Class voor de Deep-Q-Learning.
+
+    **Author**:
+        Daniël Boon \n
+    **Version**:
+        1.1         \n
+    **Date**:
+        16-1-2020
+    """
     def __init__(self, debug=False):
         self.possible_actions = create_environment()
 

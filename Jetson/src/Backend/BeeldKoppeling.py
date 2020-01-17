@@ -1,6 +1,6 @@
 """
-    Omschrijving: Koppelt de beeldherkenning aan de simulatie. Vertaalt hierbij de bal cordinaten in pixel positie
-    van de beeldherkenning naar cordinaten voor de simulatie. 
+    Omschrijving: Koppelt de beeldherkenning aan de simulatie. Vertaalt hierbij de bal coördinaten in pixel positie
+    van de beeldherkenning naar coördinaten voor de simulatie. 
 
     Wanneer debug_flag=True zal de bal bestuurd kunnen worden d.m.v. trackbars. Wanneer deze True is zal een vooraf gedifineerde
     video worden afgespeeld.
@@ -20,26 +20,37 @@
     Version management:
         1.0:
             Release Jetson Nano.
-        1.1:
+        1.10:
             Functies met underscore gemaakt ipv C++ lowerCamelCase style.
+        1.11:
+            Doxygen documentatie toegevoegd.
+            Spelling verbeterd.
 """
 
 import cv2
 
 class BeeldKoppeling():
-    """Class die beeldherkenning koppelt aan de simulatie.
+    """Class die een koppeling maakt tussen de beeldherkenning en de simulatie. Vertaalt hierbij de bal coördinaten in pixel positie
+    van de beeldherkenning naar coördinaten voor de simulatie. 
+
+    **Author**: 
+        Kelvin Sweere \n
+    **Version**:
+        1.1           \n
+    **Date**:
+        13-12-2019 
     """
     def __init__(self, debug_flag=False):
         """        
         Args:
-            debug_flag (bool, optional): Keuze of er trackbars worden gestart. Defaults to False.
+            debug_flag: (bool, optional) keuze of er trackbars die de bal besturen worden gestart. Defaults to False.
         """
-        # cordinaten van de bal (in verhouding)
-        self.x_s = None     #x cordinaat simulatie
-        self.y_s = None     #y cordinaat simulaite
+        # coördinaten van de bal (in verhouding)
+        self.x_s = None     #x coördinaat  simulatie
+        self.y_s = None     #y coördinaat  simulaite
 
-        self.x_p = None     #x cordinaat simulatie
-        self.y_p = None     #y cordinaat simulatie
+        self.x_p = None     #x coördinaat  simulatie
+        self.y_p = None     #y coördinaat  simulatie
         
         # settings van de img. Worden ook opgehaald door get_ball()
         self.WIDTH_IMG = None
@@ -57,10 +68,10 @@ class BeeldKoppeling():
             self._init_video_function()
 
     def get_pos_vision(self):
-        """Voert de gehele pipeline in een keer uit. Haalt de gegevens op van trackbars en returnt hiervan de cordinaten van de simulatie.
+        """Voert de gehele pipeline in een keer uit. Haalt de gegevens op van trackbars en returnt hiervan de coördinaten van de simulatie.
         
         Returns:
-            tuple: (x_s,y_s) cordinaten van de bal voor de simulatie.
+            (tuple) x & y coördinaten van de simulatie van de bal.
         """
         # TODO: terugzetten wanneer niet meer gebruikt!
         # self.get_ball()
@@ -91,20 +102,20 @@ class BeeldKoppeling():
         """Map functie (zoals in de Arduino IDE) die input schaald in verhouding naar de output.
         
         Args:
-            val (int): waarde die geschaald moet worden.
-            in_min (int): minimale waarde die de input kan hebben.
-            in_max (int): maximale waarde die de input kan hebben.
-            out_min (int): minimale waarde die de output mag krijgen.
-            out_max (int): maximale waarde die de output mag krijgen.
+            val: (int) waarde die geschaald moet worden.
+            in_min: (int) minimale waarde die de input kan hebben.
+            in_max: (int) maximale waarde die de input kan hebben.
+            out_min: (int) minimale waarde die de output mag krijgen.
+            out_max: (int) maximale waarde die de output mag krijgen.
         
         Returns:
-            int: Geschaalde waarde van de input.
+            (int) geschaalde waarde van de input.
         """
         return (val - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 
 
     def _convert_2_sim_cor(self):
-        """Zet de pixel positie van de beeldherkenning om naar pixel positie van de simulatie.
+        """Zet de pixel positie van de beeldherkenning om naar x & y positie van de simulatie.
         """
         # x_simulatie posite
         self.x_s = self.map_function(self.x_p, 0, self.WIDTH_IMG, -19.35, 19.35)
@@ -112,7 +123,7 @@ class BeeldKoppeling():
 
 
     def _get_trackbars(self):
-        """Krijg trackbar waardes binnen.
+        """Krijg waardes van de OpenCV trackbar(s) binnen.
         """
         k = cv2.waitKey(1) & 0xFF
         # get current positions of four trackbars
@@ -121,9 +132,9 @@ class BeeldKoppeling():
     
     # TODO: check deze functie!
     def get_ball(self):
-        """Krijg de cordinaten van de bal via de beeldherkenning. 
-            NIET AF! Alleen nog maar debug modus.
+        """Krijg de coördinaten van de bal via de beeldherkenning. 
         """
+        # ! NIET AF! Alleen nog maar debug modus.
         if self.DEBUG_FLAG:
             self.HEIGHT_IMG = 100    # y
             self.WIDTH_IMG =  100    # x
@@ -136,7 +147,7 @@ class BeeldKoppeling():
 
 
     def reset_coordinates(self):
-        """Reset de cordinaten in de simulatie (en de trackbars).
+        """Reset de coördinaten in de simulatie (en de trackbars).
         """
         self.x_s = 8.71 # midden van het veld.
         self.y_s = 0    # midden van het veld.
@@ -144,7 +155,7 @@ class BeeldKoppeling():
 
 
     def reset_trackbar_pos(self):
-        """reset trackbar positie van cordinaten.
+        """Reset trackbar positie van cordinaten.
         """
         cv2.setTrackbarPos('X','Cordinates', int(self.MAX_TRACKBAR_VAL/2))
         cv2.setTrackbarPos('Y','Cordinates', int(self.MAX_TRACKBAR_VAL/2))
@@ -161,7 +172,11 @@ class BeeldKoppeling():
 
 
     def _init_video_function(self):
-        """Initaliseerd de video met de BallDetection class. Dit is een functie voor de demo.
+        """Initaliseerd de video met de BallDetection class. 
+        Deze functie wordt gebruikt voor de demo.
+
+        Note:
+        **NameError**: Er is geen file meegegeven aan de init van de BeeldKoppeling class.
         """
 
         for file in self.files:  #check per file

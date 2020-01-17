@@ -4,9 +4,9 @@
     File:
       ImageProcessing.py
     Date:
-        15.11.2019
+        17.11.2019
     Version:
-        1.1
+        1.21
     Authors:
         Chileam Bohnen
     Used_IDE:
@@ -18,9 +18,10 @@
             Headers veranderd.
         1.1:
             Google docstring format toegepast op functies.
-        1.2:
+        1.20:
             Gebruik van een camera of een video bestand aangepast conform OpenCV library
-
+        1.21:
+            Doxygen commentaar toegevoegd.
 """
 
 import cv2
@@ -29,15 +30,22 @@ import time
 class ImageCapture:
     """
     Klasse voor het maken en ophalen van afbeeldingen met behulp van een webcam of raspi cam.
+
+    **Author**: 
+        Chileam Bohnen \n
+    **Version**:
+        1.21           \n
+    **Date**:
+        17-1-2020  
     """
 
     def __init__(self, res=(640, 360), file=None, save=False):
         """Initialiseer de ImageCapture class. 
         
         Args:
-            res (tuple, optional): Gewenste afbeelding resolutie(breedte, hoogte). Defaults to (640, 360).
-            file (string, optional): Bestandlocatie van afbeelding of video locatie. Defaults to None.
-            save (bool, optional): Bestandlocatie waar een opnamen wordt opgeslagen.. Defaults to False.
+            res: (tuple, optional) gewenste afbeelding resolutie(breedte, hoogte). Standaard (640, 360).
+            file: (string, optional) bestandlocatie van afbeelding of video locatie. Standaard None.
+            save: (bool, optional) bestandlocatie waar een opnamen wordt opgeslagen. Standaard False.
         """
         self.SAVE           = save
         self.FILE           = file
@@ -77,7 +85,7 @@ class ImageCapture:
         Het ophalen van een afbeelding uit het geheugen.
         
         Returns:
-            numpy.ndarray: Een afbeelding als numpy array in de vorm van [hoogte, breedte, kleurdiepte]
+            (np.ndarray) een afbeelding als numpy array in de vorm van [hoogte, breedte, kleurdiepte].
         """
         if self.FILE is not None:
             ret, self.frame = self.camera.read()
@@ -96,22 +104,16 @@ class ImageCapture:
             display_height=360, framerate=120, flip_method=2):
         """Initalisatie van Gstreamer pipeline.
 
-            string format for Gstreamer is:
-            "nvarguscamerasrc !  video/x-raw(memory:NVMM), "
-            "width=1280, height=720, format=NV12, framerate=120/1 ! "
-            "nvvidconv flip-method=2 ! "
-            "video/x-raw, width=640, height=480, "
-            "format=BGRx ! videoconvert ! video/x-raw, format=BGR ! appsink"
         Args:
-            capture_width (int, optional): Breedte van de te nemen foto. Defaults to 1280.
-            capture_height (int, optional): Hoogte van de te nemen foto. Defaults to 720.
-            display_width (int, optional): Breedte voor het weergeven van de beelden. Defaults to 640.
-            display_height (int, optional): Hoogte voor het weergeven van de beelden. Defaults to 360.
-            framerate (int, optional): Snelheid van de camera in fps. Defaults to 120.
-            flip_method (int, optional): Kant waarop het camerabeeld toewijst. Defaults to 2.
+            capture_width: (int, optional) breedte van de te nemen foto. Standaard 1280.
+            capture_height: (int, optional) hoogte van de te nemen foto. Standaard 720.
+            display_width: (int, optional) breedte voor het weergeven van de beelden. Standaard 640.
+            display_height: (int, optional) hoogte voor het weergeven van de beelden. Standaard 360.
+            framerate: (int, optional) snelheid van de camera in fps. Standaard 120.
+            flip_method: (int, optional) kant waarop het camerabeeld toewijst. Standaard 2.
 
         Returns:
-            str: Instellingen voor het aansturen van de camera met de params erin vewerkt.
+            (str) instellingen voor het aansturen van de camera met de params erin vewerkt.
         """
         return (
             "nvarguscamerasrc !  video/x-raw(memory:NVMM), "

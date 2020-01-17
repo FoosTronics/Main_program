@@ -14,8 +14,11 @@
     Version management:
         1.0:
             Header toegevoegd
-        1.1:
+        1.10:
             Docstrings toegevoegd.
+        1.11:
+            Doxygen template toegepast.
+================================================
 """
 
 import usb1
@@ -23,11 +26,20 @@ from enum import Enum
 import time
 
 class Driver:
+    """Class om de drivers aan te sturen dmv USB. 
+    
+    **Author**: 
+        Chileam Bohnen \n
+    **Version**:
+        1.11           \n
+    **Date**:
+        16-1-2020  
+    """
     def __init__(self, device_count):
-        """initaliseer de drivers.
+        """Initaliseer de drivers.
 
         Args:
-            device_count (int): Aantal verbonden USB stepper drivers
+            device_count: (int) aantal verbonden USB stepper drivers
         """
         self.VENDOR_ID = 0x1589
         self.PRODUCT_ID = 0xA101
@@ -57,7 +69,7 @@ class Driver:
         """Deze functie initialiseerd de aangesloten stepper drivers.
 
         Returns:
-            bool: True wanneer initialisatie lukt, anders False
+            (bool) True wanneer initialisatie lukt, anders False
         """
         i = 0
         value = True
@@ -154,7 +166,7 @@ class Driver:
         """Deze functie maakt een USB object aan en maakt een lijst van aangesloten stepper drivers.
 
         Returns:
-            (usb1.USBContext, performax_devices[]): usb1.USBContext is het USB object, performax_devices bevat een lijst van stepper drivers.
+            (usb1.USBContext, performax_devices[]) usb1.USBContext is het USB object, performax_devices bevat een lijst van stepper drivers.
         """
         _context = usb1.USBContext()
         _context.open()
@@ -165,7 +177,7 @@ class Driver:
         """Deze functie selecteerd een driver uit de lijst van stepper drivers.
 
         Args:
-            device_number (int): Adres van het device. 
+            device_number: (int) adres van het device. 
         """
         self.device = self.performax_devices[device_number]
 
@@ -173,7 +185,7 @@ class Driver:
         """Deze fucntie haalt het serienummer en productnummer van een aangesloten driver op.
         
         Args:
-            device (int): Adress van desbetreffende  device.
+            device: (int) adress van desbetreffende  device.
         """
         self.descriptors.append([device.getSerialNumberDescriptor(), device.getProductDescriptor()])
 
@@ -182,10 +194,10 @@ class Driver:
         De verbinding wordt gemaakt met een geslecteerde driver. zie select_performaxe_device(self, device_number).
         
         Args:
-            device (int): Adress van desbetreffende device.
+            device: (int) Adress van desbetreffende device.
         
         Returns:
-            handler: handle naar USB device. 
+            (handler) handle naar USB device. 
         """
         # USB context opent een USB handler
         handler = device.open()
@@ -206,7 +218,7 @@ class Driver:
         De verbinding wordt gemaakt met een geslecteerde driver. zie select_performaxe_device(self, device_number).
         
         Args:
-            device_num (int): Adres van het device. 
+            device_num: (int) adres van het device. 
         """
 
         # USB context opent een USB handler
@@ -225,7 +237,7 @@ class Driver:
         """Deze functie laat de USB interface los en sluit de USB verbinding.
         
         Args:
-            handler (handler): handle naar de USB.
+            handler: (handler) handle naar de USB.
         """
         # USB hanlder sluit de verbinding.
         self._close_port(handler)
@@ -245,14 +257,14 @@ class Driver:
         """Deze functie verstuurd commando's naar een USB device.
 
         Args:
-            command (Commands): Een commando uit class 'Commands'.
+            command: (Commands) een commando uit class 'Commands'.
 
         Kwargs:
-            value (int): Een waarde die naar de stepper driver geschreven wordt. Defaults to None.
-            read_size (int): Geheugen grote voor ontvangen berichten. Defaults to 128.
+            value: (int) een waarde die naar de stepper driver geschreven wordt. Standaard None.
+            read_size: (int) geheugen grote voor ontvangen berichten. Standaard 128.
 
         Returns:
-            response (bytes): Ontvangen bericht. b'OK' of een waarde.
+            response: (bytes) ontvangen bericht. b'OK' of een waarde.
         """
         if value is not None:
             msg = command.name + bytearray(str(value), 'utf-8') + self.MSG_CR
@@ -265,13 +277,13 @@ class Driver:
         return response
 
     def _is_num_device_connected(self, devices_list):
-        """Check of een device is aangesloten.
+        """Check of een stappenmotordriver device is aangesloten.
 
         Args:
-            devices_list (list): list van adressen van devices. 
+            devices_list: (list) list van adressen van devices. 
 
         Returns:
-            performax_devices (list): list van geverifieerde drivers.
+            performax_devices: (list) list van geverifieerde drivers.
         """
         performax_devices = []
         for device in devices_list:
@@ -284,7 +296,7 @@ class Driver:
         """Open een USB poort.
         
         Args:
-            handler (handler): handle naar de USB.
+            handler: (handler) handle naar de USB.
         """
         _null_msg = bytearray('', 'utf-8')
         handler.controlWrite(
@@ -299,7 +311,7 @@ class Driver:
         """Maak de USB connectie leeg.
         
         Args:
-            handler (handler): handle naar de USB.
+            handler: (handler) handle naar de USB.
         """
         _null_msg = bytearray('', 'utf-8')
         handler.controlWrite(
@@ -314,7 +326,7 @@ class Driver:
         """Sluit de USB connectie.
         
         Args:
-            handler (handler): handle naar de USB.
+            handler: (handler) handle naar de USB.
         """
         _null_msg = bytearray('', 'utf-8')
         handler.controlWrite(
@@ -327,7 +339,7 @@ class Driver:
 
 
 class Commands(Enum):
-    """Enum van mogelijke commando's.
+    """Enum van mogelijke commando's die uit de datasheet van de Arcus Arcus Technology ACE-SDE zijn gehaald.
     
     Args:
         Enum (Enum): Enum van lijst van commando's.

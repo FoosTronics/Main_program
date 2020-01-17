@@ -59,6 +59,13 @@ class fwDestructionListener(b2DestructionListener):
     """
     The destruction listener callback:
     "SayGoodbye" is called when a joint or shape is deleted.
+
+    **Modifier**: 
+        Daniël Boon \n
+    **Version**:
+        1.1           \n
+    **Date**:
+        16-1-2020    
     """
 
     def __init__(self, test, **kwargs):
@@ -69,7 +76,7 @@ class fwDestructionListener(b2DestructionListener):
         """Delete een Box2D object.
         
         Args:
-            obj (@@@): object die moet worden verwijderd uit de simulatie.
+            obj: (@@@) Object die moet worden verwijderd uit de simulatie.
         """
         if isinstance(obj, b2Joint):
             if self.test.mouseJoint == obj:

@@ -5,7 +5,7 @@
     File:
         PController.py
     Date:
-        16-1-2020
+        17-1-2020
     Version:
         1.3
     Authors:
@@ -19,8 +19,10 @@
             -
         1.2:
             class p_controller veranderd naar CamelCase (PController)
-        1.3:
+        1.30:
             Google docstring format toegepast op functies.
+        1.31:
+            Doxygen commentaar toegevoegd.
 
 """ 
 
@@ -53,12 +55,16 @@ class Controller:
     """Met behulp van deze class kan er van twee coördinaat punten de benodigde keeper positie bepaald worden.
        Hierbij wordt: extra-polation toegepast, coördinaat naar mm geconvert, de keeper stap positie bepaald en de drivers aangestuurd.
     
-    Returns:
-        void: de class opzichzelf returnt niks
+    **Author**: 
+        Daniël Boon \n
+    **Version**:
+        1.31        \n
+    **Date**:
+        17-1-2020 
     """
 
     def __init__(self):
-        """initalisatie voor driver communicatie en verhouding bepalingen
+        """Initalisatie voor driver communicatie en verhouding bepalingen
         """
         met_drivers = False
         self.driver = Driver(0)
@@ -93,13 +99,13 @@ class Controller:
         self.ONE_STEP = self.ONE_ROTATION/self.MOTOR_TOTAL_STEPS
 
     def test_lin_movement(self, co):
-        """bepaald keeper positie en stuur opdracht naar drivers
+        """Bepaald keeper positie en stuur opdracht naar drivers
         
         Args:
-            co (int): het bepaalde coördinaat voor keeper vanuit de extra-polation
+            co: (int) het bepaalde coördinaat voor keeper vanuit de extra-polation
         
         Returns:
-            int: returns het berekende step_positie (deze waarde is ter debug en mag genegeerd worden, want de drivers worden in deze funtie al aangestuurd.)
+            (int) returns het berekende step_positie (deze waarde is ter debug en mag genegeerd worden, want de drivers worden in deze funtie al aangestuurd).
         """
 
         font = pygame.font.SysFont("arial", 15)
@@ -152,10 +158,10 @@ class Controller:
         """Convert een bit list naar een integer list.
         
         Args:
-            n (byte): byte die moet worden vertaald naar een integer.
+            n: (byte) byte die moet worden vertaald naar een integer.
         
         Returns:
-            list: integer list van het byte array.
+            (list) integer list van het byte array.
         """
         array = [int(digit) for digit in bin(n)[2:]] # [2:] to chop off the "0b" part 
         for i in range(11-len(array)):
@@ -166,7 +172,7 @@ class Controller:
         """Beweegt de keeper terug naar de home positie.
         
         Args:
-            direction (int, optional): 0 is naar links, 1 is rechts gezien vanaf de hendel. Defaults to 0 (links).
+            direction: (int, optional) 0 is naar links, 1 is rechts gezien vanaf de hendel. Standaard 0 (links).
         """
         if(direction==0):
             self.driver.transceive_message(0, Commands.HOME_PLUS)
@@ -196,13 +202,13 @@ class Controller:
         """extra-polation om keeper coördinaten te bepalen.
         
         Args:
-            pnt1 ((int, int)): x, y coördinaten punt 1 van bal.
-            pnt2 ((int, int)): x, y coördinaten punt 2 van bal.
-            value_x (int, optional): coördinaat waar keeper staat in x. Defaults to 5.
-            max_y (int, optional): halve coördinaat afstand waar de keeper kan komen. Defaults to 32.
+            pnt1: (tuple) x, y coördinaten punt 1 van bal.
+            pnt2: (tuple) x, y coördinaten punt 2 van bal.
+            value_x: (int, optional) coördinaat waar keeper staat in x. Standaard 5.
+            max_y: (int, optional) halve coördinaat afstand waar de keeper kan komen. Standaard 32.
         
         Returns:
-            (int, int): x, y van keeper coördinaat positie.
+            (tuple) x, y van keeper coördinaat positie.
         """
 
         # keep is the pixel position of keeper rod on the x-axis

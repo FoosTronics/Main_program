@@ -6,12 +6,13 @@
     File:
         main.py
     Date:
-        16.1.2020
+        17.1.2020
     Version:
         V1.2
     Author:
         Daniël Boon
         Kelvin Sweere
+        Chileam Bohnen
     Used_IDE:
         Visual Studio Code (Python 3.6.7 64-bit)
 
@@ -20,28 +21,34 @@
             functie: _initAISettings() toegevoegd voor de parameters van de AI in de init.
         1.2:
             Constantes zijn hoofdletters.
+        1.3:
+            objecten: ImageCapture, FindContours, BallDetect toegevoegd om de Raspi cam te gebruiken
 
 
 """ 
 #pylint: disable=E1101
 
-from src.KeeperSim import KeeperSim
+from src.ImageCapture import *
+from src.FindContours import *
+from src.BallDetect import *
+from src.KeeperSim import *
+from src.Controller import *
+
+from src.Backend.USB import Commands
 from src.Backend.Framework import main
 # import src.Backend.DeepQLearning as DQL
 from src.Backend.DeepQLearning import DQLBase
-# from src.Backend.USB import Commands
-from src.Controller import Controller
 
 import matplotlib.pylab as plt
 import numpy as np
 
 import time
-from src.FindContours import FindContours
-from src.BallDetect import BallDetection
 
 #TODO temp...
 from glob import glob
 import os
+
+DEBUG_VIDEO = False
 
 class Foostronics:
     def __init__(self, keeper_sim):
@@ -51,14 +58,28 @@ class Foostronics:
         Args:
             keeper_sim (class): adress van draaiende keeper simulatie om variabelen op te halen.
         """
+        if DEBUG_VIDEO:
+            self.file = glob("D:\\Stichting Hogeschool Utrecht\\NLE - Documenten\\Test foto's\\V1.3 cam normal Wide angle + ball\\output_fast.avi")
+            # self.file = glob("C:\\Users\\" + os.getlogin() + "\\Stichting Hogeschool Utrecht\\NLE - Documenten\\Test foto's\\V1.3 cam normal Wide angle + ball\\output_fast.avi")
+            self.camera = ImageCapture(file=self.file[0])
+        else:
+            self.camera = ImageCapture()
+        self.find_contours = FindContours()
+        self.ball_detection = BallDetection()
+        self.ball_detection.create_trackbar()
 
-        self.fc = FindContours()
+        self.WIDTH_IMG = 640
+        self.HEIGHT_IMG = 360
 
         #TODO temp...
-        self.files = glob("C:\\Users\\" + os.getlogin() + "\\Stichting Hogeschool Utrecht\\NLE - Documenten\\Test foto's\\V1.3 cam normal Wide angle + ball\\output_fast.avi")
-        for file in self.files:  #check per file
-            self.bd = BallDetection(file) #maak class aan
-    
+        # self.files = glob("C:\\Users\\" + os.getlogin() + "\\Stichting Hogeschool Utrecht\\NLE - Documenten\\Test foto's\\V1.3 cam normal Wide angle + ball\\output_fast.avi")
+        # for file in self.files:  #check per file
+        #     self.bd = BallDetection(file) #maak class aan
+        # img = self.bd.get_frame()
+        # self.HEIGHT_IMG, self.WIDTH_IMG, _ = img.shape
+        # # TODO: BeeldKoppeling wordt vervangen
+        # # self.bk = BeeldKoppeling(debug_flag=True)     # class die de beeldherkenning afhandeld. debug_flag=True (trackbars worden afgemaakt).
+
         # self.bd = BallDetection()
         self.dql = DQLBase()
         # self.DQL = DQL
@@ -69,16 +90,11 @@ class Foostronics:
             self.met_drivers = True
         except:
             self.met_drivers = False
-        
-        img = self.bd.get_frame()
-        self.HEIGHT_IMG, self.WIDTH_IMG, _ = img.shape
-        # TODO: BeeldKoppeling wordt vervangen
-        # self.bk = BeeldKoppeling(debug_flag=True)     # class die de beeldherkenning afhandeld. debug_flag=True (trackbars worden afgemaakt).
 
         self.hl, = plt.plot([], [])
         self.points_array = []
 
-    def _convert2SimCor(self, x_p, y_p):
+    def _convert2_sim_cor(self, x_p, y_p):
         """Zet de pixel positie van de beeldherkenning om naar pixel positie van de simulatie.
         """
         # x_simulatie posite
@@ -103,7 +119,6 @@ class Foostronics:
         return (val - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
 
     def execute_action(self, action, old_action):
-        
 
         if np.array_equal(action, self.dql.possible_actions[0]):
             ks.control.y = ks.KEEPER_SPEED
@@ -184,12 +199,21 @@ class Foostronics:
             action (int): update gekozen actie van AI in simulatie
 
         """
+        # get new frame from camera buffer
+        _frame = self.camera.get_frame()
+        # set new frame in find_contours object for image cropping
+        self.find_contours.new_img(_frame)
+        # get cropped image from find_contours
+        _field = self.find_contours.get_cropped_field()
 
-
-        #TODO iets met FindContours doen...
-
-        cor = self.bd.getball_pos()
-        ball.position = self._convert2SimCor(cor[0], cor[1])
+        # set height and width parameters
+        self.HEIGHT_IMG, self.WIDTH_IMG, _ = _field.shape
+        # set new cropped image in ball_detection object
+        self.ball_detection.new_frame(_field)
+        # get new ball position coordinates in image pixel values
+        cor = self.ball_detection.getball_pos()
+        # convert image pixel values to simulation values
+        ball.position = self._convert2_sim_cor(cor[0], cor[1])
 
         action, old_action, target, vel_x, vel_x_old = self.dql.get_ai_action()
 

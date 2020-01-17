@@ -9,6 +9,7 @@
         3.3
     Modifier:
         Sipke Vellinga
+        Chileam Bohnen
     Used_IDE:
         Pycharm (Python 3.6.7 64-bit)
     Schematic:
@@ -24,6 +25,8 @@
             Functies met underscore gemaakt ipv C++ lowerCamelCase style.
         3.3:
             Google docstring format toegepast op functies.
+        3.4:
+            Nieuwe afbeeldingen en/of camera frames worden met de functie new_frame() in geladen.
 """
 
 import numpy as np
@@ -107,8 +110,8 @@ class BallDetection: #of Beeldherkenning?
         Returns:
             tuple: Geeft de x,y pixel positie van de bal terug.
         """
-        self.get_frame()
-        #self.get_trackbarpos()
+        #self.get_frame()
+        self.get_trackbarpos()
         self.image_filter()
         self.ball_detect()
         self.show_frame()
@@ -124,8 +127,8 @@ class BallDetection: #of Beeldherkenning?
         """
         self.frame = img
 
-    def get_frame(self):
-        """Haalt een frame binnen en resized deze.
+    def get_img(self):
+        """Haalt een gecropped image binnen.
             
             Returns: 
                 (np.array) = Geeft de verkleinde image terug.

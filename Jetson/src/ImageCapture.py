@@ -18,6 +18,8 @@
             Headers veranderd.
         1.1:
             Google docstring format toegepast op functies.
+        1.2:
+            Gebruik van een camera of een video bestand aangepast conform OpenCV library
 
 """
 
@@ -78,7 +80,7 @@ class ImageCapture:
             numpy.ndarray: Een afbeelding als numpy array in de vorm van [hoogte, breedte, kleurdiepte]
         """
         if self.FILE is not None:
-            self.frame = self.camera.read()
+            ret, self.frame = self.camera.read()
             return cv2.resize(self.frame, self.RESOLUTION)
         else:
            ret, self.frame = self.camera.read()
@@ -92,25 +94,25 @@ class ImageCapture:
 
     def _gstreamer_pipeline(self, capture_width=1280, capture_height=720, display_width=640,
             display_height=360, framerate=120, flip_method=2):
-    """Initalisatie van Gstreamer pipeline.
+        """Initalisatie van Gstreamer pipeline.
 
-        string format for Gstreamer is:
-        "nvarguscamerasrc !  video/x-raw(memory:NVMM), "
-        "width=1280, height=720, format=NV12, framerate=120/1 ! "
-        "nvvidconv flip-method=2 ! "
-        "video/x-raw, width=640, height=480, "
-        "format=BGRx ! videoconvert ! video/x-raw, format=BGR ! appsink"
-    Args:
-        capture_width (int, optional): Breedte van de te nemen foto. Defaults to 1280.
-        capture_height (int, optional): Hoogte van de te nemen foto. Defaults to 720.
-        display_width (int, optional): Breedte voor het weergeven van de beelden. Defaults to 640.
-        display_height (int, optional): Hoogte voor het weergeven van de beelden. Defaults to 360.
-        framerate (int, optional): Snelheid van de camera in fps. Defaults to 120.
-        flip_method (int, optional): Kant waarop het camerabeeld toewijst. Defaults to 2.
-    
-    Returns:
-        str: Instellingen voor het aansturen van de camera met de params erin vewerkt.
-    """
+            string format for Gstreamer is:
+            "nvarguscamerasrc !  video/x-raw(memory:NVMM), "
+            "width=1280, height=720, format=NV12, framerate=120/1 ! "
+            "nvvidconv flip-method=2 ! "
+            "video/x-raw, width=640, height=480, "
+            "format=BGRx ! videoconvert ! video/x-raw, format=BGR ! appsink"
+        Args:
+            capture_width (int, optional): Breedte van de te nemen foto. Defaults to 1280.
+            capture_height (int, optional): Hoogte van de te nemen foto. Defaults to 720.
+            display_width (int, optional): Breedte voor het weergeven van de beelden. Defaults to 640.
+            display_height (int, optional): Hoogte voor het weergeven van de beelden. Defaults to 360.
+            framerate (int, optional): Snelheid van de camera in fps. Defaults to 120.
+            flip_method (int, optional): Kant waarop het camerabeeld toewijst. Defaults to 2.
+
+        Returns:
+            str: Instellingen voor het aansturen van de camera met de params erin vewerkt.
+        """
         return (
             "nvarguscamerasrc !  video/x-raw(memory:NVMM), "
             "width=1280, height=720, format=NV12, framerate="+str(framerate)+"/1 ! "

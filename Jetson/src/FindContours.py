@@ -21,6 +21,8 @@
             Headers veranderd.
         1.1:
             Google docstring format toegepast op functies.
+        1.2:
+            Constanten WIDTH en HEIGHT op 640 x 360 gezet
 """
 
 import numpy as np
@@ -41,9 +43,8 @@ class FindContours:
         self.biggest_contour = None
         self.gray_threshold = 160
         self.gray_cropped_threshold = 100   #was 120! --> oorzaak failed test 13-11-2019
-        # TODO: De width en height zijn volgensmij verouderde waardes - Kelvin
         self.WIDTH = 640    #constante, hoogte van het beeld
-        self.HEIGHT = 480   #constante, breedte van het beeld
+        self.HEIGHT = 360   #constante, breedte van het beeld
         self.mask = None
         self.cropped_mask = None
         self.img = []

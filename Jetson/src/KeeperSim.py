@@ -10,20 +10,25 @@
     Date:
         16.12.2019
     Version:
-        V1.5
+        1.44
     Modifier:
         Daniël Boon
         Kelvin Sweere
     Used_IDE:
         Visual Studio Code (Python 3.6.7 64-bit)
     Version Management:
-        1.4:
+        1.41:
             Headers veranderd. 
-        1.5:
+        1.42:
             Functies met underscore gemaakt ipv C++ lowerCamelCase style.
-        1.51:
+        1.43:
             Jit van Numba verwijdert
             Verhoudingen van simulatieveld aangepast
+        1.44:
+            Google docstring format toegepast op functies.
+            Functies met underscore gemaakt ipv C++ lowerCamelCase style.
+
+ 
 """ 
 '''
 Used libraries/repositories:
@@ -130,22 +135,29 @@ class KeeperSim(Framework):
         self.set_ball((b_x, b_y))  #creeeër de bal.
 
     def set_Foostronics(self, Foostronics):
+        """Foostronics class initaliseren in de KeeperSim class.
+        
+        Args:
+            Foostronics (class): Class van de main applicatie.
+        """ 
         self.fs = Foostronics(self)
 
     def Keyboard(self, key, settings):
         """wanneer een key wordt ingedrukt, kom in deze functie
-        c = spawn ball
-        w = keeper naar boven
-        s = keeper naar beneden
-        a = keeper naar links
-        d = keeper naar rechts
-        j = versnell keeper simullatie (is instabiel)
-        m = save ai
-        r = restore ai file
+
+        Keys:
+            c = spawn ball
+            w = keeper naar boven
+            s = keeper naar beneden
+            a = keeper naar links
+            d = keeper naar rechts
+            j = versnell keeper simullatie (is instabiel)
+            m = save ai
+            r = restore ai file
         
         Args:
-            key (int): nummer input key die word ingedrukt
-            settings (class): class met parameter intellingen 
+            key (int): nummer input key die word ingedrukt.
+            settings (class): class met parameter intellingen.
         """
         if key == Keys.K_c:
             # self.SetBall((0.0 , random() * 20.0), force_param=False)
@@ -183,11 +195,11 @@ class KeeperSim(Framework):
             if filename:
                 self.saver.restore(self.sess, filename)
         
-    def KeyboardUp(self, key):
-        """wanneer een key wordt losgelaten, kom in deze functie
+    def Keyboard_up(self, key):
+        """wanneer een key wordt losgelaten, kom in deze functie.
         
         Args:
-            key (int): nummer input key die werd losgelaten
+            key (int): nummer input key die werd losgelaten.
         """
         vel = self.body.linearVelocity
         if (key == Keys.K_w or key == Keys.K_s):
@@ -202,10 +214,10 @@ class KeeperSim(Framework):
         self.body.linearVelocity = vel
 
     def create_keeper(self, pos):
-        """maak keeper object in veld
+        """maak keeper object in veld.
         
         Args:
-            pos ((int, int)): x y coördinaten waar keeper moet komen te staan
+            pos ((int, int)): x & y coördinaten waar keeper moet komen te staan.
         """
         dimensions=(0.12, 0.55)
         self.body = self.world.CreateDynamicBody(position=pos, linearDamping = 0.5)
@@ -215,7 +227,12 @@ class KeeperSim(Framework):
         self.fixture = self.body.CreatePolygonFixture(box=dimensions, density=100000000)
         self.fixture.sensor = False
     
-    def CreateTargetpoint(self, pos):
+    def create_targetpoint(self, pos):
+        """Creeër een punt in de simulatie die weergegeven moet worden.
+        
+        Args:
+            pos (tuple): x & y cordinaten waar het targetpoint moet komen te staan.
+        """
         
         fixture = b2FixtureDef(shape=b2CircleShape(radius=0.3,  #create ball.
                                                    pos=(0, 0)),
@@ -228,7 +245,7 @@ class KeeperSim(Framework):
             linearDamping = 0.5
         )
 
-    def DeleteTargetpoint(self):
+    def delete_targetpoint(self):
         if(self.tp):
             self.world.DestroyBody(self.tp)
             self.tp = None

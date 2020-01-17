@@ -6,7 +6,7 @@
     Datum:
         16-1-2020
     Versie:
-        1.0
+        1.1
     Authors:
         Chileam Bohnen
     Used_IDE:
@@ -14,6 +14,8 @@
     Version management:
         1.0:
             Header toegevoegd
+        1.1:
+            Docstrings toegevoegd.
 """
 
 import usb1
@@ -21,10 +23,8 @@ from enum import Enum
 import time
 
 class Driver:
-    """[summary]"""
-
     def __init__(self, device_count):
-        """[summary]
+        """initaliseer de drivers.
 
         Args:
             device_count (int): Aantal verbonden USB stepper drivers
@@ -165,18 +165,27 @@ class Driver:
         """Deze functie selecteerd een driver uit de lijst van stepper drivers.
 
         Args:
-            device_number (int): Positie in de lijst van stepper drivers.
+            device_number (int): Adres van het device. 
         """
         self.device = self.performax_devices[device_number]
 
     def get_device_descriptors(self, device):
         """Deze fucntie haalt het serienummer en productnummer van een aangesloten driver op.
+        
+        Args:
+            device (int): Adress van desbetreffende  device.
         """
         self.descriptors.append([device.getSerialNumberDescriptor(), device.getProductDescriptor()])
 
     def open_new_connection(self, device):
         """Deze functie claimt een USB interface en opent de USB verbinding.\n
         De verbinding wordt gemaakt met een geslecteerde driver. zie select_performaxe_device(self, device_number).
+        
+        Args:
+            device (int): Adress van desbetreffende device.
+        
+        Returns:
+            handler: handle naar USB device. 
         """
         # USB context opent een USB handler
         handler = device.open()
@@ -195,6 +204,9 @@ class Driver:
     def open_connection(self, device_num):
         """Deze functie claimt een USB interface en opent de USB verbinding.\n
         De verbinding wordt gemaakt met een geslecteerde driver. zie select_performaxe_device(self, device_number).
+        
+        Args:
+            device_num (int): Adres van het device. 
         """
 
         # USB context opent een USB handler
@@ -211,6 +223,9 @@ class Driver:
 
     def close_connection(self, handler):
         """Deze functie laat de USB interface los en sluit de USB verbinding.
+        
+        Args:
+            handler (handler): handle naar de USB.
         """
         # USB hanlder sluit de verbinding.
         self._close_port(handler)
@@ -230,7 +245,7 @@ class Driver:
         """Deze functie verstuurd commando's naar een USB device.
 
         Args:
-            command (Commands): Een commando uit 'Commands'.
+            command (Commands): Een commando uit class 'Commands'.
 
         Kwargs:
             value (int): Een waarde die naar de stepper driver geschreven wordt. Defaults to None.
@@ -250,13 +265,13 @@ class Driver:
         return response
 
     def _is_num_device_connected(self, devices_list):
-        """[summary]
+        """Check of een device is aangesloten.
 
         Args:
-            devices_list ([type]): [description]
+            devices_list (list): list van adressen van devices. 
 
         Returns:
-            [type]: [description]
+            performax_devices (list): list van geverifieerde drivers.
         """
         performax_devices = []
         for device in devices_list:
@@ -266,6 +281,11 @@ class Driver:
         return performax_devices
 
     def _open_port(self, handler):
+        """Open een USB poort.
+        
+        Args:
+            handler (handler): handle naar de USB.
+        """
         _null_msg = bytearray('', 'utf-8')
         handler.controlWrite(
             request_type=0x40,
@@ -276,6 +296,11 @@ class Driver:
         )
 
     def _flush_port(self, handler):
+        """Maak de USB connectie leeg.
+        
+        Args:
+            handler (handler): handle naar de USB.
+        """
         _null_msg = bytearray('', 'utf-8')
         handler.controlWrite(
             request_type=0x40,
@@ -286,6 +311,11 @@ class Driver:
         )
 
     def _close_port(self, handler):
+        """Sluit de USB connectie.
+        
+        Args:
+            handler (handler): handle naar de USB.
+        """
         _null_msg = bytearray('', 'utf-8')
         handler.controlWrite(
             request_type=0x40,
@@ -297,6 +327,11 @@ class Driver:
 
 
 class Commands(Enum):
+    """Enum van mogelijke commando's.
+    
+    Args:
+        Enum (Enum): Enum van lijst van commando's.
+    """
     def __init__(self, value, name):
         self._value_ = value
         self._name_ = name

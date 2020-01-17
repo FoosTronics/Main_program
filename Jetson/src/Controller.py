@@ -7,7 +7,7 @@
     Date:
         16-1-2020
     Version:
-        V1.2
+        1.3
     Authors:
         Daniël Boon
     Used_IDE:
@@ -19,6 +19,9 @@
             -
         1.2:
             class p_controller veranderd naar CamelCase (PController)
+        1.3:
+            Google docstring format toegepast op functies.
+
 """ 
 
 #pylint: disable=E1101
@@ -132,6 +135,8 @@ class PController:
     #         self.driver.transceive_message(1, Commands.SET_PX, 0)
 
     def shoot(self):
+        """Bestuur de drivers zodat er axiaal bewogen wordt.
+        """
         if(len(self.driver.handlers)==2):
             self.driver.transceive_message(1, Commands.SET_X, 48)
             while(int(self.driver.transceive_message(1, Commands.GET_PS).decode("utf-8"))):
@@ -144,12 +149,25 @@ class PController:
             # self.step_correction()
 
     def bitfield(self, n):
+        """Convert een bit list naar een integer list.
+        
+        Args:
+            n (byte): byte die moet worden vertaald naar een integer.
+        
+        Returns:
+            list: integer list van het byte array.
+        """
         array = [int(digit) for digit in bin(n)[2:]] # [2:] to chop off the "0b" part 
         for i in range(11-len(array)):
             array.insert(0, 0)
         return array
 
     def go_home(self, direction=0):
+        """Beweegt de keeper terug naar de home positie.
+        
+        Args:
+            direction (int, optional): 0 is naar links, 1 is rechts gezien vanaf de hendel. Defaults to 0 (links).
+        """
         if(direction==0):
             self.driver.transceive_message(0, Commands.HOME_PLUS)
         else:
@@ -175,16 +193,16 @@ class PController:
 
 
     def linear_extrapolation(self, pnt1, pnt2, value_x=5, max_y=32):
-        """extra-polation om keeper coördinaten te bepalen
+        """extra-polation om keeper coördinaten te bepalen.
         
         Args:
-            pnt1 ((int, int)): x, y coördinaten punt 1 van bal
-            pnt2 ((int, int)): x, y coördinaten punt 2 van bal
+            pnt1 ((int, int)): x, y coördinaten punt 1 van bal.
+            pnt2 ((int, int)): x, y coördinaten punt 2 van bal.
             value_x (int, optional): coördinaat waar keeper staat in x. Defaults to 5.
             max_y (int, optional): halve coördinaat afstand waar de keeper kan komen. Defaults to 32.
         
         Returns:
-            (int, int): x, y van keeper coördinaat positie
+            (int, int): x, y van keeper coördinaat positie.
         """
 
         # keep is the pixel position of keeper rod on the x-axis

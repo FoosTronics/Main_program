@@ -193,12 +193,12 @@ class Foostronics:
         target = self.state[1][0]+(((-15-self.state[0][0])/vel_x) * vel_y)
         
         if(ks.tp):
-            ks.DeleteTargetpoint()
+            ks.delete_targetpoint()
 
         if((vel_x > 0) or (target > 11.26) or (target < 6.16)):
             target = DQL.np.nan
         elif(not DQL.np.isnan(target)):
-            ks.CreateTargetpoint((-15, target))
+            ks.create_targetpoint((-15, target))
 
         print(target)
 

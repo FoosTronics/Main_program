@@ -6,8 +6,8 @@
     Date:
         15-11-2019
     Version:
-        3.2
-    Authors:
+        3.3
+    Modifier:
         Sipke Vellinga
     Used_IDE:
         Pycharm (Python 3.6.7 64-bit)
@@ -17,11 +17,13 @@
         2.1:
             __init__ aangepast
         3.0:
-            def getimageFrame en def getvideoFrame samengevoegd
+            def getimageFrame en def getvideoFrame samengevoegd.
         3.1:
-            def showFrame opgeschoond
+            def showFrame opgeschoond.
         3.2:
             Functies met underscore gemaakt ipv C++ lowerCamelCase style.
+        3.3:
+            Google docstring format toegepast op functies.
 """
 
 import numpy as np
@@ -61,10 +63,11 @@ class BallDetection: #of Beeldherkenning?
         self.center = (0, 0)
 
     def _callback(self, x):
-        """
-        Functienaam voor het aanmaken van de trackbar. De trackbar genereert een pointer
+        """Functienaam voor het aanmaken van de trackbar. De trackbar genereert een pointer
         die deze functie aanroept wanneer de slider van positie verandert.
-        #underscore is voor lokaal gebruik
+        
+        Args:
+            x (int): variabelen die wordt meegegeven met OpenCV.
         """
         pass
 
@@ -98,10 +101,10 @@ class BallDetection: #of Beeldherkenning?
         self.ihighV = cv2.getTrackbarPos('highV', 'Trackbar')
 
     def getball_pos(self):
-        """
-        Roept de functies aan die nodig zijn om de bal te detecteren
-
-        Returns: Geeft de x,y pixel positie van de bal terug
+        """Roept de functies aan die nodig zijn om de bal te detecteren.
+        
+        Returns:
+            tuple: Geeft de x,y pixel positie van de bal terug.
         """
         #self.getFrame()
         #self.get_trackbarpos()
@@ -112,12 +115,19 @@ class BallDetection: #of Beeldherkenning?
         return self.center
 
     def new_frame(self, img):
+        """Zet een image om naar het frame binnen de class. \n
+        Hier zal de bal vanaf worden geëxtraheerd.
+        
+        Args:
+            img (np.array): image van de foto.
+        """
         self.frame = img
 
     def get_frame(self):
-        """
-        Haalt een frame binnen en resized deze
-        Returns: Geeft de geresizede image terug
+        """Haalt een frame binnen en resized deze.
+            
+            Returns: 
+                (np.array) = Geeft de verkleinde image terug.
         """
         if self.frame_capture == 'video':
             ret, frame_capture = self.cap.read()
@@ -144,8 +154,7 @@ class BallDetection: #of Beeldherkenning?
     #         return self.frame
 
     def image_filter(self):
-        """
-        Set van beeldfilters waarmee een mask wordt gecreeerd om de bal te kunnen volgen.
+        """Set van beeldfilters waarmee een mask wordt gecreeerd om de bal te kunnen volgen.
         """
         yuv = cv2.cvtColor(self.frame, cv2.COLOR_BGR2YUV)
         #blur = cv2.blur(yuv, (5, 5))
@@ -158,9 +167,17 @@ class BallDetection: #of Beeldherkenning?
         #cv2.imshow("mask", self.mask)
 
     def ball_detect(self):
-        """
-        Volgt de bal op het speelveld met behulp van de functie image_filter
-        #Adrian Rosebrock https://www.pyimagesearch.com/2015/09/14/ball-tracking-with-opencv/
+        """Volgt de bal op het speelveld met behulp van de functie image_filter
+        
+        Athor:
+            Adrian Rosebrock https://www.pyimagesearch.com/2015/09/14/ball-tracking-with-opencv/
+        
+        Returns:
+            center2 (tuple)]: x,y cordinaten van de bal op een frame.
+        
+        Raises:
+            TypeError:
+                Voeg eerst een frame toe d.m.v. de functie new_frame(img).
         """
         # Vind de contouren in het masker en
         # initialiseer het huidige (x, y) middelpunt van de bal
@@ -191,8 +208,7 @@ class BallDetection: #of Beeldherkenning?
             self.center = center2
 
     def show_frame(self):
-        """
-        Laat het beeld zien dat met de get_frame functie is opgehaald
+        """Laat het beeld zien dat met de get_frame functie is opgehaald
         """
         print(self.center)
         cv2.putText(self.frame, str(self.center), (10, 30),

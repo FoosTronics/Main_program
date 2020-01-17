@@ -8,7 +8,7 @@
     Date:
         13-11-2019
     Version:
-        1.0
+        1.1
     Modifier / Authors:
         Kelvin Sweere
         Chileam Bohnen
@@ -19,11 +19,13 @@
     Version management:
         1.0:
             Headers veranderd.
+        1.1:
+            Google docstring format toegepast op functies.
 """
 
 import numpy as np
 import cv2
-from .Backend.Extra import *
+from Backend.Extra import *
 
 if __name__ == "__main__":
     from glob import glob
@@ -75,10 +77,10 @@ class FindContours:
         """bewerk een grayscale img, zodat een mask waarop contours getekend kan worden over blijft.
 
         Args:
-          img (numpy array): orginele img in BGR format. Wordt later omgezet in grayscale.
+          img (np.array): orginele img in BGR format. Wordt later omgezet in grayscale.
 
         Returns:
-            filt (numpy array): gefilterde image van het orgineel.
+            filt (np.array): gefilterde image van het orgineel.
         """
         # Settings uit slider.py gehaald
         gray = cv2.cvtColor(self.drawing_img, cv2.COLOR_BGR2GRAY)
@@ -92,10 +94,10 @@ class FindContours:
         """bewerk een gecropte img, zodat een mask waarop contours getekend kan worden over blijft.
 
         Args:
-          img (numpy array): gecropte img in BGR format. Wordt later omgezet in grayscale.
+          img (np.array): gecropte img in BGR format. Wordt later omgezet in grayscale.
 
         Returns:
-            filt (numpy array): gefilterde image van het orgineel.
+            filt (np.array): gefilterde image van het orgineel.
         """
         cropped_gray = cv2.cvtColor(cropped, cv2.COLOR_BGR2GRAY)
         if self.debug:
@@ -104,7 +106,7 @@ class FindContours:
         return filt
 
     def _rotated_table(self, contour):
-        """roteer de tafel zodat de contour haaks komt te staan.
+        """roteer de tafel, zodat de contour haaks komt te staan.
         
         Args:
             contour (np.array): Contour die recht gezet wordt.
@@ -123,10 +125,10 @@ class FindContours:
         """bewerk een YUV img, zodat een mask waarop contours getekend kan worden over blijft.
 
         Args:
-          img (numpy array): orginele img in BGR format. Wordt later omgezet in YUV.
+          img (np.array): orginele img in BGR format. Wordt later omgezet in YUV.
 
         Returns:
-            filt (numpy array): gefilterde image van het orgineel.
+            filt (np.array): gefilterde zwart/wit image van het orgineel.
         """
 
         # Settings uit slider.py gehaald
@@ -138,7 +140,6 @@ class FindContours:
         HIGHSAT = 240
         HIGHVAL = 235
 
-        # TODO: 48 tot 54 in functie
         yuv = cv2.cvtColor(self.img, cv2.COLOR_BGR2YUV)
         colorLow = np.array([LOWHUE, LOWSAT, LOWVAL])
         colorHigh = np.array([HIGHHUE, HIGHSAT, HIGHVAL])
@@ -146,7 +147,6 @@ class FindContours:
         mask = cv2.inRange(yuv, colorLow, colorHigh)
         ###############
 
-        # TODO: blur als functie maken
         #Zorg dat de stijle lijnen beter worden weergegeven.
         # kernal = cv.getStructuringElement(cv.MORPH_ELLIPSE, (7, 7))
         mask = cv2.medianBlur(mask, 7)
@@ -154,9 +154,6 @@ class FindContours:
 
         filt = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, mask)
         filt = cv2.morphologyEx(filt, cv2.MORPH_OPEN, filt)
-
-        # self.show_img()
-        # self.show_mask()
         
         # return nieuwe image.
         return filt
@@ -165,8 +162,8 @@ class FindContours:
         """berekend het oppervlakte wat tussen twee punten is bevestigd. 
         
         Args:
-            cor1 (tuple): x,y cordinaat van linker boven hoek.
-            cor2 (tuple): x,y cordinaat van recher onder hoek.
+            cor1 ((int, int)): x,y cordinaat van linker boven hoek.
+            cor2 ((int, int)): x,y cordinaat van recher onder hoek.
         
         Returns:
             int: oppervlakte tussen beide cordinaten.
@@ -176,10 +173,10 @@ class FindContours:
         return x*y
 
     def _find_table_contour(self, mask):
-        """vind de contour van de tafel met de gefilterde img van de tafel.
+        """Vind het contour van de tafel met de gefilterde img van de tafel.
         
         Args:
-            filt (numpy.array): mask van orginele img. Hier worden de contours over 
+            filt (np.array): mask van orginele img. Hier worden de contours over 
         
         Returns:
             (tuple): grootste contour die aanwezig is in de gefilterde img (input).
@@ -208,19 +205,16 @@ class FindContours:
         """Crop een 'orginele' img naar een gecropte img.
         
         Args:
-            img (numpy.darray): img die gecropt moet worden tot de cordinaten.
+            img (np.darray): img die gecropt moet worden tot de cordinaten.
             contour_cor (tuple): cordinaten van de contours waar deze gecropt moet worden.
         
         Returns:
-            (numpy.darray): gecropte image van het orgineel.
+            (np.darray): gecropte image van het orgineel.
         """
         if contour is None:
             return _img[self.top_border:self.bottom_border, self.left_border:self.right_border]
         else:
             x, y, w, h = cv2.boundingRect(contour)
-            #print(x,y,w,h)
-            # return img[y:y+h, x:x+w]
-            # return img[y - self.PIXEL_WIDTH:y + h + self.PIXEL_WIDTH, x - self.PIXEL_WIDTH:x + w + self.PIXEL_WIDTH]
         return _img[y:y+h, x:x+w]
 
     def get_table_now(self):
@@ -228,17 +222,16 @@ class FindContours:
         High-level API, die gelijk de gecropte img teruggeeft van de tafel.
         
         Args:
-            img (numpy.darray): input image van de (ongefilterde) tafel.
+            img (np.darray): input image van de (ongefilterde) tafel.
             filt (bool, optional): kies of de img wordt teruggegeven (False),
             of dat de gefilterde img wordt teruggegeven (True). Defaults to False.
         
         Returns:
-            numpy.darray: gecropte image van de tafel.
+            np.darray: gecropte image van de tafel.
         """
         
         self.mask = self._get_white()  # get black/white image
         self.contour = self._find_table_contour(self.mask)
-        #TODO: terugzetten 
         self.mask = self._crop_img_till_contour(self.mask)  #resize mask
         self.img = self._crop_img_till_contour(self.img)    #resize img
         return self.img
@@ -309,11 +302,16 @@ class FindContours:
             print("Geen mask aangemaakt. Voer get_table_now() uit.")
 
     def show_img(self):
-        """Laat de image zien die in de class aanwezig is.
+        """Laat de image zien die in de class aanwezig is met OpenCV.
         """
         cv2.imshow("img", self.img)
 
     def new_img(self, img):
+        """Maak een nieuwe img aan.
+        
+        Args:
+            img (np.array): Nieuwe foto die wordt toegevoegd aan de class.
+        """
         self.img = img
         self.drawing_img = cv2.GaussianBlur(img, (3, 3), cv2.BORDER_DEFAULT)
 

@@ -1,21 +1,28 @@
+"""
+    Reads picture from (video) memory. 
+
+    File:
+      ImageProcessing.py
+    Date:
+        15.11.2019
+    Version:
+        1.1
+    Authors:
+        Chileam Bohnen
+    Used_IDE:
+        PyCharm (Python 3.6.9 64-bit)
+    Schemetic:
+        -
+    Version Management:
+        1.0:
+            Headers veranderd.
+        1.1:
+            Google docstring format toegepast op functies.
+
+"""
+
 import cv2
 import time
-
-"""
-Afbeeldingen ophalen uit video geheugen
-
-File:
-    ImageProcessing.py
-Date:
-    15.11.2019
-Version:
-    V1.0
-Authors:
-    Chileam Bohnen
-Used_IDE:
-    PyCharm (Python 3.6.9 64-bit)
-"""
-
 
 class ImageCapture:
     """
@@ -23,13 +30,12 @@ class ImageCapture:
     """
 
     def __init__(self, res=(640, 360), file=None, save=False):
-        """
-        Initalisatie van klasse object
+        """Initialiseer de ImageCapture class. 
         
         Args:
-            res (tuple): Gewenste afbeelding resolutie (breedte, hoogte)
-            file (str, optional): Bestandlocatie van afbeelding of video locatie. Standaard waarde is None.
-            save (bool, optional): Bestandlocatie waar een opnamen wordt opgeslagen. Standaard waarde is None.
+            res (tuple, optional): Gewenste afbeelding resolutie(breedte, hoogte). Defaults to (640, 360).
+            file (string, optional): Bestandlocatie van afbeelding of video locatie. Defaults to None.
+            save (bool, optional): Bestandlocatie waar een opnamen wordt opgeslagen.. Defaults to False.
         """
         self.SAVE           = save
         self.FILE           = file
@@ -84,23 +90,27 @@ class ImageCapture:
         """
         self.writer.write(self.frame)
 
-    def _gstreamer_pipeline(self,
-            capture_width=1280,
-            capture_height=720,
-            display_width=640,
-            display_height=360,
-            framerate=120,
-            flip_method=2,
-    ):
-        """
-        Initalisatie van Gstreamer pipeline.
+    def _gstreamer_pipeline(self, capture_width=1280, capture_height=720, display_width=640,
+            display_height=360, framerate=120, flip_method=2):
+    """Initalisatie van Gstreamer pipeline.
+
         string format for Gstreamer is:
-            "nvarguscamerasrc !  video/x-raw(memory:NVMM), "
-            "width=1280, height=720, format=NV12, framerate=120/1 ! "
-            "nvvidconv flip-method=2 ! "
-            "video/x-raw, width=640, height=480, "
-            "format=BGRx ! videoconvert ! video/x-raw, format=BGR ! appsink"
-        """
+        "nvarguscamerasrc !  video/x-raw(memory:NVMM), "
+        "width=1280, height=720, format=NV12, framerate=120/1 ! "
+        "nvvidconv flip-method=2 ! "
+        "video/x-raw, width=640, height=480, "
+        "format=BGRx ! videoconvert ! video/x-raw, format=BGR ! appsink"
+    Args:
+        capture_width (int, optional): Breedte van de te nemen foto. Defaults to 1280.
+        capture_height (int, optional): Hoogte van de te nemen foto. Defaults to 720.
+        display_width (int, optional): Breedte voor het weergeven van de beelden. Defaults to 640.
+        display_height (int, optional): Hoogte voor het weergeven van de beelden. Defaults to 360.
+        framerate (int, optional): Snelheid van de camera in fps. Defaults to 120.
+        flip_method (int, optional): Kant waarop het camerabeeld toewijst. Defaults to 2.
+    
+    Returns:
+        str: Instellingen voor het aansturen van de camera met de params erin vewerkt.
+    """
         return (
             "nvarguscamerasrc !  video/x-raw(memory:NVMM), "
             "width=1280, height=720, format=NV12, framerate="+str(framerate)+"/1 ! "

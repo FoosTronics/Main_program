@@ -1,45 +1,45 @@
-"""In this file is the main loop of the fooball simulation.
-In this file is only the 'def run(self)' function modified (the rest was not modified).  
+"""
+    This file contains the main loop for the fooball simulation.
+    Only the 'def run(self)' function is modified from the main source (the rest was not modified).  
 
-Simulates the the enviorment of foosball as for the keeper. 
-This simulation has the intention to train an AI to play the game.
+    Simulates the environment of foosball as for the keeper. 
+    This simulation has the intention to train an AI to play the game.
 
-Use the W,A,S,D keys to move the keeper.
-Press C to start the simulation.
+    Use the W,A,S,D keys to move the keeper.
+    Press C to start the simulation.
 
-File:
-    pygame_framework.py
-Date:
-    16.12.2019
-Version:
-    V1.4
-Modifier:
-    Daniël Boon
-Used_IDE:
-    Visual Studio Code (Python 3.6.7 64-bit)
-
-Used libraries/repositories:
-    - PyBox2D (PyBox2D - Jan 15, 2018):
-        https://github.com/pybox2d/pybox2d
-    - Numba 0.35.0 (Numba - Sept 17, 2019)
-        https://github.com/numba/numba
-    - pygame 1.9.6 (pygame - Apr 25, 2019):
-        https://github.com/pygame/pygame
-
-Global Keys:
-    F1     - toggle menu (can greatly improve fps)
-    Space  - shoot projectile
-    Z/X    - zoom
-    Escape - quit
-
-Other keys can be set by the individual test.
-
-Mouse:
-    Left click  - select/drag body (creates mouse joint)
-    Right click - pan
-    Shift+Left  - drag to create a directed projectile
-    Scroll      - zoom
-
+    File:
+        PygameFramework.py
+    Date:
+        16-1-2020
+    Version:
+        V1.0
+    Modifier:
+        Daniël Boon    
+    Used_IDE:
+        Visual Studio Code (Python 3.6.7 64-bit)
+    Used libraries/repositories:
+        - PyBox2D (PyBox2D - Jan 15, 2018):
+            https://github.com/pybox2d/pybox2d
+        - Numba 0.35.0 (Numba - Sept 17, 2019)
+            https://github.com/numba/numba
+        - pygame 1.9.6 (pygame - Apr 25, 2019):
+            https://github.com/pygame/pygame
+    Global Keys:
+        F1     - toggle menu (can greatly improve fps)
+        Space  - shoot projectile
+        Z/X    - zoom
+        Escape - quit
+    Other keys can be set by the individual test.
+    Mouse:
+        Left click  - select/drag body (creates mouse joint)
+        Right click - pan
+        Shift+Left  - drag to create a directed projectile
+        Scroll      - zoom
+    Version management:
+        1.0:
+            Verwijzingen naar bestandsnamen gewijzigd
+                Header aangepast
 """
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-

@@ -8,16 +8,20 @@
     Date:
         16.1.2020
     Version:
-        V1.1
+        V1.2
     Author:
         Daniël Boon
         Kelvin Sweere
     Used_IDE:
         Visual Studio Code (Python 3.6.7 64-bit)
 
-    Version:
+    Version management:
         1.1:
             functie: _initAISettings() toegevoegd voor de parameters van de AI in de init.
+        1.2:
+            Constantes zijn hoofdletters.
+
+
 """ 
 #pylint: disable=E1101
 
@@ -66,7 +70,7 @@ class Foostronics:
         except:
             self.met_drivers = False
         
-        img = self.bd.getFrame()
+        img = self.bd.get_frame()
         self.HEIGHT_IMG, self.WIDTH_IMG, _ = img.shape
         # TODO: BeeldKoppeling wordt vervangen
         # self.bk = BeeldKoppeling(debug_flag=True)     # class die de beeldherkenning afhandeld. debug_flag=True (trackbars worden afgemaakt).
@@ -78,12 +82,12 @@ class Foostronics:
         """Zet de pixel positie van de beeldherkenning om naar pixel positie van de simulatie.
         """
         # x_simulatie posite
-        x_s = self.mapFunction(x_p, 0, self.WIDTH_IMG, -19.35, 19.35)
-        y_s = self.mapFunction(y_p, 0, self.HEIGHT_IMG, 17.42, 0)
+        x_s = self.map_function(x_p, 0, self.WIDTH_IMG, -19.35, 19.35)
+        y_s = self.map_function(y_p, 0, self.HEIGHT_IMG, 17.42, 0)
 
         return x_s, y_s
     
-    def mapFunction(self, val, in_min, in_max, out_min, out_max):
+    def map_function(self, val, in_min, in_max, out_min, out_max):
         """Map functie (zoals in de Arduino IDE) die input schaald in verhouding naar de output.
         
         Args:
@@ -98,7 +102,7 @@ class Foostronics:
         """
         return (val - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
 
-    def executeAction(self, action, old_action):
+    def execute_action(self, action, old_action):
         
 
         if np.array_equal(action, self.dql.possible_actions[0]):
@@ -137,7 +141,7 @@ class Foostronics:
                 self.con.driver.transceive_message(0, Commands.STOP)
 
 
-    def determineGoal(self, vel_x, vel_x_old):
+    def determine_goal(self, vel_x, vel_x_old):
         done = 0
         goal = 0
 
@@ -190,17 +194,17 @@ class Foostronics:
         action, old_action, target, vel_x, vel_x_old = self.dql.get_ai_action()
 
         if(ks.tp):
-            ks.DeleteTargetpoint()
+            ks.delete_targetpoint()
         
         if(not np.isnan(target)):
-            self.ks.CreateTargetpoint((-15, target))
+            self.ks.create_targetpoint((-15, target))
         
-        self.executeAction(action, old_action)
+        self.execute_action(action, old_action)
 
-        done, goal = self.determineGoal(vel_x, vel_x_old)
+        done, goal = self.determine_goal(vel_x, vel_x_old)
 
         if(done):
-            episode_rewards, total_reward = self.dql.prepareNewRound(goal, ks.ball, ks.body)
+            episode_rewards, total_reward = self.dql.prepare_new_round(goal, ks.ball, ks.body)
 
             self.hl.set_xdata(np.append(self.hl.get_xdata(), (len(total_reward)-1)))
             self.hl.set_ydata(np.append(self.hl.get_ydata(), np.sum(episode_rewards)))                    
@@ -217,7 +221,7 @@ class Foostronics:
                 else:
                     self.con.go_home(1)
         else:
-            self.dql.updateData(done, ks.ball, ks.body)        
+            self.dql.update_data(done, ks.ball, ks.body)        
 
         return ball, keeper, action
 

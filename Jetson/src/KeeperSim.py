@@ -46,12 +46,6 @@ import tkinter as tk
 from tkinter.filedialog import askopenfilename
 tk.Tk().withdraw()
 
-
-KEEPER_SPEED = 40
-FORCE_MAX = 100
-FORCE_MIN = 60
-
-
 class control:
     """houd bij welke richting is gekozen voor de keeper om naar toe te gaan
     """
@@ -88,7 +82,9 @@ class KeeperSim(Framework):
                     b2EdgeShape(vertices=[(19.35, 17.42), (19.35, 11.26)]),
                     b2EdgeShape(vertices=[(-19.35, 17.42), (19.35, 17.42)]),
                     ])
-
+        self.KEEPER_SPEED = 40
+        self.FORCE_MAX = 100
+        self.FORCE_MIN = 60
         # bal straal instellen
         self.radius = radius = 0.5
         
@@ -102,7 +98,7 @@ class KeeperSim(Framework):
         # Keep track of the pressed keys
         self.pressed_keys = set()
         
-        self.time = pi/KEEPER_SPEED
+        self.time = pi/self.KEEPER_SPEED
         self.time_change = 0
         self.goals = 0
         self.blocks = 0
@@ -145,13 +141,13 @@ class KeeperSim(Framework):
             # self.SetBall((0.0 , random() * 17.42), force_param=False)
             self._resetBall()
         if key == Keys.K_w:
-            self.control.y = KEEPER_SPEED
+            self.control.y = self.KEEPER_SPEED
         if key == Keys.K_s:
-            self.control.y = -KEEPER_SPEED
+            self.control.y = -self.KEEPER_SPEED
         if key == Keys.K_a:
-            self.control.x = -KEEPER_SPEED
+            self.control.x = -self.KEEPER_SPEED
         if key == Keys.K_d:
-            self.control.x = KEEPER_SPEED
+            self.control.x = self.KEEPER_SPEED
         if key == Keys.K_j:
             if self.settings.c_hz == 60:
                 #settings.hz = 2
@@ -258,7 +254,7 @@ class KeeperSim(Framework):
         goal = goal_lenght * random()
         goal += (8.71 - (goal_lenght/2))
 
-        power = (FORCE_MAX-FORCE_MIN) * random() + FORCE_MIN
+        power = (self.FORCE_MAX-self.FORCE_MIN) * random() + self.FORCE_MIN
         force = ((-19.35-pos[0])*power,(pos[1]-goal)*-power)
 
         self.target = ((goal-pos[1])*self.scaler)+pos[1]
@@ -323,19 +319,19 @@ class KeeperSim(Framework):
         #bepaling snelheid keeper bij horizontale beweging (+maak doorlaatbaar wanneer de keeper te hoog staat)
         if self.control.x and (settings.hz > 0.0):
             blub = 2   
-            if (self.control.x > 0) and ((KEEPER_SPEED * self.time/blub) < pi): #A
+            if (self.control.x > 0) and ((self.KEEPER_SPEED * self.time/blub) < pi): #A
                 #print("A")
                 self.time += 1.0 / settings.hz
-                vel.x = (KEEPER_SPEED * sin(KEEPER_SPEED * self.time/blub))
-                if (KEEPER_SPEED * self.time/blub) > 2.7925268032:
+                vel.x = (self.KEEPER_SPEED * sin(self.KEEPER_SPEED * self.time/blub))
+                if (self.KEEPER_SPEED * self.time/blub) > 2.7925268032:
                     self.fixture.sensor = False #True
                 else:
                     self.fixture.sensor = False
-            elif (self.control.x < 0) and ((KEEPER_SPEED * (self.time/blub)) > 0): #D
+            elif (self.control.x < 0) and ((self.KEEPER_SPEED * (self.time/blub)) > 0): #D
                 #print("D")
                 self.time -= 1.0 / settings.hz
-                vel.x = (-KEEPER_SPEED * sin(KEEPER_SPEED * (self.time/blub)))
-                if (KEEPER_SPEED * self.time) < 0.3490658504:
+                vel.x = (-self.KEEPER_SPEED * sin(self.KEEPER_SPEED * (self.time/blub)))
+                if (self.KEEPER_SPEED * self.time) < 0.3490658504:
                     self.fixture.sensor = False #True
                 else:
                     self.fixture.sensor = False
@@ -354,7 +350,7 @@ class KeeperSim(Framework):
                 #self.world.DestroyBody(self.ball_target)
                 self._resetBall()   #reset de bal op het veld.
                 self.body.position = (-15,8.71)
-                self.time = pi/KEEPER_SPEED
+                self.time = pi/self.KEEPER_SPEED
                 self.fixture.sensor = False
 
             # is de bal geblocked? blocked++ en setball
@@ -368,7 +364,7 @@ class KeeperSim(Framework):
                     #self.world.DestroyBody(self.ball_target)
                     self._resetBall()   #reset de bal op het veld.
                     self.body.position = (-15,8.71)
-                    self.time = pi/KEEPER_SPEED
+                    self.time = pi/self.KEEPER_SPEED
                     self.fixture.sensor = False
 
         except:

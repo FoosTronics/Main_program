@@ -7,7 +7,7 @@ Use the W,A,S,D keys to move the keeper.
 Press C to start the simulation.
 
 File:
-    deep_q_learning_3.py
+    DeepQLearning.py
 Date:
     16.12.2019
 Version:
@@ -26,17 +26,255 @@ import time                  # Handling time calculation
 
 from collections import deque# Ordered collection with ends
 import matplotlib.pyplot as plt # Display graphs
+from datetime import datetime
+
 
 import warnings # This ignore all the warning messages that are normally printed during the training because of skiimage
 warnings.filterwarnings('ignore') 
+
+class DQLBase:
+    def __init__(self, debug=False):
+        self.possible_actions = create_environment()
+
+        self.stack_size = 4 # We stack 4 frames
+
+        # Initialize deque with zero-images one array for each image
+        self.stacked_states = deque([np.zeros(4, dtype=np.float) for i in range(self.stack_size)], maxlen=4) 
+
+        ### MODEL HYPERPARAMETERS
+        # Our input is a stack of 4 frames hence 84x84x4 (Width, height, channels)
+        state_size = [4, 4]
+        action_size = 4  # game.get_available_buttons_size()              # 3 possible actions: left, right, shoot
+        #TODO: was 0.0002
+        learning_rate = 0.01      # Alpha (aka learning rate)
+
+        ### TRAINING HYPERPARAMETERS
+        total_episodes = 500        # Total episodes for training
+        self.max_steps = 1000              # Max possible steps in an episode
+        #TODO: was 64
+        self.batch_size = 32
+
+        # Exploration parameters for epsilon greedy strategy
+        #TODO: explore_start was 1.0
+        self.explore_start = 1.0            # exploration probability at start
+        self.explore_stop = 0.01            # minimum exploration probability
+        self.decay_rate = 0.0001            # exponential decay rate for exploration prob
+
+        # Q learning hyperparameters
+        self.gamma = 0.95               # Discounting rate
+
+        ### MEMORY HYPERPARAMETERS
+        # Number of experiences stored in the Memory when initialized for the first time
+        pretrain_length = self.batch_size
+        memory_size = 10000          # Number of experiences the Memory can keep
+       
+        ### MODIFY THIS TO FALSE IF YOU JUST WANT TO SEE THE TRAINED AGENT
+        training = True
+
+        ## TURN THIS TO TRUE IF YOU WANT TO RENDER THE ENVIRONMENT
+        episode_render = False
+
+        # Reset the graph
+        tf.reset_default_graph()
+
+        # Instantiate the DQNetwork
+        self.DQNetwork = DQNetwork(state_size, action_size, learning_rate)
+        
+        # Instantiate memory
+        self.memory = Memory(max_size = memory_size)
+
+        # Setup TensorBoard Writer
+        self.writer = tf.summary.FileWriter("/tensorboard/dqn/1")
+
+        ## Losses
+        tf.summary.scalar("Loss", self.DQNetwork.loss)
+
+        self.write_op = tf.summary.merge_all()
+
+        # Saver will help us to save our model
+        self.saver = tf.train.Saver()
+
+        #with tf.Session() as self.sess:
+        self.sess = tf.Session()
+        # Initialize the variables
+        self.sess.run(tf.global_variables_initializer())
+        
+        # Initialize the decay rate (that will use to reduce epsilon) 
+        self.decay_step = 0
+                    # Set step to 0
+        self.step = 0
+        
+        # Initialize the rewards of the episode
+        self.episode_rewards = []
+
+        # Make a new episode and observe the first state
+        #game.new_episode()
+        self.state = np.array([0, 0, 0, 0])
+        
+        # Remember that stack frame function also call our preprocess function.
+        self.state, self.stacked_states = stack_states(self.stacked_states, self.state, True, self.stack_size)
+        self.goals_old = 0
+        self.blocks_old = 0
+        self.vel_x_old = 0
+        self.vel_y_old = 0
+        self.reward = 0
+        self.total_reward = []
+        self.episode = 0
+        self.action = 0
+        self.vel_x = 0
+        self.vel_y = 0
+    
+    def get_ai_action(self):
+        
+        for i in range(len(self.state[0])-1):
+            self.vel_x = self.state[0][i+1] - self.state[0][i]
+            self.vel_y = self.state[1][i+1] - self.state[1][i]
+
+        target = self.state[1][0]+(((-15-self.state[0][0])/self.vel_x) * self.vel_y)
+
+        if((self.vel_x > 0) or (target > 11.26) or (target < 6.16)):
+            target = np.nan
+
+
+        # print(target)
+
+        done = 0
+        old_action = self.action
+
+        action, explore_probability = predict_action(self.explore_start, self.explore_stop, self.decay_rate, self.decay_step, self.state, self.possible_actions, self.sess, self.DQNetwork)
+        self.action = action
+        if (not np.isnan(target)):
+            if (np.array_equal(action, self.possible_actions[0])):
+                if(target > self.state[3][0]):
+                    self.reward += 0.2*abs(self.state[3][0]-target)
+                else:
+                    self.reward -= 0.05*(5.1-abs(self.state[3][0]-target))
+            elif np.array_equal(action, self.possible_actions[1]):
+                if(target < self.state[3][0]):
+                    self.reward += 0.2*abs(self.state[3][0]-target)
+                else:
+                    self.reward -= 0.05*(5.1-abs(self.state[3][0]-target))
+
+        if np.array_equal(action, self.possible_actions[2]):
+
+            if( (self.state[0][0] > -16) and (self.state[0][0] < -14) and (abs(self.state[3][0]-self.state[1][0]) < 0.37)):
+                self.reward += 0.5
+            else:
+                self.reward -= 0.1
+        
+        if np.array_equal(action, self.possible_actions[3]):
+            if(np.isnan(target)):
+                self.reward += 0.01
+            elif(abs(self.state[1][0]-target) < 0.37):
+                self.reward += 0.3
+            else:
+                self.reward -= 0.05
+
+
+
+        return action, old_action, target, self.vel_x, self.vel_x_old
+
+    def updateData(self, done, ball, keeper):
+        if(not done):
+            self.episode_rewards.append(self.reward)
+            # Get the next state
+            next_state =  np.array([ball.position.x, ball.position.y, keeper.position.x, keeper.position.y])
+            
+            # Stack the frame of the next_state
+            next_state, self.stacked_states = stack_states(self.stacked_states, next_state, False, self.stack_size)
+            
+
+            # Add experience to memory
+            self.memory.add((self.state, self.action, self.reward, next_state, done))
+            
+            # st+1 is now our current state
+            self.state = next_state
+
+        self.vel_x_old = self.vel_x
+        ### LEARNING PART            
+        # Obtain random mini-batch from memory
+        batch = self.memory.sample(self.batch_size)
+        states_mb = np.array([each[0] for each in batch], ndmin=3)
+        actions_mb = np.array([each[1] for each in batch])
+        rewards_mb = np.array([each[2] for each in batch]) 
+        next_states_mb = np.array([each[3] for each in batch], ndmin=3)
+        dones_mb = np.array([each[4] for each in batch])
+
+        target_Qs_batch = []
+
+            # Get Q values for next_state 
+        Qs_next_state = self.sess.run(self.DQNetwork.output, feed_dict = {self.DQNetwork.inputs_: next_states_mb})
+        
+        # Set Q_target = r if the episode ends at s+1, otherwise set Q_target = r + gamma*maxQ(s', a')
+        for i in range(0, len(batch)):
+            terminal = dones_mb[i]
+
+            # If we are in a terminal state, only equals reward
+            if terminal:
+                target_Qs_batch.append(rewards_mb[i])
+                
+            else:
+                target_ai = rewards_mb[i] + self.gamma * np.max(Qs_next_state[i])
+                target_Qs_batch.append(target_ai)
+                
+
+        targets_mb = np.array([each for each in target_Qs_batch])
+
+        loss, _ = self.sess.run([self.DQNetwork.loss, self.DQNetwork.optimizer],
+                            feed_dict={self.DQNetwork.inputs_: states_mb,
+                                        self.DQNetwork.target_Q: targets_mb,
+                                        self.DQNetwork.actions_: actions_mb})
+
+        # Write TF Summaries
+        summary = self.sess.run(self.write_op, feed_dict={self.DQNetwork.inputs_: states_mb,
+                                            self.DQNetwork.target_Q: targets_mb,
+                                            self.DQNetwork.actions_: actions_mb})
+        self.writer.add_summary(summary,1)
+        self.writer.flush()
+        self.reward = 0
+
+    def prepareNewRound(self, goal, ball, keeper):
+
+        done = 1
+
+        if(not goal):
+            self.reward += 1
+
+        self.episode_rewards.append(self.reward)
+
+        #self.bk.resetCoordinates()
+
+        # the episode ends so no next state
+        next_state = np.zeros((4), dtype= np.float)
+        next_state, self.stacked_states = stack_states(self.stacked_states, next_state, False, self.stack_size)
+
+        # Set step = max_steps to end the episode
+        self.step = self.max_steps
+
+        # Get the total reward of the episode
+        self.total_reward.append(np.sum(self.episode_rewards))
+
+        episode_rewards = self.episode_rewards
+
+        self.episode_rewards = []
+        if self.episode % 500 == 0:
+            date_time = datetime.now().strftime("%m-%d-%Y,%H-%M-%S")
+            save_path = self.saver.save(self.sess, "AI_models/AI_save_%s_episode_%d.ckpt" % (date_time, self.episode))
+            print("AI model saved")
+        self.episode += 1
+
+        self.memory.add((self.state, self.action, self.reward, next_state, done))
+
+        self.updateData(done, ball, keeper)
+        return episode_rewards, self.total_reward
+
+        
 
 """
 Here we create our environment
 """
 def create_environment():
     
-
-    fsdjklsdlkj =43     
     # game = DoomGame()
     
     # # Load the correct configuration

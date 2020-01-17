@@ -42,7 +42,7 @@ from pygame.locals import (
     QUIT,
 )
 
-class p_controller:
+class Controller:
     """Met behulp van deze class kan er van twee coördinaat punten de benodigde keeper positie bepaald worden.
        Hierbij wordt: extra-polation toegepast, coördinaat naar mm geconvert, de keeper stap positie bepaald en de drivers aangestuurd.
     

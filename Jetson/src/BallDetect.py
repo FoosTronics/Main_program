@@ -34,6 +34,7 @@ class BallDetection: #of Beeldherkenning?
         self.mask   =       []
         self.dim    =       (640, 480)
         self.frame_capture =[]
+        self.frame_counter = 0
 
         if type(file) == str:
             if file.split(".")[-1] == "png" or file.split(".")[-1] == "jpg":
@@ -90,11 +91,11 @@ class BallDetection: #of Beeldherkenning?
 
         Returns: Geeft de x,y pixel positie van de bal terug
         """
-        #self.getFrame()
+        self.getFrame()
         #self.get_trackbarpos()
         self.imageFilter()
         self.ball_detect()
-        #self.showFrame()
+        self.showFrame()
 
         return self.center
 
@@ -108,7 +109,11 @@ class BallDetection: #of Beeldherkenning?
         """
         if self.frame_capture == 'video':
             ret, frame_capture = self.cap.read()
-            cv2.waitKey(10)
+            self.frame_counter += 1
+            if (self.frame_counter > self.cap.get(1)):
+                frame_counter = 0
+                self.cap.set(1, 0)
+            # cv2.waitKey(10)
             if frame_capture is not None:
                 self.frame = cv2.resize(frame_capture, self.dim)
                 return self.frame
@@ -181,7 +186,7 @@ class BallDetection: #of Beeldherkenning?
         """
         Laat het beeld zien dat met de getFrame functie is opgehaald
         """
-        print(self.center)
+        # print(self.center)
         cv2.putText(self.frame, str(self.center), (10, 30),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
         cv2.imshow("FrameYUV", self.frame)

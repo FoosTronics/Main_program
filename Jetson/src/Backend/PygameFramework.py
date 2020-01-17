@@ -416,7 +416,7 @@ class PygameFramework(FrameworkBase):
 
         fs = self.fs
         while running:
-            self.ball, self.body, self.control, self.action = fs.run(self.ball, self.body, self.control, self.target, self.goals, self.blocks)
+            self.ball, self.body, self.action = fs.run(self.ball, self.body, self.target, self.goals, self.blocks)
 
             # time.sleep(0.03)
             # print(possible_actions[2])

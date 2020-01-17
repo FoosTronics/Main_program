@@ -532,9 +532,9 @@ if __name__ == '__main__':
 # # proper capitalization for portability.
 #
 try:
-    framework_name = '%s_framework' % (fwSettings.backend.lower())
-    __import__('backends', globals(), fromlist=[framework_name], level=1)
-    framework_module = getattr(backends, framework_name)
+    framework_name = '%sFramework' % (fwSettings.backend.lower())
+    __import__('src.Backend', globals(), fromlist=[framework_name], level=1)
+    framework_module = getattr(src.Backend, framework_name)
     Framework = getattr(framework_module,
                         '%sFramework' % fwSettings.backend.capitalize())
 except Exception as ex:

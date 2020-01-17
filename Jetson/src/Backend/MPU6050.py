@@ -7,9 +7,9 @@
     File:
         MPU6050.py
     Date:
-        16-1-2020
+        17-1-2020
     Version:
-        1.2
+        1.3
     Modifier:
         Kelvin Sweere
     Used_IDE:
@@ -21,6 +21,8 @@
             Functies met underscore gemaakt ipv C++ lowerCamelCase style.
         1.2:
             Docstrings in Google-format (aangevuld)
+        1.3:
+            Doxygen template toegepast als pilot.
 """
 #!/bin/bash
 
@@ -28,13 +30,22 @@ import smbus, math, threading
 import time
 
 class MPU6050:
+    """
+    Class om de mpu6050 gyroscoop aan te sturen dmv I2C. 
+
+    **Author**: 
+        Kelvin Sweere \n
+    **Version**:
+        1.2           \n
+    **Date**:
+        17-1-2020     
+    """
     def __init__(self, i2c_address=0x68, threading=False, debug=False):
-        """Init van de class. 
-        
+        """        
         Args:
-            i2c_address (hexadecimal, optional): I2C adress van de gyroscoop. Standard I2C adress van de mpu6050 is 0x68.
-            threading (bool): Keuze om het threaden aan te zetten. Variabelen die deze param aanpast is: THREAD_REG_TIME. Standaard False.
-            debug (bool): Keuze om debug berichten weer te geven. Standaard False.
+            i2c_address: (hexadecimal, optional) I2C adress van de gyroscoop. Standaard I2C adress van de mpu6050 is 0x68.
+            threading: (bool) Keuze om het threaden aan te zetten. Variabelen die deze param aanpast is: THREAD_REG_TIME. Standaard False.
+            debug: (bool) Keuze om debug berichten weer te geven. Standaard False.
         """
         # params voor i2c bus.
         self.bus = smbus.SMBus(1)        #gevonden met i2cdetect voor de mpu6050 gyro.
@@ -70,15 +81,15 @@ class MPU6050:
 
 
     def _thread_for_registers(self):
-        """
-        Geactiveerde functie door de thread. Leest de waardes van de gyroscoop.
+        """Geactiveerde functie door de thread, leest de waardes van de gyroscoop.
         """
         self._get_all_register_values()
-
         self.t_t.run() # zorg dat de thread opnieuw kan wordt gerunt. 
     
 
     def _init_angle_cor(self):
+        """Zorg dat de hoek zoals deze nu staat het nulpunt is.
+        """
         self.init_hoek_x = self.get_x_rotation()
         self.init_hoek_y = self.get_y_rotation()
         if self.debug:
@@ -87,13 +98,13 @@ class MPU6050:
 
 
     def _read_word(self, adr):
-        """lezen van de bus.
+        """lezen van de bus via I2C.
         
         Args:
-            adr (uint16_t): adres naar het te lezen register.   
+            adr: (uint16_t) adres naar het te lezen register.   
         
         Returns:
-            uint16_t: register waarde van het adres.
+            (uint16_t) register waarde van het adres.
         """
         high = self.bus.read_byte_data(self.address, adr)
         low = self.bus.read_byte_data(self.address, adr+1)
@@ -102,13 +113,13 @@ class MPU6050:
 
 
     def _read_word_2c(self, adr):
-        """leest twee registers uit d.m.v. de functie _read_word(adr)
+        """leest twee registers uit dmv de functie _read_word(adr)
         
         Args:
-            adr (uint16_t): adres van registers
+            adr: (uint16_t) adres van registers
         
         Returns:
-            uint16_t: register waardes.
+            (uint16_t) register waardes.
         """
         val = self._read_word(adr)
         if (val >= 0x8000):
@@ -134,31 +145,37 @@ class MPU6050:
          
     
     def _dist(self, a,b):
-        """Bereken de hoek d.m.v. pythagoras.
+        """Bereken de hoek dmv pythagoras.
         
         Args:
-            a (int): vector 1.
-            b (int): vector 2.
+            a: (int) vector 1.
+            b: (int) vector 2.
         
         Returns:
-            int: resulterende vector.
+            (int) resulterende vector.
         """
         return math.sqrt((a*a)+(b*b))
     
 
     def _get_y_rotation(self):
+        """Bereken de rotatie van de y-as in graden. 
+        """
         radians = math.atan2(self.accel_xout_scaled, self._dist(self.accel_yout_scaled,self.accel_zout_scaled))
         return -math.degrees(radians)   
     
 
     def _get_x_rotation(self):
+        """Bereken de rotatie van de x-as in graden. 
+        """
         radians = math.atan2(self.accel_yout_scaled, self._dist(self.accel_xout_scaled,self.accel_zout_scaled))
         return math.degrees(radians)
     
 
     def get_y_rotation(self):
-        """
-        Return de hoek van de de y-as van de MPU6050.
+        """Return de hoek van de de y-as van de MPU6050.
+
+        Note:
+            **IOError**: Pinnen van de MPU6050 niet (goed) aangesloten.
         """
         if not self.thread_act:
             self._get_all_register_values() # wordt niet meer gebruikt i.v.m. de thread
@@ -173,9 +190,13 @@ class MPU6050:
 
 
     def get_x_rotation(self):
+        """Return de hoek van de de x-as van de MPU6050.
+
+        Note:
+            **IOError**: Pinnen van de MPU6050 niet (goed) aangesloten.
         """
-        Return de hoek van de de x-as van de MPU6050.
-        """
+        # ** is dikgedrukt in doxygen **
+
         if not self.thread_act:
             self._get_all_register_values() # wordt niet meer gebruikt i.v.m. de thread
         
@@ -192,7 +213,7 @@ class MPU6050:
         """Probeer verbinding te maken met de MPU6050. 
         
         Returns:
-            bool: returnt True als de MPU6050 is gevonden.
+            (bool) returnt True als de MPU6050 is gevonden.
         """
         try:
             # self.bus.write_byte_data(self.address, self.power_mgmt_1, 0)    #wake-up sensor

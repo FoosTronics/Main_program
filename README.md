@@ -39,10 +39,3 @@ Het project is gekozen om meer te leren over: AI, beeldherkenning, mechanica en 
 
 > Opbouw van het frame is te vinden onder: https://github.com/FoosTronics/Extra_files/blob/master/Handleiding%20FoosTronics%20-%20V1.1.pdf
 
- ## Applicatie starten 
-
-```python
-activate py36
-
-python main.py
-```

@@ -31,6 +31,8 @@
             Doxygen commentaar toegevoegd.
         3.42: 
             commentaar gevalideerd
+        3.50:
+            cv2.imshow uit get_balpos() procedure.
 """
 
 import numpy as np
@@ -64,7 +66,7 @@ class BallDetection:
         self.ihighV =       255 # 150
         self.mask   =       []
         self.dim    =       (640, 480)
-        self.frame_capture =[]
+        self.frame_capture = []
         self.frame_counter = 0
 
         if type(file) == str:
@@ -125,7 +127,6 @@ class BallDetection:
         self.get_trackbarpos()
         self.image_filter()
         self.ball_detect()
-        self.show_frame()
 
         return self.center
 

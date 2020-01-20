@@ -33,6 +33,8 @@
         1.46:
             Doxygen commentaar toegevoegd. 
             fixed te vaak blocked
+        1.5
+            Initialisatie Foostronics klasse niet in set_Foostronics, maar in main.py. In set_Foostronics wordt nu foosTronics object meegegeven.
 """ 
 '''
 Used libraries/repositories:
@@ -144,13 +146,13 @@ class KeeperSim(Framework):
         
         self.set_ball((b_x, b_y))  #creeeër de bal.
 
-    def set_Foostronics(self, Foostronics):
+    def set_Foostronics(self, foostronics):
         """Foostronics class initaliseren in de KeeperSim class.
         
         Args:
             Foostronics: (class) Class van de main applicatie.
         """ 
-        self.fs = Foostronics(self)
+        self.fs = foostronics
 
     def Keyboard(self, key, settings):
         """Wanneer een key wordt ingedrukt, kom in deze functie

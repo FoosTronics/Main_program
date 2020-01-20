@@ -37,7 +37,7 @@ Het project is gekozen om meer inzicht te verkrijgen in: AI, beeldherkenning, me
 | motordriver           | Arcus Technology ACE-SDE  |
 | gyroscoop             | mpu6050                   |
 
-> opbouw van het frame is te vinden onder ...
+> opbouw van het frame is te vinden onder: https://github.com/FoosTronics/Extra_files/blob/master/Handleiding%20FoosTronics%20-%20V1.1.pdf
 
  ## Applicatie starten 
 

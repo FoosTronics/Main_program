@@ -1,12 +1,12 @@
 """
-    Detecting the ball on the field. 
+    Detecteerd de bal op het veld. 
 
     File:
         BallDetectClass.py
     Date:
-        17-11-2019
+        20-1-2020
     Version:
-        3.3
+        3.42
     Modifier:
         Sipke Vellinga
         Chileam Bohnen
@@ -27,8 +27,10 @@
             Google docstring format toegepast op functies.
         3.40:
             Nieuwe afbeeldingen en/of camera frames worden met de functie new_frame() in geladen.
-        3.41
+        3.41:
             Doxygen commentaar toegevoegd.
+        3.42: 
+            commentaar gevalideerd
 """
 
 import numpy as np
@@ -38,21 +40,21 @@ import imutils
 center2 = (0, 0)
 
 class BallDetection:
-    """Class om de bal uit een image te extraheren.
+    """Class om de bal uit een afbeelding te extraheren.
 
     **Author**:         \n
         Sipke Vellinga  \n
         Chileam Bohnen  \n
     **Version**:
-        3.41            \n
+        3.42            \n
     **Date**:
-        17-1-2020  
+        20-1-2020  
     """
     def __init__(self, file=None):
         """
-        Lijst van vaste parameters
+        Lijst van vaste parameters.
         Args:
-            file: bestand voor de input van de frames
+            file: bestand voor de input van de frames.
         """
         self.ilowY  =       110 # 0
         self.ihighY =       255 # 255
@@ -128,16 +130,16 @@ class BallDetection:
         return self.center
 
     def new_frame(self, img):
-        """Zet een image om naar het frame binnen de class. \n
+        """Zet een afbeelding om naar het frame binnen de class. \n
         Hier zal de bal vanaf worden geëxtraheerd.
         
         Args:
-            img: (np.array) image van de foto.
+            img: (np.array) maakt een frame.
         """
         self.frame = img
 
     def get_img(self):
-        """Haalt een gecropped image binnen.
+        """Haalt een bijgesneden afbeelding binnen.
         
         Returns: 
             (np.array) geeft de verkleinde image terug.
@@ -184,9 +186,9 @@ class BallDetection:
         #cv2.imshow("mask", self.mask)
 
     def ball_detect(self):
-        """Volgt de bal op het speelveld met behulp van de functie image_filter
+        """Volgt de bal op het speelveld met behulp van de functie image_filter.
         
-        Athor:
+        Author:
             Adrian Rosebrock (https://www.pyimagesearch.com/2015/09/14/ball-tracking-with-opencv/)
         
         Returns:
@@ -224,7 +226,7 @@ class BallDetection:
             self.center = center2
 
     def show_frame(self):
-        """Laat het beeld zien dat met de get_frame functie is opgehaald
+        """Laat het beeld zien dat met de get_frame functie is opgehaald.
         """
         # print(self.center)
         cv2.putText(self.frame, str(self.center), (10, 30),
@@ -239,7 +241,7 @@ class BallDetection:
 
 if __name__ == "__main__":
     """
-    test script om te testen of de code het doet. 
+    Test script om te testen of de code het doet. 
     De code checkt in: /Test foto's/ball/   map naar alle foto's en stuurt deze in de class om te testen. 
     """
     from glob import glob

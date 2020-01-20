@@ -2,13 +2,13 @@
 
 """
     Code to find the contours of the table. This can be done in the init of the application. 
-
+    Code voor het vinden van de contouren van de tafel. 
     File:
-        find_countours.py
+        FindContours.py
     Date:
-        13-11-2019
+       20-1-2020
     Version:
-        1.21
+        1.22
     Modifier / Authors:
         Kelvin Sweere
         Chileam Bohnen
@@ -25,6 +25,8 @@
             Constanten WIDTH en HEIGHT op 640 x 360 gezet
         1.21:
             Doxygen commentaar toegevoegd. 
+        1.22:
+            Spelling en grammatica commentaar nagekeken
 """
 
 import numpy as np
@@ -45,7 +47,7 @@ class FindContours:
             Kelvin Sweere   \n
             Chileam Bohnen  \n
         **Version**:
-            1.21            \n
+            1.22            \n
         **Date**:
             20-1-2020   
         """
@@ -71,11 +73,11 @@ class FindContours:
         self.top_border = 35
         self.bottom_border = 445
 
-        cv2.namedWindow("Manuel cropping")
-        cv2.createTrackbar("Left border", "Manuel cropping", self.left_border, self.WIDTH, nothing)
-        cv2.createTrackbar("Right border", "Manuel cropping", self.right_border, self.WIDTH, nothing)
-        cv2.createTrackbar("Top border", "Manuel cropping", self.top_border, self.HEIGHT, nothing)
-        cv2.createTrackbar("Bottom border", "Manuel cropping", self.bottom_border, self.HEIGHT, nothing)
+        cv2.namedWindow("Handmatig bijsnijden")
+        cv2.createTrackbar("Linkerrand", "Handmatig bijsnijden", self.left_border, self.WIDTH, nothing)
+        cv2.createTrackbar("Rechterrand", "Handmatig bijsnijden", self.right_border, self.WIDTH, nothing)
+        cv2.createTrackbar("Bovenrand", "Handmatig bijsnijden", self.top_border, self.HEIGHT, nothing)
+        cv2.createTrackbar("Onderrand", "Handmatig bijsnijden", self.bottom_border, self.HEIGHT, nothing)
 
         # debug mode for frame and field contour detection
         self.debug = debug
@@ -85,13 +87,13 @@ class FindContours:
             cv2.createTrackbar("gray_cropped_threshold", "Trackbars", self.gray_cropped_threshold, 255, nothing)
 
     def _get_table_threshold(self):
-        """bewerk een grayscale img, zodat een mask waarop contours getekend kan worden over blijft.
+        """Bewerk een grijskleur afbeelding, zodat er een mask overblijft, waarop contours getekend kan worden.
 
         Args:
-          img: (np.array) orginele img in BGR format. Wordt later omgezet in grayscale.
+          img: (np.array) orginele afbeelding in BGR format. Wordt later omgezet in grijskleur.
 
         Returns:
-            (np.array) gefilterde image van het orgineel.
+            (np.array) gefilterde afbeelding van het orgineel.
         """
         # Settings uit slider.py gehaald
         gray = cv2.cvtColor(self.drawing_img, cv2.COLOR_BGR2GRAY)
@@ -102,13 +104,13 @@ class FindContours:
         return filt
 
     def _get_field_threshold(self, cropped):
-        """bewerk een gecropte img, zodat een mask waarop contours getekend kan worden over blijft.
+        """Bewerk een bijgesneden afbeelding, zodat een mask over blijft, waarop contours getekend kan worden.
 
         Args:
-          img: (np.array) gecropte img in BGR format. Wordt later omgezet in grayscale.
+          img: (np.array) Bijgesneden afbeelding in BGR format. Wordt later omgezet in grijskleur.
 
         Returns:
-            (np.array) gefilterde image van het orgineel.
+            (np.array) gefilterde afbeelding van het orgineel.
         """
         cropped_gray = cv2.cvtColor(cropped, cv2.COLOR_BGR2GRAY)
         if self.debug:
@@ -117,7 +119,7 @@ class FindContours:
         return filt
 
     def _rotated_table(self, contour):
-        """roteer de tafel, zodat de contour haaks komt te staan.
+        """Roteer de tafel zodat de contour haaks komt te staan.
         
         Args:
             contour: (np.array) contour die recht gezet wordt.
@@ -133,13 +135,13 @@ class FindContours:
 
     #krijg alleen tafel te zien (wit)
     def _get_white(self):        
-        """bewerk een YUV img, zodat een mask waarop contours getekend kan worden over blijft.
+        """Bewerk een YUV afbeelding, zodat een mask over blijft, waarop contours getekend kan worden.
 
         Args:
-          img: (np.array) orginele img in BGR format. Wordt later omgezet in YUV.
+          img: (np.array) orginele afbeelding in BGR format. Wordt later omgezet in YUV.
 
         Returns:
-            (np.array) gefilterde zwart/wit image van het orgineel.
+            (np.array) gefilterde zwart/wit afbeelding van het orgineel.
         """
 
         # Settings uit slider.py gehaald
@@ -170,7 +172,7 @@ class FindContours:
         return filt
 
     def _calculate_area(self, cor1, cor2):            
-        """berekend het oppervlakte wat tussen twee punten is bevestigd. 
+        """Berekend het oppervlakte wat tussen twee punten is bevestigd. 
         
         Args:
             cor1: (tuple) x,y coördinaat  van linker boven hoek.
@@ -184,13 +186,13 @@ class FindContours:
         return x*y
 
     def _find_table_contour(self, mask):
-        """Vind het contour van de tafel met de gefilterde img van de tafel.
+        """Vind het contour van de tafel met de gefilterde afbeelding van de tafel.
         
         Args:
-            filt: (np.array) mask van orginele img. Hier worden de contours over 
+            filt: (np.array) mask van orginele afbeelding. Hier worden de contours overheen getekend
         
         Returns:
-            (tuple) grootste contour die aanwezig is in de gefilterde img (input).
+            (tuple) grootste contour die aanwezig is in de gefilterde afbeelding (input).
         """
 
         contours, _ = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
@@ -213,14 +215,14 @@ class FindContours:
         return self.biggest_contour
 
     def _crop_img_till_contour(self, _img, contour=None):
-        """Crop een 'orginele' img naar een gecropte img.
+        """Snijdt een 'orginele' afbeelding bij tot het juiste contour.
         
         Args:
-            img: (np.darray) img die gecropt moet worden tot de coördinaten.
-            contour_cor: (tuple) coördinaten van de contours waar deze gecropt moet worden.
+            img: (np.darray) afbeelding die bijgesneden moet worden tot de coördinaten.
+            contour_cor: (tuple) coördinaten van het contour waarop bijgesneden moet worden.
         
         Returns:
-            (np.darray) gecropte image van het orgineel.
+            (np.darray) Bijgesneden afbeelding van het orgineel.
         """
         if contour is None:
             return _img[self.top_border:self.bottom_border, self.left_border:self.right_border]
@@ -230,15 +232,15 @@ class FindContours:
 
     def get_table_now(self):
         """
-        High-level API, die gelijk de gecropte img teruggeeft van de tafel.
+        High-level API, die gelijk de bijgesneden afbeelding teruggeeft van de tafel.
         
         Args:
-            img: (np.darray) input image van de (ongefilterde) tafel.
-            filt: (bool, optional) kies of de img wordt teruggegeven (False), 
-            of dat de gefilterde img wordt teruggegeven (True). Defaults to False.
+            img: (np.darray) input afbeelding van de (ongefilterde) tafel.
+            filt: (bool, optional) kies of de afbeelding wordt teruggegeven (False), 
+            of dat de gefilterde afbeelding wordt teruggegeven (True). Default is False.
         
         Returns:
-            (np.darray) gecropte image van de tafel.
+            (np.darray) bijgesneden afbeelding van de tafel.
         """
         
         self.mask = self._get_white()  # get black/white image
@@ -249,14 +251,14 @@ class FindContours:
 
     def get_cropped_field(self, threshold=False):
         """
-        High-level API, die gelijk de gecropte img teruggeeft van het veld.
+        High-level API, die gelijk de bijgesneden afbeelding teruggeeft van het veld.
 
         Args:
             threshold: (bool, optional) de contouren van de tafel en veld worden gebruikt (True),
-            of handmatig wordt het gebied ingesteld (False). Defaults to False.
+            of het gebied wordt handmatig ingesteld (False). Default is False.
 
         Returns:
-            (numpy.darray) gecropte image van het speel veld.
+            (numpy.darray) bijgesneden afbeelding van het speelveld.
         """
         if threshold:
             self.mask = self._get_table_threshold()
@@ -274,10 +276,10 @@ class FindContours:
             contour = self._find_table_contour(self.cropped_mask)
             self.return_img = self._crop_img_till_contour(self.cropped_img, contour)
         else:
-            self.left_border = cv2.getTrackbarPos("Left border", "Manuel cropping")
-            self.right_border = cv2.getTrackbarPos("Right border", "Manuel cropping")
-            self.top_border = cv2.getTrackbarPos("Top border", "Manuel cropping")
-            self.bottom_border = cv2.getTrackbarPos("Bottom border", "Manuel cropping")
+            self.left_border = cv2.getTrackbarPos("Linkerrand", "Handmatig bijsnijden")
+            self.right_border = cv2.getTrackbarPos("Rechterrand", "Handmatig bijsnijde")
+            self.top_border = cv2.getTrackbarPos("Bovenrand", "Handmatig bijsnijde")
+            self.bottom_border = cv2.getTrackbarPos("Onderrand", "Handmatig bijsnijde")
 
             cv2.line(self.drawing_img, (self.left_border, 0), (self.left_border, self.HEIGHT), (0, 0, 255), 3)
             cv2.line(self.drawing_img, (self.right_border, 0), (self.right_border, self.HEIGHT), (0, 0, 255), 3)
@@ -297,7 +299,7 @@ class FindContours:
         return self.mask
     
     def get_img(self):
-        """Geeft de img terug van de class.
+        """Geeft de afbeelding terug van de class.
         
         Returns:
             (np.darray) self.img
@@ -313,12 +315,12 @@ class FindContours:
             print("Geen mask aangemaakt. Voer get_table_now() uit.")
 
     def show_img(self):
-        """Laat de image zien die in de class aanwezig is met OpenCV.
+        """Laat de afbeelding zien die in de class aanwezig is met OpenCV.
         """
         cv2.imshow("img", self.img)
 
     def new_img(self, img):
-        """Maak een nieuwe img aan.
+        """Maak een nieuwe afbeelding aan.
         
         Args:
             img (np.array): Nieuwe foto die wordt toegevoegd aan de class.

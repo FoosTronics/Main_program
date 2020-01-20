@@ -8,7 +8,7 @@
     Date:
         20-1-2020
     Version:
-        1.41
+        1.42
     Author:
         Daniël Boon
         Kelvin Sweere
@@ -26,6 +26,8 @@
             fixed moving keeper + dubble object keeper_sim
         1.41:
             Doxygen commentaar toegevoegd.
+        1.42:
+            Spelling en grammatica commentaar nagekeken
 """ 
 #pylint: disable=E1101
 
@@ -59,7 +61,7 @@ class Foostronics:
         Kelvin Sweere \n
         Chileam Bohnen\n
     **Version**:
-        1.41          \n
+        1.42          \n
     **Date**:
         20-1-2020 
     """
@@ -68,7 +70,7 @@ class Foostronics:
            bestaat voornamelijk uit AI initialisatie.
         
         Args:
-            keeper_sim: (class) adress van draaiende keeper simulatie om variabelen op te halen.
+            keeper_sim: (class) adres van draaiende keeper simulatie om variabelen op te halen.
         """
         if DEBUG_VIDEO:
             self.file = glob("D:\\Stichting Hogeschool Utrecht\\NLE - Documenten\\Test foto's\\new frame\\1.png")
@@ -108,7 +110,7 @@ class Foostronics:
         self.points_array = []
 
     def _convert2_sim_cor(self, x_p, y_p):
-        """Zet de pixel positie van de beeldherkenning om naar pixel positie van de simulatie.
+        """Zet de pixel positie van de beeldherkenning verhoudingsgewijs om naar pixel positie van de simulatie.
         
         Args:
             x_p: (int) x coördinaat van de pixelpositie.
@@ -139,7 +141,7 @@ class Foostronics:
         return (val - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
 
     def execute_action(self, action, old_action):
-        """Voer de actie die de AI heeft gekozen uit op de stappenmotoren.
+        """Voer de actie uit, die de AI heeft gekozen, op de stappenmotoren.
         
         Args:
             action: (list) acties die de AI gekozen heeft.
@@ -218,7 +220,7 @@ class Foostronics:
         return done, goal
 
     def run(self, ball, keeper, target, goals, blocks):
-        """Deze functie wordt om iedere frame aangeroepen en kan gezien worden als de mainloop.
+        """Deze functie wordt na iedere frame aangeroepen en kan gezien worden als de mainloop.
         
         Args:
             ball: (Box2D object) Box2D object voor ball positie uitlezen
@@ -232,12 +234,9 @@ class Foostronics:
             keeper: (Box2D object) update nieuwe keeper aansturing in simulatie
             action: (int) update gekozen actie van AI in simulatie
         """
-<<<<<<< HEAD
-=======
         if not self.ks.running:
             self.camera.camera.release()
             cv2.destroyAllWindows()
->>>>>>> 28dfa2150bea0b8b1d126856250499800a99040e
 
         # get new frame from camera buffer
         _frame = self.camera.get_frame()

@@ -447,6 +447,7 @@ class PygameFramework(FrameworkBase):
         self.world.contactListener = None
         self.world.destructionListener = None
         self.world.renderer = None
+        self.fs.camera.camera.release()
 
     def _Keyboard_Event(self, key, down=True):
         """

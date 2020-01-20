@@ -5,9 +5,9 @@
     File:
         Extra.py
     Date:
-        16-1-2020
+        20-1-2020
     Version:
-        1.0
+        1.11
     Modifier:
         Kelvin Sweere
     Used_IDE:
@@ -15,9 +15,10 @@
     Schematic:
         -
     Version management:
-        1.0:
+        1.00:
             Headers aangepast
-        
+        1.11:
+            Doxygen commentaar aangepast
 """
 
 import cv2 as cv
@@ -27,11 +28,11 @@ def intersection(line1, line2):
     """Vindt de intersection tussen twee lijnen doormiddel van de Hesse normal form. 
     
     Args:
-        line1: (tuple) x,y cordinaten van lijn 1. 
-        line2: (tuple) x,y cordinaten van lijn 2.
+        line1: (tuple) x,y coördinaten van lijn 1. 
+        line2: (tuple) x,y coördinaten van lijn 2.
     
     Returns:
-        x,y: (tuple) tuple van de x & y snijpunten.
+        (tuple) x & y snijpuntcoördinaten.
     """
 
     rho1, theta1 = line1

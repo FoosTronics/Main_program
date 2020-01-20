@@ -37,7 +37,7 @@ import imutils
 
 center2 = (0, 0)
 
-class BallDetection: #of Beeldherkenning?
+class BallDetection:
     """Class om de bal uit een image te extraheren.
 
     **Author**:         \n
@@ -187,10 +187,10 @@ class BallDetection: #of Beeldherkenning?
         """Volgt de bal op het speelveld met behulp van de functie image_filter
         
         Athor:
-            Adrian Rosebrock https://www.pyimagesearch.com/2015/09/14/ball-tracking-with-opencv/
+            Adrian Rosebrock (https://www.pyimagesearch.com/2015/09/14/ball-tracking-with-opencv/)
         
         Returns:
-            (tuple): x,y coördinaten van de bal op een frame.
+            (tuple) x,y coördinaten van de bal op een frame.
         
         Note:
             **TypeError**: voeg eerst een frame toe dmv de functie new_frame(img).

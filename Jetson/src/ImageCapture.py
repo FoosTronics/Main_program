@@ -88,8 +88,12 @@ class ImageCapture:
             (np.ndarray) een afbeelding als numpy array in de vorm van [hoogte, breedte, kleurdiepte].
         """
         if self.FILE is not None:
-            ret, self.frame = self.camera.read()
-            return cv2.resize(self.frame, self.RESOLUTION)
+            if ".png" in self.FILE or ".jpeg" in self.FILE:
+                self.frame = cv2.imread(self.FILE)
+                return cv2.resize(self.frame, self.RESOLUTION)
+            else:
+                ret, self.frame = self.camera.read()
+                return cv2.resize(self.frame, self.RESOLUTION)
         else:
            ret, self.frame = self.camera.read()
            return self.frame

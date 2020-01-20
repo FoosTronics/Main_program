@@ -371,8 +371,8 @@ class KeeperSim(Framework):
                 self.fixture.sensor = False
 
             # is de bal geblocked? blocked++ en setball
-            elif((abs(self.ball.linearVelocity.x) < 1 or abs(self.ball.linearVelocity.y) < 1 or (self.ball.linearVelocity.x > 0))): #and (round(time()) > self.time_change)):
-                if(not self.shoot_bool):
+            elif abs(self.ball.linearVelocity.x) < 1 or abs(self.ball.linearVelocity.y) < 1 or (self.ball.linearVelocity.x > 0): #and (round(time()) > self.time_change)):
+                if not self.shoot_bool:
                     self.blocks += 1
                     self.ball.linearVelocity.x = -1
                     self.ball.linearVelocity.y = -0.5

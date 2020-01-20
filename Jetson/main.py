@@ -48,7 +48,7 @@ import time
 from glob import glob
 import os
 
-DEBUG_VIDEO = False
+DEBUG_VIDEO = True
 
 class Foostronics:
     def __init__(self, keeper_sim):
@@ -59,7 +59,7 @@ class Foostronics:
             keeper_sim (class): adress van draaiende keeper simulatie om variabelen op te halen.
         """
         if DEBUG_VIDEO:
-            self.file = glob("D:\\Stichting Hogeschool Utrecht\\NLE - Documenten\\Test foto's\\V1.3 cam normal Wide angle + ball\\output_fast.avi")
+            self.file = glob("D:\\Stichting Hogeschool Utrecht\\NLE - Documenten\\Test foto's\\new frame\\1.png")
             # self.file = glob("C:\\Users\\" + os.getlogin() + "\\Stichting Hogeschool Utrecht\\NLE - Documenten\\Test foto's\\V1.3 cam normal Wide angle + ball\\output_fast.avi")
             self.camera = ImageCapture(file=self.file[0])
         else:
@@ -121,25 +121,25 @@ class Foostronics:
     def execute_action(self, action, old_action):
 
         if np.array_equal(action, self.dql.possible_actions[0]):
-            ks.control.y = ks.KEEPER_SPEED
+            self.ks.control.y = self.ks.KEEPER_SPEED
             if(self.met_drivers and (not np.array_equal(action, old_action))):
                 #TODO iets anders...
                 self.con.driver.transceive_message(0, Commands.STOP)
                 self.con.driver.transceive_message(0, Commands.JOG_MIN)
 
         elif np.array_equal(action, self.dql.possible_actions[1]):
-            ks.control.y = -ks.KEEPER_SPEED
+            self.ks.control.y = -self.ks.KEEPER_SPEED
             if(self.met_drivers and (not np.array_equal(action, old_action))):
                 #TODO iets anders...
                 self.con.driver.transceive_message(0, Commands.STOP)
                 self.con.driver.transceive_message(0, Commands.JOG_PLUS)
         else:
-            ks.control.y = 0
-            ks.body.linearVelocity.y = 0
+            self.ks.control.y = 0
+            self.ks.body.linearVelocity.y = 0
 
         if np.array_equal(action, self.dql.possible_actions[2]):
-            ks.control.y = 0
-            ks.body.linearVelocity.y = 0
+            self.ks.control.y = 0
+            self.ks.body.linearVelocity.y = 0
             
             if(self.met_drivers):
                 #TODO iets anders...
@@ -147,10 +147,10 @@ class Foostronics:
                 self.con.shoot()
         
         if np.array_equal(action, self.dql.possible_actions[3]):
-            ks.control.x = 0
-            ks.control.y = 0
-            ks.body.linearVelocity.x = 0
-            ks.body.linearVelocity.y = 0
+            self.ks.control.x = 0
+            self.ks.control.y = 0
+            self.ks.body.linearVelocity.x = 0
+            self.ks.body.linearVelocity.y = 0
             if(self.met_drivers):
                 #TODO iets anders...
                 self.con.driver.transceive_message(0, Commands.STOP)
@@ -160,21 +160,21 @@ class Foostronics:
         done = 0
         goal = 0
 
-        if((ks.ball.position.x < -18) and (ks.ball.position.y < 11.26) and (ks.ball.position.y > 6.16)):
+        if((self.ks.ball.position.x < -18) and (self.ks.ball.position.y < 11.26) and (self.ks.ball.position.y > 6.16)):
             #self.bk.center
             goal = 1
             done = 1
-            ks.goals += 1
+            self.ks.goals += 1
             self.points_array.append(0)
             if (len(self.points_array)>100):
                 self.points_array.pop(0)
             self.ratio = (100*self.points_array.count(1))/len(self.points_array)
             
             
-        elif((vel_x_old < 0) and (vel_x > 0) and (ks.ball.position.x < -13) and (ks.ball.position.y < 11.26) and (ks.ball.position.y > 6.16)):#ball.position):
+        elif((vel_x_old < 0) and (vel_x > 0) and (self.ks.ball.position.x < -13) and (self.ks.ball.position.y < 11.26) and (self.ks.ball.position.y > 6.16)):#ball.position):
             goal = 0
             done = 1
-            ks.blocks += 1
+            self.ks.blocks += 1
             self.points_array.append(1)
             if (len(self.points_array)>100):
                 self.points_array.pop(0)
@@ -205,6 +205,7 @@ class Foostronics:
         self.find_contours.new_img(_frame)
         # get cropped image from find_contours
         _field = self.find_contours.get_cropped_field()
+        cv2.imshow("field", self.find_contours.drawing_img)
 
         # set height and width parameters
         self.HEIGHT_IMG, self.WIDTH_IMG, _ = _field.shape
@@ -217,8 +218,8 @@ class Foostronics:
 
         action, old_action, target, vel_x, vel_x_old = self.dql.get_ai_action()
 
-        if(ks.tp):
-            ks.delete_targetpoint()
+        if(self.ks.tp):
+            self.ks.delete_targetpoint()
         
         if(not np.isnan(target)):
             self.ks.create_targetpoint((-15, target))
@@ -228,7 +229,7 @@ class Foostronics:
         done, goal = self.determine_goal(vel_x, vel_x_old)
 
         if(done):
-            episode_rewards, total_reward = self.dql.prepare_new_round(goal, ks.ball, ks.body)
+            episode_rewards, total_reward = self.dql.prepare_new_round(goal, self.ks.ball, self.ks.body)
 
             self.hl.set_xdata(np.append(self.hl.get_xdata(), (len(total_reward)-1)))
             self.hl.set_ydata(np.append(self.hl.get_ydata(), np.sum(episode_rewards)))                    
@@ -245,7 +246,7 @@ class Foostronics:
                 else:
                     self.con.go_home(1)
         else:
-            self.dql.update_data(done, ks.ball, ks.body)        
+            self.dql.update_data(done, self.ks.ball, self.ks.body)
 
         return ball, keeper, action
 
@@ -253,6 +254,6 @@ class Foostronics:
 if __name__ == "__main__":
     """start main code
     """
-    ks = KeeperSim()
-    ks.set_Foostronics(Foostronics)
-    main(ks)
+    keeperSim = KeeperSim()
+    keeperSim.set_Foostronics(Foostronics)
+    main(keeperSim)

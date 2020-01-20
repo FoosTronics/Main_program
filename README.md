@@ -11,7 +11,7 @@ Jetson Nano is de main applicatie waarop de motoren, gyroscoop, etc. op kunnen w
 De Windows applicatie gaat over het testen van bijvoorbeeld AI en simulatie of voor test runnen.
 
 ## Motivatie
-Het project is gekozen om meer inzicht te verkrijgen in: AI, beeldherkenning, mechanica en hardware. 
+Het project is gekozen om meer te leren over: AI, beeldherkenning, mechanica en hardware. 
 
 ## Packages
 | Package       | Versie              | 
@@ -32,12 +32,12 @@ Het project is gekozen om meer inzicht te verkrijgen in: AI, beeldherkenning, me
 | -------------         | -------------             | 
 | Jetson                | Nano                      |      
 | RPI Cam               | V2.1                      |
-| stappenmotor 2.3 inch | KH56KM2                   | 
-| stappenmotor 1.7 inch | 17PU-H502                 |
-| motordriver           | Arcus Technology ACE-SDE  |
-| gyroscoop             | mpu6050                   |
+| Stappenmotor 2.3 inch | KH56JM2                   | 
+| Stappenmotor 1.7 inch | 17PU-H502                 |
+| Motordriver           | Arcus Technology ACE-SDE  |
+| Gyroscoop             | MPU6050                   |
 
-> opbouw van het frame is te vinden onder: https://github.com/FoosTronics/Extra_files/blob/master/Handleiding%20FoosTronics%20-%20V1.1.pdf
+> Opbouw van het frame is te vinden onder: https://github.com/FoosTronics/Extra_files/blob/master/Handleiding%20FoosTronics%20-%20V1.1.pdf
 
  ## Applicatie starten 
 

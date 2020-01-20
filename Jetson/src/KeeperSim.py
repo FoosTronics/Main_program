@@ -32,6 +32,7 @@
             ball_reset niet wanneer er niet is gescoord, de beeldherkenning is leidend.
         1.46:
             Doxygen commentaar toegevoegd. 
+            fixed te vaak blocked
 """ 
 '''
 Used libraries/repositories:
@@ -366,34 +367,36 @@ class KeeperSim(Framework):
                 vel.x = 0
                     
         self.body.linearVelocity = vel
-        try:
-            # is er een goal gemaakt? goal++ en setball
-            if(self.ball.position.x < -19.35):
-                self.goals += 1
-                self.ball.position.x = 0
-                # ? dit is hetzelfde als de try elif -> dus functie!
-                self.world.DestroyBody(self.ball)
-                #self.world.DestroyBody(self.ball_target)
-                self._reset_ball()   #reset de bal op het veld.
-                self.body.position = (-16.72,10.0)
-                self.time = pi/self.KEEPER_SPEED
-                self.fixture.sensor = False
-
-            # is de bal geblocked? blocked++ en setball
-            elif abs(self.ball.linearVelocity.x) < 1 or abs(self.ball.linearVelocity.y) < 1 or (self.ball.linearVelocity.x > 0): #and (round(time()) > self.time_change)):
-                if not self.shoot_bool:
-                    self.blocks += 1
-                    self.ball.linearVelocity.x = -1
-                    self.ball.linearVelocity.y = -0.5
-                    # ?  dit is hetzelfde als de try if -> dus functie!
+        if(self.shoot_bool):
+            try:
+                # is er een goal gemaakt? goal++ en setball
+                if(self.ball.position.x < -19.35):
+                    self.goals += 1
+                    self.ball.position.x = 0
+                    # ? dit is hetzelfde als de try elif -> dus functie!
                     self.world.DestroyBody(self.ball)
                     #self.world.DestroyBody(self.ball_target)
                     self._reset_ball()   #reset de bal op het veld.
                     self.body.position = (-16.72,10.0)
                     self.time = pi/self.KEEPER_SPEED
                     self.fixture.sensor = False
-        except:
-            pass
+
+                # is de bal geblocked? blocked++ en setball
+                elif abs(self.ball.linearVelocity.x) < 1 or abs(self.ball.linearVelocity.y) < 1 or (self.ball.linearVelocity.x > 0): #and (round(time()) > self.time_change)):
+                    if not self.shoot_bool:
+                        self.blocks += 1
+                        self.ball.linearVelocity.x = -1
+                        self.ball.linearVelocity.y = -0.5
+                        # ?  dit is hetzelfde als de try if -> dus functie!
+                        self.world.DestroyBody(self.ball)
+                        #self.world.DestroyBody(self.ball_target)
+                        self._reset_ball()   #reset de bal op het veld.
+                        self.body.position = (-16.72,10.0)
+                        self.time = pi/self.KEEPER_SPEED
+                        self.fixture.sensor = False
+            except:
+                pass
+
         # print(self.fixture.sensor)
         if(self.fixture.sensor and ((self.body.position.x < -14) and self.body.position.x > -16)):
             self.fixture.sensor = False

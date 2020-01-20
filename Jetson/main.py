@@ -41,16 +41,17 @@ from src.Backend.Framework import main
 # import src.Backend.DeepQLearning as DQL
 from src.Backend.DeepQLearning import DQLBase
 
-import matplotlib.pylab as plt
+#import matplotlib.pylab as plt
 import numpy as np
 
+import cv2
 import time
 
 #TODO temp...
 from glob import glob
 import os
 
-DEBUG_VIDEO = True
+DEBUG_VIDEO = False
 
 class Foostronics:
     def __init__(self, keeper_sim):
@@ -94,7 +95,7 @@ class Foostronics:
         except:
             self.met_drivers = False
 
-        self.hl, = plt.plot([], [])
+        # self.hl, = plt.plot([], [])
         self.points_array = []
 
     def _convert2_sim_cor(self, x_p, y_p):
@@ -213,6 +214,7 @@ class Foostronics:
         # get cropped image from find_contours
         _field = self.find_contours.get_cropped_field()
         cv2.imshow("field", self.find_contours.drawing_img)
+        cv2.waitKey(1)
 
         # set height and width parameters
         self.HEIGHT_IMG, self.WIDTH_IMG, _ = _field.shape
@@ -238,12 +240,12 @@ class Foostronics:
         if done:
             episode_rewards, total_reward = self.dql.prepare_new_round(goal, self.ks.ball, self.ks.body)
 
-            self.hl.set_xdata(np.append(self.hl.get_xdata(), (len(total_reward)-1)))
-            self.hl.set_ydata(np.append(self.hl.get_ydata(), np.sum(episode_rewards)))                    
-            plt.axis([0, len(total_reward), min(total_reward), max(total_reward)])
-            plt.draw()
-            plt.pause(0.0001)
-            plt.show
+            # self.hl.set_xdata(np.append(self.hl.get_xdata(), (len(total_reward)-1)))
+            # self.hl.set_ydata(np.append(self.hl.get_ydata(), np.sum(episode_rewards)))                    
+            # plt.axis([0, len(total_reward), min(total_reward), max(total_reward)])
+            # plt.draw()
+            # plt.pause(0.0001)
+            # plt.show
 
             if(self.met_drivers):
                 #TODO iets anders...

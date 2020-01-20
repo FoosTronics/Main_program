@@ -8,7 +8,7 @@
     Date:
         13-11-2019
     Version:
-        1.1
+        1.21
     Modifier / Authors:
         Kelvin Sweere
         Chileam Bohnen
@@ -21,8 +21,10 @@
             Headers veranderd.
         1.1:
             Google docstring format toegepast op functies.
-        1.2:
+        1.20:
             Constanten WIDTH en HEIGHT op 640 x 360 gezet
+        1.21:
+            Doxygen commentaar toegevoegd. 
 """
 
 import numpy as np
@@ -37,7 +39,15 @@ class FindContours:
         """Init van de Raster class
         
         Args:
-            debug (bool, optional): Keuze of trackbars worden aangemaakt. Defaults to False.
+            debug: (bool, optional) keuze of trackbars worden aangemaakt. Defaults to False.
+
+        **Author**:         \n
+            Kelvin Sweere   \n
+            Chileam Bohnen  \n
+        **Version**:
+            1.21            \n
+        **Date**:
+            20-1-2020   
         """
 
         self.biggest_contour = None
@@ -78,10 +88,10 @@ class FindContours:
         """bewerk een grayscale img, zodat een mask waarop contours getekend kan worden over blijft.
 
         Args:
-          img (np.array): orginele img in BGR format. Wordt later omgezet in grayscale.
+          img: (np.array) orginele img in BGR format. Wordt later omgezet in grayscale.
 
         Returns:
-            filt (np.array): gefilterde image van het orgineel.
+            (np.array) gefilterde image van het orgineel.
         """
         # Settings uit slider.py gehaald
         gray = cv2.cvtColor(self.drawing_img, cv2.COLOR_BGR2GRAY)
@@ -95,10 +105,10 @@ class FindContours:
         """bewerk een gecropte img, zodat een mask waarop contours getekend kan worden over blijft.
 
         Args:
-          img (np.array): gecropte img in BGR format. Wordt later omgezet in grayscale.
+          img: (np.array) gecropte img in BGR format. Wordt later omgezet in grayscale.
 
         Returns:
-            filt (np.array): gefilterde image van het orgineel.
+            (np.array) gefilterde image van het orgineel.
         """
         cropped_gray = cv2.cvtColor(cropped, cv2.COLOR_BGR2GRAY)
         if self.debug:
@@ -110,7 +120,7 @@ class FindContours:
         """roteer de tafel, zodat de contour haaks komt te staan.
         
         Args:
-            contour (np.array): Contour die recht gezet wordt.
+            contour: (np.array) contour die recht gezet wordt.
         """
         _rect = cv2.minAreaRect(contour)
         center, shape, angle = _rect
@@ -126,10 +136,10 @@ class FindContours:
         """bewerk een YUV img, zodat een mask waarop contours getekend kan worden over blijft.
 
         Args:
-          img (np.array): orginele img in BGR format. Wordt later omgezet in YUV.
+          img: (np.array) orginele img in BGR format. Wordt later omgezet in YUV.
 
         Returns:
-            filt (np.array): gefilterde zwart/wit image van het orgineel.
+            (np.array) gefilterde zwart/wit image van het orgineel.
         """
 
         # Settings uit slider.py gehaald
@@ -163,11 +173,11 @@ class FindContours:
         """berekend het oppervlakte wat tussen twee punten is bevestigd. 
         
         Args:
-            cor1 ((int, int)): x,y cordinaat van linker boven hoek.
-            cor2 ((int, int)): x,y cordinaat van recher onder hoek.
+            cor1: (tuple) x,y coördinaat  van linker boven hoek.
+            cor2: (tuple) x,y coördinaat  van recher onder hoek.
         
         Returns:
-            int: oppervlakte tussen beide cordinaten.
+            (int) oppervlakte tussen beide coördinaten.
         """
         x = abs(cor2[0] - cor1[0])
         y = abs(cor2[1] - cor1[1])
@@ -177,10 +187,10 @@ class FindContours:
         """Vind het contour van de tafel met de gefilterde img van de tafel.
         
         Args:
-            filt (np.array): mask van orginele img. Hier worden de contours over 
+            filt: (np.array) mask van orginele img. Hier worden de contours over 
         
         Returns:
-            (tuple): grootste contour die aanwezig is in de gefilterde img (input).
+            (tuple) grootste contour die aanwezig is in de gefilterde img (input).
         """
 
         contours, _ = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
@@ -206,11 +216,11 @@ class FindContours:
         """Crop een 'orginele' img naar een gecropte img.
         
         Args:
-            img (np.darray): img die gecropt moet worden tot de cordinaten.
-            contour_cor (tuple): cordinaten van de contours waar deze gecropt moet worden.
+            img: (np.darray) img die gecropt moet worden tot de coördinaten.
+            contour_cor: (tuple) coördinaten van de contours waar deze gecropt moet worden.
         
         Returns:
-            (np.darray): gecropte image van het orgineel.
+            (np.darray) gecropte image van het orgineel.
         """
         if contour is None:
             return _img[self.top_border:self.bottom_border, self.left_border:self.right_border]
@@ -223,12 +233,12 @@ class FindContours:
         High-level API, die gelijk de gecropte img teruggeeft van de tafel.
         
         Args:
-            img (np.darray): input image van de (ongefilterde) tafel.
-            filt (bool, optional): kies of de img wordt teruggegeven (False),
+            img: (np.darray) input image van de (ongefilterde) tafel.
+            filt: (bool, optional) kies of de img wordt teruggegeven (False), 
             of dat de gefilterde img wordt teruggegeven (True). Defaults to False.
         
         Returns:
-            np.darray: gecropte image van de tafel.
+            (np.darray) gecropte image van de tafel.
         """
         
         self.mask = self._get_white()  # get black/white image
@@ -242,11 +252,11 @@ class FindContours:
         High-level API, die gelijk de gecropte img teruggeeft van het veld.
 
         Args:
-            threshold (bool, optional): de contouren van de tafel en veld worden gebruikt (True),
+            threshold: (bool, optional) de contouren van de tafel en veld worden gebruikt (True),
             of handmatig wordt het gebied ingesteld (False). Defaults to False.
 
         Returns:
-            numpy.darray: gecropte image van het speel veld.
+            (numpy.darray) gecropte image van het speel veld.
         """
         if threshold:
             self.mask = self._get_table_threshold()
@@ -282,7 +292,7 @@ class FindContours:
         """Geeft de mask terug van de class.
         
         Returns:
-            np.array: self.mask
+            (np.array) self.mask
         """
         return self.mask
     
@@ -290,7 +300,7 @@ class FindContours:
         """Geeft de img terug van de class.
         
         Returns:
-            np.darray: self.img
+            (np.darray) self.img
         """
         return self.img
 

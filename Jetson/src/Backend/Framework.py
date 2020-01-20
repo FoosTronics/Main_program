@@ -61,7 +61,7 @@ class fwDestructionListener(b2DestructionListener):
     "SayGoodbye" is called when a joint or shape is deleted.
 
     **Modifier**: 
-        Daniël Boon \n
+        Daniël Boon   \n
     **Version**:
         1.1           \n
     **Date**:
@@ -93,7 +93,6 @@ class fwQueryCallback(b2QueryCallback):
         self.point = p
         self.fixture = None
 
-    # TODO: Dit is onbekend voor mij.   @@@
     def ReportFixture(self, fixture):
         """[summary]
         

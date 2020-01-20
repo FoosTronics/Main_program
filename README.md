@@ -1,4 +1,4 @@
-# ![pageres](https://github.com/FoosTronics/Main_program/blob/master/Windows%2010/extra/promo.jpg)
+# ![pageres](https://github.com/FoosTronics/Extra_files/blob/master/Promo/promo.jpg)
 
 # FoosTronics
 > AI besturing van tafelvoetbal

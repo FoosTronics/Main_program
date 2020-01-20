@@ -105,7 +105,7 @@ class ImageCapture:
         self.writer.write(self.frame)
 
     def _gstreamer_pipeline(self, capture_width=1280, capture_height=720, display_width=640,
-            display_height=360, framerate=120, flip_method=2):
+            display_height=360, framerate=120, flip_method=0):
         """Initalisatie van Gstreamer pipeline.
 
         Args:

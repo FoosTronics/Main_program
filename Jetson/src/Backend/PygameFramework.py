@@ -276,6 +276,8 @@ class PygameFramework(FrameworkBase):
         self.renderer = PygameDraw(surface=self.screen, test=self)
         self.world.renderer = self.renderer
 
+        self.running = True
+
         try:
             self.font = pygame.font.Font(None, 15)
         except IOError:
@@ -377,24 +379,19 @@ class PygameFramework(FrameworkBase):
 
         Updates the screen and tells the GUI to paint itself.
         """
-
         # If any of the test constructors update the settings, reflect
         # those changes on the GUI before running
         if GUIEnabled:
             self.gui_table.updateGUI(self.settings)
 
-        running = True
         clock = pygame.time.Clock()
 
-        
-        
         # Initialize the decay rate (that will use to reduce epsilon) 
         decay_step = 0
                     # Set step to 0
         step = 0
-        
-       
-        running = self.checkEvents()
+
+        self.running = self.checkEvents()
         self.screen.fill((0, 0, 0))
 
         # Check keys that should be checked every loop (not only on initial
@@ -414,15 +411,13 @@ class PygameFramework(FrameworkBase):
         # Make a new episode and observe the first state
         #game.new_episode()
 
-        fs = self.fs
-        while running:
-            self.ball, self.body, self.action = fs.run(self.ball, self.body, self.target, self.goals, self.blocks)
-
+        while self.running:
+            self.ball, self.body, self.action = self.fs.run(self.ball, self.body, self.target, self.goals, self.blocks)
             # time.sleep(0.03)
             # print(possible_actions[2])
             # print(action)
 
-            running = self.checkEvents()
+            self.running = self.checkEvents()
             self.screen.fill((0, 0, 0))
 
             # Check keys that should be checked every loop (not only on initial
@@ -447,7 +442,8 @@ class PygameFramework(FrameworkBase):
             # Predict the action to take and take it
             # pc.driver.transceive_message(0, Commands.STOP)
             # time.sleep(2)
-        fs.sess.close()
+
+        self.fs.dql.sess.close()
         self.world.contactListener = None
         self.world.destructionListener = None
         self.world.renderer = None

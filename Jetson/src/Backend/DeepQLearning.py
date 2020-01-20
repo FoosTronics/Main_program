@@ -143,7 +143,11 @@ class DQLBase:
         self.vel_y = 0
     
     def get_ai_action(self):
+        """De AI besluit wat voor actie moeten worden genomen.
         
+        Returns:
+            (tuple) action, old_action, target, vel_x, old_vel_x
+        """
         for i in range(len(self.state[0])-1):
             self.vel_x = self.state[0][i+1] - self.state[0][i]
             self.vel_y = self.state[1][i+1] - self.state[1][i]
@@ -152,9 +156,6 @@ class DQLBase:
 
         if((self.vel_x > 0) or (target > 11.26) or (target < 6.16)):
             target = np.nan
-
-
-        # print(target)
 
         done = 0
         old_action = self.action
@@ -193,6 +194,13 @@ class DQLBase:
         return action, old_action, target, self.vel_x, self.vel_x_old
 
     def update_data(self, done, ball, keeper):
+        """Update de data naar de memory class.
+        
+        Args:
+            done: (bool) checkt of de ronde is afgelopen.   
+            ball: (tuple) coördinaten van de bal. 
+            keeper: (tuple) coördinaten van de keeper.
+        """
         if(not done):
             self.episode_rewards.append(self.reward)
             # Get the next state
@@ -252,7 +260,15 @@ class DQLBase:
         self.reward = 0
 
     def prepare_new_round(self, goal, ball, keeper):
+        """Zorgt dat de AI wordt klaargemaakt voor een nieuwe ronde. 
 
+        Args:
+            goals: (bool) checkt of de ronde is afgelopen.
+            ball: (tuple) positie van de bal.
+            keeper: (tuple) positie van de keeper.
+        returns:
+            (tuple) episode_rewards, total_reward - rewards die de ronde zijn behaald. Totale rewards die de AI behaald heeft.
+        """
         done = 1
 
         if(not goal):

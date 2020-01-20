@@ -37,7 +37,7 @@ import imutils
 
 center2 = (0, 0)
 
-class BallDetection: #of Beeldherkenning?
+class BallDetection:
     """Class om de bal uit een image te extraheren.
 
     **Author**:         \n

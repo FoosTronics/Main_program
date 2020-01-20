@@ -167,6 +167,7 @@ class DQLBase:
                     self.reward += 0.2*abs(self.state[3][0]-target)
                 else:
                     self.reward -= 0.05*(5.1-abs(self.state[3][0]-target))
+
             elif np.array_equal(action, self.possible_actions[1]):
                 if(target < self.state[3][0]):
                     self.reward += 0.2*abs(self.state[3][0]-target)
@@ -174,7 +175,6 @@ class DQLBase:
                     self.reward -= 0.05*(5.1-abs(self.state[3][0]-target))
 
         if np.array_equal(action, self.possible_actions[2]):
-
             if( (self.state[0][0] > -16) and (self.state[0][0] < -14) and (abs(self.state[3][0]-self.state[1][0]) < 0.37)):
                 self.reward += 0.5
             else:
@@ -426,6 +426,7 @@ class DQNetwork:
             
             self.flatten = tf.layers.flatten(self.inputs_)
             
+            # laag 1
             self.fc = tf.layers.dense(inputs = self.flatten,
                                     units = 16,
                                     activation = tf.nn.elu,
@@ -515,11 +516,10 @@ def predict_action(explore_start, explore_stop, decay_rate, decay_step, state, a
     # Here we'll use an improved version of our epsilon greedy strategy used in Q-learning notebook
     explore_probability = explore_stop + (explore_start - explore_stop) * np.exp(-decay_rate * decay_step)
     
-    if (explore_probability > exp_exp_tradeoff):
+    if (explore_probability > exp_exp_tradeoff):    #ga exploren.
         # Make a random action (exploration)
-        action = random.choice(actions)
-        
-    else:
+        action = random.choice(actions) 
+    else:                                           #voer prediction uit.
         # Get action from Q-network (exploitation)
         # Estimate the Qs values state
         Qs = sess.run(DQNetwork.output, feed_dict = {DQNetwork.inputs_: state.reshape((1, *state.shape))})

@@ -1,7 +1,7 @@
 # ![pageres](https://github.com/FoosTronics/Extra_files/blob/master/Promo/promo.jpg)
 
 # FoosTronics
-> AI besturing van tafelvoetbal
+> AI gestuurde tafelvoetbaltafel
 
 FoosTronics is een NLE minor project waarbij de keeper van een fysieke voetbaltafel wordt bestuurd doormiddel van een AI. Hierbij is beeldherkenning gebruikt om de bal te detecteren. 
 

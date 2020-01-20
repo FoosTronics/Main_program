@@ -86,6 +86,7 @@ class Foostronics:
         self.dql = DQLBase()
         # self.DQL = DQL
         self.ks = keeper_sim
+        print(self.ks.screen)
 
         try:
             self.con = Controller()
@@ -201,6 +202,10 @@ class Foostronics:
             action (int): update gekozen actie van AI in simulatie
 
         """
+        if not self.ks.running:
+            self.camera.camera.release()
+            cv2.destroyAllWindows()
+
         # get new frame from camera buffer
         _frame = self.camera.get_frame()
         # set new frame in find_contours object for image cropping
@@ -220,17 +225,17 @@ class Foostronics:
 
         action, old_action, target, vel_x, vel_x_old = self.dql.get_ai_action()
 
-        if(self.ks.tp):
+        if self.ks.tp:
             self.ks.delete_targetpoint()
         
-        if(not np.isnan(target)):
+        if not np.isnan(target):
             self.ks.create_targetpoint((-15, target))
         
         self.execute_action(action, old_action)
 
         done, goal = self.determine_goal(vel_x, vel_x_old)
 
-        if(done):
+        if done:
             episode_rewards, total_reward = self.dql.prepare_new_round(goal, self.ks.ball, self.ks.body)
 
             self.hl.set_xdata(np.append(self.hl.get_xdata(), (len(total_reward)-1)))

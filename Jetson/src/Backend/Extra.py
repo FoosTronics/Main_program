@@ -27,11 +27,11 @@ def intersection(line1, line2):
     """Vindt de intersection tussen twee lijnen doormiddel van de Hesse normal form. 
     
     Args:
-        line1 (tuple): x,y cordinaten van lijn 1. 
-        line2 (tuple): x,y cordinaten van lijn 2.
+        line1: (tuple) x,y cordinaten van lijn 1. 
+        line2: (tuple) x,y cordinaten van lijn 2.
     
     Returns:
-        x,y (tuple) : tuple van de x & y snijpunten.
+        x,y: (tuple) tuple van de x & y snijpunten.
     """
 
     rho1, theta1 = line1
@@ -46,21 +46,19 @@ def intersection(line1, line2):
     x0, y0 = int(np.round(x0)), int(np.round(y0))
     return (x0, y0)
 
-    """
-    :param edges:
-    :return cpy, x_y_cor:
-    """
+
 #teken rechte lijnen die voorkomen in de afbeelding.
 def hough_line_transform(edges):
     """Voert het hough line transformatie algoritme uit.    
     
     Args:
-        edges (tuple): cordinaten die worden gebruikt voor cv.HoughLines transform.
+        edges: (tuple) cordinaten die worden gebruikt voor cv.HoughLines transform.
     
     Returns:
-        cpy (np.array): Getekende lijn op een zwart veld.
-        cor (tuple): rho & theta waarde van de lijn.
+        cpy: (np.array) getekende lijn op een zwart veld.
+        cor: (tuple) rho & theta waarde van de lijn.
     """
+
     #maximale lengtes van de x,y cordianten.
     cdst = cv.cvtColor(edges, cv.COLOR_GRAY2BGR)
     #black frame
@@ -91,6 +89,6 @@ def nothing(x):
     die deze functie aanroept wanneer de slider van positie verandert.
     
     Args:
-        x (None): Variablen die moet worden meegegeven van OpenCV.
+        x: (None) variablen die moet worden meegegeven van OpenCV.
     """
     pass

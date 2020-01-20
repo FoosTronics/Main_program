@@ -167,6 +167,7 @@ class DQLBase:
                     self.reward += 0.2*abs(self.state[3][0]-target)
                 else:
                     self.reward -= 0.05*(5.1-abs(self.state[3][0]-target))
+
             elif np.array_equal(action, self.possible_actions[1]):
                 if(target < self.state[3][0]):
                     self.reward += 0.2*abs(self.state[3][0]-target)
@@ -174,7 +175,6 @@ class DQLBase:
                     self.reward -= 0.05*(5.1-abs(self.state[3][0]-target))
 
         if np.array_equal(action, self.possible_actions[2]):
-
             if( (self.state[0][0] > -16) and (self.state[0][0] < -14) and (abs(self.state[3][0]-self.state[1][0]) < 0.37)):
                 self.reward += 0.5
             else:
@@ -295,7 +295,7 @@ def create_environment():
     """Functie om de Box2D environment te creeeren. 
     
     Returns:
-        possible_actions (list): lijst van mogelijke acties.
+        possible_actions: (list) lijst van mogelijke acties.
     """
     # game = DoomGame()
     
@@ -359,14 +359,14 @@ def stack_states(stacked_states, new_state, is_new_episode, stack_size):
     """remember last 4 states in array
 
     Args:
-        stacked_states (deque[4]): deque array van afgelopen laatste 4 states
-        new_state (numpy array): numpy array van nieuwe state
-        is_new_episode (bool): aangeven of er een nieuwe episode begint
-        stack_size (int): hoeveelheid voorgaande states onthouden
+        stacked_states: (deque[4]) deque array van afgelopen laatste 4 states
+        new_state: (numpy array) numpy array van nieuwe state
+        is_new_episode: (bool) aangeven of er een nieuwe episode begint
+        stack_size: (int) hoeveelheid voorgaande states onthouden
 
     Returns:
-        stacked_state (list): @@@
-        stacked_states (deque[list]):  @@@
+        stacked_state: (list) @@@
+        stacked_states: (deque[list])  @@@
     """
     if is_new_episode:
         # Clear our stacked_states
@@ -405,10 +405,10 @@ class DQNetwork:
         """initialiseer AI parameters.
         
         Args:
-            state_size (int): hoeveelheid voorgaande states onthouden
-            action_size (int): hoeveelheid mogelijke acties voor ai output
-            learning_rate (float): leersnelheid tussen ramdom acties en ai gekozen acties
-            name (str, optional): scope benaming. Defaults to 'DQNetwork'.
+            state_size: (int) hoeveelheid voorgaande states onthouden
+            action_size: (int) hoeveelheid mogelijke acties voor AI output
+            learning_rate: (float) leersnelheid tussen ramdom acties en AI gekozen acties
+            name: (str, optional) scope benaming. Standaard 'DQNetwork'.
         """
         self.state_size = state_size
         self.action_size = action_size
@@ -426,6 +426,7 @@ class DQNetwork:
             
             self.flatten = tf.layers.flatten(self.inputs_)
             
+            # laag 1
             self.fc = tf.layers.dense(inputs = self.flatten,
                                     units = 16,
                                     activation = tf.nn.elu,
@@ -449,13 +450,20 @@ class DQNetwork:
             self.optimizer = tf.train.RMSPropOptimizer(self.learning_rate).minimize(self.loss)
 
 class Memory():
-    """onthoud alle ervaringen.
+    """Onthoud alle AI ervaringen.
+
+    **Author**:
+        Daniël Boon \n
+    **Version**:
+        1.1         \n
+    **Date**:
+        16-1-2020
     """
     def __init__(self, max_size):
         """initialiseer memory grootte. 
         
         Args:
-            max_size (int): hoeveelheid laatste acties en states om te onthouden.
+            max_size: (int) hoeveelheid laatste acties en states om te onthouden.
         """
         # print(max_size)
         self.buffer = deque(maxlen = max_size)
@@ -465,18 +473,18 @@ class Memory():
         """voeg AI ervaring toe.
         
         Args:
-            experience (array[5]): array van (state, action, reward, next_state, done)
+            experience: (array[5]) array van (state, action, reward, next_state, done)
         """
         self.buffer.append(experience)
     
     def sample(self, batch_size):
-        """haal memory buffer op.
+        """Haal memory buffer op.
         
         Args:
-            batch_size (int): hoeveelheid ervaringen er opgehaalt moeten worden
+            batch_size: (int) hoeveelheid ervaringen er opgehaalt moeten worden
         
         Returns:
-            (deque[4]): deque array van nieuwe laatste 4 states
+            (deque[4]) deque array van nieuwe laatste 4 states
         """
         buffer_size = len(self.buffer)
         # print(buffer_size)
@@ -494,18 +502,18 @@ def predict_action(explore_start, explore_stop, decay_rate, decay_step, state, a
     """bepaal AI actie of random actie
     
     Args:
-        explore_start (float): begin persentage ratio random actie tot AI bepaalde actie
-        explore_stop (float): eind persentage ratio random actie tot AI bepaalde actie
-        decay_rate (float): snelheid van explore_start tot explore_stop
-        decay_step (int): hoeveelheid gemaakte steps
-        state (numpy array): numpy array van state
-        actions (list): lijst van mogelijke acties voor ai
-        sess (tf.Session()): TensorFlow session
-        DQNetwork (class): DQNetwork class
+        explore_start: (float) begin persentage ratio random actie tot AI bepaalde actie.
+        explore_stop: (float) eind persentage ratio random actie tot AI bepaalde actie.
+        decay_rate: (float) snelheid van explore_start tot explore_stop.
+        decay_step: (int) hoeveelheid gemaakte steps.
+        state: (numpy array) numpy array van state.
+        actions: (list) lijst van mogelijke acties voor ai.
+        sess: (tf.Session()) TensorFlow session.
+        DQNetwork: (class) DQNetwork class.
     
     Returns:
-        action (list): list waarin een boolean aangeeft welke actie genomen dient te worden.
-        explore_probability (float): randomwaarde die aangeeft of een randomactie uitgevoerd moet worden.
+        action: (list) list waarin een boolean aangeeft welke actie genomen dient te worden.
+        explore_probability: (float) randomwaarde die aangeeft of een randomactie uitgevoerd moet worden.
     """
     # * EPSILON GREEDY STRATEGY
     # Choose action a from state s using epsilon greedy.
@@ -515,11 +523,10 @@ def predict_action(explore_start, explore_stop, decay_rate, decay_step, state, a
     # Here we'll use an improved version of our epsilon greedy strategy used in Q-learning notebook
     explore_probability = explore_stop + (explore_start - explore_stop) * np.exp(-decay_rate * decay_step)
     
-    if (explore_probability > exp_exp_tradeoff):
+    if (explore_probability > exp_exp_tradeoff):    #ga exploren.
         # Make a random action (exploration)
-        action = random.choice(actions)
-        
-    else:
+        action = random.choice(actions) 
+    else:                                           #voer prediction uit.
         # Get action from Q-network (exploitation)
         # Estimate the Qs values state
         Qs = sess.run(DQNetwork.output, feed_dict = {DQNetwork.inputs_: state.reshape((1, *state.shape))})

@@ -10,7 +10,7 @@
     Date:
         16.12.2019
     Version:
-        1.44
+        1.46
     Modifier:
         Daniël Boon
         Kelvin Sweere
@@ -27,8 +27,11 @@
         1.44:
             Google docstring format toegepast op functies.
             Functies met underscore gemaakt ipv C++ lowerCamelCase style.
-
- 
+        1.45:
+            print_ai_stats functie gemaakt.
+            ball_reset niet wanneer er niet is gescoord, de beeldherkenning is leidend.
+        1.46:
+            fixed te vaak blocked
 """ 
 '''
 Used libraries/repositories:
@@ -307,9 +310,9 @@ class KeeperSim(Framework):
     def _reset_ball(self):
         """Functie die de bal reset aan de hand van of er beeldherkenning wordt gebruikt.
         """
-        if self.shoot_bool:
+        if self.shoot_bool: #shoot_bool is waar, dus schieten.
             # Reset bal op punt 0,0 als er nog geen bal wordt gedetecteerd.
-            self.set_ball((0.0, 10.0))
+            pass
         else:
             self.set_ball((0.0 , random() * 20.0))    
     
@@ -389,18 +392,24 @@ class KeeperSim(Framework):
         # print(self.fixture.sensor)
         if(self.fixture.sensor and ((self.body.position.x < -14) and self.body.position.x > -16)):
             self.fixture.sensor = False
-        
+
+        self.print_ai_stats()
+
+    def print_ai_stats(self):
+        """Print alle statistieken van de performance van de AI.
+        """
         # Print namen van de variabelen.
         self.Print('goals = %d' % self.goals)
         self.Print('blocked = %d' % self.blocks)
         self.Print('rounds = %d' % (self.goals+self.blocks))
         self.Print('ratio last 100 blocked/goals = %d' % (self.ratio))
         if self.goals:
-            self.Print('ratio total blocked/goals = %d' % ((self.blocks*100)/(self.goals+self.blocks)))
+            self.Print('ratio total blocked/goals = %d' %
+                       ((self.blocks*100)/(self.goals+self.blocks)))
         else:
             self.Print('ratio blocked/goals = 100')
         self.Print(('|  |%d|  |' % (self.action[0])))
-        self.Print(('|%d|%d|%d|' % (0,self.action[3],self.action[2])))
+        self.Print(('|%d|%d|%d|' % (0, self.action[3], self.action[2])))
         self.Print(('|  |%d|  |' % (self.action[1])))
 
 

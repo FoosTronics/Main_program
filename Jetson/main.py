@@ -8,7 +8,7 @@
     Date:
         17.1.2020
     Version:
-        V1.2
+        V1.4
     Author:
         Daniël Boon
         Kelvin Sweere
@@ -23,6 +23,8 @@
             Constantes zijn hoofdletters.
         1.3:
             objecten: ImageCapture, FindContours, BallDetect toegevoegd om de Raspi cam te gebruiken
+        1.4:
+            fixed moving keeper + dubble object keeper_sim
 
 
 """ 
@@ -83,7 +85,7 @@ class Foostronics:
         # self.bd = BallDetection()
         self.dql = DQLBase()
         # self.DQL = DQL
-        self.ks = KeeperSim()
+        self.ks = keeper_sim
 
         try:
             self.con = Controller()

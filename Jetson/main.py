@@ -6,16 +6,15 @@
     File:
         main.py
     Date:
-        17.1.2020
+        20-1-2020
     Version:
-        V1.4
+        1.41
     Author:
         Daniël Boon
         Kelvin Sweere
         Chileam Bohnen
     Used_IDE:
         Visual Studio Code (Python 3.6.7 64-bit)
-
     Version management:
         1.1:
             functie: _initAISettings() toegevoegd voor de parameters van de AI in de init.
@@ -23,10 +22,10 @@
             Constantes zijn hoofdletters.
         1.3:
             objecten: ImageCapture, FindContours, BallDetect toegevoegd om de Raspi cam te gebruiken
-        1.4:
+        1.40:
             fixed moving keeper + dubble object keeper_sim
-
-
+        1.41:
+            Doxygen commentaar toegevoegd.
 """ 
 #pylint: disable=E1101
 
@@ -54,12 +53,23 @@ import os
 DEBUG_VIDEO = False
 
 class Foostronics:
+    """Class van de main applicatie.
+    
+    **Author**:       \n
+       Daniël Boon    \n
+        Kelvin Sweere \n
+        Chileam Bohnen\n
+    **Version**:
+        1.41          \n
+    **Date**:
+        20-1-2020 
+    """
     def __init__(self, keeper_sim):
         """initialisatie main.
            bestaat voornamelijk uit AI initialisatie.
         
         Args:
-            keeper_sim (class): adress van draaiende keeper simulatie om variabelen op te halen.
+            keeper_sim: (class) adress van draaiende keeper simulatie om variabelen op te halen.
         """
         if DEBUG_VIDEO:
             self.file = glob("D:\\Stichting Hogeschool Utrecht\\NLE - Documenten\\Test foto's\\new frame\\1.png")
@@ -100,6 +110,13 @@ class Foostronics:
 
     def _convert2_sim_cor(self, x_p, y_p):
         """Zet de pixel positie van de beeldherkenning om naar pixel positie van de simulatie.
+        
+        Args:
+            x_p: (int) x coördinaat van de pixelpositie.
+            y_p: (int) y coördinaat van de pixelpositie.
+        
+        Returns:
+            (tuple) x & y coördinaten van de simulatie.
         """
         # x_simulatie posite
         x_s = self.map_function(x_p, 0, self.WIDTH_IMG, -19.35, 19.35)
@@ -111,18 +128,24 @@ class Foostronics:
         """Map functie (zoals in de Arduino IDE) die input schaald in verhouding naar de output.
         
         Args:
-            val (int): waarde die geschaald moet worden.
-            in_min (int): minimale waarde die de input kan hebben.
-            in_max (int): maximale waarde die de input kan hebben.
-            out_min (int): minimale waarde die de output mag krijgen.
-            out_max (int): maximale waarde die de output mag krijgen.
+            val: (int) waarde die geschaald moet worden.
+            in_min: (int) minimale waarde die de input kan hebben.
+            in_max: (int) maximale waarde die de input kan hebben.
+            out_min: (int) minimale waarde die de output mag krijgen.
+            out_max: (int) maximale waarde die de output mag krijgen.
         
         Returns:
-            int: Geschaalde waarde van de input.
+            (int) geschaalde waarde van de input.
         """
         return (val - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
 
     def execute_action(self, action, old_action):
+        """Voer de actie die de AI heeft gekozen uit op de stappenmotoren.
+        
+        Args:
+            action: (list) acties die de AI gekozen heeft.
+            old_action: (list) de vorige actie die de AI gekozen heeft.
+        """
 
         if np.array_equal(action, self.dql.possible_actions[0]):
             self.ks.control.y = self.ks.KEEPER_SPEED
@@ -161,6 +184,15 @@ class Foostronics:
 
 
     def determine_goal(self, vel_x, vel_x_old):
+        """Bepaal of er een goal is gescoord.
+        
+        Args:
+            vel_x: (int) huidige x coördinaat van de simulatie.
+            vel_x_old: (int) vorige x coördinaat van de simulatie.
+        
+        Returns:
+            (tuple) done, goal - done checkt of ronde klaar is met een bool, goal is een int die aantal goals optelt.
+        """
         done = 0
         goal = 0
 
@@ -186,26 +218,27 @@ class Foostronics:
         
         return done, goal
 
-    # TODO opdelen in functies en waarom staat dit niet in de simulatie files?
     def run(self, ball, keeper, target, goals, blocks):
         """Deze functie wordt om iedere frame aangeroepen en kan gezien worden als de mainloop.
         
         Args:
-            ball (Box2D object): Box2D object voor ball positie uitlezen
-            keeper (Box2D object): Box2D object voor aansturen keeper door AI
-            target (int): gewenste y positie van keeper om bal tegen te houden
-            goals (int): totaal aantal goals
-            blocks (int): totaal aantal ballen tegengehouden
+            ball: (Box2D object) Box2D object voor ball positie uitlezen
+            keeper: (Box2D object) Box2D object voor aansturen keeper door AI
+            target: (int) gewenste y positie van keeper om bal tegen te houden
+            goals: (int) totaal aantal goals
+            blocks: (int) totaal aantal ballen tegengehouden
         
         Returns:
-            ball (Box2D object): update nieuwe ball positie in simulatie
-            keeper (Box2D object): update nieuwe keeper aansturing in simulatie
-            action (int): update gekozen actie van AI in simulatie
-
+            ball: (Box2D object) update nieuwe ball positie in simulatie
+            keeper: (Box2D object) update nieuwe keeper aansturing in simulatie
+            action: (int) update gekozen actie van AI in simulatie
         """
+<<<<<<< HEAD
+=======
         if not self.ks.running:
             self.camera.camera.release()
             cv2.destroyAllWindows()
+>>>>>>> 28dfa2150bea0b8b1d126856250499800a99040e
 
         # get new frame from camera buffer
         _frame = self.camera.get_frame()

@@ -1,16 +1,16 @@
 """
-    Simulates the the enviorment of foosball as for the keeper. 
-    This simulation has the intention to train an AI to play the game.
+    Simuleert de omgeving van de tafelvoetbaltafel met de keeper.
+    Deze simulatie is bedoeld om een AI te trainen zodat deze het spel kan spelen
 
-    Use the W,A,S,D keys to move the keeper.
-    Press C to start the simulation.
-
+    Gebruik de W,A,S,D toetsen om de keeper te bewegen.
+    Druk op C om de simulatie te starten.
+    
     File:
-        keeper_sim.py
+        KeeperSim.py
     Date:
         20-1-2020
     Version:
-        1.46
+        1.47
     Modifier:
         Daniël Boon
         Kelvin Sweere
@@ -33,6 +33,8 @@
         1.46:
             Doxygen commentaar toegevoegd. 
             fixed te vaak blocked
+        1.47:
+            Spelling en grammatica commentaren nagekeken.
 """ 
 '''
 Used libraries/repositories:
@@ -64,35 +66,35 @@ from tkinter.filedialog import askopenfilename
 tk.Tk().withdraw()
 
 class Control:
-    """houd bij welke richting is gekozen voor de keeper om naar toe te gaan
+    """Houdt bij welke richting is gekozen voor de keeper om naar toe te gaan.
     """
     x = 0.0
     y = 0.0
 
 
 class KeeperSim(Framework):
-    """maakt de simulatie objecten aan, regelt de keeper begingen, bal schieten en of er wel of niet gescoord is.
+    """Maakt de simulatie objecten aan, regelt de keeper begingen, bal schieten en of er wel of niet gescoord is.
     
     Args:
-        Framework: (FrameworkBase) The base of the main testbed framework.
+        Framework: (FrameworkBase) De basis van het hoofd testbed geraamte.
     
     **Author**:         \n
         Daniël Boon     \n
         Kelvin Sweere   \n
     **Version**:
-        1.46            \n
+        1.47            \n
     **Date**:
         20-1-2020   
     """
     name = "KeeperSim"
-    description = "Press c to start the game"
+    description = "Druk op C om het spel te starten."
 
     def __init__(self,up_speed=100, down_speed=-100, shoot_bool=True):
-        """Init van de keep_sim class.
+        """Initialisatie van de KeeperSim class.
         
         Args:
             up_speed: (int, optional) snelheid van de keeper lateraal. Standaard 100.
-            down_speed: (int, optional) negatieve snelheid van de keeper lateraals. Standaard -100.
+            down_speed: (int, optional) negatieve snelheid van de keeper lateraal. Standaard -100.
             shoot_bool: (bool, optional) keuze of beeldherkenning wordt gebruikt voor de simulatie. Standaard uit (False).
         """
         
@@ -100,25 +102,25 @@ class KeeperSim(Framework):
 
         # Veld opstellen 
         ground = self.world.CreateStaticBody(
-            shapes=[b2EdgeShape(vertices=[(-19.35, 0), (19.35, 0)]), # bovenste lijn
-                    b2EdgeShape(vertices=[(-19.35, 0), (-19.35, 6.67)]), #Linker lijn bovenkant
-                    b2EdgeShape(vertices=[(-19.35, 20.0), (-19.35, 13.33)]),  #Linker lijn onderkant
-                    b2EdgeShape(vertices=[(19.35, 0), (19.35, 6.67)]),  #Rechter lijn bovenkant
-                    b2EdgeShape(vertices=[(19.35, 20.0), (19.35, 13.33)]), #Rechter lijn onderkant
-                    b2EdgeShape(vertices=[(-19.35, 20.0), (19.35, 20.0)]), #onderste lijn
+            shapes=[b2EdgeShape(vertices=[(-19.35, 0), (19.35, 0)]), # Bovenste lijn
+                    b2EdgeShape(vertices=[(-19.35, 0), (-19.35, 6.67)]), # Linker lijn bovenkant
+                    b2EdgeShape(vertices=[(-19.35, 20.0), (-19.35, 13.33)]),  # Linker lijn onderkant
+                    b2EdgeShape(vertices=[(19.35, 0), (19.35, 6.67)]),  # Rechter lijn bovenkant
+                    b2EdgeShape(vertices=[(19.35, 20.0), (19.35, 13.33)]), # Rechter lijn onderkant
+                    b2EdgeShape(vertices=[(-19.35, 20.0), (19.35, 20.0)]), # Onderste lijn
                     ])
         self.KEEPER_SPEED = 40
         self.FORCE_MAX = 100
         self.FORCE_MIN = 60
-        # bal straal instellen
+        # Bal straal instellen
         self.radius = radius = 0.5
         
-        # keeper maken
+        # Keeper maken
         self.create_keeper((-16.72,10.0))
         self.scaler = 15/19.35
-        self.target = 0 #eindpunt voor het schot van de bal.
+        self.target = 0 #Eindpunt voor het schot van de bal.
         
-        # zet zwaarte kracht 0 voor top-down
+        # Zet zwaarte kracht 0 voor top-down
         self.world.gravity = (0, 0)
         # Keep track of the pressed keys
         self.pressed_keys = set()
@@ -133,19 +135,19 @@ class KeeperSim(Framework):
         self.tp = None
 
         #TODO: debug waarde!
-        shoot_bool = True   #boolean die bepaald of er wordt geschoten (False is schieten!)
+        shoot_bool = True   # Boolean die bepaald of er wordt geschoten (False is schieten!)
         # ! ---------------
 
-        self.shoot_bool = not(shoot_bool)  #flag die checkt of beeldherkenning aanstaat.
-        self.force_param = shoot_bool   #schieten als beeldherkenning uitstaat!
+        self.shoot_bool = not(shoot_bool)  # Flag die checkt of beeldherkenning aanstaat.
+        self.force_param = shoot_bool   # Schieten als beeldherkenning uitstaat!
         
-        # check of cordinaten van de beeldherkenning moeten worden gebruikt, anders midden.
+        # Check of de coördinaten van de beeldherkenning moeten worden gebruikt, anders midden.
         b_x, b_y = (0.0, 8.71) if shoot_bool else (0.0 , random() * 20.0)   
         
-        self.set_ball((b_x, b_y))  #creeeër de bal.
+        self.set_ball((b_x, b_y))  # Creëer de bal.
 
     def set_Foostronics(self, Foostronics):
-        """Foostronics class initaliseren in de KeeperSim class.
+        """Foostronics class initialiseren in de KeeperSim class.
         
         Args:
             Foostronics: (class) Class van de main applicatie.
@@ -153,21 +155,21 @@ class KeeperSim(Framework):
         self.fs = Foostronics(self)
 
     def Keyboard(self, key, settings):
-        """Wanneer een key wordt ingedrukt, kom in deze functie
+        """Wanneer een toets wordt ingedrukt, ga in deze functie.
 
-        Keys:
-            c = spawn ball
-            w = keeper naar boven
-            s = keeper naar beneden
-            a = keeper naar links
-            d = keeper naar rechts
-            j = versnell keeper simullatie (is instabiel)
-            m = save ai
-            r = restore ai file
+        Toetsen:
+            'c' = Bal oproepen
+            'w' = Keeper naar boven
+            's' = Keeper naar beneden
+            'a' = Keeper naar links
+            'd' = Keeper naar rechts
+            'j' = Versnel de keeper simulatie (is instabiel)
+            'm' = Sla de gecreerde data van de ai op
+            'r' = Herstel een opgeslagen ai bestand
         
         Args:
-            key: (int) nummer input key die word ingedrukt.
-            settings: (class) class met parameter intellingen.
+            key: (int) nummer input toets die word ingedrukt.
+            settings: (class) class met parameter instellingen.
         """
         if key == Keys.K_c:
             # self.SetBall((0.0 , random() * 20.0), force_param=False)
@@ -196,7 +198,7 @@ class KeeperSim(Framework):
             date_time = datetime.now().strftime("%m-%d-%Y, %H-%M-%S")
             #save_path = self.saver.save(self.sess, "/AI_models/AI_save %s.ckpt" % (date_time))
             save_path = self.saver.save(self.sess, "AI_models/AI_save_%s.ckpt" % (date_time))
-            print("AI model saved")
+            print("AI model opgeslagen")
         if key == Keys.K_r:
             filename = askopenfilename().split('.')
             filename = (filename[0]+'.'+filename[1])
@@ -206,10 +208,10 @@ class KeeperSim(Framework):
                 self.saver.restore(self.sess, filename)
         
     def Keyboard_up(self, key):
-        """Wanneer een key wordt losgelaten, kom in deze functie.
+        """Wanneer een toets wordt losgelaten, ga naar deze functie.
         
         Args:
-            key: (int) nummer input key die werd losgelaten.
+            key: (int) nummer input toets die werd losgelaten.
         """
         vel = self.body.linearVelocity
         if (key == Keys.K_w or key == Keys.K_s):
@@ -224,10 +226,10 @@ class KeeperSim(Framework):
         self.body.linearVelocity = vel
 
     def create_keeper(self, pos):
-        """Maak keeper object in veld.
+        """Maak keeper object in het veld.
         
         Args:
-            pos: (tuple) x & y coördinaten waar keeper moet komen te staan.
+            pos: (tuple) x & y coördinaten waar de keeper moet komen te staan.
         """
         dimensions=(0.12, 0.55)
         self.body = self.world.CreateDynamicBody(position=pos, linearDamping = 0.5)
@@ -238,7 +240,7 @@ class KeeperSim(Framework):
         self.fixture.sensor = False
     
     def create_targetpoint(self, pos):
-        """Creeër een punt in de simulatie die weergegeven moet worden.
+        """Creëer een punt in de simulatie die weergegeven moet worden.
         
         Args:
             pos: (tuple) x & y coördinaten waar het targetpoint moet komen te staan.
@@ -261,7 +263,7 @@ class KeeperSim(Framework):
             self.tp = None
 
     def _create_ball(self, pos):
-        """Creeëren van een bal in Box2D omgeving.
+        """Creëren van een bal in Box2D omgeving.
         
         Args:
             pos: (tuple) x,y coördinaten van de bal.
@@ -277,7 +279,7 @@ class KeeperSim(Framework):
         )
 
     def _calculate_force_ball(self, pos):
-        """Bereken de kracht die op de bal moet komen te staan.
+        """Bereken de kracht die op de bal moet worden uitgeoefend.
         
         Args:
             pos: (tuple) x,y coördinaten van de bal.
@@ -303,7 +305,7 @@ class KeeperSim(Framework):
         
         Args:
             pos: (tuple) positie van de bal.
-            force_param: (bool, optional) debug param die bepaald of er een kracht op de bal moet worden gezet.
+            force_param: (bool, optional) debug parameter die bepaald of er een kracht op de bal moet worden uitgeoefend.
         """
         #crieëer de bal
         self._create_ball(pos)
@@ -328,7 +330,7 @@ class KeeperSim(Framework):
 
     #kom bij iedere frame in deze functie (bepaling keeper positie/snelheid
     def Step(self, settings):
-        """Functie die elke frame wordt aangeroepen en hierbij de bepaling van de keeper positie/snelheid regelt.
+        """Functie die bij elke frame wordt aangeroepen en hierbij de bepaling van de keeper positie/snelheid regelt.
         
         Args:
             settings: (Class) de instellingen die vooraf zijn gedefinieerd. 
@@ -407,15 +409,15 @@ class KeeperSim(Framework):
         """Print alle statistieken van de performance van de AI.
         """
         # Print namen van de variabelen.
-        self.Print('goals = %d' % self.goals)
-        self.Print('blocked = %d' % self.blocks)
-        self.Print('rounds = %d' % (self.goals+self.blocks))
-        self.Print('ratio last 100 blocked/goals = %d' % (self.ratio))
+        self.Print('Doelpunten = %d' % self.goals)
+        self.Print('Geblokt = %d' % self.blocks)
+        self.Print('Rondes = %d' % (self.goals+self.blocks))
+        self.Print('Ratio laatste 100 geblokt/doelpunten = %d' % (self.ratio))
         if self.goals:
-            self.Print('ratio total blocked/goals = %d' %
+            self.Print('Ratio totaal geblokt/doelpunten = %d' %
                        ((self.blocks*100)/(self.goals+self.blocks)))
         else:
-            self.Print('ratio blocked/goals = 100')
+            self.Print('Ratio geblokt/doelpunten = 100')
         self.Print(('|  |%d|  |' % (self.action[0])))
         self.Print(('|%d|%d|%d|' % (0, self.action[3], self.action[2])))
         self.Print(('|  |%d|  |' % (self.action[1])))

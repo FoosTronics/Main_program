@@ -2,15 +2,15 @@
     Omschrijving: Koppelt de beeldherkenning aan de simulatie. Vertaalt hierbij de bal coördinaten in pixel positie
     van de beeldherkenning naar coördinaten voor de simulatie. 
 
-    Wanneer debug_flag=True zal de bal bestuurd kunnen worden d.m.v. trackbars. Wanneer deze True is zal een vooraf gedifineerde
+    Wanneer debug_flag=True zal de bal bestuurd kunnen worden d.m.v. trackbars. Wanneer deze True is zal een vooraf gedefinieerde
     video worden afgespeeld.
 
     File:
         BeeldKoppeling.py
     Date:
-        13-12-2019
+        20-1-2020
     Version:
-        1.1
+        1.12
     Modifier:
         Kelvin Sweere
     Used_IDE:
@@ -25,6 +25,8 @@
         1.11:
             Doxygen documentatie toegevoegd.
             Spelling verbeterd.
+        1.12:
+            Spelling en grammatica commentaren nagekeken
 """
 
 import cv2
@@ -36,23 +38,23 @@ class BeeldKoppeling():
     **Author**: 
         Kelvin Sweere \n
     **Version**:
-        1.1           \n
+        1.12           \n
     **Date**:
-        13-12-2019 
+        20-1-2020
     """
     def __init__(self, debug_flag=False):
         """        
         Args:
-            debug_flag: (bool, optional) keuze of er trackbars die de bal besturen worden gestart. Defaults to False.
+            debug_flag: (bool, optional) keuze of er trackbars worden gestart die de bal besturen. Default is False.
         """
-        # coördinaten van de bal (in verhouding)
-        self.x_s = None     #x coördinaat  simulatie
-        self.y_s = None     #y coördinaat  simulaite
+        # Coördinaten van de bal (in verhouding).
+        self.x_s = None     # X coördinaat simulatie
+        self.y_s = None     # Y coördinaat simulaite
 
-        self.x_p = None     #x coördinaat  simulatie
-        self.y_p = None     #y coördinaat  simulatie
+        self.x_p = None     # X coördinaat simulatie
+        self.y_p = None     # Y coördinaat simulatie
         
-        # settings van de img. Worden ook opgehaald door get_ball()
+        # Settings van de img. Worden ook opgehaald door get_ball().
         self.WIDTH_IMG = None
         self.HEIGHT_IMG = None
         self.DEBUG_FLAG = debug_flag    # Flag waarbij gekozen kan worden of trackbars worden toegevoegd.
@@ -64,11 +66,11 @@ class BeeldKoppeling():
             from glob import glob
             import os
             self.files = glob("C:\\Users\\" + os.getlogin() + "\\Stichting Hogeschool Utrecht\\NLE - Documenten\\Test foto's\\V1.3 cam normal Wide angle + ball\\output_fast.avi")
-            # files is een bestand met daarin de film. Dit is voor demonstartie doeleinde.
+            # Files is een bestand met daarin de video. Dit is voor demonstartie doeleinde.
             self._init_video_function()
 
     def get_pos_vision(self):
-        """Voert de gehele pipeline in een keer uit. Haalt de gegevens op van trackbars en returnt hiervan de coördinaten van de simulatie.
+        """Voert de gehele pipeline in een keer uit. Haalt de gegevens op van trackbars en geeft hiervan de coördinaten van de simulatie terug.
         
         Returns:
             (tuple) x & y coördinaten van de simulatie van de bal.
@@ -77,19 +79,19 @@ class BeeldKoppeling():
         # self.get_ball()
         self.test_video_function()
         # ! -------------------------------------------
-        self._convert_2_sim_cor()  #conv beeld pix -> sim pix
-        return (self.x_s, self.y_s) #return simulatie cordinaten.
+        self._convert_2_sim_cor()  # Converteren beeld pix -> sim pix
+        return (self.x_s, self.y_s) # Geeft de simulatie coördinaten terug.
 
 
     def _init_trackbars(self):
-        """initaliseer debug trackbars.
+        """initialiseer debug trackbars.
         """
-        def nothing(x): #dummy functie voor cv2.createTrackbar
+        def nothing(x): # Dummy functie voor cv2.createTrackbar.
             pass
 
-        cv2.namedWindow('Cordinates')   #maak window aan.
+        cv2.namedWindow('Cordinates')   # Maakt een window aan.
         self.MAX_TRACKBAR_VAL = 100
-        # create trackbars for color change
+        # Maakt trackbars aan voor het verander van de kleur/
         cv2.createTrackbar('X','Cordinates',0,self.MAX_TRACKBAR_VAL,nothing)
         cv2.createTrackbar('Y','Cordinates',0,self.MAX_TRACKBAR_VAL,nothing)
         
@@ -99,7 +101,7 @@ class BeeldKoppeling():
 
 
     def map_function(self, val, in_min, in_max, out_min, out_max):
-        """Map functie (zoals in de Arduino IDE) die input schaald in verhouding naar de output.
+        """Map functie (zoals in de Arduino IDE) die de input in een vaste verhouding verschaalt naar de output.
         
         Args:
             val: (int) waarde die geschaald moet worden.
@@ -115,7 +117,7 @@ class BeeldKoppeling():
 
 
     def _convert_2_sim_cor(self):
-        """Zet de pixel positie van de beeldherkenning om naar x & y positie van de simulatie.
+        """Zet de pixel positie van de beeldherkenning om naar een x & y positie voor de simulatie.
         """
         # x_simulatie posite
         self.x_s = self.map_function(self.x_p, 0, self.WIDTH_IMG, -19.35, 19.35)
@@ -127,8 +129,8 @@ class BeeldKoppeling():
         """
         k = cv2.waitKey(1) & 0xFF
         # get current positions of four trackbars
-        self.x_p = cv2.getTrackbarPos('X','Cordinates')
-        self.y_p = cv2.getTrackbarPos('Y','Cordinates')
+        self.x_p = cv2.getTrackbarPos('X','Coördinaten')
+        self.y_p = cv2.getTrackbarPos('Y','Coördinaten')
     
     # TODO: check deze functie!
     def get_ball(self):
@@ -157,12 +159,12 @@ class BeeldKoppeling():
     def reset_trackbar_pos(self):
         """Reset trackbar positie van cordinaten.
         """
-        cv2.setTrackbarPos('X','Cordinates', int(self.MAX_TRACKBAR_VAL/2))
-        cv2.setTrackbarPos('Y','Cordinates', int(self.MAX_TRACKBAR_VAL/2))
+        cv2.setTrackbarPos('X','Coördinaten', int(self.MAX_TRACKBAR_VAL/2))
+        cv2.setTrackbarPos('Y','Coördinaten', int(self.MAX_TRACKBAR_VAL/2))
 
 
     def test_video_function(self):
-        """Haal frame uit de video op.
+        """Haal een frame uit de video op.
         """    
         cor = self.detect_ball.get_ball_pos()
         if cor is not None:
@@ -172,7 +174,7 @@ class BeeldKoppeling():
 
 
     def _init_video_function(self):
-        """Initaliseerd de video met de BallDetection class. 
+        """Initialiseerd de video met de BallDetection class. 
         Deze functie wordt gebruikt voor de demo.
 
         Note:

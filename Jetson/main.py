@@ -169,8 +169,8 @@ class Foostronics:
         """
         # x_simulatie posite
         x_s = self.map_function(x_p, 0, self.WIDTH_IMG, self.ks.SIM_LEFT, self.ks.SIM_RIGHT)    #-19.35, 19.35
-        y_s = self.map_function(y_p, 0, self.HEIGHT_IMG, self.ks.SIM_TOP, self.ks.SIM_BOTTOM)   #20, 0
-
+        #y_s = self.map_function(y_p, 0, self.HEIGHT_IMG, self.ks.SIM_TOP, self.ks.SIM_BOTTOM)   #20, 0
+        y_s = self.map_function(y_p, 0, self.HEIGHT_IMG, self.ks.SIM_BOTTOM, self.ks.SIM_TOP)
         return x_s, y_s
     
     def map_function(self, val, in_min, in_max, out_min, out_max):
@@ -239,7 +239,7 @@ class Foostronics:
         goal = 0
 
         if(
-            ((self.ks.ball.position.x < -18.5) and (self.ks.ball.position.y < (self.ks.SIM_TOP*2/3)) and (self.ks.ball.position.y > (self.ks.SIM_TOP*1/3))) or 
+            ((self.ks.ball.position.x < -18.5) and (self.ks.ball.position.y < (self.ks.SIM_BOTTOM*2/3)) and (self.ks.ball.position.y > (self.ks.SIM_BOTTOM*1/3))) or 
             (self.ks.ball.position.x < self.ks.SIM_LEFT)
           ):
             if(not self.scored):
@@ -267,7 +267,7 @@ class Foostronics:
             if (len(self.points_array)>100):
                 self.points_array.pop(0)
             self.ks.ratio = (100*self.points_array.count(1))/len(self.points_array)
-            self.ks.body.position = (-16.72,(self.ks.SIM_TOP/2))
+            self.ks.body.position = (-16.72,(self.ks.SIM_BOTTOM/2))
             if(self.ks.shoot_bool):
                 self.ks.world.DestroyBody(self.ks.ball)
                 self.ks._reset_ball()

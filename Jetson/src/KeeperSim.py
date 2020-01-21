@@ -108,27 +108,36 @@ class KeeperSim(Framework):
         
         super(KeeperSim, self).__init__()
 
-        self.SIM_LEFT = -19.35
+        # Afmetingen veld in verhouding ten opzichte van het echte veld.
+        self.SIM_LEFT = -19.35 # Links tot rechts is 1045mm.
         self.SIM_RIGHT = 19.35
-        self.SIM_TOP = 20.0
-        self.SIM_BOTTOM = 0
+        self.SIM_TOP = 0.0 # Boven tot onder is 540mm.
+        self.SIM_BOTTOM = 20.0
+        #self.BAL_RADIUS = 0.5 Toevoegen? Bal = 34mm
+        # Afstand doellijn tot middenpunt keeper. 71mm uit de kant, bereik +20 tot +100mm.
+        # Bereik keeper om bal te pakken
+        # Strafschop gebied is 210*150mm
+        # Schopblokje is 22mm
+        
         # Veld opstellen 
         ground = self.world.CreateStaticBody(
-            shapes=[b2EdgeShape(vertices=[(self.SIM_LEFT, self.SIM_BOTTOM), (self.SIM_RIGHT, self.SIM_BOTTOM)]), # Bovenste lijn
-                    b2EdgeShape(vertices=[(self.SIM_LEFT, self.SIM_BOTTOM), (self.SIM_LEFT, 6.67)]), # Linker lijn bovenkant
-                    b2EdgeShape(vertices=[(self.SIM_LEFT, self.SIM_TOP), (self.SIM_LEFT, 13.33)]),  # Linker lijn onderkant
-                    b2EdgeShape(vertices=[(self.SIM_RIGHT, self.SIM_BOTTOM), (self.SIM_RIGHT, 6.67)]),  # Rechter lijn bovenkant
-                    b2EdgeShape(vertices=[(self.SIM_RIGHT, self.SIM_TOP), (self.SIM_RIGHT, 13.33)]), # Rechter lijn onderkant
-                    b2EdgeShape(vertices=[(self.SIM_LEFT, self.SIM_TOP), (self.SIM_RIGHT, self.SIM_TOP)]), # Onderste lijn
+            shapes=[b2EdgeShape(vertices=[(self.SIM_LEFT, self.SIM_TOP), (self.SIM_RIGHT, self.SIM_TOP)]), # Bovenste lijn
+                    b2EdgeShape(vertices=[(self.SIM_LEFT, self.SIM_TOP), (self.SIM_LEFT, (self.SIM_BOTTOM/3))]), # Linker lijn bovenkant
+                    b2EdgeShape(vertices=[(self.SIM_LEFT, self.SIM_BOTTOM), (self.SIM_LEFT, (self.SIM_BOTTOM*2/3))]),  # Linker lijn onderkant
+                    b2EdgeShape(vertices=[(self.SIM_RIGHT, self.SIM_TOP), (self.SIM_RIGHT, (self.SIM_BOTTOM/3))]),  # Rechter lijn bovenkant
+                    b2EdgeShape(vertices=[(self.SIM_RIGHT, self.SIM_BOTTOM), (self.SIM_RIGHT, (self.SIM_BOTTOM*2/3))]), # Rechter lijn onderkant
+                    b2EdgeShape(vertices=[(self.SIM_LEFT, self.SIM_BOTTOM), (self.SIM_RIGHT, self.SIM_BOTTOM)]), # Onderste lijn
                     ])
         
         # ! KEEPER_SPEED = 35 gevalideerd met Chileam en Kelvin
         self.KEEPER_SPEED = 35  
         self.FORCE_MAX = 100
         self.FORCE_MIN = 60
+        
         # Bal straal instellen
         self.radius = radius = 0.5
         
+
         # Keeper maken
         self.create_keeper((-16.72,10.0))
         self.scaler = 15/self.SIM_RIGHT
@@ -156,7 +165,7 @@ class KeeperSim(Framework):
         self.force_param = not(shoot_bool)   # Schieten als beeldherkenning uitstaat!
         
         # Check of de coördinaten van de beeldherkenning moeten worden gebruikt, anders midden.
-        b_x, b_y = (self.SIM_BOTTOM, self.SIM_TOP/2) if shoot_bool else (self.SIM_BOTTOM, random() * self.SIM_TOP)
+        b_x, b_y = (0.0, self.SIM_BOTTOM/2) if shoot_bool else (0.0, random() * self.SIM_BOTTOM)
         
         self.set_ball((b_x, b_y))  # Creëer de bal.
 
@@ -306,9 +315,9 @@ class KeeperSim(Framework):
         Returns:
             (int) kracht van de bal naar de keeper.
         """
-        goal_lenght = 4.5   #constant
-        goal = goal_lenght * random()
-        goal += (10.0 - (goal_lenght/2))
+        goal_length = 4.5   #constant
+        goal = goal_length * random()
+        goal += (10.0 - (goal_length/2))
 
         power = (self.FORCE_MAX-self.FORCE_MIN) * random() + self.FORCE_MIN
         force = ((self.SIM_LEFT-pos[0])*power,(pos[1]-goal)*-power)
@@ -332,7 +341,7 @@ class KeeperSim(Framework):
         #als er een kracht op moet worden gezet, doe dat dan.
         if self.force_param:
             force = self._calculate_force_ball(pos)
-            self.ball.ApplyForce(force, (self.SIM_LEFT,self.SIM_TOP/2), True)
+            self.ball.ApplyForce(force, (self.SIM_LEFT,self.SIM_BOTTOM/2), True)
 
         self.time_change = round(time()) + 1
 
@@ -341,7 +350,7 @@ class KeeperSim(Framework):
         """Functie die de bal reset aan de hand van of er beeldherkenning wordt gebruikt.
         """
         if self.shoot_bool: #shoot_bool is waar, dus schieten.
-            self.set_ball((self.SIM_BOTTOM , random() * self.SIM_TOP))   
+            self.set_ball((0.0 , random() * self.SIM_BOTTOM))   
             # Reset bal op punt 0,0 als er nog geen bal wordt gedetecteerd.
  
     

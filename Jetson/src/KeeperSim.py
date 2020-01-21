@@ -10,7 +10,7 @@
     Date:
         20-1-2020
     Version:
-        1.47
+        1.48
     Modifier:
         Daniël Boon
         Kelvin Sweere
@@ -35,6 +35,8 @@
             fixed te vaak blocked
         1.47:
             Spelling en grammatica commentaren nagekeken.
+        1.48:
+            KEEPER_SPEED gevalideerd.
 """ 
 '''
 Used libraries/repositories:
@@ -82,9 +84,9 @@ class KeeperSim(Framework):
         Daniël Boon     \n
         Kelvin Sweere   \n
     **Version**:
-        1.47            \n
+        1.48            \n
     **Date**:
-        20-1-2020   
+        21-1-2020   
     """
     name = "KeeperSim"
     description = "Druk op C om het spel te starten."
@@ -109,14 +111,17 @@ class KeeperSim(Framework):
                     b2EdgeShape(vertices=[(19.35, 20.0), (19.35, 13.33)]), # Rechter lijn onderkant
                     b2EdgeShape(vertices=[(-19.35, 20.0), (19.35, 20.0)]), # Onderste lijn
                     ])
-        self.KEEPER_SPEED = 40
+        
+        # ! KEEPER_SPEED = 35 gevalideerd met Chileam en Kelvin
+        self.KEEPER_SPEED = 35  
         self.FORCE_MAX = 100
         self.FORCE_MIN = 60
         # Bal straal instellen
         self.radius = radius = 0.5
         
         # Keeper maken
-        self.create_keeper((-16.72,10.0))
+        # self.create_keeper((-16.72,10.0))
+        self.create_keeper((-16.72, 6.67))
         self.scaler = 15/19.35
         self.target = 0 #Eindpunt voor het schot van de bal.
         
@@ -338,7 +343,7 @@ class KeeperSim(Framework):
         vel = self.body.linearVelocity  #velocity van de keeper
         Framework.Step(self, settings)  #
         
-        #bepaling snelheid keeper bij verticale beweging
+        #bepaling snelheid keeper bij laterale beweging
         if ((self.control.y < 0) and (self.body.position.y > 7.08 )):
             vel.y = self.control.y
         elif ((self.control.y > 0) and (self.body.position.y < 12.92)):
@@ -346,7 +351,7 @@ class KeeperSim(Framework):
         else:
             vel.y = 0
 
-        #bepaling snelheid keeper bij horizontale beweging (+maak doorlaatbaar wanneer de keeper te hoog staat)
+        #bepaling snelheid keeper bij axiale beweging (+maak doorlaatbaar wanneer de keeper te hoog staat)
         if self.control.x and (settings.hz > 0.0):
             blub = 2   
             if (self.control.x > 0) and ((self.KEEPER_SPEED * self.time/blub) < pi): #A

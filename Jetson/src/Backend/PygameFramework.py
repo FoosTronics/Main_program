@@ -412,7 +412,7 @@ class PygameFramework(FrameworkBase):
         #game.new_episode()
 
         while self.running:
-            self.ball, self.body, self.action = self.fs.run(self.ball, self.body, self.target, self.goals, self.blocks)
+            self.fs.run()
             # time.sleep(0.03)
             # print(possible_actions[2])
             # print(action)

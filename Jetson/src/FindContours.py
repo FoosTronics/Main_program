@@ -6,9 +6,9 @@
     File:
         FindContours.py
     Date:
-       20-1-2020
+       21-1-2020
     Version:
-        1.3
+        1.31
     Modifier / Authors:
         Kelvin Sweere
         Chileam Bohnen
@@ -27,8 +27,10 @@
             Doxygen commentaar toegevoegd. 
         1.22:
             Spelling en grammatica commentaar nagekeken
-        1.3
+        1.30
             return_img verwijdert. in get_cropped_field wordt het geschaalde speelveld terug gegeven.
+        1.31:
+            Return image toegevoegd.
 """
 
 import numpy as np
@@ -46,9 +48,9 @@ class FindContours:
         Kelvin Sweere   \n
         Chileam Bohnen  \n
     **Version**:
-        1.3            \n
+        1.31           \n
     **Date**:
-        20-1-2020   
+        21-1-2020   
     """
     def __init__(self, debug=False):
         """Init van de FindContours klasse. 
@@ -279,7 +281,8 @@ class FindContours:
 
             self.cropped_mask = self._get_field_threshold(self.cropped_img) #krijg mask terug.
             contour = self._find_table_contour(self.cropped_mask)
-            return self._crop_img_till_contour(self.cropped_img, contour)
+            return_img = self._crop_img_till_contour(self.cropped_img, contour)
+            return cv2.resize(return_img, (640, 360))
         else:
             self.left_border = cv2.getTrackbarPos("Linkerrand", "Handmatig bijsnijden")
             self.right_border = cv2.getTrackbarPos("Rechterrand", "Handmatig bijsnijden")
@@ -291,7 +294,8 @@ class FindContours:
             cv2.line(self.drawing_img, (0, self.top_border), (self.WIDTH, self.top_border), (0, 0, 255), 3)
             cv2.line(self.drawing_img, (0, self.bottom_border), (self.WIDTH, self.bottom_border), (0, 0, 255), 3)
 
-            return self._crop_img_till_contour(self.img)
+            return_img =  self._crop_img_till_contour(self.img)
+            return cv2.resize(return_img, (640, 360))
 
     def get_mask(self):
         """Geeft de mask terug van de klasse.

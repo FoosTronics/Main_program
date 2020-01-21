@@ -107,7 +107,7 @@ class KeeperSim(Framework):
         super(KeeperSim, self).__init__()
 
         self.SIM_LEFT = -19.35
-        self.SIM_RIGHTT = 19.35
+        self.SIM_RIGHT = 19.35
         self.SIM_TOP = 20.0
         self.SIM_BOTTOM = 0
         # Veld opstellen 

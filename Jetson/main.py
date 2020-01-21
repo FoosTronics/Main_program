@@ -107,7 +107,7 @@ class Foostronics:
         # self.DQL = DQL
         self.ks = keeper_sim
         print(self.ks.screen)
-        self.que = Queue(1)
+        self.que = Queue(2)
 
         try:
             self.con = Controller()

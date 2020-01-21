@@ -59,6 +59,7 @@ import os
 # False wanneer de camera gebruikt moet worden, True wanneer een video afgespeeld moet worden.
 DEBUG_VIDEO = False
 
+
 class Foostronics:
     """Klasse van de main applicatie.
     
@@ -304,6 +305,7 @@ if __name__ == "__main__":
     """
     keeperSim = KeeperSim()
     foosTronics = Foostronics(keeperSim)
-    foosTronics.start_get_ball_thread()
+    if not keeperSim.shoot_bool:
+        foosTronics.start_get_ball_thread()
     keeperSim.set_Foostronics(foosTronics)
     main(keeperSim)

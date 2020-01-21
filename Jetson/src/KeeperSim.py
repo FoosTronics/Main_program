@@ -10,7 +10,7 @@
     Date:
         21-1-2020
     Version:
-        1.51
+        1.52
     Modifier:
         Daniël Boon
         Kelvin Sweere
@@ -41,6 +41,8 @@
             Initialisatie Foostronics klasse niet in set_Foostronics, maar in main.py. In set_Foostronics wordt nu foosTronics object meegegeven.
         1.51:
             Fixed geen ai save bestanden kunnen laden of opslaan
+        1.52:
+            Globale variabelen gemaakt voor TOP, BOTTOM, LEFT & RIGHT.
 """ 
 '''
 Used libraries/repositories:
@@ -88,7 +90,7 @@ class KeeperSim(Framework):
         Daniël Boon     \n
         Kelvin Sweere   \n
     **Version**:
-        1.5            \n
+        1.52            \n
     **Date**:
         21-1-2020   
     """

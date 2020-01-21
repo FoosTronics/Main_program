@@ -53,9 +53,9 @@ class Driver:
         self.MICRO_STEP = 2
         self.STEP_SIZE = [100, 100]
         self.HIGH_SPEED = [2500, 2500]
-        self.LOW_SPEED = [150, 150]
-        self.ACCELERATION = [100, 150]
-        self.DECELERATION = [1, 1]
+        self.LOW_SPEED = [250, 250]
+        self.ACCELERATION = [150, 150]
+        self.DECELERATION = [25, 25]
         self.MAX_CURRENT = [1000, 1000]
         self.DEVICE_COUNT = device_count
         self.MSG_CR = bytes(13)  # ascii 13 [CR]
@@ -360,8 +360,8 @@ class Commands(Enum):
     LIMIT_MIN = 4, b'L-'
     HOME_PLUS = 5, b'H+'
     HOME_MIN = 6, b'H-'
-    JPLUS = 7, b'JPLUS'
-    JMIN = 8, b'JMIN'
+    JPLUS = 7, b'J+'
+    JMIN = 8, b'J-'
     ABS = 9, b'ABS'
     INC = 10, b'INC'
     MM = 11, b'MM'

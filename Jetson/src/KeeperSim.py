@@ -139,11 +139,11 @@ class KeeperSim(Framework):
         self.tp = None
 
         #TODO: debug waarde!
-        shoot_bool = True   # Boolean die bepaald of er wordt geschoten (False is schieten!)
+        shoot_bool = False   # Boolean die bepaald of er wordt geschoten (False is schieten!)
         # ! ---------------
 
         self.shoot_bool = not(shoot_bool)  # Flag die checkt of beeldherkenning aanstaat.
-        self.force_param = shoot_bool   # Schieten als beeldherkenning uitstaat!
+        self.force_param = not(shoot_bool)   # Schieten als beeldherkenning uitstaat!
         
         # Check of de coördinaten van de beeldherkenning moeten worden gebruikt, anders midden.
         b_x, b_y = (0.0, 8.71) if shoot_bool else (0.0 , random() * 20.0)   
@@ -250,16 +250,18 @@ class KeeperSim(Framework):
             pos: (tuple) x & y coördinaten waar het targetpoint moet komen te staan.
         """
         
-        fixture = b2FixtureDef(shape=b2CircleShape(radius=0.3,  #create ball.
+        self.fixture_tp = b2FixtureDef(shape=b2CircleShape(radius=0.3,  #create ball.
                                                    pos=(0, 0)),
                                density=1, friction=900000, restitution=0.5)
-        fixture.sensor = True
+        self.fixture_tp.sensor = True
         # balpositie, vanaf nu ball.
         self.tp = self.world.CreateDynamicBody(
             position=pos,
-            fixtures=fixture,
+            fixtures=self.fixture_tp,
             linearDamping = 0.5
         )
+        self.fixture_tp2 = self.tp.CreatePolygonFixture(shape=b2CircleShape(radius=0.3), density=100000000)
+        self.fixture_tp2.sensor = True
 
     def delete_targetpoint(self):
         if(self.tp):
@@ -326,10 +328,9 @@ class KeeperSim(Framework):
         """Functie die de bal reset aan de hand van of er beeldherkenning wordt gebruikt.
         """
         if self.shoot_bool: #shoot_bool is waar, dus schieten.
+            self.set_ball((0.0 , random() * 20.0))   
             # Reset bal op punt 0,0 als er nog geen bal wordt gedetecteerd.
-            pass
-        else:
-            self.set_ball((0.0 , random() * 20.0))    
+ 
     
 
     #kom bij iedere frame in deze functie (bepaling keeper positie/snelheid
@@ -373,33 +374,6 @@ class KeeperSim(Framework):
                 vel.x = 0
                     
         self.body.linearVelocity = vel
-        if(self.shoot_bool):
-            try:
-                # is er een goal gemaakt? goal++ en setball
-                if(self.ball.position.x < -19.35):
-                    self.goals += 1
-                    self.ball.position.x = 0
-                    # ? dit is hetzelfde als de try elif -> dus functie!
-                    self.world.DestroyBody(self.ball)
-                    #self.world.DestroyBody(self.ball_target)
-                    self._reset_ball()   #reset de bal op het veld.
-                    self.time = pi/self.KEEPER_SPEED
-                    self.fixture.sensor = False
-
-                # is de bal geblocked? blocked++ en setball
-                elif abs(self.ball.linearVelocity.x) < 1 or abs(self.ball.linearVelocity.y) < 1 or (self.ball.linearVelocity.x > 0): #and (round(time()) > self.time_change)):
-                    if not self.shoot_bool:
-                        self.blocks += 1
-                        self.ball.linearVelocity.x = -1
-                        self.ball.linearVelocity.y = -0.5
-                        # ?  dit is hetzelfde als de try if -> dus functie!
-                        self.world.DestroyBody(self.ball)
-                        #self.world.DestroyBody(self.ball_target)
-                        self._reset_ball()   #reset de bal op het veld.
-                        self.time = pi/self.KEEPER_SPEED
-                        self.fixture.sensor = False
-            except:
-                pass
 
         # print(self.fixture.sensor)
         if(self.fixture.sensor and ((self.body.position.x < -14) and self.body.position.x > -16)):

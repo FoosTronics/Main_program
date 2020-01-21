@@ -1,12 +1,12 @@
 """
-    Settings for Box2D and the pygame. 
+    Instellingen voor Box2D en Pygame. 
 
     File:
         Settings.py
     Date:
-        16-1-2020
+        21-1-2020
     Version:
-        V1.0
+        V1.01
     Modifier:
         Daniël Boon    
     Used_IDE:
@@ -15,6 +15,9 @@
         1.0:
             Verwijzingen naar bestandsnamen gewijzigd
                 Header toegevoegd
+        1.01:
+            Spelling en grammatica commentaren nagekeken.
+            Engels vertaald naar Nederlands.
 """
 
 #!/usr/bin/env python
@@ -41,19 +44,19 @@
 
 
 class fwSettings(object):
-    # The default backend to use in (can be: pyglet, pygame, etc.)
+    # De standaard backend om te gebruiken (can be: pyglet, pygame, etc.)
     backend = 'pygame'
 
-    # Physics options
+    # Fysica opties
     hz = 60.0
     velocityIterations = 8
     positionIterations = 3
-    # Makes physics results more accurate (see Box2D wiki)
+    # Maakt natuurkundige resultaten meer nauwkeurig (zie Box2D wiki).
     enableWarmStarting = True
-    enableContinuous = True     # Calculate time of impact
+    enableContinuous = True     # Berekend de tijd van impact.
     enableSubStepping = False
 
-    # Drawing
+    # Tekenen
     drawStats = True
     drawShapes = True
     drawJoints = True
@@ -65,18 +68,17 @@ class fwSettings(object):
     maxContactPoints = 100
     drawContactNormals = False
     drawFPS = True
-    drawMenu = True             # toggle by pressing F1
-    drawCOMs = False            # Centers of mass
-    pointSize = 2.5             # pixel radius for drawing points
+    drawMenu = True             # Verander door op F1 te drukken
+    drawCOMs = False            # Middenpunt van de massa
+    pointSize = 2.5             # Pixel radius voor de tekenpunten
 
-    # Miscellaneous testbed options
+    # Verschillende testbed opties.
     pause = False
     singleStep = False
-    # run the test's initialization without graphics, and then quit (for
-    # testing)
+    # Draai de initialisatie tests zonder graphische middelen en stop daarna (voor testdoeleinden)
     onlyInit = False
 
-#             text                  variable
+#             tekst                  variabele
 checkboxes = (("Warm Starting", "enableWarmStarting"),
               ("Time of Impact", "enableContinuous"),
               ("Sub-Stepping", "enableSubStepping"),

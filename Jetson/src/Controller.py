@@ -1,13 +1,14 @@
 """
-    With this class you can the keeper with two cordiates of the ball. The keeper can move beceause of extrapolation with cordinates that
-    are converterd to mm. The end position is used to control the keeper. 
+    In deze klasse kan er met behulp van twee coördinaat punten de benodigde keeper positie worden bepaald.
+    Hierbij wordt: extra-polation toegepast, coördinaat naar mm geconverteerd, de keeper stap positie bepaald
+    en de drivers aangestuurd.
 
     File:
-        PController.py
+        Controller.py
     Date:
-        17-1-2020
+        20-1-2020
     Version:
-        1.32
+        1.33
     Authors:
         Daniël Boon
     Used_IDE:
@@ -24,8 +25,9 @@
         1.31:
             Doxygen commentaar toegevoegd.
         1.32:
+            Spelling en grammatica commentaar nagekeken
+        1.33:
             go_home functie operationeel zonder hardware sensor voor home positie
-
 """ 
 
 #pylint: disable=E1101
@@ -54,19 +56,20 @@ from pygame.locals import (
 )
 
 class Controller:
-    """Met behulp van deze class kan er van twee coördinaat punten de benodigde keeper positie bepaald worden.
-       Hierbij wordt: extra-polation toegepast, coördinaat naar mm geconvert, de keeper stap positie bepaald en de drivers aangestuurd.
+    """In deze klasse kan er met behulp van twee coördinaat punten de benodigde keeper positie worden bepaald.
+       Hierbij wordt: extra-polation toegepast, coördinaat naar mm geconverteerd, de keeper stap positie bepaald
+       en de drivers aangestuurd.
     
     **Author**: 
         Daniël Boon \n
     **Version**:
-        1.31        \n
+        1.32        \n
     **Date**:
-        17-1-2020 
+        20-1-2020 
     """
 
     def __init__(self):
-        """Initalisatie voor driver communicatie en verhouding bepalingen
+        """Initialiseren van de communicatie met de drivers en het bepalen van de verhoudingen.
         """
         met_drivers = False
         self.driver = Driver(0)
@@ -102,13 +105,14 @@ class Controller:
         self.ONE_STEP = self.ONE_ROTATION/self.MOTOR_TOTAL_STEPS
 
     def test_lin_movement(self, co):
-        """Bepaald keeper positie en stuur opdracht naar drivers
+        """Bepaald de positie van de keeper en stuurt een opdracht naar drivers.
         
         Args:
-            co: (int) het bepaalde coördinaat voor keeper vanuit de extra-polation
+            co: (int) het bepaalde coördinaat voor keeper vanuit de extra-polation.
         
         Returns:
-            (int) returns het berekende step_positie (deze waarde is ter debug en mag genegeerd worden, want de drivers worden in deze funtie al aangestuurd).
+            (int) returns De berekende stap positie (deze waarde is ter debug en mag genegeerd worden, 
+            want de drivers worden in deze funtie al aangestuurd).
         """
 
         font = pygame.font.SysFont("arial", 15)
@@ -144,7 +148,7 @@ class Controller:
     #         self.driver.transceive_message(1, Commands.SET_PX, 0)
 
     def shoot(self):
-        """Bestuur de drivers zodat er axiaal bewogen wordt.
+        """Bestuurt de drivers zodat er axiaal bewogen wordt.
         """
         if(len(self.driver.handlers)==2):
             self.driver.transceive_message(1, Commands.SET_X, 48)
@@ -158,7 +162,7 @@ class Controller:
             # self.step_correction()
 
     def bitfield(self, n):
-        """Convert een bit list naar een integer list.
+        """Converteerd een bit list naar een integer list.
         
         Args:
             n: (byte) byte die moet worden vertaald naar een integer.
@@ -218,7 +222,7 @@ class Controller:
             pass
 
     def linear_extrapolation(self, pnt1, pnt2, value_x=5, max_y=32):
-        """extra-polation om keeper coördinaten te bepalen.
+        """Toepassen van extra-polation om de keeper coördinaten te bepalen.
         
         Args:
             pnt1: (tuple) x, y coördinaten punt 1 van bal.
@@ -227,7 +231,7 @@ class Controller:
             max_y: (int, optional) halve coördinaat afstand waar de keeper kan komen. Standaard 32.
         
         Returns:
-            (tuple) x, y van keeper coördinaat positie.
+            (tuple) x, y snijpunt coördinaten van keeper en de vector van de bal.
         """
 
         # keep is the pixel position of keeper rod on the x-axis
@@ -248,10 +252,11 @@ class Controller:
             return keep_x, keep_y
 
 if __name__ == "__main__":
-    """test code voor PController class met vier sliders om de coördinaten van punt 1 en 2 van de bal te bepalen.
+    """Test code voor Controller klasse met vier sliders om de coördinaten van punt 1 en 2 van de bal te bepalen.
     """
 
-    pc = PController()
+    # pc = PController()
+    pc = Controller()
 
     half_dis = (pc.ratio_MM_to_y*pc.KEEPER_DIS)/2
     half_dis = int(half_dis)-1

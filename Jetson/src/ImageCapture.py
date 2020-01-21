@@ -1,12 +1,12 @@
 """
-    Reads picture from (video) memory. 
+    Leest afbeelding uit het (video) geheugen.
 
     File:
-      ImageProcessing.py
+      ImageCapture.py
     Date:
-        17.11.2019
+        20-1-2020
     Version:
-        1.21
+        1.22
     Authors:
         Chileam Bohnen
     Used_IDE:
@@ -22,6 +22,8 @@
             Gebruik van een camera of een video bestand aangepast conform OpenCV library
         1.21:
             Doxygen commentaar toegevoegd.
+        1.22:
+            Spelling en grammatica commentaren nagekeken
 """
 
 import cv2
@@ -34,18 +36,18 @@ class ImageCapture:
     **Author**: 
         Chileam Bohnen \n
     **Version**:
-        1.21           \n
+        1.22           \n
     **Date**:
-        17-1-2020  
+        20-1-2020
     """
 
     def __init__(self, res=(640, 360), file=None, save=False):
-        """Initialiseer de ImageCapture class. 
+        """Initialiseer de ImageCapture klasse. 
         
         Args:
             res: (tuple, optional) gewenste afbeelding resolutie(breedte, hoogte). Standaard (640, 360).
-            file: (string, optional) bestandlocatie van afbeelding of video locatie. Standaard None.
-            save: (bool, optional) bestandlocatie waar een opnamen wordt opgeslagen. Standaard False.
+            file: (string, optional) bestandslocatie van afbeelding of video locatie. Standaard None.
+            save: (bool, optional) bestandslocatie waar een opname wordt opgeslagen. Standaard False.
         """
         self.SAVE           = save
         self.FILE           = file
@@ -105,8 +107,8 @@ class ImageCapture:
         self.writer.write(self.frame)
 
     def _gstreamer_pipeline(self, capture_width=1280, capture_height=720, display_width=640,
-            display_height=360, framerate=120, flip_method=0):
-        """Initalisatie van Gstreamer pipeline.
+            display_height=360, framerate=60, flip_method=0):
+        """Initialisatie van de Gstreamer pipeline.
 
         Args:
             capture_width: (int, optional) breedte van de te nemen foto. Standaard 1280.
@@ -117,7 +119,7 @@ class ImageCapture:
             flip_method: (int, optional) kant waarop het camerabeeld toewijst. Standaard 2.
 
         Returns:
-            (str) instellingen voor het aansturen van de camera met de params erin vewerkt.
+            (str) instellingen voor het aansturen van de camera met de parameters erin vewerkt.
         """
         return (
             "nvarguscamerasrc !  video/x-raw(memory:NVMM), "

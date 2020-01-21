@@ -1,12 +1,12 @@
 """
-    Framework for Box2D simulation.
+    Geraamte voor de Box2D simulatie.
 
     File:
         Framework.py
     Date:
-        16-1-2020
+        20-1-2020
     Version:
-        1.1
+        1.11
     Modifier:
         Daniël Boon
     Used_IDE:
@@ -18,6 +18,9 @@
             Headers toegevoegd
         1.1:
             Commentaar toegevoegd in Google docstring format. 
+        1.11:
+            Spelling en grammatica nagekeken
+            Engels vertaald naar Nederlands
 """
 
 #!/usr/bin/env python
@@ -41,7 +44,7 @@
 # 3. This notice may not be removed or altered from any source distribution.
 
 """
-The framework's base is FrameworkBase. See its help for more information.
+De basis van het geraamte is FrameworkBase. Kijk bij de hulp sectie hiervan voor meer informatie. 
 """
 #from .PygameFramework import PygameFramework as Framework
 from .Settings import fwSettings
@@ -57,8 +60,9 @@ from Box2D.Box2D import (b2_addState, b2_dynamicBody, b2_epsilon, b2_persistStat
 
 class fwDestructionListener(b2DestructionListener):
     """
+    
     The destruction listener callback:
-    "SayGoodbye" is called when a joint or shape is deleted.
+    "SayGoodbye" wordt aangeroepen als een verbinding of vorm is verwijdert.
 
     **Modifier**: 
         Daniël Boon   \n
@@ -73,7 +77,7 @@ class fwDestructionListener(b2DestructionListener):
         self.test = test
 
     def SayGoodbye(self, obj):
-        """Delete een Box2D object.
+        """Verwijder een Box2D object.
         
         Args:
             obj: (@@@) Object die moet worden verwijderd uit de simulatie.
@@ -107,9 +111,9 @@ class fwQueryCallback(b2QueryCallback):
             inside = fixture.TestPoint(self.point)
             if inside:
                 self.fixture = fixture
-                # We found the object, so stop the query
+                # We hebben het object gevonden, dus stop met vragen.
                 return False
-        # Continue the query
+        # Ga door met vragen.
         return True
 
 
@@ -119,7 +123,7 @@ class Keys(object):
 
 class FrameworkBase(b2ContactListener):
     """
-    The base of the main testbed framework.
+    De basis van het hoofd testbed geraamte.
 
     If you are planning on using the testbed framework and:
     * Want to implement your own renderer (other than Pygame, etc.):
@@ -129,6 +133,15 @@ class FrameworkBase(b2ContactListener):
       You should derive your class from Framework. The renderer chosen in
       fwSettings (see settings.py) or on the command line will automatically
       be used for your test.
+    Als u van plan bent het testbed-framework te gebruiken en:
+     * U wilt uw eigen renderer implementeren (anders dan Pygame, etc.):
+       Leid hieruit je eigen klas om je eigen testen te implementeren.
+       Zie empty.py of een van de andere tests voor meer informatie.
+     * Wilt u uw eigen renderer NIET implementeren:
+       Leid je klas uit Framework. De gekozen renderer in
+       fwSettings (zie settings.py) of op de opdrachtregel wordt automatisch
+       gebruikt voor uw test.
+
     """
     name = "None"
     description = None
@@ -144,9 +157,9 @@ class FrameworkBase(b2ContactListener):
     }
 
     def __reset(self):
-        """ Reset all of the variables to their starting values.
-        Not to be called except at initialization."""
-        # Box2D-related
+        """ Herstel alle variabelen naar hun start waardes.
+        Niet aanroepen behalve bij initialisatie."""
+        # Box2D-gerelateerd
         self.points = []
         self.world = None
         self.bomb = None
@@ -167,7 +180,7 @@ class FrameworkBase(b2ContactListener):
 
         self.__reset()
 
-        # Box2D Initialization
+        # Box2D Initialisatie
         self.world = b2World(gravity=(0, -10), doSleep=True)
 
         self.destructionListener = fwDestructionListener(test=self)
@@ -183,17 +196,17 @@ class FrameworkBase(b2ContactListener):
         pass
 
     def Step(self, settings):
-        """The main physics step.
+        """De belangrijkste stap voor de fysica.
 
-        Takes care of physics drawing (callbacks are executed after the world.Step() )
-        and drawing additional information.
+        Zorg voor de natuurkundige tekening (callacks worden uitgevoerd na de world.Step() )
+        en voor het tekeningen van aanvullende informatie.
         
         Args:
             settings (Class): instellingen van de simulatie. 
         """
 
         self.stepCount += 1
-        # Don't do anything if the setting's Hz are <= 0
+        # Doe niks als de settings HZ <= 0.
         if settings.hz > 0.0:
             timeStep = 1.0 / settings.hz
         else:
@@ -201,20 +214,19 @@ class FrameworkBase(b2ContactListener):
 
         renderer = self.renderer
 
-        # If paused, display so
+        # Als er is gepauzeerd, weergeef dat.
         if settings.pause:
             if settings.singleStep:
                 settings.singleStep = False
             else:
                 timeStep = 0.0
 
-            self.Print("****PAUSED****", (200, 0, 0))
+            self.Print("****GEPAUZEERD****", (200, 0, 0))
 
-        # Set the flags based on what the settings show
+        # Zet de flags gebaseerd op wat de instellingen laten zien.
         if renderer:
-            # convertVertices is only applicable when using b2DrawExtended.  It
-            # indicates that the C code should transform box2d coords to screen
-            # coordinates.
+            # convertVertices is alleen van toepassing als b2DrawExtended gebruikt wordt.  
+            # Het geeft een indicatie dat de C code de box2d coördinaten moet omzetten naar beeld coördinaten.
             is_extended = isinstance(renderer, b2DrawExtended)
             renderer.flags = dict(drawShapes=settings.drawShapes,
                                   drawJoints=settings.drawJoints,
@@ -224,15 +236,15 @@ class FrameworkBase(b2ContactListener):
                                   convertVertices=is_extended,
                                   )
 
-        # Set the other settings that aren't contained in the flags
+        # Zet de andere instellingen die niet in de flags zitten.
         self.world.warmStarting = settings.enableWarmStarting
         self.world.continuousPhysics = settings.enableContinuous
         self.world.subStepping = settings.enableSubStepping
 
-        # Reset the collision points
+        # Herstel de punten voor collision.
         self.points = []
 
-        # Tell Box2D to step
+        # Vertel Box2D om te stappen.
         t_step = time()
         
         self.world.Step(self.settings.timeStep, settings.velocityIterations,
@@ -241,8 +253,8 @@ class FrameworkBase(b2ContactListener):
         self.world.ClearForces()
         t_step = time() - t_step
 
-        # Update the debug draw settings so that the vertices will be properly
-        # converted to screen coordinates
+        # Update de debug teken instellingen zodat de hoekpunten op de juiste 
+        # wijze omgezet worden naar beeld coördinaten
         t_draw = time()
 
         if renderer is not None:
@@ -250,17 +262,16 @@ class FrameworkBase(b2ContactListener):
 
         self.world.DrawDebugData()
 
-        # If the bomb is frozen, get rid of it.
+        # Als de bom is bevroren, zorg dat deze verdwijnt.
         if self.bomb and not self.bomb.awake:
             self.world.DestroyBody(self.bomb)
             self.bomb = None
 
-        # Take care of additional drawing (fps, mouse joint, slingshot bomb,
+        # Zorg voor aanvullend tekeningen (fps, mouse joint, slingshot bomb,
         # contact points)
 
         if renderer:
-            # If there's a mouse joint, draw the connection between the object
-            # and the current pointer position.
+            # Als er een mouse join is, teken dan de connectie tussen het object en de huidige pointer positie.
             if self.mouseJoint:
                 p1 = renderer.to_screen(self.mouseJoint.anchorB)
                 p2 = renderer.to_screen(self.mouseJoint.target)
@@ -271,7 +282,7 @@ class FrameworkBase(b2ContactListener):
                                    self.colors['mouse_point'])
                 renderer.DrawSegment(p1, p2, self.colors['joint_line'])
 
-            # Draw the slingshot bomb
+            # Teken de slingshot bom.
             if self.bombSpawning:
                 renderer.DrawPoint(renderer.to_screen(self.bombSpawnPoint),
                                    settings.pointSize, self.colors['bomb_center'])
@@ -279,7 +290,7 @@ class FrameworkBase(b2ContactListener):
                                      renderer.to_screen(self.mouseWorld),
                                      self.colors['bomb_line'])
 
-            # Draw each of the contact points in different colors.
+            # Teken elk van de contact punten in verschillende kleuren.
             if self.settings.drawContactPoints:
                 for point in self.points:
                     if point['state'] == b2_addState:
@@ -320,7 +331,7 @@ class FrameworkBase(b2ContactListener):
                     self.t_steps.pop(0)
 
             if settings.drawFPS:
-                self.Print("Combined FPS %d" % self.fps)
+                self.Print("Gecombineerde FPS %d" % self.fps)
 
             if settings.drawStats:
                 self.Print("bodies=%d contacts=%d joints=%d proxies=%d" %
@@ -340,8 +351,8 @@ class FrameworkBase(b2ContactListener):
     
     # TODO: Dit is onbekend voor mij.   @@@
     def ShiftMouseDown(self, p):
-        """Indicates that there was a left click at point p (world coordinates)
-        with the left shift key being held down.
+        """Indicatie dat er een linker klik op punt p aanwezig was (wereld coördinaten) met de linker shift-toets ingedrukt.
+        
         
         Args:
             p ([type]): [description]
@@ -354,23 +365,23 @@ class FrameworkBase(b2ContactListener):
     # TODO: Dit is onbekend voor mij.   @@@
     def MouseDown(self, p):
         """
-        Indicates that there was a left click at point p (world coordinates)
+        Indicatie dat er een linker klik op punt p aanwezig was (wereld coördinaten)
         """
         if self.mouseJoint is not None:
             return
 
-        # Create a mouse joint on the selected body (assuming it's dynamic)
-        # Make a small box.
+        # Creeër en mouse joint op het geselecteerde lichaam (er van uit gaan dat het dynamisch is).
+        # Maak een kleine doos.
         aabb = b2AABB(lowerBound=p - (0.001, 0.001),
                       upperBound=p + (0.001, 0.001))
 
-        # Query the world for overlapping shapes.
+        # Vraag de wereld voor overlappende figuren.
         query = fwQueryCallback(p)
         self.world.QueryAABB(query, aabb)
 
         if query.fixture:
             body = query.fixture.body
-            # A body was selected, create the mouse joint
+            # Een lichaam is geselecteerd. Creeër de mouse joint. 
             self.mouseJoint = self.world.CreateMouseJoint(
                 bodyA=self.groundbody,
                 bodyB=body,
@@ -381,7 +392,7 @@ class FrameworkBase(b2ContactListener):
     # TODO: Dit is onbekend voor mij.   @@@
     def MouseUp(self, p):
         """
-        Left mouse button up.
+        Linker mouse knop omhoog.
         """
         if self.mouseJoint:
             self.world.DestroyJoint(self.mouseJoint)
@@ -393,7 +404,7 @@ class FrameworkBase(b2ContactListener):
     # TODO: Dit is onbekend voor mij.   @@@
     def MouseMove(self, p):
         """
-        Mouse moved to point p, in world coordinates.
+        Mouse verschoven naar punt p, in wereld coördinaten.
         """
         self.mouseWorld = p
         if self.mouseJoint:

@@ -178,21 +178,26 @@ class Controller:
     def calibrate_go_home(self):
         """kalibreer halve doel afstand waarde
         """
-
+        self.driver.transceive_message(0, Commands.SET_HSPD, self.driver.HIGH_SPEED[0])
         # ga op langzame snelheid naar positief limiet en wacht tot de keeper er is
-        self.driver.transceive_message(0, Commands.HOME_PLUS_LOW)
+        self.driver.transceive_message(0, Commands.JPLUS)
+        
+
         while(int(self.driver.transceive_message(0, Commands.GET_PS).decode("utf-8"))):
             pass
-
+        
         # onthoud positie positief limiet, ga naar negatief limiet en wacht tot de keeper er is
         pos_plus = int(self.driver.transceive_message(0, Commands.GET_PX).decode("utf-8"))
-        self.driver.transceive_message(0, Commands.HOME_MIN_LOW)
+        time.sleep(0.1)
+        self.driver.transceive_message(0, Commands.JMIN)
+        
         while(int(self.driver.transceive_message(0, Commands.GET_PS).decode("utf-8"))):
             pass
-
+        
         # onthoud positie negatief limiet en bepaal het halve doel afstand waarde
         pos_min = int(self.driver.transceive_message(0, Commands.GET_PX).decode("utf-8"))
         self.half_dis = (abs(pos_plus - pos_min)/2)
+        self.driver.transceive_message(0, Commands.SET_HSPD, self.driver.HIGH_SPEED[0])
 
 
     def go_home(self, direction=0):
@@ -202,24 +207,43 @@ class Controller:
             direction: (int, optional) 0 is naar links, 1 is rechts gezien vanaf de hendel. Standaard 0 (links).
         """
         # bepaal richting
+        time.sleep(0.1)
         if(direction==0):
-            self.driver.transceive_message(0, Commands.HOME_PLUS_LOW)
+            self.driver.transceive_message(0, Commands.JPLUS)
             home_point = -self.half_dis
         else:
-            self.driver.transceive_message(0, Commands.HOME_MIN_LOW)
+            self.driver.transceive_message(0, Commands.JMIN)
             home_point = self.half_dis
         
         # wacht tot deze bij limiet is
         while(int(self.driver.transceive_message(0, Commands.GET_PS).decode("utf-8"))):
             pass
-        
+        time.sleep(0.1)
         # maakt limiet punt 0 en verplaats met halve doel afstand
-        self.driver.transceive_message(1, Commands.SET_PX, 0)
-        self.driver.transceive_message(1, Commands.SET_X, home_point)
+        self.driver.transceive_message(0, Commands.SET_PX, 0)
+        self.driver.transceive_message(0, Commands.SET_X, home_point)
 
         # wacht tot deze bij het halve doel afstand is
         while(int(self.driver.transceive_message(0, Commands.GET_PS).decode("utf-8"))):
             pass
+
+    def stop_motor(self):
+        """stop motor
+        """
+        self.driver.transceive_message(0, Commands.STOP)
+    
+    def jog_motor(self, direction=0):
+        """geweeg motor met high speed instelling
+        
+        Args:
+            direction (int, optional): 0 = JOG_MIN en 1 = JOG_PLUS. Defaults to 0.
+        """
+        self.driver.transceive_message(0, Commands.STOP)
+        if(direction):
+            self.con.driver.transceive_message(0, Commands.JOG_PLUS)
+        else:
+            self.con.driver.transceive_message(0, Commands.JOG_MIN)
+
 
     def linear_extrapolation(self, pnt1, pnt2, value_x=5, max_y=32):
         """Toepassen van extra-polation om de keeper coördinaten te bepalen.

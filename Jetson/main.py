@@ -40,7 +40,6 @@ from src.BallDetect import *
 from src.KeeperSim import *
 from src.Controller import *
 
-from src.Backend.USB import Commands
 from src.Backend.Framework import main
 # import src.Backend.DeepQLearning as DQL
 from src.Backend.DeepQLearning import DQLBase
@@ -195,16 +194,12 @@ class Foostronics:
         if np.array_equal(action, self.dql.possible_actions[0]):
             self.ks.control.y = self.ks.KEEPER_SPEED
             if(self.met_drivers and (not np.array_equal(action, old_action))):
-                #TODO iets anders...
-                self.con.driver.transceive_message(0, Commands.STOP)
-                self.con.driver.transceive_message(0, Commands.JOG_MIN)
+                self.con.jog_motor(0) #JOG_MIN
 
         elif np.array_equal(action, self.dql.possible_actions[1]):
             self.ks.control.y = -self.ks.KEEPER_SPEED
             if(self.met_drivers and (not np.array_equal(action, old_action))):
-                #TODO iets anders...
-                self.con.driver.transceive_message(0, Commands.STOP)
-                self.con.driver.transceive_message(0, Commands.JOG_PLUS)
+                self.con.jog_motor(1) #JOG_PLUS
         else:
             self.ks.control.y = 0
             self.ks.body.linearVelocity.y = 0
@@ -214,8 +209,7 @@ class Foostronics:
             self.ks.body.linearVelocity.y = 0
             
             if(self.met_drivers):
-                #TODO iets anders...
-                self.con.driver.transceive_message(0, Commands.STOP)
+                self.con.stop_motor()
                 self.con.shoot()
         
         if np.array_equal(action, self.dql.possible_actions[3]):
@@ -224,8 +218,7 @@ class Foostronics:
             self.ks.body.linearVelocity.x = 0
             self.ks.body.linearVelocity.y = 0
             if(self.met_drivers):
-                #TODO iets anders...
-                self.con.driver.transceive_message(0, Commands.STOP)
+                self.con.stop_motor()
 
     def determine_goal(self, vel_x, vel_x_old):
         """Bepaal of er een goal is gescoord.
@@ -241,7 +234,6 @@ class Foostronics:
         goal = 0
 
         if((self.ks.ball.position.x < -18) and (self.ks.ball.position.y < 11.26) and (self.ks.ball.position.y > 6.16)):
-            #self.bk.center
             goal = 1
             done = 1
             self.ks.goals += 1
@@ -250,9 +242,16 @@ class Foostronics:
                 self.points_array.pop(0)
             self.ratio = (100*self.points_array.count(1))/len(self.points_array)
             self.ks.body.position = (-16.72,10.0)
+            if(self.ks.shoot_bool):
+                self.ks.world.DestroyBody(self.ks.ball)
+                self.ks._reset_ball()
             
             
-        elif((vel_x_old < 0) and (vel_x > 0) and (self.ks.ball.position.x < -13) and (self.ks.ball.position.y < 11.26) and (self.ks.ball.position.y > 6.16)):#ball.position):
+        elif(
+              ((vel_x_old < 0) and (vel_x > 0) and (self.ks.ball.position.x < -13) and (self.ks.ball.position.y < 11.26) and (self.ks.ball.position.y > 6.16)) or
+              (self.ks.shoot_bool and ((abs(self.ks.ball.linearVelocity.x) < 1) or self.ks.ball.linearVelocity.x > 1))
+            ):
+
             goal = 0
             done = 1
             self.ks.blocks += 1
@@ -261,28 +260,19 @@ class Foostronics:
                 self.points_array.pop(0)
             self.ratio = (100*self.points_array.count(1))/len(self.points_array)
             self.ks.body.position = (-16.72,10.0)
+            if(self.ks.shoot_bool):
+                self.ks.world.DestroyBody(self.ks.ball)
+                self.ks._reset_ball()
         
         return done, goal
 
-    def run(self, ball, keeper, target, goals, blocks):
+    def run(self):
         """Deze functie wordt na iedere frame aangeroepen en kan gezien worden als de mainloop.
-        
-        Args:
-            ball: (Box2D object) Box2D object voor ball positie uitlezen
-            keeper: (Box2D object) Box2D object voor aansturen keeper door AI
-            target: (int) gewenste y positie van keeper om bal tegen te houden
-            goals: (int) totaal aantal goals
-            blocks: (int) totaal aantal ballen tegengehouden
-        
-        Returns:
-            ball: (Box2D object) update nieuwe ball positie in simulatie
-            keeper: (Box2D object) update nieuwe keeper aansturing in simulatie
-            action: (int) update gekozen actie van AI in simulatie
         """
 
         ball.position = self.que.get()
         action, old_action, target, vel_x, vel_x_old = self.dql.get_ai_action()
-
+        self.ks.action = action
         if self.ks.tp:
             self.ks.delete_targetpoint()
         
@@ -292,6 +282,7 @@ class Foostronics:
         self.execute_action(action, old_action)
 
         done, goal = self.determine_goal(vel_x, vel_x_old)
+        
 
         if done:
             episode_rewards, total_reward = self.dql.prepare_new_round(goal, self.ks.ball, self.ks.body)
@@ -304,16 +295,13 @@ class Foostronics:
             # plt.show
 
             if(self.met_drivers):
-                #TODO iets anders...
-                self.con.driver.transceive_message(0, Commands.STOP)
-                if(keeper.position.y >=8.71):
+                self.con.stop_motor()
+                if(self.ks.body.position.y >=8.71):
                     self.con.go_home()
                 else:
                     self.con.go_home(1)
         else:
             self.dql.update_data(done, self.ks.ball, self.ks.body)
-
-        return ball, keeper, action
 
 
 if __name__ == "__main__":

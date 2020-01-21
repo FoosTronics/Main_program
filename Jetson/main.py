@@ -239,7 +239,7 @@ class Foostronics:
         goal = 0
 
         if(
-            ((self.ks.ball.position.x < -18.5) and (self.ks.ball.position.y < 11.26) and (self.ks.ball.position.y > 6.16)) or 
+            ((self.ks.ball.position.x < -18.5) and (self.ks.ball.position.y < (self.ks.SIM_TOP*2/3)) and (self.ks.ball.position.y > (self.ks.SIM_TOP*1/3))) or 
             (self.ks.ball.position.x < self.ks.SIM_LEFT)
           ):
             if(not self.scored):
@@ -250,7 +250,7 @@ class Foostronics:
                 if (len(self.points_array)>100):
                     self.points_array.pop(0)
                 self.ks.ratio = (100*self.points_array.count(1))/len(self.points_array)
-                self.ks.body.position = (-16.72,10.0)
+                self.ks.body.position = (-16.72,(self.ks.SIM_TOP/2))
                 if(self.ks.shoot_bool):
                     self.ks.world.DestroyBody(self.ks.ball)
                     self.ks._reset_ball()
@@ -267,7 +267,7 @@ class Foostronics:
             if (len(self.points_array)>100):
                 self.points_array.pop(0)
             self.ks.ratio = (100*self.points_array.count(1))/len(self.points_array)
-            self.ks.body.position = (-16.72,10.0)
+            self.ks.body.position = (-16.72,(self.ks.SIM_TOP/2))
             if(self.ks.shoot_bool):
                 self.ks.world.DestroyBody(self.ks.ball)
                 self.ks._reset_ball()

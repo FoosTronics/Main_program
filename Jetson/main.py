@@ -57,6 +57,7 @@ from queue import Queue
 from glob import glob
 import os
 
+# False wanneer de camera gebruikt moet worden, True wanneer een video afgespeeld moet worden.
 DEBUG_VIDEO = False
 
 class Foostronics:

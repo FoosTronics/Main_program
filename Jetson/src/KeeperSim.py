@@ -107,17 +107,17 @@ class KeeperSim(Framework):
         super(KeeperSim, self).__init__()
 
         self.SIM_LEFT = -19.35
-        self.SIM_RIGHT = 19.35
+        self.SIM_RIGHTT = 19.35
         self.SIM_TOP = 20.0
         self.SIM_BOTTOM = 0
         # Veld opstellen 
         ground = self.world.CreateStaticBody(
-            shapes=[b2EdgeShape(vertices=[(self.SIM_LEFT, self.SIM_BOTTOM), (self.SIM_RIGH, self.SIM_BOTTOM)]), # Bovenste lijn
+            shapes=[b2EdgeShape(vertices=[(self.SIM_LEFT, self.SIM_BOTTOM), (self.SIM_RIGHT, self.SIM_BOTTOM)]), # Bovenste lijn
                     b2EdgeShape(vertices=[(self.SIM_LEFT, self.SIM_BOTTOM), (self.SIM_LEFT, 6.67)]), # Linker lijn bovenkant
                     b2EdgeShape(vertices=[(self.SIM_LEFT, self.SIM_TOP), (self.SIM_LEFT, 13.33)]),  # Linker lijn onderkant
-                    b2EdgeShape(vertices=[(self.SIM_RIGH, self.SIM_BOTTOM), (self.SIM_RIGH, 6.67)]),  # Rechter lijn bovenkant
-                    b2EdgeShape(vertices=[(self.SIM_RIGH, self.SIM_TOP), (self.SIM_RIGH, 13.33)]), # Rechter lijn onderkant
-                    b2EdgeShape(vertices=[(self.SIM_LEFT, self.SIM_TOP), (self.SIM_RIGH, self.SIM_TOP)]), # Onderste lijn
+                    b2EdgeShape(vertices=[(self.SIM_RIGHT, self.SIM_BOTTOM), (self.SIM_RIGHT, 6.67)]),  # Rechter lijn bovenkant
+                    b2EdgeShape(vertices=[(self.SIM_RIGHT, self.SIM_TOP), (self.SIM_RIGHT, 13.33)]), # Rechter lijn onderkant
+                    b2EdgeShape(vertices=[(self.SIM_LEFT, self.SIM_TOP), (self.SIM_RIGHT, self.SIM_TOP)]), # Onderste lijn
                     ])
         
         # ! KEEPER_SPEED = 35 gevalideerd met Chileam en Kelvin
@@ -129,7 +129,7 @@ class KeeperSim(Framework):
         
         # Keeper maken
         self.create_keeper((-16.72,10.0))
-        self.scaler = 15/self.SIM_RIGH
+        self.scaler = 15/self.SIM_RIGHT
         self.target = 0 #Eindpunt voor het schot van de bal.
         
         # Zet zwaarte kracht 0 voor top-down

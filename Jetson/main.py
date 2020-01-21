@@ -270,14 +270,9 @@ class Foostronics:
         """Deze functie wordt na iedere frame aangeroepen en kan gezien worden als de mainloop.
         """
 
-        ball.position = self.que.get()
+        self.ks.ball.position = self.que.get()
         action, old_action, target, vel_x, vel_x_old = self.dql.get_ai_action()
         self.ks.action = action
-        if self.ks.tp:
-            self.ks.delete_targetpoint()
-        
-        if not np.isnan(target):
-            self.ks.create_targetpoint((-16.72, target))
         
         self.execute_action(action, old_action)
 

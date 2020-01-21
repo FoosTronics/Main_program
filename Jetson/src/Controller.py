@@ -6,9 +6,9 @@
     File:
         Controller.py
     Date:
-        20-1-2020
+        21-1-2020
     Version:
-        1.33
+        1.34
     Authors:
         Daniël Boon
     Used_IDE:
@@ -28,6 +28,8 @@
             Spelling en grammatica commentaar nagekeken
         1.33:
             go_home functie operationeel zonder hardware sensor voor home positie
+        1.34:
+            fixed niet bestaande atributen
 """ 
 
 #pylint: disable=E1101
@@ -240,9 +242,9 @@ class Controller:
         """
         self.driver.transceive_message(0, Commands.STOP)
         if(direction):
-            self.con.driver.transceive_message(0, Commands.JOG_PLUS)
+            self.driver.transceive_message(0, Commands.JPLUS)
         else:
-            self.con.driver.transceive_message(0, Commands.JOG_MIN)
+            self.driver.transceive_message(0, Commands.JMIN)
 
 
     def linear_extrapolation(self, pnt1, pnt2, value_x=5, max_y=32):

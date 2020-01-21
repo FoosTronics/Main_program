@@ -7,7 +7,7 @@
     Date:
         21-1-2020
     Version:
-        1.44
+        1.45
     Author:
         Daniël Boon
         Kelvin Sweere
@@ -31,6 +31,8 @@
             go_home functie operationeel zonder hardware sensor voor home positie
         1.44:
             Proces van afbeelding ophalen tot positie van detecteren in een eigen Thread
+        1.45:
+            fixed te vaak achterelkaar goals maken
 """ 
 #pylint: disable=E1101
 
@@ -115,6 +117,8 @@ class Foostronics:
 
         # self.hl, = plt.plot([], [])
         self.points_array = []
+        self.scored = 0
+
     def start_get_ball_thread(self):
         """Opstarten van een nieuw proces die de functie update_ball_position uitvoert.
         """
@@ -238,18 +242,19 @@ class Foostronics:
             ((self.ks.ball.position.x < -18.5) and (self.ks.ball.position.y < 11.26) and (self.ks.ball.position.y > 6.16)) or 
             (self.ks.ball.position.x < -19.35)
           ):
-            goal = 1
-            done = 1
-            self.ks.goals += 1
-            self.points_array.append(0)
-            if (len(self.points_array)>100):
-                self.points_array.pop(0)
-            self.ks.ratio = (100*self.points_array.count(1))/len(self.points_array)
-            self.ks.body.position = (-16.72,10.0)
-            if(self.ks.shoot_bool):
-                self.ks.world.DestroyBody(self.ks.ball)
-                self.ks._reset_ball()
-            
+            if(not self.scored):
+                goal = 1
+                done = 1
+                self.ks.goals += 1
+                self.points_array.append(0)
+                if (len(self.points_array)>100):
+                    self.points_array.pop(0)
+                self.ks.ratio = (100*self.points_array.count(1))/len(self.points_array)
+                self.ks.body.position = (-16.72,10.0)
+                if(self.ks.shoot_bool):
+                    self.ks.world.DestroyBody(self.ks.ball)
+                    self.ks._reset_ball()
+                self.scored = 1
             
         elif(
               ((vel_x_old < 0) and (vel_x > 0) and (self.ks.ball.position.x < -13) and (self.ks.ball.position.y < 11.26) and (self.ks.ball.position.y > 6.16)) or
@@ -267,6 +272,9 @@ class Foostronics:
             if(self.ks.shoot_bool):
                 self.ks.world.DestroyBody(self.ks.ball)
                 self.ks._reset_ball()
+            self.scored = 0
+        elif(self.scored):
+            self.scored = 0
         
         return done, goal
 

@@ -77,7 +77,8 @@ class DQLBase:
 
         # Paramaters voor het verkennen van de Epsilon Greedy strategie.
         #TODO: explore_start was 1.0
-        self.explore_start = 1.0            # De kans op verkenning bij de start
+        # self.explore_start = 1.0            # De kans op verkenning bij de start
+        self.explore_start = 0.0            # De kans op verkenning bij de start
         self.explore_stop = 0.01            # De minimale kans op verkenning
         self.decay_rate = 0.0001            # De exponentiele verval ratio voor de kans op verkennen
 

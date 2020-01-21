@@ -1,7 +1,6 @@
 """
-    Hoofdclass FoosTronics en main code. 
+    Hoofdclass FoosTronics.
     De onderdelen voor beeldherkenning, AI en motor aansturing komen in dit bestand bijelkaar.
-    In dit bestand bestaat voor grootendeels uit de regeling van de AI.
 
     File:
         main.py
@@ -68,7 +67,6 @@ class Foostronics:
     """
     def __init__(self, keeper_sim):
         """initialisatie main.
-           bestaat voornamelijk uit AI initialisatie.
         
         Args:
             keeper_sim: (class) adres van draaiende keeper simulatie om variabelen op te halen.
@@ -127,7 +125,7 @@ class Foostronics:
         return x_s, y_s
     
     def map_function(self, val, in_min, in_max, out_min, out_max):
-        """Map functie (zoals in de Arduino IDE) die input schaald in verhouding naar de output.
+        """Map functie (zoals in de Arduino IDE) die input waarde (in_min & in_max) schaald in verhouding naar de output (out_min & out_max).
         
         Args:
             val: (int) waarde die geschaald moet worden.

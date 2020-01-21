@@ -1,8 +1,8 @@
 #pylint disable=E1101
 
 """
-    Code to find the contours of the table. This can be done in the init of the application. 
     Code voor het vinden van de contouren van de tafel. 
+
     File:
         FindContours.py
     Date:
@@ -37,19 +37,22 @@ if __name__ == "__main__":
     from glob import glob
 
 class FindContours:
+    """Class die de contouren van het veld kan detecteren. 
+    Dit wordt gedaan door een handmatige init in de main applicatie. 
+    
+    **Author**:         \n
+        Kelvin Sweere   \n
+        Chileam Bohnen  \n
+    **Version**:
+        1.22            \n
+    **Date**:
+        20-1-2020   
+    """
     def __init__(self, debug=False):
-        """Init van de Raster class
+        """Init van de FindContours class. 
         
         Args:
             debug: (bool, optional) keuze of trackbars worden aangemaakt. Defaults to False.
-
-        **Author**:         \n
-            Kelvin Sweere   \n
-            Chileam Bohnen  \n
-        **Version**:
-            1.22            \n
-        **Date**:
-            20-1-2020   
         """
 
         self.biggest_contour = None

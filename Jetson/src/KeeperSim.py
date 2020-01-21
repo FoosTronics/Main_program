@@ -73,10 +73,10 @@ class Control:
 
 
 class KeeperSim(Framework):
-    """Maakt de simulatie objecten aan, regelt de keeper begingen, bal schieten en of er wel of niet gescoord is.
+    """Maakt de simulatie objecten aan, regelt de keeper bewegingen, bal schieten en of er wel of niet gescoord is.
     
     Args:
-        Framework: (FrameworkBase) De basis van het hoofd testbed geraamte.
+        Framework: (FrameworkBase) De basis van het hoofd van het spel Framework.
     
     **Author**:         \n
         Daniël Boon     \n

@@ -417,7 +417,14 @@ def stack_states(stacked_states, new_state, is_new_episode, stack_size):
 
 class DQNetwork:
     """
-    AI funtionaliteiten
+    Class voor het opbouwen van het neurale netwerk. 
+
+    **Author**:
+        Daniël Boon \n
+    **Version**:
+        1.11        \n
+    **Date**:
+       20-1-2020
     """
     
     def __init__(self, state_size, action_size, learning_rate, name='DQNetwork'):
@@ -474,9 +481,9 @@ class Memory():
     **Author**:
         Daniël Boon \n
     **Version**:
-        1.1         \n
+        1.11        \n
     **Date**:
-        16-1-2020
+       20-1-2020
     """
     def __init__(self, max_size):
         """Initialiseer geheugen grootte. 

@@ -1,7 +1,7 @@
 """
-    With this class you can the keeper with two cordiates of the ball. The keeper can move beceause of extrapolation with cordinates that
-    are converterd to mm. The end position is used to control the keeper. 
-
+    In deze class kan er met behulp van twee coördinaat punten de benodigde keeper positie worden bepaald.
+    Hierbij wordt: extra-polation toegepast, coördinaat naar mm geconverteerd, de keeper stap positie bepaald
+    en de drivers aangestuurd.
 
     File:
         Controller.py
@@ -54,7 +54,7 @@ from pygame.locals import (
 )
 
 class Controller:
-    """In deze class kan er met behulp van twee coördinaat punten de benodigde keeper positie bepaald worden.
+    """In deze class kan er met behulp van twee coördinaat punten de benodigde keeper positie worden bepaald.
        Hierbij wordt: extra-polation toegepast, coördinaat naar mm geconverteerd, de keeper stap positie bepaald
        en de drivers aangestuurd.
     
@@ -212,7 +212,7 @@ class Controller:
             max_y: (int, optional) halve coördinaat afstand waar de keeper kan komen. Standaard 32.
         
         Returns:
-            (tuple) x, y van keeper coördinaat positie.
+            (tuple) x, y snijpunt coördinaten van keeper en de vector van de bal.
         """
 
         # keep is the pixel position of keeper rod on the x-axis
@@ -233,10 +233,11 @@ class Controller:
             return keep_x, keep_y
 
 if __name__ == "__main__":
-    """Test code voor PController class met vier sliders om de coördinaten van punt 1 en 2 van de bal te bepalen.
+    """Test code voor Controller class met vier sliders om de coördinaten van punt 1 en 2 van de bal te bepalen.
     """
 
-    pc = PController()
+    # pc = PController()
+    pc = Controller()
 
     half_dis = (pc.ratio_MM_to_y*pc.KEEPER_DIS)/2
     half_dis = int(half_dis)-1

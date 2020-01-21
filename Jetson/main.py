@@ -234,14 +234,17 @@ class Foostronics:
         done = 0
         goal = 0
 
-        if((self.ks.ball.position.x < -18) and (self.ks.ball.position.y < 11.26) and (self.ks.ball.position.y > 6.16)):
+        if(
+            ((self.ks.ball.position.x < -18.5) and (self.ks.ball.position.y < 11.26) and (self.ks.ball.position.y > 6.16)) or 
+            (self.ks.ball.position.x < -19.35)
+          ):
             goal = 1
             done = 1
             self.ks.goals += 1
             self.points_array.append(0)
             if (len(self.points_array)>100):
                 self.points_array.pop(0)
-            self.ratio = (100*self.points_array.count(1))/len(self.points_array)
+            self.ks.ratio = (100*self.points_array.count(1))/len(self.points_array)
             self.ks.body.position = (-16.72,10.0)
             if(self.ks.shoot_bool):
                 self.ks.world.DestroyBody(self.ks.ball)
@@ -259,7 +262,7 @@ class Foostronics:
             self.points_array.append(1)
             if (len(self.points_array)>100):
                 self.points_array.pop(0)
-            self.ratio = (100*self.points_array.count(1))/len(self.points_array)
+            self.ks.ratio = (100*self.points_array.count(1))/len(self.points_array)
             self.ks.body.position = (-16.72,10.0)
             if(self.ks.shoot_bool):
                 self.ks.world.DestroyBody(self.ks.ball)
@@ -270,8 +273,8 @@ class Foostronics:
     def run(self):
         """Deze functie wordt na iedere frame aangeroepen en kan gezien worden als de mainloop.
         """
-
-        self.ks.ball.position = self.que.get()
+        if(not self.ks.shoot_bool):
+            self.ks.ball.position = self.que.get()
         action, old_action, target, vel_x, vel_x_old = self.dql.get_ai_action()
         self.ks.action = action
         

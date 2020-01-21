@@ -10,7 +10,7 @@
     Date:
         20-1-2020
     Version:
-        1.48
+        1.5
     Modifier:
         Daniël Boon
         Kelvin Sweere
@@ -37,6 +37,8 @@
             Spelling en grammatica commentaren nagekeken.
         1.48:
             KEEPER_SPEED gevalideerd.
+        1.5
+            Initialisatie Foostronics klasse niet in set_Foostronics, maar in main.py. In set_Foostronics wordt nu foosTronics object meegegeven.
 """ 
 '''
 Used libraries/repositories:
@@ -84,7 +86,7 @@ class KeeperSim(Framework):
         Daniël Boon     \n
         Kelvin Sweere   \n
     **Version**:
-        1.48            \n
+        1.5            \n
     **Date**:
         21-1-2020   
     """
@@ -150,13 +152,13 @@ class KeeperSim(Framework):
         
         self.set_ball((b_x, b_y))  # Creëer de bal.
 
-    def set_Foostronics(self, Foostronics):
+    def set_Foostronics(self, foostronics):
         """Foostronics klasse initialiseren in de KeeperSim klasse.
         
         Args:
             Foostronics: (class) klasse van de main applicatie.
         """ 
-        self.fs = Foostronics(self)
+        self.fs = foostronics
 
     def Keyboard(self, key, settings):
         """Wanneer een toets wordt ingedrukt, ga in deze functie.

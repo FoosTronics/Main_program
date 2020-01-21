@@ -7,7 +7,7 @@
     Date:
         17-1-2020
     Version:
-        1.3
+        1.32
     Authors:
         Daniël Boon
     Used_IDE:
@@ -23,6 +23,8 @@
             Google docstring format toegepast op functies.
         1.31:
             Doxygen commentaar toegevoegd.
+        1.32:
+            go_home functie operationeel zonder hardware sensor voor home positie
 
 """ 
 
@@ -72,6 +74,7 @@ class Controller:
         if self.driver.stepper_init():
             print("door init heen!")
             met_drivers = True
+            self.calibrate_go_home()
             self.go_home()
             # self.driver.select_performax_device(0)
             # self.driver.get_device_descriptors()
@@ -168,35 +171,51 @@ class Controller:
             array.insert(0, 0)
         return array
 
+    def calibrate_go_home(self):
+        """kalibreer halve doel afstand waarde
+        """
+
+        # ga op langzame snelheid naar positief limiet en wacht tot de keeper er is
+        self.driver.transceive_message(0, Commands.HOME_PLUS_LOW)
+        while(int(self.driver.transceive_message(0, Commands.GET_PS).decode("utf-8"))):
+            pass
+
+        # onthoud positie positief limiet, ga naar negatief limiet en wacht tot de keeper er is
+        pos_plus = int(self.driver.transceive_message(0, Commands.GET_PX).decode("utf-8"))
+        self.driver.transceive_message(0, Commands.HOME_MIN_LOW)
+        while(int(self.driver.transceive_message(0, Commands.GET_PS).decode("utf-8"))):
+            pass
+
+        # onthoud positie negatief limiet en bepaal het halve doel afstand waarde
+        pos_min = int(self.driver.transceive_message(0, Commands.GET_PX).decode("utf-8"))
+        self.half_dis = (abs(pos_plus - pos_min)/2)
+
+
     def go_home(self, direction=0):
         """Beweegt de keeper terug naar de home positie.
         
         Args:
             direction: (int, optional) 0 is naar links, 1 is rechts gezien vanaf de hendel. Standaard 0 (links).
         """
+        # bepaal richting
         if(direction==0):
-            self.driver.transceive_message(0, Commands.HOME_PLUS)
+            self.driver.transceive_message(0, Commands.HOME_PLUS_LOW)
+            home_point = -self.half_dis
         else:
-            self.driver.transceive_message(0, Commands.HOME_MIN)
+            self.driver.transceive_message(0, Commands.HOME_MIN_LOW)
+            home_point = self.half_dis
+        
+        # wacht tot deze bij limiet is
+        while(int(self.driver.transceive_message(0, Commands.GET_PS).decode("utf-8"))):
+            pass
+        
+        # maakt limiet punt 0 en verplaats met halve doel afstand
+        self.driver.transceive_message(1, Commands.SET_PX, 0)
+        self.driver.transceive_message(1, Commands.SET_X, home_point)
 
-        while(1):
-            print(int(self.driver.transceive_message(0, Commands.GET_MST).decode("utf-8")))
-            mst_code = self.bitfield(int(self.driver.transceive_message(0, Commands.GET_MST).decode("utf-8")))
-            # print(mst_code)
-            try:
-                if(mst_code[6]):
-                    print("bij min limit; doe H+")
-                    self.driver.transceive_message(0, Commands.HOME_PLUS)
-                elif(mst_code[5]):
-                    print("bij plus limit; doe H-")
-                    self.driver.transceive_message(0, Commands.HOME_MIN)
-                elif((not int(self.driver.transceive_message(0, Commands.GET_PS).decode("utf-8"))) or (mst_code[7])):
-                    print("bij home; break")
-                    break
-            except:
-                pass
-            time.sleep(0.1)
-
+        # wacht tot deze bij het halve doel afstand is
+        while(int(self.driver.transceive_message(0, Commands.GET_PS).decode("utf-8"))):
+            pass
 
     def linear_extrapolation(self, pnt1, pnt2, value_x=5, max_y=32):
         """extra-polation om keeper coördinaten te bepalen.

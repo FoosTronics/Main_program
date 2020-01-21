@@ -377,7 +377,6 @@ class KeeperSim(Framework):
                     self.world.DestroyBody(self.ball)
                     #self.world.DestroyBody(self.ball_target)
                     self._reset_ball()   #reset de bal op het veld.
-                    self.body.position = (-16.72,10.0)
                     self.time = pi/self.KEEPER_SPEED
                     self.fixture.sensor = False
 
@@ -391,7 +390,6 @@ class KeeperSim(Framework):
                         self.world.DestroyBody(self.ball)
                         #self.world.DestroyBody(self.ball_target)
                         self._reset_ball()   #reset de bal op het veld.
-                        self.body.position = (-16.72,10.0)
                         self.time = pi/self.KEEPER_SPEED
                         self.fixture.sensor = False
             except:

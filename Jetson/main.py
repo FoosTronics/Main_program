@@ -8,7 +8,7 @@
     Date:
         17.1.2020
     Version:
-        V1.4
+        V1.5
     Author:
         Daniël Boon
         Kelvin Sweere
@@ -25,6 +25,8 @@
             objecten: ImageCapture, FindContours, BallDetect toegevoegd om de Raspi cam te gebruiken
         1.4:
             fixed moving keeper + dubble object keeper_sim
+        1.5:
+            go_home functie operationeel zonder hardware sensor voor home positie
 
 
 """ 
@@ -172,6 +174,7 @@ class Foostronics:
             if (len(self.points_array)>100):
                 self.points_array.pop(0)
             self.ratio = (100*self.points_array.count(1))/len(self.points_array)
+            self.ks.body.position = (-16.72,10.0)
             
             
         elif((vel_x_old < 0) and (vel_x > 0) and (self.ks.ball.position.x < -13) and (self.ks.ball.position.y < 11.26) and (self.ks.ball.position.y > 6.16)):#ball.position):
@@ -182,6 +185,7 @@ class Foostronics:
             if (len(self.points_array)>100):
                 self.points_array.pop(0)
             self.ratio = (100*self.points_array.count(1))/len(self.points_array)
+            self.ks.body.position = (-16.72,10.0)
         
         return done, goal
 
@@ -229,7 +233,7 @@ class Foostronics:
             self.ks.delete_targetpoint()
         
         if not np.isnan(target):
-            self.ks.create_targetpoint((-15, target))
+            self.ks.create_targetpoint((-16.72, target))
         
         self.execute_action(action, old_action)
 

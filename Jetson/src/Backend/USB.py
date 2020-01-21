@@ -6,7 +6,7 @@
     Datum:
         16-1-2020
     Versie:
-        1.1
+        1.12
     Authors:
         Chileam Bohnen
     Used_IDE:
@@ -18,6 +18,8 @@
             Docstrings toegevoegd.
         1.11:
             Doxygen template toegepast.
+        1.12:
+            HL- HL+ commando's toegevoegd.
 ================================================
 """
 
@@ -363,6 +365,8 @@ class Commands(Enum):
     MM = 11, b'MM'
     RW = 12, b'RW'
     RR = 13, b'RR'
+    HOME_PLUS_LOW = 14, b'HL+'
+    HOME_MIN_LOW = 15, b'HL-'
 
     # From 100: Set commando's
     SET_DN = 100, b'DN='

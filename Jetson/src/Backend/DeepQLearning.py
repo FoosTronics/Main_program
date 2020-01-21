@@ -148,7 +148,7 @@ class DQLBase:
             self.vel_x = self.state[0][i+1] - self.state[0][i]
             self.vel_y = self.state[1][i+1] - self.state[1][i]
 
-        target = self.state[1][0]+(((-15-self.state[0][0])/self.vel_x) * self.vel_y)
+        target = self.state[1][0]+(((-16.72-self.state[0][0])/self.vel_x) * self.vel_y)
 
         if((self.vel_x > 0) or (target > 11.26) or (target < 6.16)):
             target = np.nan

@@ -7,7 +7,7 @@
     Date:
         21-1-2020
     Version:
-        1.45
+        1.46
     Author:
         Daniël Boon
         Kelvin Sweere
@@ -33,6 +33,8 @@
             Proces van afbeelding ophalen tot positie van detecteren in een eigen Thread
         1.45:
             fixed te vaak achterelkaar goals maken
+        1.46:
+            mogelijke fix toegevoegd voor blocked niet kunnen registreren
 """ 
 #pylint: disable=E1101
 
@@ -118,6 +120,7 @@ class Foostronics:
         # self.hl, = plt.plot([], [])
         self.points_array = []
         self.scored = 0
+        self.old_ball_positions = []
 
     def start_get_ball_thread(self):
         """Opstarten van een nieuw proces die de functie update_ball_position uitvoert.
@@ -238,11 +241,18 @@ class Foostronics:
         done = 0
         goal = 0
 
+        if(len(self.old_ball_positions)<4):
+            self.old_ball_positions.append(self.ks.ball.position)
+        else:
+            self.old_ball_positions.pop(0)
+            self.old_ball_positions.append(self.ks.ball.position)
+        
         if(
             ((self.ks.ball.position.x < -18.5) and (self.ks.ball.position.y < (self.ks.SIM_BOTTOM*2/3)) and (self.ks.ball.position.y > (self.ks.SIM_BOTTOM*1/3))) or 
             (self.ks.ball.position.x < self.ks.SIM_LEFT)
           ):
             if(not self.scored):
+                self.old_ball_positions = []
                 goal = 1
                 done = 1
                 self.ks.goals += 1
@@ -250,16 +260,16 @@ class Foostronics:
                 if (len(self.points_array)>100):
                     self.points_array.pop(0)
                 self.ks.ratio = (100*self.points_array.count(1))/len(self.points_array)
-                self.ks.body.position = (-16.72,(self.ks.SIM_TOP/2))
+                self.ks.body.position = (-16.72,(self.ks.SIM_BOTTOM/2))
                 if(self.ks.shoot_bool):
                     self.ks.world.DestroyBody(self.ks.ball)
                     self.ks._reset_ball()
                 self.scored = 1
         elif(
-              ((vel_x_old < 0) and (vel_x > 0) and (self.ks.ball.position.x < -13) and (self.ks.ball.position.y < 11.26) and (self.ks.ball.position.y > 6.16)) or
+              ((vel_x_old < 0) and (vel_x > 0) and (self.old_ball_positions[0].x < -7) and (self.old_ball_positions[0].y < (self.ks.SIM_BOTTOM*2/3)) and (self.old_ball_positions[0].y> (self.ks.SIM_BOTTOM*1/3))) or
               (self.ks.shoot_bool and ((abs(self.ks.ball.linearVelocity.x) < 1) or self.ks.ball.linearVelocity.x > 1))
             ):
-
+            self.old_ball_positions = []
             goal = 0
             done = 1
             self.ks.blocks += 1
@@ -291,7 +301,7 @@ class Foostronics:
 
         if done:
             episode_rewards, total_reward = self.dql.prepare_new_round(goal, self.ks.ball, self.ks.body)
-
+            # print(np.sum(episode_rewards))
             # self.hl.set_xdata(np.append(self.hl.get_xdata(), (len(total_reward)-1)))
             # self.hl.set_ydata(np.append(self.hl.get_ydata(), np.sum(episode_rewards)))                    
             # plt.axis([0, len(total_reward), min(total_reward), max(total_reward)])

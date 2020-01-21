@@ -12,7 +12,7 @@
     Date:
         20-1-2020
     Version:
-        1.11
+        1.12
     Modifier:
         Daniël Boon
     Used_IDE:
@@ -27,6 +27,8 @@
         1.11:
             Spelling en grammatica commentaren nagekeken
             Engels vertaald naar Nederlands
+        1.12:
+            state volgorde omgedraait
 """
 
 import tensorflow as tf      # Deep Learning library
@@ -156,7 +158,7 @@ class DQLBase:
             self.vel_x = self.state[0][i+1] - self.state[0][i]
             self.vel_y = self.state[1][i+1] - self.state[1][i]
 
-        target = self.state[1][0]+(((-16.72-self.state[0][0])/self.vel_x) * self.vel_y)
+        target = self.state[1][3]+(((-16.72-self.state[0][3])/self.vel_x) * self.vel_y)
 
         if((self.vel_x > 0) or (target > 11.26) or (target < 6.16)):
             target = np.nan
@@ -168,19 +170,19 @@ class DQLBase:
         self.action = action
         if (not np.isnan(target)):
             if (np.array_equal(action, self.possible_actions[0])):
-                if(target > self.state[3][0]):
-                    self.reward += 0.2*abs(self.state[3][0]-target)
+                if(target > self.state[3][3]):
+                    self.reward += 0.2*abs(self.state[3][3]-target)
                 else:
-                    self.reward -= 0.05*(5.1-abs(self.state[3][0]-target))
+                    self.reward -= 0.05*(5.1-abs(self.state[3][3]-target))
 
             elif np.array_equal(action, self.possible_actions[1]):
-                if(target < self.state[3][0]):
-                    self.reward += 0.2*abs(self.state[3][0]-target)
+                if(target < self.state[3][3]):
+                    self.reward += 0.2*abs(self.state[3][3]-target)
                 else:
-                    self.reward -= 0.05*(5.1-abs(self.state[3][0]-target))
+                    self.reward -= 0.05*(5.1-abs(self.state[3][3]-target))
 
         if np.array_equal(action, self.possible_actions[2]):
-            if( (self.state[0][0] > -16) and (self.state[0][0] < -14) and (abs(self.state[3][0]-self.state[1][0]) < 0.37)):
+            if( (self.state[0][3] > -16) and (self.state[0][3] < -14) and (abs(self.state[3][3]-self.state[1][3]) < 0.37)):
                 self.reward += 0.5
             else:
                 self.reward -= 0.1
@@ -188,7 +190,7 @@ class DQLBase:
         if np.array_equal(action, self.possible_actions[3]):
             if(np.isnan(target)):
                 self.reward += 0.01
-            elif(abs(self.state[1][0]-target) < 0.37):
+            elif(abs(self.state[1][3]-target) < 0.37):
                 self.reward += 0.3
             else:
                 self.reward -= 0.05

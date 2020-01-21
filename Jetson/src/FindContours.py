@@ -37,7 +37,7 @@ if __name__ == "__main__":
     from glob import glob
 
 class FindContours:
-    """Class die de contouren van het veld kan detecteren. 
+    """Klasse die de contouren van het veld kan detecteren. 
     Dit wordt gedaan door een handmatige init in de main applicatie. 
     
     **Author**:         \n
@@ -49,7 +49,7 @@ class FindContours:
         20-1-2020   
     """
     def __init__(self, debug=False):
-        """Init van de FindContours class. 
+        """Init van de FindContours klasse. 
         
         Args:
             debug: (bool, optional) keuze of trackbars worden aangemaakt. Defaults to False.
@@ -294,7 +294,7 @@ class FindContours:
         return self.return_img
 
     def get_mask(self):
-        """Geeft de mask terug van de class.
+        """Geeft de mask terug van de klasse.
         
         Returns:
             (np.array) self.mask
@@ -302,7 +302,7 @@ class FindContours:
         return self.mask
     
     def get_img(self):
-        """Geeft de afbeelding terug van de class.
+        """Geeft de afbeelding terug van de klasse.
         
         Returns:
             (np.darray) self.img
@@ -310,7 +310,7 @@ class FindContours:
         return self.img
 
     def show_mask(self):
-        """Laat de mask zien die in de class aanwezig is.
+        """Laat de mask zien die in de klasse aanwezig is.
         """
         if self.mask is not None:
             cv2.imshow("mask", self.mask)
@@ -318,7 +318,7 @@ class FindContours:
             print("Geen mask aangemaakt. Voer get_table_now() uit.")
 
     def show_img(self):
-        """Laat de afbeelding zien die in de class aanwezig is met OpenCV.
+        """Laat de afbeelding zien die in de klasse aanwezig is met OpenCV.
         """
         cv2.imshow("img", self.img)
 
@@ -326,7 +326,7 @@ class FindContours:
         """Maak een nieuwe afbeelding aan.
         
         Args:
-            img (np.array): Nieuwe foto die wordt toegevoegd aan de class.
+            img (np.array): Nieuwe foto die wordt toegevoegd aan de klasse.
         """
         self.img = img
         self.drawing_img = cv2.GaussianBlur(img, (3, 3), cv2.BORDER_DEFAULT)

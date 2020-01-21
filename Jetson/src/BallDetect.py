@@ -2,7 +2,7 @@
     Detecteerd de bal op het veld. 
 
     File:
-        BallDetectClass.py
+        BallDetect.py
     Date:
         20-1-2020
     Version:
@@ -40,7 +40,7 @@ import imutils
 center2 = (0, 0)
 
 class BallDetection:
-    """Class om de bal uit een afbeelding te extraheren.
+    """Klasse om de bal uit een afbeelding te extraheren.
 
     **Author**:         \n
         Sipke Vellinga  \n
@@ -130,7 +130,7 @@ class BallDetection:
         return self.center
 
     def new_frame(self, img):
-        """Zet een afbeelding om naar het frame binnen de class. \n
+        """Zet een afbeelding om naar het frame binnen de klasse. \n
         Hier zal de bal vanaf worden geëxtraheerd.
         
         Args:
@@ -242,7 +242,7 @@ class BallDetection:
 if __name__ == "__main__":
     """
     Test script om te testen of de code het doet. 
-    De code checkt in: /Test foto's/ball/   map naar alle foto's en stuurt deze in de class om te testen. 
+    De code checkt in: /Test foto's/ball/   map naar alle foto's en stuurt deze in de klasse om te testen. 
     """
     from glob import glob
 

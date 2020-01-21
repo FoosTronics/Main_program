@@ -90,7 +90,7 @@ class KeeperSim(Framework):
     description = "Druk op C om het spel te starten."
 
     def __init__(self,up_speed=100, down_speed=-100, shoot_bool=True):
-        """Initialisatie van de KeeperSim class.
+        """Initialisatie van de KeeperSim klasse.
         
         Args:
             up_speed: (int, optional) snelheid van de keeper lateraal. Standaard 100.
@@ -147,10 +147,10 @@ class KeeperSim(Framework):
         self.set_ball((b_x, b_y))  # Creëer de bal.
 
     def set_Foostronics(self, Foostronics):
-        """Foostronics class initialiseren in de KeeperSim class.
+        """Foostronics klasse initialiseren in de KeeperSim klasse.
         
         Args:
-            Foostronics: (class) Class van de main applicatie.
+            Foostronics: (class) klasse van de main applicatie.
         """ 
         self.fs = Foostronics(self)
 
@@ -169,7 +169,7 @@ class KeeperSim(Framework):
         
         Args:
             key: (int) nummer input toets die word ingedrukt.
-            settings: (class) class met parameter instellingen.
+            settings: (class) klasse met parameter instellingen.
         """
         if key == Keys.K_c:
             # self.SetBall((0.0 , random() * 20.0), force_param=False)

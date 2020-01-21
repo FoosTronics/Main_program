@@ -45,7 +45,7 @@ warnings.filterwarnings('ignore')
 
 class DQLBase:
     """
-    Class voor de Deep-Q-Learning.
+    Klasse voor de Deep-Q-Learning.
 
     **Author**:
         Daniël Boon \n
@@ -197,7 +197,7 @@ class DQLBase:
         return action, old_action, target, self.vel_x, self.vel_x_old
 
     def update_data(self, done, ball, keeper):
-        """Update de data naar de memory class.
+        """Update de data naar de memory klasse.
         
         Args:
             done: (bool) controleert of de ronde is afgelopen.   
@@ -417,7 +417,7 @@ def stack_states(stacked_states, new_state, is_new_episode, stack_size):
 
 class DQNetwork:
     """
-    Class voor het opbouwen van het neurale netwerk. 
+    Klasse voor het opbouwen van het neurale netwerk. 
 
     **Author**:
         Daniël Boon \n
@@ -535,7 +535,7 @@ def predict_action(explore_start, explore_stop, decay_rate, decay_step, state, a
         state: (numpy array) numpy array van state.
         actions: (list) lijst van mogelijke acties voor ai.
         sess: (tf.Session()) TensorFlow session.
-        DQNetwork: (class) DQNetwork class.
+        DQNetwork: (class) DQNetwork klasse.
     
     Returns:
         action: (list) lijst waarin een boolean aangeeft welke actie genomen dient te worden.

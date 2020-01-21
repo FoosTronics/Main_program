@@ -1,5 +1,5 @@
 """
-    In deze class kan er met behulp van twee coördinaat punten de benodigde keeper positie worden bepaald.
+    In deze klasse kan er met behulp van twee coördinaat punten de benodigde keeper positie worden bepaald.
     Hierbij wordt: extra-polation toegepast, coördinaat naar mm geconverteerd, de keeper stap positie bepaald
     en de drivers aangestuurd.
 
@@ -54,7 +54,7 @@ from pygame.locals import (
 )
 
 class Controller:
-    """In deze class kan er met behulp van twee coördinaat punten de benodigde keeper positie worden bepaald.
+    """In deze klasse kan er met behulp van twee coördinaat punten de benodigde keeper positie worden bepaald.
        Hierbij wordt: extra-polation toegepast, coördinaat naar mm geconverteerd, de keeper stap positie bepaald
        en de drivers aangestuurd.
     
@@ -233,7 +233,7 @@ class Controller:
             return keep_x, keep_y
 
 if __name__ == "__main__":
-    """Test code voor Controller class met vier sliders om de coördinaten van punt 1 en 2 van de bal te bepalen.
+    """Test code voor Controller klasse met vier sliders om de coördinaten van punt 1 en 2 van de bal te bepalen.
     """
 
     # pc = PController()

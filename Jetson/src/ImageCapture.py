@@ -42,7 +42,7 @@ class ImageCapture:
     """
 
     def __init__(self, res=(640, 360), file=None, save=False):
-        """Initialiseer de ImageCapture class. 
+        """Initialiseer de ImageCapture klasse. 
         
         Args:
             res: (tuple, optional) gewenste afbeelding resolutie(breedte, hoogte). Standaard (640, 360).

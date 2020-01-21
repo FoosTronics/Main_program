@@ -32,7 +32,7 @@
 import cv2
 
 class BeeldKoppeling():
-    """Class die een koppeling maakt tussen de beeldherkenning en de simulatie. Vertaalt hierbij de bal coördinaten in pixel positie
+    """Klasse die een koppeling maakt tussen de beeldherkenning en de simulatie. Vertaalt hierbij de bal coördinaten in pixel positie
     van de beeldherkenning naar coördinaten voor de simulatie. 
 
     **Author**: 
@@ -174,17 +174,17 @@ class BeeldKoppeling():
 
 
     def _init_video_function(self):
-        """Initialiseerd de video met de BallDetection class. 
+        """Initialiseerd de video met de BallDetection klasse. 
         Deze functie wordt gebruikt voor de demo.
 
         Note:
-        **NameError**: Er is geen file meegegeven aan de init van de BeeldKoppeling class.
+        **NameError**: Er is geen file meegegeven aan de init van de BeeldKoppeling klasse.
         """
 
         for file in self.files:  #check per file
-            self.detect_ball = BallDetection(file) #maak class aan
+            self.detect_ball = BallDetection(file) #maak klasse aan
         
-        # hoeft maar een keer uitgevoerd te worden, omdat er een vaste crop functie is.
+        # Hoeft maar een keer uitgevoerd te worden, omdat er een vaste crop functie is.
         img = self.detect_ball.get_frame()
         self.HEIGHT_IMG, self.WIDTH_IMG, _ = img.shape
 

@@ -1,5 +1,5 @@
 """
-    Hoofdclass FoosTronics.
+    Hoofdklasse FoosTronics.
     De onderdelen voor beeldherkenning, AI en motor aansturing komen in dit bestand bijelkaar.
 
     File:
@@ -54,7 +54,7 @@ import os
 DEBUG_VIDEO = False
 
 class Foostronics:
-    """Class van de main applicatie.
+    """Klasse van de main applicatie.
     
     **Author**:       \n
        Daniël Boon    \n

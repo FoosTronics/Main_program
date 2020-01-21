@@ -120,8 +120,7 @@ class KeeperSim(Framework):
         self.radius = radius = 0.5
         
         # Keeper maken
-        # self.create_keeper((-16.72,10.0))
-        self.create_keeper((-16.72, 6.67))
+        self.create_keeper((-16.72,10.0))
         self.scaler = 15/19.35
         self.target = 0 #Eindpunt voor het schot van de bal.
         

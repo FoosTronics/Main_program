@@ -8,9 +8,9 @@
     File:
         KeeperSim.py
     Date:
-        20-1-2020
+        21-1-2020
     Version:
-        1.5
+        1.51
     Modifier:
         Daniël Boon
         Kelvin Sweere
@@ -37,8 +37,10 @@
             Spelling en grammatica commentaren nagekeken.
         1.48:
             KEEPER_SPEED gevalideerd.
-        1.5
+        1.5:
             Initialisatie Foostronics klasse niet in set_Foostronics, maar in main.py. In set_Foostronics wordt nu foosTronics object meegegeven.
+        1.51:
+            Fixed geen ai save bestanden kunnen laden of opslaan
 """ 
 '''
 Used libraries/repositories:
@@ -203,15 +205,18 @@ class KeeperSim(Framework):
         if key == Keys.K_m:
             date_time = datetime.now().strftime("%m-%d-%Y, %H-%M-%S")
             #save_path = self.saver.save(self.sess, "/AI_models/AI_save %s.ckpt" % (date_time))
-            save_path = self.saver.save(self.sess, "AI_models/AI_save_%s.ckpt" % (date_time))
+            save_path = self.fs.dql.saver.save(self.fs.dql.sess, "AI_models/AI_save_%s.ckpt" % (date_time))
             print("AI model opgeslagen")
         if key == Keys.K_r:
             filename = askopenfilename().split('.')
-            filename = (filename[0]+'.'+filename[1])
-            # filename = (filename.split('.')[0],'.',filename.split('.')[1])
-            print(filename)
-            if filename:
-                self.saver.restore(self.sess, filename)
+            try:
+                filename = (filename[0]+'.'+filename[1])
+                # filename = (filename.split('.')[0],'.',filename.split('.')[1])
+                if filename:
+                    self.fs.dql.saver.restore(self.fs.dql.sess, filename)
+                    print("AI geladen van bestand: " + filename)
+            except:
+                print("geen bestand gevonden")
         
     def Keyboard_up(self, key):
         """Wanneer een toets wordt losgelaten, ga naar deze functie.

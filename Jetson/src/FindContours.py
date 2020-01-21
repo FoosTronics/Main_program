@@ -8,7 +8,7 @@
     Date:
        20-1-2020
     Version:
-        1.22
+        1.3
     Modifier / Authors:
         Kelvin Sweere
         Chileam Bohnen
@@ -27,6 +27,8 @@
             Doxygen commentaar toegevoegd. 
         1.22:
             Spelling en grammatica commentaar nagekeken
+        1.3
+            return_img verwijdert. in get_cropped_field wordt het geschaalde speelveld terug gegeven.
 """
 
 import numpy as np
@@ -44,7 +46,7 @@ class FindContours:
         Kelvin Sweere   \n
         Chileam Bohnen  \n
     **Version**:
-        1.22            \n
+        1.3            \n
     **Date**:
         20-1-2020   
     """
@@ -71,10 +73,10 @@ class FindContours:
         self.MAX_OPP = self.WIDTH * self.HEIGHT
 
         # manuel cropping parameters
-        self.left_border = 55
-        self.right_border = 595
-        self.top_border = 35
-        self.bottom_border = 445
+        self.left_border = 0
+        self.right_border = 640
+        self.top_border = 0
+        self.bottom_border = 360
 
         cv2.namedWindow("Handmatig bijsnijden")
         cv2.createTrackbar("Linkerrand", "Handmatig bijsnijden", self.left_border, self.WIDTH, nothing)
@@ -277,21 +279,19 @@ class FindContours:
 
             self.cropped_mask = self._get_field_threshold(self.cropped_img) #krijg mask terug.
             contour = self._find_table_contour(self.cropped_mask)
-            self.return_img = self._crop_img_till_contour(self.cropped_img, contour)
+            return self._crop_img_till_contour(self.cropped_img, contour)
         else:
             self.left_border = cv2.getTrackbarPos("Linkerrand", "Handmatig bijsnijden")
-            self.right_border = cv2.getTrackbarPos("Rechterrand", "Handmatig bijsnijde")
-            self.top_border = cv2.getTrackbarPos("Bovenrand", "Handmatig bijsnijde")
-            self.bottom_border = cv2.getTrackbarPos("Onderrand", "Handmatig bijsnijde")
+            self.right_border = cv2.getTrackbarPos("Rechterrand", "Handmatig bijsnijden")
+            self.top_border = cv2.getTrackbarPos("Bovenrand", "Handmatig bijsnijden")
+            self.bottom_border = cv2.getTrackbarPos("Onderrand", "Handmatig bijsnijden")
 
             cv2.line(self.drawing_img, (self.left_border, 0), (self.left_border, self.HEIGHT), (0, 0, 255), 3)
             cv2.line(self.drawing_img, (self.right_border, 0), (self.right_border, self.HEIGHT), (0, 0, 255), 3)
             cv2.line(self.drawing_img, (0, self.top_border), (self.WIDTH, self.top_border), (0, 0, 255), 3)
             cv2.line(self.drawing_img, (0, self.bottom_border), (self.WIDTH, self.bottom_border), (0, 0, 255), 3)
 
-            self.return_img = self._crop_img_till_contour(self.drawing_img)
-
-        return self.return_img
+            return self._crop_img_till_contour(self.img)
 
     def get_mask(self):
         """Geeft de mask terug van de klasse.
@@ -328,8 +328,8 @@ class FindContours:
         Args:
             img (np.array): Nieuwe foto die wordt toegevoegd aan de klasse.
         """
-        self.img = img
-        self.drawing_img = cv2.GaussianBlur(img, (3, 3), cv2.BORDER_DEFAULT)
+        self.img = cv2.GaussianBlur(img, (3, 3), cv2.BORDER_DEFAULT)
+        self.drawing_img = img
 
 
 #test script

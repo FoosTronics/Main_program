@@ -6,7 +6,7 @@
     Date:
         20-1-2020
     Version:
-        3.42
+        3.5
     Modifier:
         Sipke Vellinga
         Chileam Bohnen
@@ -31,6 +31,8 @@
             Doxygen commentaar toegevoegd.
         3.42: 
             commentaar gevalideerd
+        3.5:
+            cv2.imshow uit get_balpos() procedure.
 """
 
 import numpy as np
@@ -46,9 +48,9 @@ class BallDetection:
         Sipke Vellinga  \n
         Chileam Bohnen  \n
     **Version**:
-        3.42            \n
+        3.5             \n
     **Date**:
-        20-1-2020  
+        21-1-2020  
     """
     def __init__(self, file=None):
         """
@@ -125,7 +127,6 @@ class BallDetection:
         self.get_trackbarpos()
         self.image_filter()
         self.ball_detect()
-        self.show_frame()
 
         return self.center
 

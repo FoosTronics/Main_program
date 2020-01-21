@@ -5,9 +5,9 @@
     File:
         main.py
     Date:
-        20-1-2020
+        21-1-2020
     Version:
-        1.43
+        1.44
     Author:
         Daniël Boon
         Kelvin Sweere
@@ -29,7 +29,8 @@
             Spelling en grammatica commentaar nagekeken
         1.43:
             go_home functie operationeel zonder hardware sensor voor home positie
-
+        1.44:
+            Proces van afbeelding ophalen tot positie van detecteren in een eigen Thread
 """ 
 #pylint: disable=E1101
 
@@ -49,6 +50,8 @@ import numpy as np
 
 import cv2
 import time
+from threading import Thread
+from queue import Queue
 
 #TODO temp...
 from glob import glob
@@ -64,9 +67,9 @@ class Foostronics:
         Kelvin Sweere \n
         Chileam Bohnen\n
     **Version**:
-        1.42          \n
+        1.44          \n
     **Date**:
-        20-1-2020 
+        21-1-2020 
     """
     def __init__(self, keeper_sim):
         """initialisatie main.
@@ -101,6 +104,7 @@ class Foostronics:
         # self.DQL = DQL
         self.ks = keeper_sim
         print(self.ks.screen)
+        self.que = Queue(1)
 
         try:
             self.con = Controller()
@@ -110,6 +114,43 @@ class Foostronics:
 
         # self.hl, = plt.plot([], [])
         self.points_array = []
+    def start_get_ball_thread(self):
+        """Opstarten van een nieuw proces die de functie update_ball_position uitvoert.
+        """
+        ball_thread = Thread(target=self.update_ball_position, args=())
+        ball_thread.daemon = True
+        ball_thread.start()
+
+    def update_ball_position(self):
+        """Opstarten van bal detectie proces dat een afbeelding uit van de gstreamer of van een bestand haalt.
+        Zie ImageCapture voor het ophalen van afbeeldingen, FindContours om het speelveld te schalen en BallDetect voor de bal detectie.
+        """
+        while True:
+            if not self.ks.running:
+                self.camera.camera.release()
+                cv2.destroyAllWindows()
+                break
+
+            if not self.que.full():
+                # get new frame from camera buffer
+                _frame = self.camera.get_frame()
+                # set new frame in find_contours object for image cropping
+                self.find_contours.new_img(_frame)
+
+                # get cropped image from find_contours
+                _field = self.find_contours.get_cropped_field()
+                cv2.imshow("field", self.find_contours.drawing_img)
+
+                # set height and width parameters
+                self.HEIGHT_IMG, self.WIDTH_IMG, _ = _field.shape
+                # set new cropped image in ball_detection object
+                self.ball_detection.new_frame(_field)
+                # get new ball position coordinates in image pixel values
+                cor = self.ball_detection.getball_pos()
+                cv2.imshow("ball detection", self.ball_detection.frame)
+                # convert image pixel values to simulation values
+                self.que.put(self._convert2_sim_cor(cor[0], cor[1]))
+            cv2.waitKey(1)
 
     def _convert2_sim_cor(self, x_p, y_p):
         """Zet de pixel positie van de beeldherkenning verhoudingsgewijs om naar pixel positie van de simulatie.
@@ -185,7 +226,6 @@ class Foostronics:
                 #TODO iets anders...
                 self.con.driver.transceive_message(0, Commands.STOP)
 
-
     def determine_goal(self, vel_x, vel_x_old):
         """Bepaal of er een goal is gescoord.
         
@@ -238,28 +278,8 @@ class Foostronics:
             keeper: (Box2D object) update nieuwe keeper aansturing in simulatie
             action: (int) update gekozen actie van AI in simulatie
         """
-        if not self.ks.running:
-            self.camera.camera.release()
-            cv2.destroyAllWindows()
 
-        # get new frame from camera buffer
-        _frame = self.camera.get_frame()
-        # set new frame in find_contours object for image cropping
-        self.find_contours.new_img(_frame)
-        # get cropped image from find_contours
-        _field = self.find_contours.get_cropped_field()
-        cv2.imshow("field", self.find_contours.drawing_img)
-        cv2.waitKey(1)
-
-        # set height and width parameters
-        self.HEIGHT_IMG, self.WIDTH_IMG, _ = _field.shape
-        # set new cropped image in ball_detection object
-        self.ball_detection.new_frame(_field)
-        # get new ball position coordinates in image pixel values
-        cor = self.ball_detection.getball_pos()
-        # convert image pixel values to simulation values
-        ball.position = self._convert2_sim_cor(cor[0], cor[1])
-
+        ball.position = self.que.get()
         action, old_action, target, vel_x, vel_x_old = self.dql.get_ai_action()
 
         if self.ks.tp:
@@ -299,5 +319,7 @@ if __name__ == "__main__":
     """start main code
     """
     keeperSim = KeeperSim()
-    keeperSim.set_Foostronics(Foostronics)
+    foosTronics = Foostronics(keeperSim)
+    foosTronics.start_get_ball_thread()
+    keeperSim.set_Foostronics(foosTronics)
     main(keeperSim)

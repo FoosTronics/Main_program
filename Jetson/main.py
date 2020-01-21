@@ -168,8 +168,8 @@ class Foostronics:
             (tuple) x & y coördinaten van de simulatie.
         """
         # x_simulatie posite
-        x_s = self.map_function(x_p, 0, self.WIDTH_IMG, -19.35, 19.35)
-        y_s = self.map_function(y_p, 0, self.HEIGHT_IMG, 17.42, 0)
+        x_s = self.map_function(x_p, 0, self.WIDTH_IMG, self.ks.SIM_LEFT, self.ks.SIM_RIGHT)    #-19.35, 19.35
+        y_s = self.map_function(y_p, 0, self.HEIGHT_IMG, self.ks.SIM_TOP, self.ks.SIM_BOTTOM)   #20, 0
 
         return x_s, y_s
     
@@ -240,7 +240,7 @@ class Foostronics:
 
         if(
             ((self.ks.ball.position.x < -18.5) and (self.ks.ball.position.y < 11.26) and (self.ks.ball.position.y > 6.16)) or 
-            (self.ks.ball.position.x < -19.35)
+            (self.ks.ball.position.x < self.ks.SIM_LEFT)
           ):
             if(not self.scored):
                 goal = 1
@@ -255,7 +255,6 @@ class Foostronics:
                     self.ks.world.DestroyBody(self.ks.ball)
                     self.ks._reset_ball()
                 self.scored = 1
-            
         elif(
               ((vel_x_old < 0) and (vel_x > 0) and (self.ks.ball.position.x < -13) and (self.ks.ball.position.y < 11.26) and (self.ks.ball.position.y > 6.16)) or
               (self.ks.shoot_bool and ((abs(self.ks.ball.linearVelocity.x) < 1) or self.ks.ball.linearVelocity.x > 1))
@@ -288,8 +287,7 @@ class Foostronics:
         
         self.execute_action(action, old_action)
 
-        done, goal = self.determine_goal(vel_x, vel_x_old)
-        
+        done, goal = self.determine_goal(vel_x, vel_x_old)  
 
         if done:
             episode_rewards, total_reward = self.dql.prepare_new_round(goal, self.ks.ball, self.ks.body)

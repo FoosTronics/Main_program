@@ -1,6 +1,4 @@
 # Main_program
-Volledig werkende eindbestanden om te spelen met de FoosTronics tafel
+Dit is de developer  branch. Jetson Nano is de main applicatie waarop de motoren, gyroscoop, etc. op kunnen worden aangesloten.
+Met de bestanden in deze branch kan het systeem getest en aangepast worden.
 
-Jetson Nano is de main applicatie waarop de motoren, gyroscoop, etc. op kunnen worden aangesloten.
-
-De Windows applicatie gaat over het testen van bijvoorbeeld AI en simulatie of voor test runnen.

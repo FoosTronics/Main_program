@@ -7,8 +7,8 @@ FoosTronics is een NLE minor project waarbij de keeper van een fysieke voetbalta
 
 ## Mappen
 Jetson Nano is de main applicatie waarop de motoren, gyroscoop, etc. op kunnen worden aangesloten.
+Dit is de huidige eindversie van het systeem, waarop het systeem dus werkend is.
 
-De Windows applicatie gaat over het testen van bijvoorbeeld AI en simulatie of voor test runnen.
 
 ## Motivatie
 Het project is gekozen om meer te leren over: AI, beeldherkenning, mechanica en hardware. 
@@ -37,5 +37,5 @@ Het project is gekozen om meer te leren over: AI, beeldherkenning, mechanica en 
 | Motordriver           | Arcus Technology ACE-SDE  |
 | Gyroscoop             | MPU6050                   |
 
-> Opbouw van het frame is te vinden onder: https://github.com/FoosTronics/Extra_files/blob/master/Handleiding%20FoosTronics%20-%20V1.1.pdf
+> In de handleiding staan de installatie- en gebruiksinstructies. Hierin is onder andere de opbouw van het frame te vinden: https://github.com/FoosTronics/Extra_files/blob/master/Handleiding%20FoosTronics%20-%20V1.1.pdf
 

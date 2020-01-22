@@ -188,7 +188,7 @@ class Driver:
         """Deze functie selecteerd een driver uit de lijst van motordrivers.
 
         Args:
-            (int) nummer van een aangesloten device.
+            device_number: (int) nummer van een aangesloten device.
         """
         self.device = self.performax_devices[device_number]
 
@@ -196,7 +196,7 @@ class Driver:
         """Deze functie haalt het serienummer en productnummer van een aangesloten driver op.
         
         Args:
-            (int) nummer van een aangesloten device.
+            device: (int) nummer van een aangesloten device.
         """
         self.descriptors.append([device.getSerialNumberDescriptor(), device.getProductDescriptor()])
 
@@ -229,7 +229,7 @@ class Driver:
         De verbinding wordt gemaakt met een geslecteerde driver. zie select_performaxe_device(self, device_number).
         
         Args:
-            (int) nummer van een aangesloten device.
+            device_num: (int) nummer van een aangesloten device.
         """
 
         # USB context opent een USB afhandelaar
@@ -248,7 +248,7 @@ class Driver:
         """Deze functie laat de USB interface los en sluit de USB verbinding.
         
         Args:
-            (handler) afhandelaar van het USB-interface.
+            handler: (handler) afhandelaar van het USB-interface.
         """
         # USB afhandelaar sluit de verbinding.
         self._close_port(handler)
@@ -268,6 +268,7 @@ class Driver:
         """Deze functie verstuurd commando's naar een USB apparaat.
 
         Args:
+            handler_num: (handler_num) nummer van een aangesloten handler.
             command: (Commands) een commando uit de klasse 'Commands'.
 
         Kwargs:

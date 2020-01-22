@@ -7,7 +7,7 @@
     Date:
         22-1-2020
     Version:
-        V1.1
+        V1.01
     Modifier:
         Daniël Boon    
     Used_IDE:
@@ -34,8 +34,8 @@
         1.0:
             Verwijzingen naar bestandsnamen gewijzigd
                 Header aangepast
-        1.1:
-            overtollig commetaar verwijdert 
+        1.01:
+            overtollig commetaar verwijdert + Doxygen commentaar toegevoegd.
 """
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
@@ -56,7 +56,6 @@
 # 2. Altered source versions must be plainly marked as such, and must not be
 # misrepresented as being the original software.
 # 3. This notice may not be removed or altered from any source distribution.
-
 
 
 from __future__ import (print_function, absolute_import, division)
@@ -84,14 +83,15 @@ from Box2D import (b2DrawExtended, b2Vec2)
 
 GUIEnabled = False
 
-
 class PygameDraw(b2DrawExtended):
-    """
-    This debug draw class accepts callbacks from Box2D (which specifies what to
-    draw) and handles all of the rendering.
+    """Deze class wordt aangeroepen door Box2D en handelt de rendering. 
 
-    If you are writing your own game, you likely will not want to use debug
-    drawing.  Debug drawing, as its name implies, is for debugging.
+    **Athor**:
+        Box2D         \n
+    **Version**:
+        1.01          \n
+    **Date**:
+        22-1-2020 
     """
     surface = None
     axisScale = 10.0
@@ -104,23 +104,34 @@ class PygameDraw(b2DrawExtended):
         self.test = test
 
     def StartDraw(self):
+        """Begin met tekenen.
+        """
         self.zoom = self.test.viewZoom
         self.center = self.test.viewCenter
         self.offset = self.test.viewOffset
         self.screenSize = self.test.screenSize
 
     def EndDraw(self):
+        """Stop met tekenen.
+        """
         pass
 
     def DrawPoint(self, p, size, color):
-        """
-        Draw a single point at point p given a pixel size and color.
+        """Tekent een enkele punt die wordt aangeroepen.
+        
+        Args:
+            p: (tuple) pixel punt in x & y coördinaten.
+            size: (int) groote van het te tekenen pixel.
+            color: (tuple) kleur van de te tekenen pixel in RGB.
         """
         self.DrawCircle(p, size / self.zoom, color, drawwidth=0)
 
     def DrawAABB(self, aabb, color):
-        """
-        Draw a wireframe around the AABB with the given color.
+        """Tekent een lijn rond het punt AABB met een gegeven kleur.
+        
+        Args:
+            aabb: (int) de te tekenen aabb waarde.
+            color: (tuple) de te tekenen kleur in RGB.
         """
         points = [(aabb.lowerBound.x, aabb.lowerBound.y),
                   (aabb.upperBound.x, aabb.lowerBound.y),
@@ -130,14 +141,20 @@ class PygameDraw(b2DrawExtended):
         pygame.draw.aalines(self.surface, color, True, points)
 
     def DrawSegment(self, p1, p2, color):
-        """
-        Draw the line segment from p1-p2 with the specified color.
+        """Teken een lijn vanaf het segment p1 tot p2 met een gekozen kleur.
+
+        Args:
+            p1: (tuple) x & y coördinaten van pixelpositie 1.
+            p2: (tuple) x & y coördinaten van pixelpositie 2.
+            color: (tuple) kleur die getekend moet worden in RGB.
         """
         pygame.draw.aaline(self.surface, color.bytes, p1, p2)
 
     def DrawTransform(self, xf):
-        """
-        Draw the transform xf on the screen
+        """Teken de getransformeerde van xf op het scherm.
+        
+        Args:
+            xf: (tuple) xf waarde die moet worden getekend.
         """
         p1 = xf.position
         p2 = self.to_screen(p1 + self.axisScale * xf.R.x_axis)
@@ -146,10 +163,19 @@ class PygameDraw(b2DrawExtended):
         pygame.draw.aaline(self.surface, (255, 0, 0), p1, p2)
         pygame.draw.aaline(self.surface, (0, 255, 0), p1, p3)
 
+
+kleur die getekend moet worden in RGB.
     def DrawCircle(self, center, radius, color, drawwidth=1):
-        """
-        Draw a wireframe circle given the center, radius, axis of orientation
-        and color.
+        """Teken een cirkel in de simulatie.
+        
+        Args:
+            center: (tuple) x,y coördinaten op de simulatie.
+            radius: (int) pixel breedte vanaf de center.
+            color: (tuple) kleur die getekend moet worden in RGB.
+            drawwidth: (int, optional) dikte van de lijn. Standaard 1.
+
+        Note:
+            Wanneer een ingekleurde cirkel getekend moet worden gebruik: DrawSolidCircle.
         """
         radius *= self.zoom
         if radius < 1:
@@ -161,9 +187,16 @@ class PygameDraw(b2DrawExtended):
                            center, radius, drawwidth)
 
     def DrawSolidCircle(self, center, radius, axis, color):
-        """
-        Draw a solid circle given the center, radius, axis of orientation and
-        color.
+        """Teken een ingekleurde cirkel in de simulatie.
+        
+        Args:
+            center: (tuple) x,y coördinaten op de simulatie.
+            radius: (int) pixel breedte vanaf de center.
+            color: (tuple) kleur die getekend moet worden in RGB.
+            drawwidth: (int, optional) dikte van de lijn. Standaard 1.
+        
+        Note:
+            Wanneer een niet ingekleurde cirkel getekend moet worden gebruik: DrawCircle.
         """
         radius *= self.zoom
         if radius < 1:
@@ -179,8 +212,11 @@ class PygameDraw(b2DrawExtended):
                             center[1] + radius * axis[1]))
 
     def DrawPolygon(self, vertices, color):
-        """
-        Draw a wireframe polygon given the screen vertices with the specified color.
+        """Teken een polygon op het scherm.
+        
+        Args:
+            vertices: (tuple) hoekpunten van het te tekenen polygon.
+            color: (tuple) kleur die getekend moet worden in RGB.
         """
         if not vertices:
             return
@@ -192,8 +228,13 @@ class PygameDraw(b2DrawExtended):
             pygame.draw.polygon(self.surface, color.bytes, vertices, 1)
 
     def DrawSolidPolygon(self, vertices, color):
-        """
-        Draw a filled polygon given the screen vertices with the specified color.
+        """Teken een ingekleurde polygon.
+        
+        Args:
+            vertices: (tuple) hoekpunten van het te tekenen polygon.
+            color: (tuple) kleur die getekend moet worden in RGB.
+        Note:
+            Wanneer een niet ingekleurde polygon getekend moet worden kan de functi
         """
         if not vertices:
             return
@@ -226,15 +267,31 @@ class PygameDraw(b2DrawExtended):
 
 
 class PygameFramework(FrameworkBase):
+    """PygameFramework is het raamwerk van de Box2D simulatie.
+    
+    Args:
+        FrameworkBase: (class) base van het Pygame raamwerk.
+    
+    **Athor**:
+        Box2D         \n
+    **Version**:
+        1.01          \n
+    **Date**:
+        22-1-2020 
+    """
     TEXTLINE_START = 30
 
     def setup_keys(self):
+        """Initaliseer de knoppen.
+        """
         keys = [s for s in dir(pygame.locals) if s.startswith('K_')]
         for key in keys:
             value = getattr(pygame.locals, key)
             setattr(Keys, key, value)
 
     def __reset(self):
+        """Reset de PygameFramework klasse.
+        """
         # Screen/rendering-related
         self._viewZoom = 10.0
         self._viewCenter = None
@@ -251,6 +308,8 @@ class PygameFramework(FrameworkBase):
         self.setup_keys()
 
     def __init__(self):
+        """Initaliseer de PygameFramework class.
+        """
         super(PygameFramework, self).__init__()
 
         self.__reset()
@@ -295,10 +354,10 @@ class PygameFramework(FrameworkBase):
         self.groundbody = self.world.CreateBody()
 
     def setCenter(self, value):
-        """
-        Updates the view offset based on the center of the screen.
+        """Ververst het scherm gebaseert op het midden van het scherm.
 
-        Tells the debug draw to update its values also.
+        Args:
+            value: (tuple) waarde die geset worden geset.
         """
         self._viewCenter = b2Vec2(*value)
         self._viewCenter *= self._viewZoom
@@ -315,9 +374,8 @@ class PygameFramework(FrameworkBase):
                           doc='The offset of the top-left corner of the screen')
 
     def checkEvents(self):
-        """
-        Check for pygame events (mainly keyboard/mouse events).
-        Passes the events onto the GUI also.
+        """Checkt of er een pygame event optreed (toetsenbord of muis).
+        Geeft het gevonden event door aan de GUI.
         """
         for event in pygame.event.get():
             if event.type == QUIT or (event.type == KEYDOWN and event.key == Keys.K_ESCAPE):
@@ -364,12 +422,12 @@ class PygameFramework(FrameworkBase):
     
     def run(self):
         """
-        Main loop.
+        Main loop van de class.
 
-        Continues to run while checkEvents indicates the user has
-        requested to quit.
+        Wordt uitgevoerd wanneer checkEvents controleert of er een 
+        event is opgetreden.
 
-        Updates the screen and tells the GUI to paint itself.
+        Ververst het scherm en zorgt dat de GUI de objecten weergeeft.
         """
         # If any of the test constructors update the settings, reflect
         # those changes on the GUI before running
@@ -433,11 +491,15 @@ class PygameFramework(FrameworkBase):
         self.fs.camera.camera.release()
 
     def _Keyboard_Event(self, key, down=True):
-        """
-        Internal keyboard event, don't override this.
+        """Interne keyboard events.
+       
+        Args:
+            key: (char) ingedrukte knop.
+            down: (bool, optional) boolean of de knop is ingedrukt, true = ingedrukt, false = niet ingedrukt.
+            Standaard True.
 
-        Checks for the initial keydown of the basic testbed keys. Passes the unused
-        ones onto the test via the Keyboard() function.
+        Warning:
+            Overschrijf dit niet!
         """
         if down:
             if key == Keys.K_z:       # Zoom in
@@ -458,11 +520,8 @@ class PygameFramework(FrameworkBase):
             self.KeyboardUp(key)
 
     def CheckKeys(self):
+        """Controleer de toetsen die worden ingedrukt in de main loop.
         """
-        Check the keys that are evaluated on every main loop iteration.
-        I.e., they aren't just evaluated when first pressed down
-        """
-
         pygame.event.pump()
         self.keys = keys = pygame.key.get_pressed()
         if keys[Keys.K_LEFT]:
@@ -480,6 +539,11 @@ class PygameFramework(FrameworkBase):
             self.viewCenter = (0.0, 20.0)
 
     def Step(self, settings):
+        """Zet een stap verder in de simualtie.
+        
+        Args:
+            settings: (class) instellingen van de klasse.
+        """
         if GUIEnabled:
             # Update the settings based on the GUI
             self.gui_table.updateSettings(self.settings)
@@ -492,38 +556,49 @@ class PygameFramework(FrameworkBase):
             self.gui_table.updateGUI(self.settings)
 
     def ConvertScreenToWorld(self, x, y):
+        """Converteert het scherm naar de simulatie.
+        
+        Args:
+            x: (int) coördinaat x.
+            y: (int) coördinaat y.
+        """
         return b2Vec2((x + self.viewOffset.x) / self.viewZoom,
                       ((self.screenSize.y - y + self.viewOffset.y) / self.viewZoom))
 
     def DrawStringAt(self, x, y, str, color=(229, 153, 153, 255)):
-        """
-        Draw some text, str, at screen coordinates (x, y).
+        """Teken een string van tekst naar de Box2D simulatie op de x,y coördinaten.
+        
+        Args:
+            x: (int) coördinaat x.
+            y: (int) coördinaat y.
+            str: (string) tekst die moet worden weergegeven in de simulatie.
+            color: (tuple, optional) kleur van het object in RGB. Standaard (229, 153, 153, 255).
         """
         self.screen.blit(self.font.render(str, True, color), (x, y))
 
     def Print(self, str, color=(229, 153, 153, 255)):
-        """
-        Draw some text at the top status lines
-        and advance to the next line.
+        """Print tekst op de bovenste coördinaten.
+
+        Args:
+            str: (string) tekst die moet worden weergegeven.
+            color: (tuple, optional) kleur van het object in RGB. Standaard (229, 153, 153, 255).
         """
         self.screen.blit(self.font.render(
             str, True, color), (5, self.textLine))
         self.textLine += 15
 
     def Keyboard(self, key):
-        """
-        Callback indicating 'key' has been pressed down.
-        The keys are mapped after pygame's style.
-
-         from framework import Keys
-         if key == Keys.K_z:
-             ...
+        """Fucntie die standaard wordt uitgevoerd bij het intoetsen van een toets. Resulteert in niks.
+        
+        Args:
+            key: (char) toets die wordt ingedrukt.
         """
         pass
 
     def KeyboardUp(self, key):
-        """
-        Callback indicating 'key' has been released.
-        See Keyboard() for key information
+        """Zie Keyboard functie voor beschrijven.
+        
+        Args:
+            key: (char) toets die wordt ingedrukt.
         """
         pass

@@ -22,6 +22,8 @@
             Engels vertaald naar Nederlands
         1.13:
             HL- HL+ commando's toegevoegd.
+        1.14:
+            Tabellen toegevoed voor Doxygen
 ================================================
 """
 
@@ -44,6 +46,22 @@ class Driver:
 
         Args:
             device_count: (int) aantal verbonden USB motordrivers.
+
+        | Motordriver instellingen | Waarden |
+        |:------------------------:|:-------:|
+        | VENDOR_ID                | 0x1589  |
+        | PRODUCT_ID               | 0xA101  |
+        | WRITE ENDPOINT           | 0x02    |
+        | READ ENDPOINT            | 0x82    |
+
+        | Motordriver instellingen | Driver 0 | Driver 1 |
+        |:-------------------------|:---------|:---------|
+        | DRIVER_ID                | 2500     | 1500     |
+        | HIGH_SPEED               | 250      | 250      |
+        | LOW_SPEED                | 150      | 150      |
+        | ACCELERATION             | 25       | 150      |
+        | MAX_CURRENT              | 1000     | 1000     |
+
         """
         self.VENDOR_ID = 0x1589
         self.PRODUCT_ID = 0xA101
@@ -60,8 +78,6 @@ class Driver:
         self.DEVICE_COUNT = device_count
         self.MSG_CR = bytes(13)  # ascii 13 [CR]
         self.DRIVER_ID = ['SDE11', 'SDE03']
-
-        # TODO SET_DRVMS naar ratio 2 voor halfstep (fullstep is niet mogelijk)
 
         self.context, self.performax_devices = self.driver_init()
         self.descriptors = []
@@ -133,18 +149,8 @@ class Driver:
             value = (self.transceive_message((len(self.handlers) - 1), Commands.SET_EO,
                                              1) == Commands.OK.name) if value else False
             time.sleep(2.5)
-            # Sluit de USB verbinding
-            # if(i==0):
-            #     self.device2 = device
-            #     #self.device2.stuur("shoot")
-            #     self.transceive_message((len(self.handlers)-1), Commands.SET_DN, self.LIN_MOV_DRIVER_ID)
-            # if(i==1):
-            #     self.transceive_message((len(self.handlers)-1), Commands.SET_DN, self.SHOOT_MOV_DRIVER_ID)
 
-            # self.close_connection()
-            # i=+1
-
-        if (len(self.handlers) == 2):
+        if len(self.handlers) == 2:
             try:
                 if ((self.transceive_message(0, Commands.GET_DN).decode("utf-8") == self.DRIVER_ID[1]) and (
                         self.transceive_message(1, Commands.GET_DN).decode("utf-8") == self.DRIVER_ID[0])):
@@ -154,7 +160,7 @@ class Driver:
                     print("ERROR! PANIEK! schiet driver niet gevonden!")
                 elif ((self.transceive_message(0, Commands.GET_DN).decode("utf-8") != self.DRIVER_ID[0]) and (
                         self.transceive_message(1, Commands.GET_DN).decode("utf-8") != self.DRIVER_ID[0])):
-                    print("ERROR! PANIEK! lineaire bewegings driver niet gevonden!")
+                    print("ERROR! PANIEK! lineaire beweging driver niet gevonden!")
                 else:
                     print(self.transceive_message(0, Commands.GET_DN).decode("utf-8"))
                     print(self.transceive_message(1, Commands.GET_DN).decode("utf-8"))
@@ -181,7 +187,7 @@ class Driver:
         """Deze functie selecteerd een driver uit de lijst van motordrivers.
 
         Args:
-            device_number: (int) adres van het apparaat. 
+            (int) nummer van een aangesloten device.
         """
         self.device = self.performax_devices[device_number]
 
@@ -189,7 +195,7 @@ class Driver:
         """Deze functie haalt het serienummer en productnummer van een aangesloten driver op.
         
         Args:
-            device: (int) adres van desbetreffende apparaat.
+            (int) nummer van een aangesloten device.
         """
         self.descriptors.append([device.getSerialNumberDescriptor(), device.getProductDescriptor()])
 
@@ -201,7 +207,7 @@ class Driver:
             device: (int) Adres van desbetreffende device.
         
         Returns:
-            (handler) afhandelaar naar USB device. 
+            (handler) afhandelaar van USB-interface.
         """
         # USB context opent een USB afhandelaar
         handler = device.open()
@@ -222,7 +228,7 @@ class Driver:
         De verbinding wordt gemaakt met een geslecteerde driver. zie select_performaxe_device(self, device_number).
         
         Args:
-            device_num: (int) adres van het device. 
+            (int) nummer van een aangesloten device.
         """
 
         # USB context opent een USB afhandelaar
@@ -241,7 +247,7 @@ class Driver:
         """Deze functie laat de USB interface los en sluit de USB verbinding.
         
         Args:
-            handler: (handler) afhandelaar naar de USB.
+            (handler) afhandelaar van het USB-interface.
         """
         # USB afhandelaar sluit de verbinding.
         self._close_port(handler)
@@ -268,7 +274,7 @@ class Driver:
             read_size: (int) geheugen grootte voor ontvangen berichten. Standaard 128.
 
         Returns:
-            response: (bytes) ontvangen bericht. b'OK' of een waarde.
+            (bytes) ontvangen bericht. b'OK' of een waarde.
         """
         if value is not None:
             msg = command.name + bytearray(str(value), 'utf-8') + self.MSG_CR
@@ -287,7 +293,7 @@ class Driver:
             devices_list: (list) lijst van adressen van apparaten. 
 
         Returns:
-            performax_devices: (list) lijst van geverifieerde drivers.
+            (list) lijst van geverifieerde drivers.
         """
         performax_devices = []
         for device in devices_list:
@@ -300,7 +306,7 @@ class Driver:
         """Open een USB poort.
         
         Args:
-            handler: (handler) afhandelaar naar de USB.
+            handler: (handler) afhandelaar van het USB-interface.
         """
         _null_msg = bytearray('', 'utf-8')
         handler.controlWrite(
@@ -315,7 +321,7 @@ class Driver:
         """Maak de USB connectie leeg.
         
         Args:
-            handler: (handler) afhandelaar naar de USB.
+            handler: (handler) afhandelaar van het USB-interface.
         """
         _null_msg = bytearray('', 'utf-8')
         handler.controlWrite(
@@ -330,7 +336,7 @@ class Driver:
         """Sluit de USB connectie.
         
         Args:
-            handler: (handler) afhandelaar naar de USB.
+            handler: (handler) afhandelaar van het USB-interface.
         """
         _null_msg = bytearray('', 'utf-8')
         handler.controlWrite(
@@ -344,9 +350,57 @@ class Driver:
 
 class Commands(Enum):
     """Enum van mogelijke commando's die uit de datasheet van de Arcus Arcus Technology ACE-SDE zijn gehaald.
-    
+
     Args:
         Enum (Enum): Enum van lijst van commando's.
+
+    | Commando      | Waarde   |
+    |:--------------|----------|
+    | OK            | b'OK'    |
+    | STOP          | b'STOP'  |
+    | ABORT         | b'ABORT' |
+    | LIMIT_PLUS    | b'L+'    |
+    | LIMIT_MIN     | b'L-'    |
+    | HOME_PLUS     | b'H+'    |
+    | HOME_MIN      | b'H-'    |
+    | JPLUS         | b'J+'    |
+    | JMIN          | b'J-'    |
+    | ABS           | b'ABS'   |
+    | INC           | b'INC'   |
+    | MM            | b'MM'    |
+    | RW            | b'RW'    |
+    | RR            | b'RR'    |
+    | HOME_PLUS_LOW | b'HL+'   |
+    | HOME_MIN_LOW  | b'HL-'   |
+
+    | Commando  | Waarde    |
+    |:----------|-----------|
+    | SET_DN    | b'DN='    |
+    | SET_EO    | b'EO='    |
+    | SET_HSPD  | b'HSPD='  |
+    | SET_LSPD  | b'LSPD='  |
+    | SET_ACC   | b'ACC='   |
+    | SET_DEC   | b'DEC='   |
+    | SET_X     | b'X'      |
+    | SET_PX    | b'PX='    |
+    | SET_DRVRC | b'DRVRC=' |
+    | SET_DRVMS | b'DRVMS=' |
+
+    | Commando  | Waarde    |
+    |:----------|-----------|
+    | GET_ID    | b'ID'     |
+    | GET_DN    | b'DN'     |
+    | GET_EO    | b'EO'     |
+    | GET_HSPD  | b'HSPD'   |
+    | GET_LSPD  | b'LSDP'   |
+    | GET_ACC   | b'ACC'    |
+    | GET_DEC   | b'DEC'    |
+    | GET_MST   | b'MST'    |
+    | GET_PX    | b'PX'     |
+    | GET_DRVIC | b'DRVIC'  |
+    | GET_DRVMS | b'DRVMS'  |
+    | GET_PS    | b'PS'     |
+
     """
     def __init__(self, value, name):
         self._value_ = value

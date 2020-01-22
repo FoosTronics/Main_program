@@ -1,12 +1,13 @@
-"""
+""" 
     Geraamte voor de Box2D simulatie.
-
+    De basis van het geraamte is FrameworkBase. Kijk bij de hulp sectie hiervan voor meer informatie. 
+    
     File:
         Framework.py
     Date:
-        20-1-2020
+        22-1-2020
     Version:
-        1.11
+        1.12
     Modifier:
         Daniël Boon
     Used_IDE:
@@ -21,6 +22,8 @@
         1.11:
             Spelling en grammatica nagekeken
             Engels vertaald naar Nederlands
+        1.12:
+            Commentaar afgemaakt
 """
 
 #!/usr/bin/env python
@@ -43,9 +46,6 @@
 # misrepresented as being the original software.
 # 3. This notice may not be removed or altered from any source distribution.
 
-"""
-De basis van het geraamte is FrameworkBase. Kijk bij de hulp sectie hiervan voor meer informatie. 
-"""
 #from .PygameFramework import PygameFramework as Framework
 from .Settings import fwSettings
 
@@ -59,22 +59,36 @@ from Box2D.Box2D import (b2_addState, b2_dynamicBody, b2_epsilon, b2_persistStat
 
 
 class fwDestructionListener(b2DestructionListener):
-    """
-    
-    The destruction listener callback:
+    """The destruction listener callback:
     "SayGoodbye" wordt aangeroepen als een verbinding of vorm is verwijdert.
-
+    
+    Args:
+        b2DestructionListener ([class]): Verbindingen en vormen worden vernietigd wanneer 
+        hun bijbehorende lichaam wordt vernietigd. Implementeer deze luisteraar zodat u 
+        verwijzingen naar deze verbindingen en vormen teniet kunt doen.
+        
     **Modifier**: 
         Daniël Boon   \n
     **Version**:
-        1.1           \n
+        1.12           \n
     **Date**:
-        16-1-2020    
+        22-1-2020
+    
+    Warning:
+        Deze code is geschreven door derden en waar nodig aangepast/vertaald door de projectgroep. 
+        Dit is daarom niet volledig volgens Doxygen geformuleerd.
+
     """
 
     def __init__(self, test, **kwargs):
+        """Hier wordt de klasse van fwDestructionListener geinitialiseerd.
+        
+        Args:
+            test ([type]): [description]
+        """
         super(fwDestructionListener, self).__init__(**kwargs)
         self.test = test
+
 
     def SayGoodbye(self, obj):
         """Verwijder een Box2D object.
@@ -91,15 +105,40 @@ class fwDestructionListener(b2DestructionListener):
             self.test.FixtureDestroyed(obj)
 
 class fwQueryCallback(b2QueryCallback):
+    """Klasse voor het aanmaken van Query callbacks
+    
+    Args:
+        b2QueryCallback ([type]): [description]
+    
+    Returns:
+        [type]: [description]
+
+    **Modifier**: 
+        Daniël Boon   \n
+    **Version**:
+        1.12           \n
+    **Date**:
+        22-1-2020  
+    
+    Warning:
+        Deze code is geschreven door derden en waar nodig aangepast/vertaald door de projectgroep. 
+        Dit is daarom niet volledig volgens Doxygen geformuleerd.
+
+    """
 
     def __init__(self, p):
+        """Initialisatie van de klasse fwQueryCallback.
+        
+        Args:
+            p ([type]): [description]
+        """
         super(fwQueryCallback, self).__init__()
         self.point = p
         self.fixture = None
 
     def ReportFixture(self, fixture):
-        """[summary]
-        
+        """Hier wordt gecontroleerd of er een nieuw object is aangemaakt.
+
         Args:
             fixture ([type]): [description]
         
@@ -118,31 +157,51 @@ class fwQueryCallback(b2QueryCallback):
 
 
 class Keys(object):
+    """Deze functie wordt aangeroepen wanneer een andere functie een pointer genereerd, om nieuwe waardes te verversen.
+    
+    Args:
+        object ([type]): [description]
+    
+    **Modifier**: 
+        Daniël Boon   \n
+    **Version**:
+        1.12           \n
+    **Date**:
+        22-1-2020
+    
+    Warning:
+        Deze code is geschreven door derden en waar nodig aangepast/vertaald door de projectgroep. 
+        Dit is daarom niet volledig volgens Doxygen geformuleerd.
+
+    """
     pass
 
 
 class FrameworkBase(b2ContactListener):
-    """
-    De basis van het hoofd testbed geraamte.
+    """De basis van het hoofd testbed geraamte.
 
-    If you are planning on using the testbed framework and:
-    * Want to implement your own renderer (other than Pygame, etc.):
-      You should derive your class from this one to implement your own tests.
-      See empty.py or any of the other tests for more information.
-    * Do NOT want to implement your own renderer:
-      You should derive your class from Framework. The renderer chosen in
-      fwSettings (see settings.py) or on the command line will automatically
-      be used for your test.
     Als u van plan bent het testbed-framework te gebruiken en:
      * U wilt uw eigen renderer implementeren (anders dan Pygame, etc.):
-       Leid hieruit je eigen klas om je eigen testen te implementeren.
+       Leid hieruit je eigen klasse om je eigen testen te implementeren.
        Zie empty.py of een van de andere tests voor meer informatie.
      * Wilt u uw eigen renderer NIET implementeren:
-       Leid je klas uit Framework. De gekozen renderer in
+       Leid je klasse uit Framework. De gekozen renderer in
        fwSettings (zie settings.py) of op de opdrachtregel wordt automatisch
        gebruikt voor uw test.
 
+    **Modifier**: 
+        Daniël Boon   \n
+    **Version**:
+        1.12          \n
+    **Date**:
+        22-1-2020   
+
+    Warning:
+        Deze code is geschreven door derden en waar nodig aangepast/vertaald door de projectgroep. 
+        Dit is daarom niet volledig volgens Doxygen geformuleerd.
+        
     """
+
     name = "None"
     description = None
     TEXTLINE_START = 30
@@ -157,8 +216,10 @@ class FrameworkBase(b2ContactListener):
     }
 
     def __reset(self):
-        """ Herstel alle variabelen naar hun start waardes.
-        Niet aanroepen behalve bij initialisatie."""
+        """Herstel alle variabelen naar hun start waardes.
+        Niet aanroepen behalve bij initialisatie.
+        """
+        
         # Box2D-gerelateerd
         self.points = []
         self.world = None
@@ -176,6 +237,8 @@ class FrameworkBase(b2ContactListener):
         self.renderer = None
 
     def __init__(self):
+        """Initialisatie van de FrameworkBase klasse.
+        """
         super(FrameworkBase, self).__init__()
 
         self.__reset()
@@ -193,12 +256,14 @@ class FrameworkBase(b2ContactListener):
         self.settings.c_hz = 60
 
     def __del__(self):
+        """Deze functie wordt aangeroepen wanneer een andere functie een pointer genereerd, om nieuwe waardes te verversen.
+        """
         pass
 
     def Step(self, settings):
         """De belangrijkste stap voor de fysica.
 
-        Zorg voor de natuurkundige tekening (callacks worden uitgevoerd na de world.Step() )
+        Zorgt voor de natuurkundige tekening (callbacks worden uitgevoerd na de world.Step() )
         en voor het tekeningen van aanvullende informatie.
         
         Args:
@@ -353,7 +418,6 @@ class FrameworkBase(b2ContactListener):
     def ShiftMouseDown(self, p):
         """Indicatie dat er een linker klik op punt p aanwezig was (wereld coördinaten) met de linker shift-toets ingedrukt.
         
-        
         Args:
             p ([type]): [description]
         """
@@ -364,8 +428,10 @@ class FrameworkBase(b2ContactListener):
 
     # TODO: Dit is onbekend voor mij.   @@@
     def MouseDown(self, p):
-        """
-        Indicatie dat er een linker klik op punt p aanwezig was (wereld coördinaten)
+        """Indicatie dat er een linker klik op punt p aanwezig was (wereld coördinaten)
+        
+        Args:
+            p ([type]): [description]
         """
         if self.mouseJoint is not None:
             return
@@ -391,8 +457,10 @@ class FrameworkBase(b2ContactListener):
 
     # TODO: Dit is onbekend voor mij.   @@@
     def MouseUp(self, p):
-        """
-        Linker mouse knop omhoog.
+        """Linker muis knop omhoog.
+        
+        Args:
+            p ([type]): [description]
         """
         if self.mouseJoint:
             self.world.DestroyJoint(self.mouseJoint)
@@ -403,8 +471,10 @@ class FrameworkBase(b2ContactListener):
 
     # TODO: Dit is onbekend voor mij.   @@@
     def MouseMove(self, p):
-        """
-        Mouse verschoven naar punt p, in wereld coördinaten.
+        """Muis verschoven naar punt p, in wereld coördinaten.
+        
+        Args:
+            p ([type]): [description]
         """
         self.mouseWorld = p
         if self.mouseJoint:
@@ -413,11 +483,13 @@ class FrameworkBase(b2ContactListener):
     # TODO: Dit is onbekend voor mij.   @@@
 
     def SpawnBomb(self, worldPt):
-        """
-        Begins the slingshot bomb by recording the initial position.
-        Once the user drags the mouse and releases it, then
-        CompleteBombSpawn will be called and the actual bomb will be
-        released.
+        """Begint de katapultbom door de beginpositie vast te leggen.
+        Zodra de gebruiker de muis versleept en vervolgens loslaat
+        zal CompleteBombSpawn worden opgeroepen en de werkelijke bom zal worden
+        vrijgelaten.
+
+        Args:
+            worldPt ([type]): [description]
         """
         self.bombSpawnPoint = worldPt.copy()
         self.bombSpawning = True
@@ -425,9 +497,11 @@ class FrameworkBase(b2ContactListener):
     # TODO: Dit is onbekend voor mij.   @@@
 
     def CompleteBombSpawn(self, p):
-        """
-        Create the slingshot bomb based on the two points
-        (from the worldPt passed to SpawnBomb to p passed in here)
+        """Maak de katapultbom op basis van de twee punten
+        (doorgegeven van de worldPt aan SpawnBomb naar p hier)
+
+        Args:
+            p ([type]): [description]
         """
         if not self.bombSpawning:
             return
@@ -440,9 +514,12 @@ class FrameworkBase(b2ContactListener):
     # TODO: Dit is onbekend voor mij.   @@@
 
     def LaunchBomb(self, position, velocity):
-        """
-        A bomb is a simple circle which has the specified position and velocity.
-        position and velocity must be b2Vec2's.
+        """Een bom is een eenvoudige cirkel met de opgegeven positie en snelheid.
+        Positie en snelheid moeten b2Vec2's zijn.
+
+        Args:
+            position ([type]): [description]
+            velocity ([type]): [description]
         """
         if self.bomb:
             self.world.DestroyBody(self.bomb)
@@ -462,17 +539,16 @@ class FrameworkBase(b2ContactListener):
     # TODO: Dit is onbekend voor mij.   @@@
 
     def LaunchRandomBomb(self):
-        """
-        Create a new bomb and launch it at the testbed.
+        """Creëer een nieuwe bom en lanceer deze op het testbed.
+        
         """
         p = b2Vec2(b2Random(-15.0, 15.0), 30.0)
         v = -5.0 * p
         self.LaunchBomb(p, v)
 
     def SimulationLoop(self):
-        """
-        The main simulation loop. Don't override this, override Step instead.
-        """
+        """De hoofd simulatie loop. Niet overschrijven, maar vervang Step in plaats daarvan.
+        """ 
 
         # Reset the text line to start the text from the top
         self.textLine = self.TEXTLINE_START
@@ -489,7 +565,7 @@ class FrameworkBase(b2ContactListener):
         self.Step(self.settings)
 
     def ConvertScreenToWorld(self, x, y):
-        """Return a b2Vec2 in world coordinates of the passed in screen
+        """Geeft een b2Vec2 terug in wereld coördinaten van het doorgegeven scherm.
 
         Args:
             x (int): x cordinaat.
@@ -501,24 +577,41 @@ class FrameworkBase(b2ContactListener):
         raise NotImplementedError()
 
     def DrawStringAt(self, x, y, str, color=(229, 153, 153, 255)):
-        """
-        Draw some text, str, at screen coordinates (x, y).
-        NOTE: Renderer subclasses must implement this
+        """Teken een string van tekst naar het scherm op de x,y coördinaten.
+        NOTE: Renderer subklasses moeten dit implementeren.
+        
+        Args:
+            x ([type]): [description]
+            y ([type]): [description]
+            str ([type]): [description]
+            color (tuple, optional): [description]. Defaults to (229, 153, 153, 255).
+        
+        Raises:
+            NotImplementedError: [description]
         """
         raise NotImplementedError()
 
     def Print(self, str, color=(229, 153, 153, 255)):
-        """
-        Draw some text at the top status lines
-        and advance to the next line.
-        NOTE: Renderer subclasses must implement this
+        """Teken wat tekst op de bovenste statusregels
+         en ga door naar de volgende regel.
+        NOTE: Renderer subklasses moeten dit implementeren. 
+        
+        Args:
+            str ([type]): [description]
+            color (tuple, optional): [description]. Defaults to (229, 153, 153, 255).
+        
+        Raises:
+            NotImplementedError: [description]
         """
         raise NotImplementedError()
 
     def PreSolve(self, contact, old_manifold):
-        """
-        This is a critical function when there are many contacts in the world.
-        It should be optimized as much as possible.
+        """Dit is een kritieke functie wanneer er veel contacten zijn in de wereld.
+        Deze moet zoveel mogelijk geoptimaliseerd worden.
+        
+        Args:
+            contact ([type]): [description]
+            old_manifold ([type]): [description]
         """
         if not (self.settings.drawContactPoints or
                 self.settings.drawContactNormals or self.using_contacts):
@@ -548,42 +641,69 @@ class FrameworkBase(b2ContactListener):
     # These can/should be implemented in the test subclass: (Step() also if necessary)
     # See empty.py for a simple example.
     def BeginContact(self, contact):
+        """Deze functie wordt aangeroepen wanneer een er begonnen wordt met een contact, om nieuwe waardes te verversen.
+        
+        Args:
+            contact ([type]): [description]
+        """
         pass
 
     def EndContact(self, contact):
+        """Deze functie wordt aangeroepen wanneer een het contact wordt beindigd, om nieuwe waardes te verversen.
+        
+        Args:
+            contact ([type]): [description]
+        """
         pass
 
     def PostSolve(self, contact, impulse):
+        """Deze functie wordt aangeroepen om een vorige waarde te verversen.
+        
+        Args:
+            contact ([type]): [description]
+            impulse ([type]): [description]
+        """
         pass
 
     def FixtureDestroyed(self, fixture):
-        """
-        Callback indicating 'fixture' has been destroyed.
+        """Deze functie wordt aangeroepen als een vorm wordt verwijderd.
+        
+        Args:
+            fixture ([type]): [description]
         """
         pass
 
     def JointDestroyed(self, joint):
-        """
-        Callback indicating 'joint' has been destroyed.
+        """Deze functie wordt aangeroepen als een verbinding wordt verwijderd.
+
+        Args:
+            joint ([type]): [description]
         """
         pass
 
     def Keyboard(self, key, settings):
-        """
-        Callback indicating 'key' has been pressed down.
+        """Deze functie wordt aangeroepen als een toetsen wordt gebruikt.
+
+        Args:
+            key ([type]): [description]
+            settings ([type]): [description]
         """
         pass
 
     def KeyboardUp(self, key):
-        """
-        Callback indicating 'key' has been released.
+        """Deze functie wordt aangeroepen als de pijl naar boven toets wordt gebruikt.
+
+        Args:
+            key ([type]): [description]
         """
         pass
 
 
 def main(test_class):
-    """
-    Loads the test class and executes it.
+    """Loads the test class and executes it.
+
+    Args:
+        test_class ([type]): [description]
     """
     print("Loading %s..." % test_class.name)
     test = test_class

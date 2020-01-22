@@ -58,7 +58,7 @@ class BallDetection:
         Args:
             file: bestand voor de input van de frames.
         """
-        self.ilowY  =       110 # 0
+        self.ilowY  =       130 # 0
         self.ihighY =       255 # 255
         self.ilowU  =       65 # 0
         self.ihighU =       255 # 111

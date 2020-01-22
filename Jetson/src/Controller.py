@@ -35,27 +35,28 @@
 #pylint: disable=E1101
 import time
 # import matplotlib.pyplot as plt
+import cv2
 import numpy as np
 from math import pi
 import struct
-from .Backend.USB import Driver
-from .Backend.USB import Commands
+from src.Backend.USB import Driver
+from src.Backend.USB import Commands
 
-# from src.mpu6050 import  MPU6050
-from tkinter import *
-import pygame
-from pygame.locals import (
-    K_w,
-    K_a,
-    K_s,
-    K_d,
-    K_h,
-    K_p,
-    K_v,
-    K_ESCAPE,
-    KEYDOWN,
-    QUIT,
-)
+from src.Backend.MPU6050 import  MPU6050
+#from tkinter import *
+#import pygame
+#from pygame.locals import (
+#    K_w,
+#    K_a,
+#    K_s,
+#    K_d,
+#    K_h,
+#    K_p,
+#    K_v,
+#    K_ESCAPE,
+#    KEYDOWN,
+#    QUIT,
+#)
 
 class Controller:
     """In deze klasse kan er met behulp van twee coördinaat punten de benodigde keeper positie worden bepaald.
@@ -75,7 +76,7 @@ class Controller:
         """
         met_drivers = False
         self.driver = Driver(0)
-        # self.gyroscoop = MPU6050()
+        self.gyroscoop = MPU6050(debug=True)
         if self.driver.stepper_init():
             print("door init heen!")
             met_drivers = True
@@ -86,11 +87,6 @@ class Controller:
             # self.driver.open_connection()
         else:
             print("ERROR, PANIEK! --> geen stepper motor drivers gevonden!")
-            exit()
-
-        pygame.init()
-        self.screen = pygame.display.set_mode([500, 500])
-        self.clock = pygame.time.Clock()
 
         self.TABLE_LENGTH = 540 #mm
         self.y_length = 200 #coördinates
@@ -101,10 +97,11 @@ class Controller:
         self.KEEPER_DIS = 180 #mm
         self.MOTOR_STEP = 1.8 #deg/step
         #print(self.driver.transceive_message(Commands.GET_DRVMS).decode("utf-8"))
-        self.MICRO_STEP = int(self.driver.transceive_message(0, Commands.GET_DRVMS).decode("utf-8"))
-        self.MOTOR_TOTAL_STEPS = (360/self.MOTOR_STEP)*self.MICRO_STEP
+        self.MICRO_STEP = 2 #int(self.driver.transceive_message(0, Commands.GET_DRVMS).decode("utf-8"))
+        self.MOTOR_TOTAL_STEPS = (360/self.MICRO_STEP)*self.MICRO_STEP
         self.ONE_ROTATION = self.D_GEAR*pi
         self.ONE_STEP = self.ONE_ROTATION/self.MOTOR_TOTAL_STEPS
+        # self.step_correction()
 
     def test_lin_movement(self, co):
         """Bepaald de positie van de keeper en stuurt een opdracht naar drivers.
@@ -117,37 +114,35 @@ class Controller:
             want de drivers worden in deze funtie al aangestuurd).
         """
 
-        font = pygame.font.SysFont("arial", 15)
-        TEXT_COLOR = (255, 255, 255)
-        text = font.render("y coördinaat: ",True,TEXT_COLOR)
-        self.screen.blit(text, (10, 10))
-
         # step_data = self.driver.transceive_message(Commands.GET_PX).decode("utf-8") 
         # step = int(step_data)#int.from_bytes(step_data, byteorder='big', signed=True)#struct.unpack('<B', step_data)
         #print(step)
         step_pos = int(round((co * self.ratio_y_to_MM)/ self.ONE_STEP))
 
-        text = font.render(str(step_pos),True,TEXT_COLOR)
-        self.screen.blit(text, (10, 20))
-        pygame.display.flip()
-        self.clock.tick(60)
-
         self.driver.transceive_message(0, Commands.SET_X, step_pos)
         return step_pos
 
-    # def step_correction(self):
-    #     """Haalt stapcorrectie van de gyroscoop op regelt de hendel terug naar 0 graden (begin positie).
-    #     """
-    #     angle = self.gyroscoop.getXRotation()   #krijg de hoek van x terug.
-    #     # angle = self.gyroscoop.getYRotation()
-    #     # check angle rotation of gyroscoop
-    #     if int(angle) != 0:
-    #         # calculate step size for correction
-    #         step_size = int(self.MOTOR_STEP * angle * self.MICRO_STEP)
-    #         # move to corrected position
-    #         self.driver.transceive_message(1, Commands.SET_X, step_size)
-    #         # reset motordriver steps to zero
-    #         self.driver.transceive_message(1, Commands.SET_PX, 0)
+    def step_correction(self):
+        """haalt stapcorrectie van de gyroscoop op regelt de hendel terug naar 0 graden (begin positie).
+        """
+        self.driver.transceive_message(1, Commands.SET_PX, 0)
+        angle_x = int(self.gyroscoop.get_x_rotation())   #krijg de hoek van x terug.
+        print("angle_x:", angle_x)
+
+        # check angle rotation of gyroscoop
+        if int(angle_x) != 0:
+            # calculate step size for correction
+            step_size = -1 * int( (angle_x / (self.MOTOR_STEP / self.MICRO_STEP)/2) )
+            print("step_size:", step_size)
+            # move to corrected position
+            self.driver.transceive_message(1, Commands.SET_X, step_size)
+            while(int(self.driver.transceive_message(1, Commands.GET_PS).decode("utf-8"))):
+                pass
+            time.sleep(0.05)
+            print("pos 3:", self.driver.transceive_message(1, Commands.GET_PX))
+            # reset motordriver steps to zero
+            self.driver.transceive_message(1, Commands.SET_PX, 0)
+            time.sleep(0.05)
 
     def shoot(self):
         """Bestuurt de drivers zodat er axiaal bewogen wordt.
@@ -156,12 +151,20 @@ class Controller:
             self.driver.transceive_message(1, Commands.SET_X, 48)
             while(int(self.driver.transceive_message(1, Commands.GET_PS).decode("utf-8"))):
                 pass
+            time.sleep(0.05)
+            print("pos 0:", self.driver.transceive_message(1, Commands.GET_PX))
             self.driver.transceive_message(1, Commands.SET_X, -48)
             while(int(self.driver.transceive_message(1, Commands.GET_PS).decode("utf-8"))):
                 pass
+            time.sleep(0.05)
+            print("pos 1:", self.driver.transceive_message(1, Commands.GET_PX))
             self.driver.transceive_message(1, Commands.SET_X, 0)
-            # change motordriver position when steps are lost
-            # self.step_correction()
+            while(int(self.driver.transceive_message(1, Commands.GET_PS).decode("utf-8"))):
+                pass
+            time.sleep(0.1)
+            print("pos 2:", self.driver.transceive_message(1, Commands.GET_PX))
+            #change motordriver position when steps are lost
+            self.step_correction()
 
     def bitfield(self, n):
         """Converteerd een bit list naar een integer list.
@@ -284,64 +287,11 @@ if __name__ == "__main__":
     # pc = PController()
     pc = Controller()
 
-    half_dis = (pc.ratio_MM_to_y*pc.KEEPER_DIS)/2
-    half_dis = int(half_dis)-1
-    master = Tk()
-    w1 = Scale(master, from_=5, to=200, orient=HORIZONTAL)
-    w1.set(0)
-    w1.pack()
+    while True:
+        key = input()
+        pc.shoot()
 
-    w2 = Scale(master, from_=-(half_dis*2), to=(half_dis*2), orient=HORIZONTAL)
-    w2.set(0)
-    w2.pack()
 
-    w3 = Scale(master, from_=5, to=200, orient=HORIZONTAL)
-    w3.set(0)
-    w3.pack()
 
-    w4 = Scale(master, from_=-(half_dis*2), to=(half_dis*2), orient=HORIZONTAL)
-    w4.set(0)
-    w4.pack()
+        
 
-    Button(master, text='SHOOT!', command=pc.shoot).pack()
-    
-    co = 0
-    co_old = 0
-    while(1):
-        master.update_idletasks()
-        master.update()
-
-        pc.ratio_y_to_MM = (pc.TABLE_LENGTH/200) #200 is hierbij het aantal pixels in de breedte van de tafel
-        pc.ratio_MM_to_y = (200/pc.TABLE_LENGTH)
-
-        half_dis = (pc.ratio_MM_to_y*pc.KEEPER_DIS)/2
-        _ , co = pc.linear_extrapolation((w1.get(),w2.get()), (w3.get(),w4.get()), 5, half_dis)
-        #print(co)
-
-        if co == None:
-            co = 0
-            pc.test_lin_movement(co)
-
-        if(co != co_old):
-            co_old = co
-            pc.test_lin_movement(co)
-        for event in pygame.event.get():
-            if event.type == KEYDOWN:
-                if event.key == K_h:
-                    co = 0
-                    w1.set(co)
-                    w2.set(co)
-                    w3.set(co)
-                    w4.set(co)
-                    pc.test_lin_movement(co)
-                    time.sleep(0.1)
-                elif event.key == K_p:
-                    if int(pc.driver.transceive_message(0, Commands.GET_EO).decode("utf-8")):
-                        pc.driver.transceive_message(0, Commands.SET_EO, 0)
-                    else:
-                        pc.driver.transceive_message(0, Commands.SET_EO, 1)
-                elif event.key == K_v:
-                    pc.go_home()
-
-                elif event.key == K_ESCAPE:
-                    break

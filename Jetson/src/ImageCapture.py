@@ -123,7 +123,7 @@ class ImageCapture:
         """
         return (
             "nvarguscamerasrc !  video/x-raw(memory:NVMM), "
-            "width=1280, height=720, format=NV12, framerate="+str(framerate)+"/1 ! "
+            "width=1280, height=720, format=NV12, framerate=30/1 ! "
             "nvvidconv flip-method="+str(flip_method)+" ! "
             "video/x-raw, width="+str(display_width)+", height="+str(display_height)+", "
             "format=BGRx ! videoconvert ! video/x-raw, format=BGR ! appsink"

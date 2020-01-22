@@ -52,10 +52,10 @@ class Driver:
         self.INTERFACE_NUMBER = 0
         self.MICRO_STEP = 2
         self.STEP_SIZE = [100, 100]
-        self.HIGH_SPEED = [2500, 2500]
+        self.HIGH_SPEED = [2500, 1500]
         self.LOW_SPEED = [250, 250]
         self.ACCELERATION = [150, 150]
-        self.DECELERATION = [25, 25]
+        self.DECELERATION = [25, 150]
         self.MAX_CURRENT = [1000, 1000]
         self.DEVICE_COUNT = device_count
         self.MSG_CR = bytes(13)  # ascii 13 [CR]
@@ -90,7 +90,7 @@ class Driver:
                 i = 0
             elif (self.transceive_message((len(self.handlers) - 1), Commands.GET_DN).decode("utf-8") == self.DRIVER_ID[
                 1]):
-                i = 0
+                i = 1
             else:
                 value = False
 
@@ -114,7 +114,7 @@ class Driver:
                                              Commands.ABS) == Commands.OK.name) if value else False
             # Zet micro-stepping op 2, laagste waarde.
             value = (self.transceive_message((len(self.handlers) - 1), Commands.SET_DRVMS,
-                                             2) == Commands.OK.name) if value else False
+                                             value=self.MICRO_STEP) == Commands.OK.name) if value else False
             time.sleep(2.5)
             # Schrijf waarden naar flash geheugen.
             value = (self.transceive_message((len(self.handlers) - 1),

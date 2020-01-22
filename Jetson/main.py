@@ -5,9 +5,9 @@
     File:
         main.py
     Date:
-        21-1-2020
+        22-1-2020
     Version:
-        1.46
+        1.47
     Author:
         Daniël Boon
         Kelvin Sweere
@@ -35,6 +35,8 @@
             fixed te vaak achterelkaar goals maken
         1.46:
             mogelijke fix toegevoegd voor blocked niet kunnen registreren
+        1.47:
+            overtollig commetaar verwijdert 
 """ 
 #pylint: disable=E1101
 
@@ -45,7 +47,6 @@ from src.KeeperSim import *
 from src.Controller import *
 
 from src.Backend.Framework import main
-# import src.Backend.DeepQLearning as DQL
 from src.Backend.DeepQLearning import DQLBase
 
 #import matplotlib.pylab as plt
@@ -56,7 +57,6 @@ import time
 from threading import Thread
 from queue import Queue
 
-#TODO temp...
 from glob import glob
 import os
 
@@ -68,13 +68,13 @@ class Foostronics:
     """Klasse van de main applicatie.
     
     **Author**:       \n
-       Daniël Boon    \n
+        Daniël Boon   \n
         Kelvin Sweere \n
         Chileam Bohnen\n
     **Version**:
-        1.44          \n
+        1.47          \n
     **Date**:
-        21-1-2020 
+        22-1-2020 
     """
     def __init__(self, keeper_sim):
         """initialisatie main.
@@ -95,18 +95,7 @@ class Foostronics:
         self.WIDTH_IMG = 640
         self.HEIGHT_IMG = 360
 
-        #TODO temp...
-        # self.files = glob("C:\\Users\\" + os.getlogin() + "\\Stichting Hogeschool Utrecht\\NLE - Documenten\\Test foto's\\V1.3 cam normal Wide angle + ball\\output_fast.avi")
-        # for file in self.files:  #check per file
-        #     self.bd = BallDetection(file) #maak class aan
-        # img = self.bd.get_frame()
-        # self.HEIGHT_IMG, self.WIDTH_IMG, _ = img.shape
-        # # TODO: BeeldKoppeling wordt vervangen
-        # # self.bk = BeeldKoppeling(debug_flag=True)     # class die de beeldherkenning afhandeld. debug_flag=True (trackbars worden afgemaakt).
-
-        # self.bd = BallDetection()
         self.dql = DQLBase()
-        # self.DQL = DQL
         self.ks = keeper_sim
         print(self.ks.screen)
         self.que = Queue(2)
@@ -293,6 +282,7 @@ class Foostronics:
         if(not self.ks.shoot_bool):
             self.ks.ball.position = self.que.get()
         action, old_action, target, vel_x, vel_x_old = self.dql.get_ai_action()
+        print(target)
         self.ks.action = action
         
         self.execute_action(action, old_action)

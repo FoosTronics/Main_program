@@ -1,14 +1,14 @@
 """
     In deze klasse kan er met behulp van twee coördinaat punten de benodigde keeper positie worden bepaald.
-    Hierbij wordt: extra-polation toegepast, coördinaat naar mm geconverteerd, de keeper stap positie bepaald
-    en de drivers aangestuurd.
+    Hierbij wordt: extra-polation toegepast, coördinaat naar mm geconverteerd, de keeper stap positie bepaald,
+    laterale motor naar home positie gezet, axiale motor wordt mee geschoten en de drivers aangestuurd.
 
     File:
         Controller.py
     Date:
-        21-1-2020
+        22-1-2020
     Version:
-        1.34
+        1.35
     Authors:
         Daniël Boon
     Used_IDE:
@@ -30,11 +30,12 @@
             go_home functie operationeel zonder hardware sensor voor home positie
         1.34:
             fixed niet bestaande atributen
+        1.35:
+            Doxygen cometaar gecontroleerd + overtollig commetaar verwijdert 
 """ 
 
 #pylint: disable=E1101
 import time
-# import matplotlib.pyplot as plt
 import cv2
 import numpy as np
 from math import pi
@@ -43,32 +44,18 @@ from src.Backend.USB import Driver
 from src.Backend.USB import Commands
 
 from src.Backend.MPU6050 import  MPU6050
-#from tkinter import *
-#import pygame
-#from pygame.locals import (
-#    K_w,
-#    K_a,
-#    K_s,
-#    K_d,
-#    K_h,
-#    K_p,
-#    K_v,
-#    K_ESCAPE,
-#    KEYDOWN,
-#    QUIT,
-#)
 
 class Controller:
     """In deze klasse kan er met behulp van twee coördinaat punten de benodigde keeper positie worden bepaald.
-       Hierbij wordt: extra-polation toegepast, coördinaat naar mm geconverteerd, de keeper stap positie bepaald
-       en de drivers aangestuurd.
+    Hierbij wordt: extra-polation toegepast, coördinaat naar mm geconverteerd, de keeper stap positie bepaald,
+    laterale motor naar home positie gezet, axiale motor wordt mee geschoten en de drivers aangestuurd.
     
     **Author**: 
         Daniël Boon \n
     **Version**:
-        1.32        \n
+        1.35        \n
     **Date**:
-        20-1-2020 
+        22-1-2020 
     """
 
     def __init__(self):
@@ -82,9 +69,6 @@ class Controller:
             met_drivers = True
             self.calibrate_go_home()
             self.go_home()
-            # self.driver.select_performax_device(0)
-            # self.driver.get_device_descriptors()
-            # self.driver.open_connection()
         else:
             print("ERROR, PANIEK! --> geen stepper motor drivers gevonden!")
 
@@ -96,8 +80,7 @@ class Controller:
         self.D_GEAR = 32 #mm
         self.KEEPER_DIS = 180 #mm
         self.MOTOR_STEP = 1.8 #deg/step
-        #print(self.driver.transceive_message(Commands.GET_DRVMS).decode("utf-8"))
-        self.MICRO_STEP = 2 #int(self.driver.transceive_message(0, Commands.GET_DRVMS).decode("utf-8"))
+        self.MICRO_STEP = 2 
         self.MOTOR_TOTAL_STEPS = (360/self.MICRO_STEP)*self.MICRO_STEP
         self.ONE_ROTATION = self.D_GEAR*pi
         self.ONE_STEP = self.ONE_ROTATION/self.MOTOR_TOTAL_STEPS
@@ -114,9 +97,6 @@ class Controller:
             want de drivers worden in deze funtie al aangestuurd).
         """
 
-        # step_data = self.driver.transceive_message(Commands.GET_PX).decode("utf-8") 
-        # step = int(step_data)#int.from_bytes(step_data, byteorder='big', signed=True)#struct.unpack('<B', step_data)
-        #print(step)
         step_pos = int(round((co * self.ratio_y_to_MM)/ self.ONE_STEP))
 
         self.driver.transceive_message(0, Commands.SET_X, step_pos)
@@ -181,7 +161,7 @@ class Controller:
         return array
 
     def calibrate_go_home(self):
-        """kalibreer halve doel afstand waarde
+        """Kalibreer halve doel afstand waarde.
         """
         self.driver.transceive_message(0, Commands.SET_HSPD, self.driver.HIGH_SPEED[0])
         # ga op langzame snelheid naar positief limiet en wacht tot de keeper er is
@@ -233,12 +213,12 @@ class Controller:
             pass
 
     def stop_motor(self):
-        """stop motor
+        """Stop motor
         """
         self.driver.transceive_message(0, Commands.STOP)
     
     def jog_motor(self, direction=0):
-        """geweeg motor met high speed instelling
+        """Beweeg motor met high speed instelling.
         
         Args:
             direction (int, optional): 0 = JOG_MIN en 1 = JOG_PLUS. Defaults to 0.
@@ -281,10 +261,9 @@ class Controller:
             return keep_x, keep_y
 
 if __name__ == "__main__":
-    """Test code voor Controller klasse met vier sliders om de coördinaten van punt 1 en 2 van de bal te bepalen.
+    """Test code voor Controller klasse voor schietfunctie
     """
 
-    # pc = PController()
     pc = Controller()
 
     while True:

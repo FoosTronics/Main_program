@@ -1,19 +1,13 @@
 """
-    This file contains the main loop for the fooball simulation.
-    Only the 'def run(self)' function is modified from the main source (the rest was not modified).  
-
-    Simulates the environment of foosball as for the keeper. 
-    This simulation has the intention to train an AI to play the game.
-
-    Use the W,A,S,D keys to move the keeper.
-    Press C to start the simulation.
+    In dit bestand staat de main loop van de tafelvoetbal simulatie.
+    Hierin staat de run functie die wordt gebruikt in main.py.
 
     File:
         PygameFramework.py
     Date:
-        16-1-2020
+        22-1-2020
     Version:
-        V1.0
+        V1.1
     Modifier:
         Daniël Boon    
     Used_IDE:
@@ -40,6 +34,8 @@
         1.0:
             Verwijzingen naar bestandsnamen gewijzigd
                 Header aangepast
+        1.1:
+            overtollig commetaar verwijdert 
 """
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
@@ -66,7 +62,6 @@
 from __future__ import (print_function, absolute_import, division)
 import sys
 import warnings
-#from main import Foostronics
 
 try:
     import pygame_sdl2
@@ -84,7 +79,6 @@ from pygame.locals import (QUIT, KEYDOWN, KEYUP, MOUSEBUTTONDOWN,
                            MOUSEBUTTONUP, MOUSEMOTION, KMOD_LSHIFT)
 
 from .Framework import FrameworkBase, Keys
-#from .Framework import (FrameworkBase, Keys)
 from .Settings import fwSettings
 from Box2D import (b2DrawExtended, b2Vec2)
 
@@ -368,8 +362,6 @@ class PygameFramework(FrameworkBase):
 
         return True
     
-    #TODO: Vanaf hier wordt de AI geprogrammeerd.
-
     def run(self):
         """
         Main loop.
@@ -408,14 +400,9 @@ class PygameFramework(FrameworkBase):
         clock.tick(self.settings.c_hz)
         self.fps = clock.get_fps()
 
-        # Make a new episode and observe the first state
-        #game.new_episode()
-
         while self.running:
+            #Voer de run functie van FoosTronics uit bij iedere frame in de simulatie
             self.fs.run()
-            # time.sleep(0.03)
-            # print(possible_actions[2])
-            # print(action)
 
             self.running = self.checkEvents()
             self.screen.fill((0, 0, 0))
@@ -438,10 +425,6 @@ class PygameFramework(FrameworkBase):
                 
             # Increase decay_step
             decay_step +=1
-            
-            # Predict the action to take and take it
-            # pc.driver.transceive_message(0, Commands.STOP)
-            # time.sleep(2)
 
         self.fs.dql.sess.close()
         self.world.contactListener = None

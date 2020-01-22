@@ -1,18 +1,12 @@
 """
-    Dit bestand betreft de functionaliteit van de AI
-
-    Simuleert de omgeving van de tafelvoetbaltafel met de keeper.
-    Deze simulatie is bedoeld om een AI te trainen zodat deze het spel kan spelen
-
-    Gebruik de W,A,S,D toetsen om de keeper te bewegen.
-    Druk op C om de simulatie te starten.
+    Dit bestand betreft opzet en data verwerking van de AI
 
     File:
         DeepQLearning.py
     Date:
-        20-1-2020
+        22-1-2020
     Version:
-        1.12
+        1.13
     Modifier:
         Daniël Boon
     Used_IDE:
@@ -29,6 +23,8 @@
             Engels vertaald naar Nederlands
         1.12:
             state volgorde omgedraait
+        1.13:
+            Doxygen cometaar gecontroleerd + overtollig commetaar verwijdert
 """
 
 import tensorflow as tf      # Deep Learning library
@@ -46,15 +42,14 @@ import warnings # Dit zorgt ervoor dat alle waarschuwings berichten, die normali
 warnings.filterwarnings('ignore') 
 
 class DQLBase:
-    """
-    Klasse voor de Deep-Q-Learning.
+    """Klasse voor de Deep-Q-Learning. Dit bestand betreft opzet en data verwerking van de AI
 
     **Author**:
         Daniël Boon \n
     **Version**:
-        1.11         \n
+        1.13         \n
     **Date**:
-        20-1-2020
+        22-1-2020
     """
     def __init__(self, debug=False):
         self.possible_actions = create_environment()
@@ -67,20 +62,19 @@ class DQLBase:
         ### MODEL HYPERPARAMETERS
         # De input is een stack van 4 frames, daarom 84x84x4 (Breedte, hoogte, kanalen).
         state_size = [4, 4]
-        action_size = 4  # game.get_available_buttons_size()              # 3 mogelijke acties: links, rechts, schieten
-        #TODO: was 0.0002
+        action_size = 4          # 3 mogelijke acties: links, rechts, schieten
+        #orgineel was 0.0002
         learning_rate = 0.01      # Alpha (aka leer ratio)
 
         ### TRAINING HYPERPARAMETERS
         total_episodes = 500        # Totaal aantal episodes per training .
         self.max_steps = 1000              # Maximaal aantal stappen in een episode.
-        #TODO: was 64
+        #orgineel was 64
         self.batch_size = 32
 
         # Paramaters voor het verkennen van de Epsilon Greedy strategie.
-        #TODO: explore_start was 1.0
-        # self.explore_start = 1.0            # De kans op verkenning bij de start
-        self.explore_start = 0.0            # De kans op verkenning bij de start
+        #orgineel explore_start was 1.0
+        self.explore_start = 0.1            # De kans op verkenning bij de start
         self.explore_stop = 0.01            # De minimale kans op verkenning
         self.decay_rate = 0.0001            # De exponentiele verval ratio voor de kans op verkennen
 
@@ -125,7 +119,7 @@ class DQLBase:
         
         # Initialiseer de afname ratio (dat wordt gebruikt om Epsilon te verminderen). 
         self.decay_step = 0
-                    # Zet stap naar 0.
+        # Zet stap naar 0.
         self.step = 0
         
         # Initialiseer de beloningen van de episode.
@@ -160,7 +154,7 @@ class DQLBase:
 
         target = self.state[1][3]+(((-16.72-self.state[0][3])/self.vel_x) * self.vel_y)
 
-        if((self.vel_x > 0) or (target > 11.26) or (target < 6.16)):
+        if((self.vel_x > 0) or (target > 13.33) or (target < 6.6)):
             target = np.nan
 
         done = 0
@@ -282,8 +276,6 @@ class DQLBase:
 
         self.episode_rewards.append(self.reward)
 
-        #self.bk.resetCoordinates()
-
         # the episode ends so no next state
         next_state = np.zeros((4), dtype= np.float)
         next_state, self.stacked_states = stack_states(self.stacked_states, next_state, False, self.stack_size)
@@ -319,15 +311,6 @@ def create_environment():
     Returns:
         possible_actions: (list) lijst van mogelijke acties.
     """
-    # game = DoomGame()
-    
-    # # Laad de correcte configuratie.
-    # game.load_config("basic.cfg")
-    
-    # # Laad het correcte scenario (in ons geval de basic scenario).
-    # game.set_doom_scenario_path("basic.wad")
-    
-    # game.init()
     
     # Hier zijn de mogelijke acties.
     up = [1, 0, 0, 0]
@@ -342,10 +325,6 @@ def create_environment():
 def test_environment(self):
     """ Voer willekeurige acties uit om de Environment te testen.
     """
-    # game = DoomGame()
-    # game.load_config("basic.cfg")
-    # game.set_doom_scenario_path("basic.wad")
-    # game.init()
     up = [1, 0, 0, 0]
     down = [0, 1, 0, 0]
     shoot = [0, 0, 1, 0]
@@ -356,7 +335,6 @@ def test_environment(self):
 
     episodes = 10
     for i in range(episodes):
-        # game.new_episode()
         while True:
             new_state = [self.ball.position.x, self.ball.position.y, self.body.position.x, self.body.position.y]
             action = random.choice(actions)
@@ -373,7 +351,6 @@ def test_environment(self):
             time.sleep(0.02)
         print ("Resultaat:", reward)
         time.sleep(2)
-    # game.close()
 
 
 
@@ -387,8 +364,8 @@ def stack_states(stacked_states, new_state, is_new_episode, stack_size):
         stack_size: (int) hoeveelheid voorgaande states onthouden
 
     Returns:
-        stacked_state: (list) @@@
-        stacked_states: (deque[list])  @@@
+        stacked_state: (list) stacked_states omgezet in numpy array voor AI state
+        stacked_states: (deque[list])  deque array geupdate van afgelopen laatste 4 states
     """
     if is_new_episode:
         # Maak de stacked_states leeg.
@@ -397,13 +374,7 @@ def stack_states(stacked_states, new_state, is_new_episode, stack_size):
         # Omdat we in een nieuwe episode zijn, kopieer hetzelfde frame 4x.
         for i in range(4):
             stacked_states.append(new_state)
-        """
-        # Oude waarde.
-        stacked_states.append(new_state)
-        stacked_states.append(new_state)
-        stacked_states.append(new_state)
-        stacked_states.append(new_state)
-        """
+
         # Stapel de frames op.
         stacked_state = np.stack(stacked_states, axis=1)
         
@@ -425,9 +396,9 @@ class DQNetwork:
     **Author**:
         Daniël Boon \n
     **Version**:
-        1.11        \n
+        1.13        \n
     **Date**:
-       20-1-2020
+       22-1-2020
     """
     
     def __init__(self, state_size, action_size, learning_rate, name='DQNetwork'):
@@ -484,9 +455,9 @@ class Memory():
     **Author**:
         Daniël Boon \n
     **Version**:
-        1.11        \n
+        1.13        \n
     **Date**:
-       20-1-2020
+       22-1-2020
     """
     def __init__(self, max_size):
         """Initialiseer geheugen grootte. 
@@ -494,12 +465,10 @@ class Memory():
         Args:
             max_size: (int) hoeveelheid laatste acties en states om te onthouden.
         """
-        # print(max_size)
         self.buffer = deque(maxlen = max_size)
-        # print(len(self.buffer))
     
     def add(self, experience):
-        """voeg AI ervaring toe.
+        """Voeg AI ervaring toe.
         
         Args:
             experience: (array[5]) array van (state, action, reward, next_state, done)
@@ -516,10 +485,7 @@ class Memory():
             (deque[4]) deque array van nieuwe laatste 4 states
         """
         buffer_size = len(self.buffer)
-        # print(buffer_size)
-        # print(buffer_size)
-        # print(buffer_size)
-        # print(batch_size)
+
         index = np.random.choice(np.arange(buffer_size),
                                 size = batch_size,
                                 replace = True)

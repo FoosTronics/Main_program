@@ -8,9 +8,9 @@
     File:
         KeeperSim.py
     Date:
-        21-1-2020
+        22-1-2020
     Version:
-        1.52
+        1.53
     Modifier:
         Daniël Boon
         Kelvin Sweere
@@ -43,6 +43,8 @@
             Fixed geen ai save bestanden kunnen laden of opslaan
         1.52:
             Globale variabelen gemaakt voor TOP, BOTTOM, LEFT & RIGHT.
+        1.53:
+            Doxygen cometaar gecontroleerd + overtollig commetaar verwijdert 
 """ 
 '''
 Used libraries/repositories:
@@ -62,7 +64,6 @@ Used libraries/repositories:
 
 #pylint: disable=E1101
 from .Backend.Framework import (Framework, Keys, main)
-#import deep_q_learning
 
 from random import random
 from math import (cos,sin,pi)
@@ -90,9 +91,9 @@ class KeeperSim(Framework):
         Daniël Boon     \n
         Kelvin Sweere   \n
     **Version**:
-        1.52            \n
+        1.53            \n
     **Date**:
-        21-1-2020   
+        22-1-2020   
     """
     name = "KeeperSim"
     description = "Druk op C om het spel te starten."
@@ -103,7 +104,7 @@ class KeeperSim(Framework):
         Args:
             up_speed: (int, optional) snelheid van de keeper lateraal. Standaard 100.
             down_speed: (int, optional) negatieve snelheid van de keeper lateraal. Standaard -100.
-            shoot_bool: (bool, optional) keuze of beeldherkenning wordt gebruikt voor de simulatie. Standaard uit (False).
+            shoot_bool: (bool, optional) keuze of beeldherkenning wordt gebruikt voor de simulatie. Standaard True.
         """
         
         super(KeeperSim, self).__init__()
@@ -113,11 +114,6 @@ class KeeperSim(Framework):
         self.SIM_RIGHT = 19.35
         self.SIM_TOP = 0.0 # Boven tot onder is 540mm.
         self.SIM_BOTTOM = 20.0
-        #self.BAL_RADIUS = 0.5 Toevoegen? Bal = 34mm
-        # Afstand doellijn tot middenpunt keeper. 71mm uit de kant, bereik +20 tot +100mm.
-        # Bereik keeper om bal te pakken
-        # Strafschop gebied is 210*150mm
-        # Schopblokje is 22mm
         
         # Veld opstellen 
         ground = self.world.CreateStaticBody(
@@ -132,7 +128,7 @@ class KeeperSim(Framework):
         # ! KEEPER_SPEED = 35 gevalideerd met Chileam en Kelvin
         self.KEEPER_SPEED = 35  
         self.FORCE_MAX = 100
-        self.FORCE_MIN = 60
+        self.FORCE_MIN = 40
         
         # Bal straal instellen
         self.radius = radius = 0.5
@@ -158,7 +154,7 @@ class KeeperSim(Framework):
         self.tp = None
 
         #TODO: debug waarde!
-        shoot_bool = True   # Boolean die bepaald of er wordt geschoten (False is schieten!)
+        shoot_bool = False   # Boolean die bepaald of er wordt geschoten (False is schieten!)
         # ! ---------------
 
         self.shoot_bool = not(shoot_bool)  # Flag die checkt of beeldherkenning aanstaat.
@@ -195,7 +191,6 @@ class KeeperSim(Framework):
             settings: (class) klasse met parameter instellingen.
         """
         if key == Keys.K_c:
-            # self.SetBall((0.0 , random() * 20.0), force_param=False)
             self._reset_ball()
         if key == Keys.K_w:
             self.control.y = self.KEEPER_SPEED
@@ -207,7 +202,6 @@ class KeeperSim(Framework):
             self.control.x = self.KEEPER_SPEED
         if key == Keys.K_j:
             if self.settings.c_hz == 60:
-                #settings.hz = 2
                 self.settings.timeStep = 1.0 / 25
                 self.settings.c_hz = 140
                 settings.positionIterations = 90
@@ -219,14 +213,12 @@ class KeeperSim(Framework):
                 settings.velocityIterations = 64
         if key == Keys.K_m:
             date_time = datetime.now().strftime("%m-%d-%Y, %H-%M-%S")
-            #save_path = self.saver.save(self.sess, "/AI_models/AI_save %s.ckpt" % (date_time))
             save_path = self.fs.dql.saver.save(self.fs.dql.sess, "AI_models/AI_save_%s.ckpt" % (date_time))
             print("AI model opgeslagen")
         if key == Keys.K_r:
             filename = askopenfilename().split('.')
             try:
                 filename = (filename[0]+'.'+filename[1])
-                # filename = (filename.split('.')[0],'.',filename.split('.')[1])
                 if filename:
                     self.fs.dql.saver.restore(self.fs.dql.sess, filename)
                     print("AI geladen van bestand: " + filename)
@@ -246,8 +238,6 @@ class KeeperSim(Framework):
         if (key == Keys.K_a or key == Keys.K_d):
             self.control.x = 0.0
             self.body.linearVelocity.x = 0
-        #else:
-        #    pass 
         
         self.body.linearVelocity = vel
 
@@ -266,17 +256,16 @@ class KeeperSim(Framework):
         self.fixture.sensor = False
     
     def create_targetpoint(self, pos):
-        """Creëer een punt in de simulatie die weergegeven moet worden.
+        """Creëer targetpoint (gewenste positie keeper) in de simulatie die weergegeven moet worden.
         
         Args:
             pos: (tuple) x & y coördinaten waar het targetpoint moet komen te staan.
         """
         
-        self.fixture_tp = b2FixtureDef(shape=b2CircleShape(radius=0.3,  #create ball.
+        self.fixture_tp = b2FixtureDef(shape=b2CircleShape(radius=0.3,  #create targetpoint.
                                                    pos=(0, 0)),
                                density=1, friction=900000, restitution=0.5)
         self.fixture_tp.sensor = True
-        # balpositie, vanaf nu ball.
         self.tp = self.world.CreateDynamicBody(
             position=pos,
             fixtures=self.fixture_tp,
@@ -286,6 +275,8 @@ class KeeperSim(Framework):
         self.fixture_tp2.sensor = True
 
     def delete_targetpoint(self):
+        """Delete targetpoint als die er is.
+        """
         if(self.tp):
             self.world.DestroyBody(self.tp)
             self.tp = None
@@ -363,7 +354,7 @@ class KeeperSim(Framework):
             settings: (Class) de instellingen die vooraf zijn gedefinieerd. 
         """
         vel = self.body.linearVelocity  #velocity van de keeper
-        Framework.Step(self, settings)  #
+        Framework.Step(self, settings)  
         
         #bepaling snelheid keeper bij laterale beweging
         if ((self.control.y < 0) and (self.body.position.y > 7.08 )):
@@ -397,14 +388,13 @@ class KeeperSim(Framework):
                     
         self.body.linearVelocity = vel
 
-        # print(self.fixture.sensor)
         if(self.fixture.sensor and ((self.body.position.x < -14) and self.body.position.x > -16)):
             self.fixture.sensor = False
 
         self.print_ai_stats()
 
     def print_ai_stats(self):
-        """Print alle statistieken van de performance van de AI.
+        """Print alle statistieken van de performance van de AI in Pygame.
         """
         # Print namen van de variabelen.
         self.Print('Doelpunten = %d' % self.goals)

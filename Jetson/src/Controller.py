@@ -44,20 +44,14 @@ from math import pi
 import struct
 from src.Backend.USB import Driver
 from src.Backend.USB import Commands
+
 try:
     from src.Backend.MPU6050 import  MPU6050
     MET_GYROS = True
-except:
-    MET_GYROS = False
-
-<<<<<<< HEAD
-try:
-    from src.Backend.MPU6050 import  MPU6050
 except ModuleNotFoundError:
     print("MPU niet gevonden")
-    pass
-=======
->>>>>>> e674b8e22f204a6d8da13954161bb5462f5071f2
+    MET_GYROS = False
+
 
 class Controller:
     """In deze klasse kan er met behulp van twee coördinaat punten de benodigde keeper positie worden bepaald.
@@ -86,6 +80,7 @@ class Controller:
             self.go_home()
         else:
             print("ERROR, PANIEK! --> geen stepper motor drivers gevonden!")
+            exit()
 
         self.TABLE_LENGTH = 540 #mm
         self.y_length = 200 #coördinates

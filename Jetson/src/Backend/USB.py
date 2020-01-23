@@ -168,8 +168,8 @@ class Driver:
                     print(self.transceive_message(0, Commands.GET_DN).decode("utf-8"))
             except:
                 pass
-        # else:
-        #     value = False
+        elif len(self.handlers) == 0:
+            value = False
 
         return value
 

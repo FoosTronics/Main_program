@@ -94,20 +94,22 @@ class Foostronics:
             self.camera = ImageCapture(file=self.file[0])
         else:
             self.camera = ImageCapture()
-        self.find_contours = FindContours()
-        self.ball_detection = BallDetection()
-        self.ball_detection.create_trackbar()
+
+        self.ks = keeper_sim
+        # print(self.ks.screen)
+        if not self.ks.shoot_bool:
+            self.find_contours = FindContours()
+            self.ball_detection = BallDetection()
 
         self.WIDTH_IMG = 640
         self.HEIGHT_IMG = 360
 
         self.dql = DQLBase()
-        self.ks = keeper_sim
-        print(self.ks.screen)
+        
         self.que = Queue(2)
 
         try:
-            self.con = Controller
+            self.con = Controller()
             self.met_drivers = True
         except:
             self.met_drivers = False
@@ -319,7 +321,6 @@ class Foostronics:
         if(not self.ks.shoot_bool):
             self.ks.ball.position, reused = self.que.get()
         action, old_action, target, vel_x, vel_x_old = self.dql.get_ai_action()
-        print(target)
         self.ks.action = action
         
         self.execute_action(action, old_action)
@@ -359,8 +360,7 @@ if __name__ == "__main__":
     keeperSim = KeeperSim()
     foosTronics = Foostronics(keeperSim)
     if not keeperSim.shoot_bool:
+        foosTronics.ball_detection.create_trackbar()
         foosTronics.start_get_ball_thread()
-    if foosTronics.met_drivers:
-        foosTronics.con = Controller()
     keeperSim.set_Foostronics(foosTronics)
     main(keeperSim)

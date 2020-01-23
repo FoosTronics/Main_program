@@ -127,9 +127,14 @@ class Controller:
                 elif motion == 3:
                     self.stop_motor()
                     pass
-                # go home
+                # go home JPLUS
                 elif motion == 4:
-                    self.go_home()
+                    self.stop_motor()
+                    self.go_home(0)
+                # go home JMIN
+                elif motion == 5:
+                    self.stop_motor()
+                    self.go_home(1)
 
     def stop_controller_thread(self):
         self.running = False
@@ -177,6 +182,9 @@ class Controller:
         """Bestuurt de drivers zodat er axiaal bewogen wordt.
         """
         if(len(self.driver.handlers)==2):
+            self.driver.transceive_message(1, Commands.STOP)
+            while(int(self.driver.transceive_message(1, Commands.GET_PS).decode("utf-8"))):
+                pass
             self.driver.transceive_message(1, Commands.SET_X, 48)
             while(int(self.driver.transceive_message(1, Commands.GET_PS).decode("utf-8"))):
                 pass
@@ -190,7 +198,7 @@ class Controller:
             self.driver.transceive_message(1, Commands.SET_X, 0)
             while(int(self.driver.transceive_message(1, Commands.GET_PS).decode("utf-8"))):
                 pass
-            time.sleep(0.1)
+            time.sleep(0.05)
             print("pos 2:", self.driver.transceive_message(1, Commands.GET_PX))
             #change motordriver position when steps are lost
             if MET_GYROS:
@@ -266,6 +274,8 @@ class Controller:
         """Stop motor
         """
         self.driver.transceive_message(0, Commands.STOP)
+        while(int(self.driver.transceive_message(0, Commands.GET_PS).decode("utf-8"))):
+            pass
     
     def jog_motor(self, direction=0):
         """Beweeg motor met high speed instelling.

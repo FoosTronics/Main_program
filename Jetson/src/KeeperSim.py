@@ -405,7 +405,7 @@ class KeeperSim(Framework):
         self.Print('Doelpunten = %d' % self.goals)
         self.Print('Geblokt = %d' % self.blocks)
         self.Print('Rondes = %d' % (self.goals+self.blocks))
-        self.Print('Ratio laatste 500 geblokt/doelpunten = %d' % (self.ratio))
+        self.Print('Ratio laatste 100 geblokt/doelpunten = %d' % (self.ratio))
         if self.goals:
             self.Print('Ratio totaal geblokt/doelpunten = %d' %
                        ((self.blocks*100)/(self.goals+self.blocks)))

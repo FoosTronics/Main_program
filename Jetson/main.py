@@ -228,39 +228,39 @@ class Foostronics:
             action: (list) acties die de AI gekozen heeft.
             old_action: (list) de vorige actie die de AI gekozen heeft.
         """
+        if not self.con.que.full():
+            if np.array_equal(action, self.dql.possible_actions[0]):
+                self.ks.control.y = self.ks.KEEPER_SPEED
+                if(self.met_drivers and (not np.array_equal(action, old_action))):
+                    self.con.que.put(0)
+                    #self.con.jog_motor(0) #JOG_MIN
 
-        if np.array_equal(action, self.dql.possible_actions[0]):
-            self.ks.control.y = self.ks.KEEPER_SPEED
-            if(self.met_drivers and (not np.array_equal(action, old_action))):
-                self.con.que.put(0)
-                #self.con.jog_motor(0) #JOG_MIN
+            elif np.array_equal(action, self.dql.possible_actions[1]):
+                self.ks.control.y = -self.ks.KEEPER_SPEED
+                if(self.met_drivers and (not np.array_equal(action, old_action))):
+                    self.con.que.put(1)
+                    #self.con.jog_motor(1) #JOG_PLUS
+            else:
+                self.ks.control.y = 0
+                self.ks.body.linearVelocity.y = 0
 
-        elif np.array_equal(action, self.dql.possible_actions[1]):
-            self.ks.control.y = -self.ks.KEEPER_SPEED
-            if(self.met_drivers and (not np.array_equal(action, old_action))):
-                self.con.que.put(1)
-                #self.con.jog_motor(1) #JOG_PLUS
-        else:
-            self.ks.control.y = 0
-            self.ks.body.linearVelocity.y = 0
-
-        if np.array_equal(action, self.dql.possible_actions[2]):
-            self.ks.control.y = 0
-            self.ks.body.linearVelocity.y = 0
+            if np.array_equal(action, self.dql.possible_actions[2]):
+                self.ks.control.y = 0
+                self.ks.body.linearVelocity.y = 0
+                
+                if(self.met_drivers):
+                    self.con.que.put(2)
+                    #self.con.stop_motor()
+                    #self.con.shoot()
             
-            if(self.met_drivers):
-                self.con.que.put(2)
-                #self.con.stop_motor()
-                #self.con.shoot()
-        
-        if np.array_equal(action, self.dql.possible_actions[3]):
-            self.ks.control.x = 0
-            self.ks.control.y = 0
-            self.ks.body.linearVelocity.x = 0
-            self.ks.body.linearVelocity.y = 0
-            if(self.met_drivers):
-                self.con.que.put(3)
-                #self.con.stop_motor()
+            if np.array_equal(action, self.dql.possible_actions[3]):
+                self.ks.control.x = 0
+                self.ks.control.y = 0
+                self.ks.body.linearVelocity.x = 0
+                self.ks.body.linearVelocity.y = 0
+                if(self.met_drivers):
+                    self.con.que.put(3)
+                    #self.con.stop_motor()
 
     def determine_goal(self, vel_x, vel_x_old):
         """Bepaal of er een goal is gescoord.
@@ -346,12 +346,13 @@ class Foostronics:
 
             if(self.met_drivers):
                 #self.con.stop_motor()
-                if(self.ks.body.position.y >=8.71):
-                    self.con.que.put(4)
-                    #self.con.go_home()
-                else:
-                    self.con.que.put(5)
-                    #self.con.go_home(1)
+                if not self.con.que.full():
+                    if(self.ks.body.position.y >=8.71):
+                        self.con.que.put(4)
+                        #self.con.go_home()
+                    else:
+                        self.con.que.put(5)
+                        #self.con.go_home(1)
         else:
             self.dql.update_data(done, self.ks.ball, self.ks.body)
         if(not self.ks.shoot_bool):

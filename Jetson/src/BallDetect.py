@@ -213,6 +213,7 @@ class BallDetection:
         if len(cnts) > 0:
             # vind het grootste contour in het masker en gebruik deze
             # om de minimale enclosing circle en centroid te berekenen
+            self.reused = False
             c = max(cnts, key=cv2.contourArea)
             ((x, y), radius) = cv2.minEnclosingCircle(c)
             M = cv2.moments(c)
@@ -225,12 +226,14 @@ class BallDetection:
                 cv2.circle(self.frame, self.center, 5, (0, 0, 255), -1)
                 center2 = self.center
                 return center2
-
-        if self.center == (0, 0):
-            self.reused = True
-            self.center = center2
         else:
-            self.reused = False
+            self.reused = True
+        #print(self.center)
+        #if self.center == (0, 0):
+       #     self.reused = True
+       #     self.center = center2
+        #else:
+        #    self.reused = False
 
 
     def show_frame(self):

@@ -185,7 +185,7 @@ class Foostronics:
                 # get new ball position coordinates in image pixel values
                 cor = self.ball_detection.getball_pos()
                 # convert image pixel values to simulation values
-                self.que.put(self._convert2_sim_cor(cor[0], cor[1]), self.ball_detection.reused)
+                self.que.put((self._convert2_sim_cor(cor[0], cor[1]), self.ball_detection.reused))
             cv2.waitKey(1)
 
     def _convert2_sim_cor(self, x_p, y_p):
@@ -202,7 +202,7 @@ class Foostronics:
         x_s = self.map_function(x_p, 0, self.WIDTH_IMG, self.ks.SIM_LEFT, self.ks.SIM_RIGHT)    #-19.35, 19.35
         #y_s = self.map_function(y_p, 0, self.HEIGHT_IMG, self.ks.SIM_TOP, self.ks.SIM_BOTTOM)   #20, 0
         y_s = self.map_function(y_p, 0, self.HEIGHT_IMG, self.ks.SIM_BOTTOM, self.ks.SIM_TOP)
-        return x_s, y_s
+        return (x_s, y_s)
     
     def map_function(self, val, in_min, in_max, out_min, out_max):
         """Map functie (zoals in de Arduino IDE) die input waarde (in_min & in_max) schaald in verhouding naar de output (out_min & out_max).
@@ -319,6 +319,7 @@ class Foostronics:
         """Deze functie wordt na iedere frame aangeroepen en kan gezien worden als de mainloop.
         """
         if(not self.ks.shoot_bool):
+            #print(self.que.get())
             self.ks.ball.position, reused = self.que.get()
         action, old_action, target, vel_x, vel_x_old = self.dql.get_ai_action()
         self.ks.action = action

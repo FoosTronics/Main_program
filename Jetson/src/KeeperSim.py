@@ -153,7 +153,7 @@ class KeeperSim(Framework):
         self.tp = None
 
         #TODO: debug waarde!
-        shoot_bool = False   # Boolean die bepaald of er wordt geschoten (False is schieten!)
+        shoot_bool = True   # Boolean die bepaald of er wordt geschoten (False is schieten!)
         # ! ---------------
 
         self.shoot_bool = not(shoot_bool)  # Flag die checkt of beeldherkenning aanstaat.

@@ -6,9 +6,9 @@
     File:
         Controller.py
     Date:
-        22-1-2020
+        23-1-2020
     Version:
-        1.35
+        1.36
     Authors:
         Daniël Boon
     Used_IDE:
@@ -32,6 +32,8 @@
             fixed niet bestaande atributen
         1.35:
             Doxygen cometaar gecontroleerd + overtollig commetaar verwijdert 
+        1.36:
+            fixed error wanneer geen gyroscope is aangesloten
 """ 
 
 #pylint: disable=E1101
@@ -42,12 +44,20 @@ from math import pi
 import struct
 from src.Backend.USB import Driver
 from src.Backend.USB import Commands
+try:
+    from src.Backend.MPU6050 import  MPU6050
+    MET_GYROS = True
+except:
+    MET_GYROS = False
 
+<<<<<<< HEAD
 try:
     from src.Backend.MPU6050 import  MPU6050
 except ModuleNotFoundError:
     print("MPU niet gevonden")
     pass
+=======
+>>>>>>> e674b8e22f204a6d8da13954161bb5462f5071f2
 
 class Controller:
     """In deze klasse kan er met behulp van twee coördinaat punten de benodigde keeper positie worden bepaald.
@@ -57,9 +67,9 @@ class Controller:
     **Author**: 
         Daniël Boon \n
     **Version**:
-        1.35        \n
+        1.36        \n
     **Date**:
-        22-1-2020 
+        23-1-2020 
     """
 
     def __init__(self):
@@ -67,7 +77,8 @@ class Controller:
         """
         met_drivers = False
         self.driver = Driver(0)
-        self.gyroscoop = MPU6050(debug=True)
+        if MET_GYROS:
+            self.gyroscoop = MPU6050(debug=True)
         if self.driver.stepper_init():
             print("door init heen!")
             met_drivers = True
@@ -148,7 +159,8 @@ class Controller:
             time.sleep(0.1)
             print("pos 2:", self.driver.transceive_message(1, Commands.GET_PX))
             #change motordriver position when steps are lost
-            self.step_correction()
+            if MET_GYROS:
+                self.step_correction()
 
     def bitfield(self, n):
         """Converteerd een bit list naar een integer list.

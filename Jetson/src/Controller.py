@@ -44,10 +44,12 @@ from math import pi
 import struct
 from src.Backend.USB import Driver
 from src.Backend.USB import Commands
+
 try:
     from src.Backend.MPU6050 import  MPU6050
     MET_GYROS = True
-except:
+except ModuleNotFoundError:
+    print("MPU niet gevonden")
     MET_GYROS = False
 
 

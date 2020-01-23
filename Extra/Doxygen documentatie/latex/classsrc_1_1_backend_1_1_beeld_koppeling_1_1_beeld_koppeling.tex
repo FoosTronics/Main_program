@@ -1,0 +1,278 @@
+\hypertarget{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling}{}\doxysection{src.\+Backend.\+Beeld\+Koppeling.\+Beeld\+Koppeling Class Reference}
+\label{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling}\index{src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}}
+
+
+Klasse die een koppeling maakt tussen de beeldherkenning en de simulatie.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_a31d5add139ae1e2603037b086948bb7f}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, debug\+\_\+flag=False)
+\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_a32d9df46fb9d39c7ecf818ad916c8bcd}{get\+\_\+pos\+\_\+vision}} (self)
+\begin{DoxyCompactList}\small\item\em Voert de gehele pipeline in een keer uit. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_ac1cefac682674d2588e4772e079ec605}{map\+\_\+function}} (self, val, in\+\_\+min, in\+\_\+max, out\+\_\+min, out\+\_\+max)
+\begin{DoxyCompactList}\small\item\em Map functie (zoals in de Arduino I\+DE) die de input in een vaste verhouding verschaalt naar de output. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_a3e423ef1c15ec92c668146d89a99e919}{get\+\_\+ball}} (self)
+\begin{DoxyCompactList}\small\item\em Krijg de coördinaten van de bal via de beeldherkenning. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_ab94537cabbd28a6273269520ed612dc2}{reset\+\_\+coordinates}} (self)
+\begin{DoxyCompactList}\small\item\em Reset de coördinaten in de simulatie (en de trackbars). \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_aeb4c7f3a4140b25c94ad9e380427f8f4}{reset\+\_\+trackbar\+\_\+pos}} (self)
+\begin{DoxyCompactList}\small\item\em Reset trackbar positie van cordinaten. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_a21b80523ff4f25a37ddbef401393ea89}{test\+\_\+video\+\_\+function}} (self)
+\begin{DoxyCompactList}\small\item\em Haal een frame uit de video op. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_acbb8d2a74fd405161ac96be561d86c5d}{x\+\_\+s}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_afb416d4e1474b0bedbfcad77f5e0dbe2}{y\+\_\+s}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_aba1457a5bd8f63dd3c6cf69d7553f4bf}{x\+\_\+p}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_ad9dccca24914e465f71fd4597e159663}{y\+\_\+p}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_a3382b234b82b5b84ab75b3869e031fc3}{W\+I\+D\+T\+H\+\_\+\+I\+MG}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_afba10f101c9fe9d49e46dbd413b69563}{H\+E\+I\+G\+H\+T\+\_\+\+I\+MG}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_a0c261311a4ac9558e166e125c68356f5}{D\+E\+B\+U\+G\+\_\+\+F\+L\+AG}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_a4031a8d0fcde99071374c009f06e8c0b}{files}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_afdd764a74a52b555e01d203102525c5a}{M\+A\+X\+\_\+\+T\+R\+A\+C\+K\+B\+A\+R\+\_\+\+V\+AL}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_aa8c6c57b54b04816b28800fb2e132af3}{detect\+\_\+ball}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_a714acabbcd5a987c1207a2bf2b34491c}{\+\_\+init\+\_\+trackbars}} (self)
+\begin{DoxyCompactList}\small\item\em initialiseer debug trackbars. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_a3aaec541673ec55b6c2ccfb059b10ad3}{\+\_\+convert\+\_\+2\+\_\+sim\+\_\+cor}} (self)
+\begin{DoxyCompactList}\small\item\em Zet de pixel positie van de beeldherkenning om naar een x \& y positie voor de simulatie. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_ad599b062ef485803394283b74c91da5e}{\+\_\+get\+\_\+trackbars}} (self)
+\begin{DoxyCompactList}\small\item\em Krijg waardes van de Open\+CV trackbar(s) binnen. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_a8984faa7eac5605209f2f5670f0d727f}{\+\_\+init\+\_\+video\+\_\+function}} (self)
+\begin{DoxyCompactList}\small\item\em Initialiseerd de video met de Ball\+Detection klasse. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Klasse die een koppeling maakt tussen de beeldherkenning en de simulatie. 
+
+Vertaalt hierbij de bal coördinaten in pixel positie van de beeldherkenning naar coördinaten voor de simulatie.
+
+{\bfseries{Author}}\+: Kelvin Sweere ~\newline
+ {\bfseries{Version}}\+: 1.\+12 ~\newline
+ {\bfseries{Date}}\+: 20-\/1-\/2020 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_a31d5add139ae1e2603037b086948bb7f}\label{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_a31d5add139ae1e2603037b086948bb7f}} 
+\index{src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Beeld\+Koppeling.\+Beeld\+Koppeling.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{debug\+\_\+flag = {\ttfamily False} }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em debug\+\_\+flag} & (bool, optional) keuze of er trackbars worden gestart die de bal besturen. Default is False. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_a3aaec541673ec55b6c2ccfb059b10ad3}\label{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_a3aaec541673ec55b6c2ccfb059b10ad3}} 
+\index{src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}!\_convert\_2\_sim\_cor@{\_convert\_2\_sim\_cor}}
+\index{\_convert\_2\_sim\_cor@{\_convert\_2\_sim\_cor}!src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}}
+\doxysubsubsection{\texorpdfstring{\_convert\_2\_sim\_cor()}{\_convert\_2\_sim\_cor()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Beeld\+Koppeling.\+Beeld\+Koppeling.\+\_\+convert\+\_\+2\+\_\+sim\+\_\+cor (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Zet de pixel positie van de beeldherkenning om naar een x \& y positie voor de simulatie. 
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_ad599b062ef485803394283b74c91da5e}\label{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_ad599b062ef485803394283b74c91da5e}} 
+\index{src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}!\_get\_trackbars@{\_get\_trackbars}}
+\index{\_get\_trackbars@{\_get\_trackbars}!src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}}
+\doxysubsubsection{\texorpdfstring{\_get\_trackbars()}{\_get\_trackbars()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Beeld\+Koppeling.\+Beeld\+Koppeling.\+\_\+get\+\_\+trackbars (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Krijg waardes van de Open\+CV trackbar(s) binnen. 
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_a714acabbcd5a987c1207a2bf2b34491c}\label{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_a714acabbcd5a987c1207a2bf2b34491c}} 
+\index{src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}!\_init\_trackbars@{\_init\_trackbars}}
+\index{\_init\_trackbars@{\_init\_trackbars}!src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}}
+\doxysubsubsection{\texorpdfstring{\_init\_trackbars()}{\_init\_trackbars()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Beeld\+Koppeling.\+Beeld\+Koppeling.\+\_\+init\+\_\+trackbars (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+initialiseer debug trackbars. 
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_a8984faa7eac5605209f2f5670f0d727f}\label{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_a8984faa7eac5605209f2f5670f0d727f}} 
+\index{src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}!\_init\_video\_function@{\_init\_video\_function}}
+\index{\_init\_video\_function@{\_init\_video\_function}!src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}}
+\doxysubsubsection{\texorpdfstring{\_init\_video\_function()}{\_init\_video\_function()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Beeld\+Koppeling.\+Beeld\+Koppeling.\+\_\+init\+\_\+video\+\_\+function (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initialiseerd de video met de Ball\+Detection klasse. 
+
+Deze functie wordt gebruikt voor de demo.
+
+\begin{DoxyNote}{Note}
+{\bfseries{Name\+Error}}\+: Er is geen file meegegeven aan de init van de \mbox{\hyperlink{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling}{Beeld\+Koppeling}} klasse. 
+\end{DoxyNote}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_a3e423ef1c15ec92c668146d89a99e919}\label{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_a3e423ef1c15ec92c668146d89a99e919}} 
+\index{src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}!get\_ball@{get\_ball}}
+\index{get\_ball@{get\_ball}!src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}}
+\doxysubsubsection{\texorpdfstring{get\_ball()}{get\_ball()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Beeld\+Koppeling.\+Beeld\+Koppeling.\+get\+\_\+ball (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Krijg de coördinaten van de bal via de beeldherkenning. 
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_a32d9df46fb9d39c7ecf818ad916c8bcd}\label{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_a32d9df46fb9d39c7ecf818ad916c8bcd}} 
+\index{src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}!get\_pos\_vision@{get\_pos\_vision}}
+\index{get\_pos\_vision@{get\_pos\_vision}!src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}}
+\doxysubsubsection{\texorpdfstring{get\_pos\_vision()}{get\_pos\_vision()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Beeld\+Koppeling.\+Beeld\+Koppeling.\+get\+\_\+pos\+\_\+vision (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Voert de gehele pipeline in een keer uit. 
+
+Haalt de gegevens op van trackbars en geeft hiervan de coördinaten van de simulatie terug.
+
+\begin{DoxyReturn}{Returns}
+(tuple) x \& y coördinaten van de simulatie van de bal. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_ac1cefac682674d2588e4772e079ec605}\label{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_ac1cefac682674d2588e4772e079ec605}} 
+\index{src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}!map\_function@{map\_function}}
+\index{map\_function@{map\_function}!src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}}
+\doxysubsubsection{\texorpdfstring{map\_function()}{map\_function()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Beeld\+Koppeling.\+Beeld\+Koppeling.\+map\+\_\+function (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{val,  }\item[{}]{in\+\_\+min,  }\item[{}]{in\+\_\+max,  }\item[{}]{out\+\_\+min,  }\item[{}]{out\+\_\+max }\end{DoxyParamCaption})}
+
+
+
+Map functie (zoals in de Arduino I\+DE) die de input in een vaste verhouding verschaalt naar de output. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em val} & (int) waarde die geschaald moet worden. \\
+\hline
+{\em in\+\_\+min} & (int) minimale waarde die de input kan hebben. \\
+\hline
+{\em in\+\_\+max} & (int) maximale waarde die de input kan hebben. \\
+\hline
+{\em out\+\_\+min} & (int) minimale waarde die de output mag krijgen. \\
+\hline
+{\em out\+\_\+max} & (int) maximale waarde die de output mag krijgen.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+(int) geschaalde waarde van de input. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_ab94537cabbd28a6273269520ed612dc2}\label{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_ab94537cabbd28a6273269520ed612dc2}} 
+\index{src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}!reset\_coordinates@{reset\_coordinates}}
+\index{reset\_coordinates@{reset\_coordinates}!src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}}
+\doxysubsubsection{\texorpdfstring{reset\_coordinates()}{reset\_coordinates()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Beeld\+Koppeling.\+Beeld\+Koppeling.\+reset\+\_\+coordinates (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Reset de coördinaten in de simulatie (en de trackbars). 
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_aeb4c7f3a4140b25c94ad9e380427f8f4}\label{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_aeb4c7f3a4140b25c94ad9e380427f8f4}} 
+\index{src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}!reset\_trackbar\_pos@{reset\_trackbar\_pos}}
+\index{reset\_trackbar\_pos@{reset\_trackbar\_pos}!src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}}
+\doxysubsubsection{\texorpdfstring{reset\_trackbar\_pos()}{reset\_trackbar\_pos()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Beeld\+Koppeling.\+Beeld\+Koppeling.\+reset\+\_\+trackbar\+\_\+pos (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Reset trackbar positie van cordinaten. 
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_a21b80523ff4f25a37ddbef401393ea89}\label{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_a21b80523ff4f25a37ddbef401393ea89}} 
+\index{src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}!test\_video\_function@{test\_video\_function}}
+\index{test\_video\_function@{test\_video\_function}!src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}}
+\doxysubsubsection{\texorpdfstring{test\_video\_function()}{test\_video\_function()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Beeld\+Koppeling.\+Beeld\+Koppeling.\+test\+\_\+video\+\_\+function (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Haal een frame uit de video op. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_a0c261311a4ac9558e166e125c68356f5}\label{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_a0c261311a4ac9558e166e125c68356f5}} 
+\index{src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}!DEBUG\_FLAG@{DEBUG\_FLAG}}
+\index{DEBUG\_FLAG@{DEBUG\_FLAG}!src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}}
+\doxysubsubsection{\texorpdfstring{DEBUG\_FLAG}{DEBUG\_FLAG}}
+{\footnotesize\ttfamily src.\+Backend.\+Beeld\+Koppeling.\+Beeld\+Koppeling.\+D\+E\+B\+U\+G\+\_\+\+F\+L\+AG}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_aa8c6c57b54b04816b28800fb2e132af3}\label{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_aa8c6c57b54b04816b28800fb2e132af3}} 
+\index{src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}!detect\_ball@{detect\_ball}}
+\index{detect\_ball@{detect\_ball}!src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}}
+\doxysubsubsection{\texorpdfstring{detect\_ball}{detect\_ball}}
+{\footnotesize\ttfamily src.\+Backend.\+Beeld\+Koppeling.\+Beeld\+Koppeling.\+detect\+\_\+ball}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_a4031a8d0fcde99071374c009f06e8c0b}\label{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_a4031a8d0fcde99071374c009f06e8c0b}} 
+\index{src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}!files@{files}}
+\index{files@{files}!src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}}
+\doxysubsubsection{\texorpdfstring{files}{files}}
+{\footnotesize\ttfamily src.\+Backend.\+Beeld\+Koppeling.\+Beeld\+Koppeling.\+files}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_afba10f101c9fe9d49e46dbd413b69563}\label{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_afba10f101c9fe9d49e46dbd413b69563}} 
+\index{src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}!HEIGHT\_IMG@{HEIGHT\_IMG}}
+\index{HEIGHT\_IMG@{HEIGHT\_IMG}!src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}}
+\doxysubsubsection{\texorpdfstring{HEIGHT\_IMG}{HEIGHT\_IMG}}
+{\footnotesize\ttfamily src.\+Backend.\+Beeld\+Koppeling.\+Beeld\+Koppeling.\+H\+E\+I\+G\+H\+T\+\_\+\+I\+MG}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_afdd764a74a52b555e01d203102525c5a}\label{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_afdd764a74a52b555e01d203102525c5a}} 
+\index{src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}!MAX\_TRACKBAR\_VAL@{MAX\_TRACKBAR\_VAL}}
+\index{MAX\_TRACKBAR\_VAL@{MAX\_TRACKBAR\_VAL}!src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}}
+\doxysubsubsection{\texorpdfstring{MAX\_TRACKBAR\_VAL}{MAX\_TRACKBAR\_VAL}}
+{\footnotesize\ttfamily src.\+Backend.\+Beeld\+Koppeling.\+Beeld\+Koppeling.\+M\+A\+X\+\_\+\+T\+R\+A\+C\+K\+B\+A\+R\+\_\+\+V\+AL}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_a3382b234b82b5b84ab75b3869e031fc3}\label{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_a3382b234b82b5b84ab75b3869e031fc3}} 
+\index{src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}!WIDTH\_IMG@{WIDTH\_IMG}}
+\index{WIDTH\_IMG@{WIDTH\_IMG}!src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}}
+\doxysubsubsection{\texorpdfstring{WIDTH\_IMG}{WIDTH\_IMG}}
+{\footnotesize\ttfamily src.\+Backend.\+Beeld\+Koppeling.\+Beeld\+Koppeling.\+W\+I\+D\+T\+H\+\_\+\+I\+MG}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_aba1457a5bd8f63dd3c6cf69d7553f4bf}\label{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_aba1457a5bd8f63dd3c6cf69d7553f4bf}} 
+\index{src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}!x\_p@{x\_p}}
+\index{x\_p@{x\_p}!src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}}
+\doxysubsubsection{\texorpdfstring{x\_p}{x\_p}}
+{\footnotesize\ttfamily src.\+Backend.\+Beeld\+Koppeling.\+Beeld\+Koppeling.\+x\+\_\+p}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_acbb8d2a74fd405161ac96be561d86c5d}\label{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_acbb8d2a74fd405161ac96be561d86c5d}} 
+\index{src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}!x\_s@{x\_s}}
+\index{x\_s@{x\_s}!src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}}
+\doxysubsubsection{\texorpdfstring{x\_s}{x\_s}}
+{\footnotesize\ttfamily src.\+Backend.\+Beeld\+Koppeling.\+Beeld\+Koppeling.\+x\+\_\+s}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_ad9dccca24914e465f71fd4597e159663}\label{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_ad9dccca24914e465f71fd4597e159663}} 
+\index{src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}!y\_p@{y\_p}}
+\index{y\_p@{y\_p}!src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}}
+\doxysubsubsection{\texorpdfstring{y\_p}{y\_p}}
+{\footnotesize\ttfamily src.\+Backend.\+Beeld\+Koppeling.\+Beeld\+Koppeling.\+y\+\_\+p}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_afb416d4e1474b0bedbfcad77f5e0dbe2}\label{classsrc_1_1_backend_1_1_beeld_koppeling_1_1_beeld_koppeling_afb416d4e1474b0bedbfcad77f5e0dbe2}} 
+\index{src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}!y\_s@{y\_s}}
+\index{y\_s@{y\_s}!src.Backend.BeeldKoppeling.BeeldKoppeling@{src.Backend.BeeldKoppeling.BeeldKoppeling}}
+\doxysubsubsection{\texorpdfstring{y\_s}{y\_s}}
+{\footnotesize\ttfamily src.\+Backend.\+Beeld\+Koppeling.\+Beeld\+Koppeling.\+y\+\_\+s}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Backend/\mbox{\hyperlink{_beeld_koppeling_8py}{Beeld\+Koppeling.\+py}}\end{DoxyCompactItemize}

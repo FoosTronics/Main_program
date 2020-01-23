@@ -1,0 +1,484 @@
+\hypertarget{classsrc_1_1_backend_1_1_u_s_b_1_1_driver}{}\doxysection{src.\+Backend.\+U\+S\+B.\+Driver Class Reference}
+\label{classsrc_1_1_backend_1_1_u_s_b_1_1_driver}\index{src.Backend.USB.Driver@{src.Backend.USB.Driver}}
+
+
+Klasse om de drivers aan te sturen dmv \mbox{\hyperlink{namespacesrc_1_1_backend_1_1_u_s_b}{U\+SB}}.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_af31a16ba1ba7f5650b899e7cdff639e4}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, device\+\_\+count)
+\begin{DoxyCompactList}\small\item\em Initialiseer de drivers. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_ad03f8c32241b7b3e259ce2ebb4ccc00c}{stepper\+\_\+init}} (self)
+\begin{DoxyCompactList}\small\item\em Deze functie initialiseerd de aangesloten motordrivers. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_ad916989dab9edcea68b5ddd826fcd77c}{driver\+\_\+init}} (self)
+\begin{DoxyCompactList}\small\item\em Deze functie maakt een \mbox{\hyperlink{namespacesrc_1_1_backend_1_1_u_s_b}{U\+SB}} object aan en maakt een lijst van aangesloten motordrivers. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a6794aa2f84fa98ee072b8f1ae763176f}{select\+\_\+performax\+\_\+device}} (self, device\+\_\+number)
+\begin{DoxyCompactList}\small\item\em Deze functie selecteerd een driver uit de lijst van motordrivers. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a83d8976a8b35eb28a8dad31aed8aab57}{get\+\_\+device\+\_\+descriptors}} (self, \mbox{\hyperlink{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_ae4e7604ff76f2616bda65151177a4390}{device}})
+\begin{DoxyCompactList}\small\item\em Deze functie haalt het serienummer en productnummer van een aangesloten driver op. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a28e4ca32de33d192ae2da4cf57454795}{open\+\_\+new\+\_\+connection}} (self, \mbox{\hyperlink{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_ae4e7604ff76f2616bda65151177a4390}{device}})
+\begin{DoxyCompactList}\small\item\em Deze functie claimt een \mbox{\hyperlink{namespacesrc_1_1_backend_1_1_u_s_b}{U\+SB}} interface en opent de \mbox{\hyperlink{namespacesrc_1_1_backend_1_1_u_s_b}{U\+SB}} verbinding. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a0ca2a194d29c5927fa26f7d4bb217060}{open\+\_\+connection}} (self, device\+\_\+num)
+\begin{DoxyCompactList}\small\item\em Deze functie claimt een \mbox{\hyperlink{namespacesrc_1_1_backend_1_1_u_s_b}{U\+SB}} interface en opent de \mbox{\hyperlink{namespacesrc_1_1_backend_1_1_u_s_b}{U\+SB}} verbinding. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a64c206de2331ba1c79426c9a33963df0}{close\+\_\+connection}} (self, handler)
+\begin{DoxyCompactList}\small\item\em Deze functie laat de \mbox{\hyperlink{namespacesrc_1_1_backend_1_1_u_s_b}{U\+SB}} interface los en sluit de \mbox{\hyperlink{namespacesrc_1_1_backend_1_1_u_s_b}{U\+SB}} verbinding. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a8c1ebae3373ea0dda2763b79a802cba9}{close\+\_\+connections}} (self)
+\begin{DoxyCompactList}\small\item\em Deze functie sluit alle verbonden \mbox{\hyperlink{namespacesrc_1_1_backend_1_1_u_s_b}{U\+SB}} verbindingen. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a92225d34594a80396752f7fab754dba2}{transceive\+\_\+message}} (self, handler\+\_\+num, command, value=None, read\+\_\+size=128)
+\begin{DoxyCompactList}\small\item\em Deze functie verstuurd commando\textquotesingle{}s naar een \mbox{\hyperlink{namespacesrc_1_1_backend_1_1_u_s_b}{U\+SB}} apparaat. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a797323d95f458b77034d52ec7bd0a162}{V\+E\+N\+D\+O\+R\+\_\+\+ID}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a041d2735ccd92e53a23b4dc0a7c9e58d}{P\+R\+O\+D\+U\+C\+T\+\_\+\+ID}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_abea5831a9f745e3c65a5debc9185e2e5}{w\+\_\+\+E\+N\+D\+P\+O\+I\+NT}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a89a1f8cb7624b8e9a9ebac100bd2e2b7}{r\+\_\+\+E\+N\+D\+P\+O\+I\+NT}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a225f290f567bdd861d6847485de0dd79}{I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+N\+U\+M\+B\+ER}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a595776b807c0319557c1a04fe113d66c}{M\+I\+C\+R\+O\+\_\+\+S\+T\+EP}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_ab505505be7a4ff258db28d0458c7489c}{S\+T\+E\+P\+\_\+\+S\+I\+ZE}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a6a8117a4f2d647c34a947840996658b4}{H\+I\+G\+H\+\_\+\+S\+P\+E\+ED}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a4243aa52af73602a408d4d971ca5285c}{L\+O\+W\+\_\+\+S\+P\+E\+ED}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a2c5675a095e54700c9c0c5c9d9d95d44}{A\+C\+C\+E\+L\+E\+R\+A\+T\+I\+ON}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_ab90f9563ccd9df9ad3441d365828424c}{D\+E\+C\+E\+L\+E\+R\+A\+T\+I\+ON}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a9b6b132189d27e039d8e5daa021e4ac5}{M\+A\+X\+\_\+\+C\+U\+R\+R\+E\+NT}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_aadc137b52e22fafe7054e7a7c3a91a7a}{D\+E\+V\+I\+C\+E\+\_\+\+C\+O\+U\+NT}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a33d856923dbeda8d5033a33128b4792d}{M\+S\+G\+\_\+\+CR}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a07997ec9f6b7f4fb2d23e80eecb551c7}{D\+R\+I\+V\+E\+R\+\_\+\+ID}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a2f9ea14a86fe4c27dfa642d659dcf0c3}{performax\+\_\+devices}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a913d66addf6be5aae97600211d2378cd}{descriptors}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_ae4e7604ff76f2616bda65151177a4390}{device}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_afc18624f8d2598a6e9c87d33db38a23d}{handlers}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_aaf6c021fc0a5b978e456b1804561699e}{is\+\_\+open}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_ac7441cec927db307308b57d253c6f77f}{\+\_\+is\+\_\+num\+\_\+device\+\_\+connected}} (self, devices\+\_\+list)
+\begin{DoxyCompactList}\small\item\em Controleer of er een motordriver is aangesloten. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a83789ccc9d289844d88d7fc1fcfdd5da}{\+\_\+open\+\_\+port}} (self, handler)
+\begin{DoxyCompactList}\small\item\em Open een \mbox{\hyperlink{namespacesrc_1_1_backend_1_1_u_s_b}{U\+SB}} poort. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a5a1599ad40d7c6d40ba255eea0a5220d}{\+\_\+flush\+\_\+port}} (self, handler)
+\begin{DoxyCompactList}\small\item\em Maak de \mbox{\hyperlink{namespacesrc_1_1_backend_1_1_u_s_b}{U\+SB}} connectie leeg. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_aad3072889ac6b37c4a607e7b0b8935b2}{\+\_\+close\+\_\+port}} (self, handler)
+\begin{DoxyCompactList}\small\item\em Sluit de \mbox{\hyperlink{namespacesrc_1_1_backend_1_1_u_s_b}{U\+SB}} connectie. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Klasse om de drivers aan te sturen dmv \mbox{\hyperlink{namespacesrc_1_1_backend_1_1_u_s_b}{U\+SB}}. 
+
+{\bfseries{Author}}\+: Chileam Bohnen ~\newline
+ {\bfseries{Version}}\+: 1.\+12 ~\newline
+ {\bfseries{Date}}\+: 20-\/1-\/2020 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_af31a16ba1ba7f5650b899e7cdff639e4}\label{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_af31a16ba1ba7f5650b899e7cdff639e4}} 
+\index{src.Backend.USB.Driver@{src.Backend.USB.Driver}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!src.Backend.USB.Driver@{src.Backend.USB.Driver}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def src.\+Backend.\+U\+S\+B.\+Driver.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{device\+\_\+count }\end{DoxyParamCaption})}
+
+
+
+Initialiseer de drivers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em device\+\_\+count} & (int) aantal verbonden \mbox{\hyperlink{namespacesrc_1_1_backend_1_1_u_s_b}{U\+SB}} motordrivers.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Tabel}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Motordriver instellingen  }&\cellcolor{\tableheadbgcolor}\textbf{ Waarden   }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Motordriver instellingen  }&\cellcolor{\tableheadbgcolor}\textbf{ Waarden   }\\\cline{1-2}
+\endhead
+V\+E\+N\+D\+O\+R\+\_\+\+ID  &0x1589   \\\cline{1-2}
+P\+R\+O\+D\+U\+C\+T\+\_\+\+ID  &0x\+A101   \\\cline{1-2}
+W\+R\+I\+TE E\+N\+D\+P\+O\+I\+NT  &0x02   \\\cline{1-2}
+R\+E\+AD E\+N\+D\+P\+O\+I\+NT  &0x82   \\\cline{1-2}
+\end{longtabu}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Motordriver instellingen  }&\cellcolor{\tableheadbgcolor}\textbf{ \mbox{\hyperlink{classsrc_1_1_backend_1_1_u_s_b_1_1_driver}{Driver}} 0  }&\cellcolor{\tableheadbgcolor}\textbf{ \mbox{\hyperlink{classsrc_1_1_backend_1_1_u_s_b_1_1_driver}{Driver}} 1   }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Motordriver instellingen  }&\cellcolor{\tableheadbgcolor}\textbf{ \mbox{\hyperlink{classsrc_1_1_backend_1_1_u_s_b_1_1_driver}{Driver}} 0  }&\cellcolor{\tableheadbgcolor}\textbf{ \mbox{\hyperlink{classsrc_1_1_backend_1_1_u_s_b_1_1_driver}{Driver}} 1   }\\\cline{1-3}
+\endhead
+D\+R\+I\+V\+E\+R\+\_\+\+ID  &2500  &1500   \\\cline{1-3}
+H\+I\+G\+H\+\_\+\+S\+P\+E\+ED  &250  &250   \\\cline{1-3}
+L\+O\+W\+\_\+\+S\+P\+E\+ED  &150  &150   \\\cline{1-3}
+A\+C\+C\+E\+L\+E\+R\+A\+T\+I\+ON  &25  &150   \\\cline{1-3}
+M\+A\+X\+\_\+\+C\+U\+R\+R\+E\+NT  &1000  &1000   \\\cline{1-3}
+\end{longtabu}
+
+\end{DoxyParagraph}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_aad3072889ac6b37c4a607e7b0b8935b2}\label{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_aad3072889ac6b37c4a607e7b0b8935b2}} 
+\index{src.Backend.USB.Driver@{src.Backend.USB.Driver}!\_close\_port@{\_close\_port}}
+\index{\_close\_port@{\_close\_port}!src.Backend.USB.Driver@{src.Backend.USB.Driver}}
+\doxysubsubsection{\texorpdfstring{\_close\_port()}{\_close\_port()}}
+{\footnotesize\ttfamily def src.\+Backend.\+U\+S\+B.\+Driver.\+\_\+close\+\_\+port (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{handler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Sluit de \mbox{\hyperlink{namespacesrc_1_1_backend_1_1_u_s_b}{U\+SB}} connectie. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handler} & (handler) afhandelaar van het U\+S\+B-\/interface. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a5a1599ad40d7c6d40ba255eea0a5220d}\label{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a5a1599ad40d7c6d40ba255eea0a5220d}} 
+\index{src.Backend.USB.Driver@{src.Backend.USB.Driver}!\_flush\_port@{\_flush\_port}}
+\index{\_flush\_port@{\_flush\_port}!src.Backend.USB.Driver@{src.Backend.USB.Driver}}
+\doxysubsubsection{\texorpdfstring{\_flush\_port()}{\_flush\_port()}}
+{\footnotesize\ttfamily def src.\+Backend.\+U\+S\+B.\+Driver.\+\_\+flush\+\_\+port (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{handler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Maak de \mbox{\hyperlink{namespacesrc_1_1_backend_1_1_u_s_b}{U\+SB}} connectie leeg. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handler} & (handler) afhandelaar van het U\+S\+B-\/interface. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_ac7441cec927db307308b57d253c6f77f}\label{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_ac7441cec927db307308b57d253c6f77f}} 
+\index{src.Backend.USB.Driver@{src.Backend.USB.Driver}!\_is\_num\_device\_connected@{\_is\_num\_device\_connected}}
+\index{\_is\_num\_device\_connected@{\_is\_num\_device\_connected}!src.Backend.USB.Driver@{src.Backend.USB.Driver}}
+\doxysubsubsection{\texorpdfstring{\_is\_num\_device\_connected()}{\_is\_num\_device\_connected()}}
+{\footnotesize\ttfamily def src.\+Backend.\+U\+S\+B.\+Driver.\+\_\+is\+\_\+num\+\_\+device\+\_\+connected (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{devices\+\_\+list }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Controleer of er een motordriver is aangesloten. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em devices\+\_\+list} & (list) lijst van adressen van apparaten.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+(list) lijst van geverifieerde drivers. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a83789ccc9d289844d88d7fc1fcfdd5da}\label{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a83789ccc9d289844d88d7fc1fcfdd5da}} 
+\index{src.Backend.USB.Driver@{src.Backend.USB.Driver}!\_open\_port@{\_open\_port}}
+\index{\_open\_port@{\_open\_port}!src.Backend.USB.Driver@{src.Backend.USB.Driver}}
+\doxysubsubsection{\texorpdfstring{\_open\_port()}{\_open\_port()}}
+{\footnotesize\ttfamily def src.\+Backend.\+U\+S\+B.\+Driver.\+\_\+open\+\_\+port (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{handler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Open een \mbox{\hyperlink{namespacesrc_1_1_backend_1_1_u_s_b}{U\+SB}} poort. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handler} & (handler) afhandelaar van het U\+S\+B-\/interface. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a64c206de2331ba1c79426c9a33963df0}\label{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a64c206de2331ba1c79426c9a33963df0}} 
+\index{src.Backend.USB.Driver@{src.Backend.USB.Driver}!close\_connection@{close\_connection}}
+\index{close\_connection@{close\_connection}!src.Backend.USB.Driver@{src.Backend.USB.Driver}}
+\doxysubsubsection{\texorpdfstring{close\_connection()}{close\_connection()}}
+{\footnotesize\ttfamily def src.\+Backend.\+U\+S\+B.\+Driver.\+close\+\_\+connection (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{handler }\end{DoxyParamCaption})}
+
+
+
+Deze functie laat de \mbox{\hyperlink{namespacesrc_1_1_backend_1_1_u_s_b}{U\+SB}} interface los en sluit de \mbox{\hyperlink{namespacesrc_1_1_backend_1_1_u_s_b}{U\+SB}} verbinding. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handler} & (handler) afhandelaar van het U\+S\+B-\/interface. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a8c1ebae3373ea0dda2763b79a802cba9}\label{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a8c1ebae3373ea0dda2763b79a802cba9}} 
+\index{src.Backend.USB.Driver@{src.Backend.USB.Driver}!close\_connections@{close\_connections}}
+\index{close\_connections@{close\_connections}!src.Backend.USB.Driver@{src.Backend.USB.Driver}}
+\doxysubsubsection{\texorpdfstring{close\_connections()}{close\_connections()}}
+{\footnotesize\ttfamily def src.\+Backend.\+U\+S\+B.\+Driver.\+close\+\_\+connections (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Deze functie sluit alle verbonden \mbox{\hyperlink{namespacesrc_1_1_backend_1_1_u_s_b}{U\+SB}} verbindingen. 
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_ad916989dab9edcea68b5ddd826fcd77c}\label{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_ad916989dab9edcea68b5ddd826fcd77c}} 
+\index{src.Backend.USB.Driver@{src.Backend.USB.Driver}!driver\_init@{driver\_init}}
+\index{driver\_init@{driver\_init}!src.Backend.USB.Driver@{src.Backend.USB.Driver}}
+\doxysubsubsection{\texorpdfstring{driver\_init()}{driver\_init()}}
+{\footnotesize\ttfamily def src.\+Backend.\+U\+S\+B.\+Driver.\+driver\+\_\+init (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Deze functie maakt een \mbox{\hyperlink{namespacesrc_1_1_backend_1_1_u_s_b}{U\+SB}} object aan en maakt een lijst van aangesloten motordrivers. 
+
+\begin{DoxyReturn}{Returns}
+(usb1.\+U\+S\+B\+Context, performax\+\_\+devices\mbox{[}\mbox{]}) usb1.\+U\+S\+B\+Context is het \mbox{\hyperlink{namespacesrc_1_1_backend_1_1_u_s_b}{U\+SB}} object, performax\+\_\+devices bevat een lijst van motordrivers. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a83d8976a8b35eb28a8dad31aed8aab57}\label{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a83d8976a8b35eb28a8dad31aed8aab57}} 
+\index{src.Backend.USB.Driver@{src.Backend.USB.Driver}!get\_device\_descriptors@{get\_device\_descriptors}}
+\index{get\_device\_descriptors@{get\_device\_descriptors}!src.Backend.USB.Driver@{src.Backend.USB.Driver}}
+\doxysubsubsection{\texorpdfstring{get\_device\_descriptors()}{get\_device\_descriptors()}}
+{\footnotesize\ttfamily def src.\+Backend.\+U\+S\+B.\+Driver.\+get\+\_\+device\+\_\+descriptors (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{device }\end{DoxyParamCaption})}
+
+
+
+Deze functie haalt het serienummer en productnummer van een aangesloten driver op. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em device} & (int) nummer van een aangesloten device. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a0ca2a194d29c5927fa26f7d4bb217060}\label{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a0ca2a194d29c5927fa26f7d4bb217060}} 
+\index{src.Backend.USB.Driver@{src.Backend.USB.Driver}!open\_connection@{open\_connection}}
+\index{open\_connection@{open\_connection}!src.Backend.USB.Driver@{src.Backend.USB.Driver}}
+\doxysubsubsection{\texorpdfstring{open\_connection()}{open\_connection()}}
+{\footnotesize\ttfamily def src.\+Backend.\+U\+S\+B.\+Driver.\+open\+\_\+connection (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{device\+\_\+num }\end{DoxyParamCaption})}
+
+
+
+Deze functie claimt een \mbox{\hyperlink{namespacesrc_1_1_backend_1_1_u_s_b}{U\+SB}} interface en opent de \mbox{\hyperlink{namespacesrc_1_1_backend_1_1_u_s_b}{U\+SB}} verbinding. 
+
+~\newline
+ De verbinding wordt gemaakt met een geslecteerde driver. zie select\+\_\+performaxe\+\_\+device(self, device\+\_\+number).
+
+
+\begin{DoxyParams}{Parameters}
+{\em device\+\_\+num} & (int) nummer van een aangesloten device. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a28e4ca32de33d192ae2da4cf57454795}\label{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a28e4ca32de33d192ae2da4cf57454795}} 
+\index{src.Backend.USB.Driver@{src.Backend.USB.Driver}!open\_new\_connection@{open\_new\_connection}}
+\index{open\_new\_connection@{open\_new\_connection}!src.Backend.USB.Driver@{src.Backend.USB.Driver}}
+\doxysubsubsection{\texorpdfstring{open\_new\_connection()}{open\_new\_connection()}}
+{\footnotesize\ttfamily def src.\+Backend.\+U\+S\+B.\+Driver.\+open\+\_\+new\+\_\+connection (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{device }\end{DoxyParamCaption})}
+
+
+
+Deze functie claimt een \mbox{\hyperlink{namespacesrc_1_1_backend_1_1_u_s_b}{U\+SB}} interface en opent de \mbox{\hyperlink{namespacesrc_1_1_backend_1_1_u_s_b}{U\+SB}} verbinding. 
+
+~\newline
+ De verbinding wordt gemaakt met een geselecteerde driver. zie select\+\_\+performaxe\+\_\+device(self, device\+\_\+number).
+
+
+\begin{DoxyParams}{Parameters}
+{\em device} & (int) Adres van desbetreffende device.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+(handler) afhandelaar van U\+S\+B-\/interface. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a6794aa2f84fa98ee072b8f1ae763176f}\label{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a6794aa2f84fa98ee072b8f1ae763176f}} 
+\index{src.Backend.USB.Driver@{src.Backend.USB.Driver}!select\_performax\_device@{select\_performax\_device}}
+\index{select\_performax\_device@{select\_performax\_device}!src.Backend.USB.Driver@{src.Backend.USB.Driver}}
+\doxysubsubsection{\texorpdfstring{select\_performax\_device()}{select\_performax\_device()}}
+{\footnotesize\ttfamily def src.\+Backend.\+U\+S\+B.\+Driver.\+select\+\_\+performax\+\_\+device (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{device\+\_\+number }\end{DoxyParamCaption})}
+
+
+
+Deze functie selecteerd een driver uit de lijst van motordrivers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em device\+\_\+number} & (int) nummer van een aangesloten device. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_ad03f8c32241b7b3e259ce2ebb4ccc00c}\label{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_ad03f8c32241b7b3e259ce2ebb4ccc00c}} 
+\index{src.Backend.USB.Driver@{src.Backend.USB.Driver}!stepper\_init@{stepper\_init}}
+\index{stepper\_init@{stepper\_init}!src.Backend.USB.Driver@{src.Backend.USB.Driver}}
+\doxysubsubsection{\texorpdfstring{stepper\_init()}{stepper\_init()}}
+{\footnotesize\ttfamily def src.\+Backend.\+U\+S\+B.\+Driver.\+stepper\+\_\+init (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Deze functie initialiseerd de aangesloten motordrivers. 
+
+\begin{DoxyReturn}{Returns}
+(bool) True wanneer initialisatie lukt, anders False 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a92225d34594a80396752f7fab754dba2}\label{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a92225d34594a80396752f7fab754dba2}} 
+\index{src.Backend.USB.Driver@{src.Backend.USB.Driver}!transceive\_message@{transceive\_message}}
+\index{transceive\_message@{transceive\_message}!src.Backend.USB.Driver@{src.Backend.USB.Driver}}
+\doxysubsubsection{\texorpdfstring{transceive\_message()}{transceive\_message()}}
+{\footnotesize\ttfamily def src.\+Backend.\+U\+S\+B.\+Driver.\+transceive\+\_\+message (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{handler\+\_\+num,  }\item[{}]{command,  }\item[{}]{value = {\ttfamily None},  }\item[{}]{read\+\_\+size = {\ttfamily 128} }\end{DoxyParamCaption})}
+
+
+
+Deze functie verstuurd commando\textquotesingle{}s naar een \mbox{\hyperlink{namespacesrc_1_1_backend_1_1_u_s_b}{U\+SB}} apparaat. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em handler\+\_\+num} & (handler\+\_\+num) nummer van een aangesloten handler. \\
+\hline
+{\em command} & (\mbox{\hyperlink{classsrc_1_1_backend_1_1_u_s_b_1_1_commands}{Commands}}) een commando uit de klasse \textquotesingle{}\mbox{\hyperlink{classsrc_1_1_backend_1_1_u_s_b_1_1_commands}{Commands}}\textquotesingle{}.\\
+\hline
+{\em value} & (int) een waarde die naar de motordriver geschreven wordt. Standaard None. \\
+\hline
+{\em read\+\_\+size} & (int) geheugen grootte voor ontvangen berichten. Standaard 128.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+(bytes) ontvangen bericht. b\textquotesingle{}OK\textquotesingle{} of een waarde. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a2c5675a095e54700c9c0c5c9d9d95d44}\label{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a2c5675a095e54700c9c0c5c9d9d95d44}} 
+\index{src.Backend.USB.Driver@{src.Backend.USB.Driver}!ACCELERATION@{ACCELERATION}}
+\index{ACCELERATION@{ACCELERATION}!src.Backend.USB.Driver@{src.Backend.USB.Driver}}
+\doxysubsubsection{\texorpdfstring{ACCELERATION}{ACCELERATION}}
+{\footnotesize\ttfamily src.\+Backend.\+U\+S\+B.\+Driver.\+A\+C\+C\+E\+L\+E\+R\+A\+T\+I\+ON}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_ab90f9563ccd9df9ad3441d365828424c}\label{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_ab90f9563ccd9df9ad3441d365828424c}} 
+\index{src.Backend.USB.Driver@{src.Backend.USB.Driver}!DECELERATION@{DECELERATION}}
+\index{DECELERATION@{DECELERATION}!src.Backend.USB.Driver@{src.Backend.USB.Driver}}
+\doxysubsubsection{\texorpdfstring{DECELERATION}{DECELERATION}}
+{\footnotesize\ttfamily src.\+Backend.\+U\+S\+B.\+Driver.\+D\+E\+C\+E\+L\+E\+R\+A\+T\+I\+ON}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a913d66addf6be5aae97600211d2378cd}\label{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a913d66addf6be5aae97600211d2378cd}} 
+\index{src.Backend.USB.Driver@{src.Backend.USB.Driver}!descriptors@{descriptors}}
+\index{descriptors@{descriptors}!src.Backend.USB.Driver@{src.Backend.USB.Driver}}
+\doxysubsubsection{\texorpdfstring{descriptors}{descriptors}}
+{\footnotesize\ttfamily src.\+Backend.\+U\+S\+B.\+Driver.\+descriptors}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_ae4e7604ff76f2616bda65151177a4390}\label{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_ae4e7604ff76f2616bda65151177a4390}} 
+\index{src.Backend.USB.Driver@{src.Backend.USB.Driver}!device@{device}}
+\index{device@{device}!src.Backend.USB.Driver@{src.Backend.USB.Driver}}
+\doxysubsubsection{\texorpdfstring{device}{device}}
+{\footnotesize\ttfamily src.\+Backend.\+U\+S\+B.\+Driver.\+device}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_aadc137b52e22fafe7054e7a7c3a91a7a}\label{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_aadc137b52e22fafe7054e7a7c3a91a7a}} 
+\index{src.Backend.USB.Driver@{src.Backend.USB.Driver}!DEVICE\_COUNT@{DEVICE\_COUNT}}
+\index{DEVICE\_COUNT@{DEVICE\_COUNT}!src.Backend.USB.Driver@{src.Backend.USB.Driver}}
+\doxysubsubsection{\texorpdfstring{DEVICE\_COUNT}{DEVICE\_COUNT}}
+{\footnotesize\ttfamily src.\+Backend.\+U\+S\+B.\+Driver.\+D\+E\+V\+I\+C\+E\+\_\+\+C\+O\+U\+NT}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a07997ec9f6b7f4fb2d23e80eecb551c7}\label{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a07997ec9f6b7f4fb2d23e80eecb551c7}} 
+\index{src.Backend.USB.Driver@{src.Backend.USB.Driver}!DRIVER\_ID@{DRIVER\_ID}}
+\index{DRIVER\_ID@{DRIVER\_ID}!src.Backend.USB.Driver@{src.Backend.USB.Driver}}
+\doxysubsubsection{\texorpdfstring{DRIVER\_ID}{DRIVER\_ID}}
+{\footnotesize\ttfamily src.\+Backend.\+U\+S\+B.\+Driver.\+D\+R\+I\+V\+E\+R\+\_\+\+ID}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_afc18624f8d2598a6e9c87d33db38a23d}\label{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_afc18624f8d2598a6e9c87d33db38a23d}} 
+\index{src.Backend.USB.Driver@{src.Backend.USB.Driver}!handlers@{handlers}}
+\index{handlers@{handlers}!src.Backend.USB.Driver@{src.Backend.USB.Driver}}
+\doxysubsubsection{\texorpdfstring{handlers}{handlers}}
+{\footnotesize\ttfamily src.\+Backend.\+U\+S\+B.\+Driver.\+handlers}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a6a8117a4f2d647c34a947840996658b4}\label{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a6a8117a4f2d647c34a947840996658b4}} 
+\index{src.Backend.USB.Driver@{src.Backend.USB.Driver}!HIGH\_SPEED@{HIGH\_SPEED}}
+\index{HIGH\_SPEED@{HIGH\_SPEED}!src.Backend.USB.Driver@{src.Backend.USB.Driver}}
+\doxysubsubsection{\texorpdfstring{HIGH\_SPEED}{HIGH\_SPEED}}
+{\footnotesize\ttfamily src.\+Backend.\+U\+S\+B.\+Driver.\+H\+I\+G\+H\+\_\+\+S\+P\+E\+ED}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a225f290f567bdd861d6847485de0dd79}\label{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a225f290f567bdd861d6847485de0dd79}} 
+\index{src.Backend.USB.Driver@{src.Backend.USB.Driver}!INTERFACE\_NUMBER@{INTERFACE\_NUMBER}}
+\index{INTERFACE\_NUMBER@{INTERFACE\_NUMBER}!src.Backend.USB.Driver@{src.Backend.USB.Driver}}
+\doxysubsubsection{\texorpdfstring{INTERFACE\_NUMBER}{INTERFACE\_NUMBER}}
+{\footnotesize\ttfamily src.\+Backend.\+U\+S\+B.\+Driver.\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+N\+U\+M\+B\+ER}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_aaf6c021fc0a5b978e456b1804561699e}\label{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_aaf6c021fc0a5b978e456b1804561699e}} 
+\index{src.Backend.USB.Driver@{src.Backend.USB.Driver}!is\_open@{is\_open}}
+\index{is\_open@{is\_open}!src.Backend.USB.Driver@{src.Backend.USB.Driver}}
+\doxysubsubsection{\texorpdfstring{is\_open}{is\_open}}
+{\footnotesize\ttfamily src.\+Backend.\+U\+S\+B.\+Driver.\+is\+\_\+open}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a4243aa52af73602a408d4d971ca5285c}\label{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a4243aa52af73602a408d4d971ca5285c}} 
+\index{src.Backend.USB.Driver@{src.Backend.USB.Driver}!LOW\_SPEED@{LOW\_SPEED}}
+\index{LOW\_SPEED@{LOW\_SPEED}!src.Backend.USB.Driver@{src.Backend.USB.Driver}}
+\doxysubsubsection{\texorpdfstring{LOW\_SPEED}{LOW\_SPEED}}
+{\footnotesize\ttfamily src.\+Backend.\+U\+S\+B.\+Driver.\+L\+O\+W\+\_\+\+S\+P\+E\+ED}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a9b6b132189d27e039d8e5daa021e4ac5}\label{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a9b6b132189d27e039d8e5daa021e4ac5}} 
+\index{src.Backend.USB.Driver@{src.Backend.USB.Driver}!MAX\_CURRENT@{MAX\_CURRENT}}
+\index{MAX\_CURRENT@{MAX\_CURRENT}!src.Backend.USB.Driver@{src.Backend.USB.Driver}}
+\doxysubsubsection{\texorpdfstring{MAX\_CURRENT}{MAX\_CURRENT}}
+{\footnotesize\ttfamily src.\+Backend.\+U\+S\+B.\+Driver.\+M\+A\+X\+\_\+\+C\+U\+R\+R\+E\+NT}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a595776b807c0319557c1a04fe113d66c}\label{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a595776b807c0319557c1a04fe113d66c}} 
+\index{src.Backend.USB.Driver@{src.Backend.USB.Driver}!MICRO\_STEP@{MICRO\_STEP}}
+\index{MICRO\_STEP@{MICRO\_STEP}!src.Backend.USB.Driver@{src.Backend.USB.Driver}}
+\doxysubsubsection{\texorpdfstring{MICRO\_STEP}{MICRO\_STEP}}
+{\footnotesize\ttfamily src.\+Backend.\+U\+S\+B.\+Driver.\+M\+I\+C\+R\+O\+\_\+\+S\+T\+EP}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a33d856923dbeda8d5033a33128b4792d}\label{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a33d856923dbeda8d5033a33128b4792d}} 
+\index{src.Backend.USB.Driver@{src.Backend.USB.Driver}!MSG\_CR@{MSG\_CR}}
+\index{MSG\_CR@{MSG\_CR}!src.Backend.USB.Driver@{src.Backend.USB.Driver}}
+\doxysubsubsection{\texorpdfstring{MSG\_CR}{MSG\_CR}}
+{\footnotesize\ttfamily src.\+Backend.\+U\+S\+B.\+Driver.\+M\+S\+G\+\_\+\+CR}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a2f9ea14a86fe4c27dfa642d659dcf0c3}\label{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a2f9ea14a86fe4c27dfa642d659dcf0c3}} 
+\index{src.Backend.USB.Driver@{src.Backend.USB.Driver}!performax\_devices@{performax\_devices}}
+\index{performax\_devices@{performax\_devices}!src.Backend.USB.Driver@{src.Backend.USB.Driver}}
+\doxysubsubsection{\texorpdfstring{performax\_devices}{performax\_devices}}
+{\footnotesize\ttfamily src.\+Backend.\+U\+S\+B.\+Driver.\+performax\+\_\+devices}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a041d2735ccd92e53a23b4dc0a7c9e58d}\label{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a041d2735ccd92e53a23b4dc0a7c9e58d}} 
+\index{src.Backend.USB.Driver@{src.Backend.USB.Driver}!PRODUCT\_ID@{PRODUCT\_ID}}
+\index{PRODUCT\_ID@{PRODUCT\_ID}!src.Backend.USB.Driver@{src.Backend.USB.Driver}}
+\doxysubsubsection{\texorpdfstring{PRODUCT\_ID}{PRODUCT\_ID}}
+{\footnotesize\ttfamily src.\+Backend.\+U\+S\+B.\+Driver.\+P\+R\+O\+D\+U\+C\+T\+\_\+\+ID}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a89a1f8cb7624b8e9a9ebac100bd2e2b7}\label{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a89a1f8cb7624b8e9a9ebac100bd2e2b7}} 
+\index{src.Backend.USB.Driver@{src.Backend.USB.Driver}!r\_ENDPOINT@{r\_ENDPOINT}}
+\index{r\_ENDPOINT@{r\_ENDPOINT}!src.Backend.USB.Driver@{src.Backend.USB.Driver}}
+\doxysubsubsection{\texorpdfstring{r\_ENDPOINT}{r\_ENDPOINT}}
+{\footnotesize\ttfamily src.\+Backend.\+U\+S\+B.\+Driver.\+r\+\_\+\+E\+N\+D\+P\+O\+I\+NT}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_ab505505be7a4ff258db28d0458c7489c}\label{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_ab505505be7a4ff258db28d0458c7489c}} 
+\index{src.Backend.USB.Driver@{src.Backend.USB.Driver}!STEP\_SIZE@{STEP\_SIZE}}
+\index{STEP\_SIZE@{STEP\_SIZE}!src.Backend.USB.Driver@{src.Backend.USB.Driver}}
+\doxysubsubsection{\texorpdfstring{STEP\_SIZE}{STEP\_SIZE}}
+{\footnotesize\ttfamily src.\+Backend.\+U\+S\+B.\+Driver.\+S\+T\+E\+P\+\_\+\+S\+I\+ZE}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a797323d95f458b77034d52ec7bd0a162}\label{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_a797323d95f458b77034d52ec7bd0a162}} 
+\index{src.Backend.USB.Driver@{src.Backend.USB.Driver}!VENDOR\_ID@{VENDOR\_ID}}
+\index{VENDOR\_ID@{VENDOR\_ID}!src.Backend.USB.Driver@{src.Backend.USB.Driver}}
+\doxysubsubsection{\texorpdfstring{VENDOR\_ID}{VENDOR\_ID}}
+{\footnotesize\ttfamily src.\+Backend.\+U\+S\+B.\+Driver.\+V\+E\+N\+D\+O\+R\+\_\+\+ID}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_abea5831a9f745e3c65a5debc9185e2e5}\label{classsrc_1_1_backend_1_1_u_s_b_1_1_driver_abea5831a9f745e3c65a5debc9185e2e5}} 
+\index{src.Backend.USB.Driver@{src.Backend.USB.Driver}!w\_ENDPOINT@{w\_ENDPOINT}}
+\index{w\_ENDPOINT@{w\_ENDPOINT}!src.Backend.USB.Driver@{src.Backend.USB.Driver}}
+\doxysubsubsection{\texorpdfstring{w\_ENDPOINT}{w\_ENDPOINT}}
+{\footnotesize\ttfamily src.\+Backend.\+U\+S\+B.\+Driver.\+w\+\_\+\+E\+N\+D\+P\+O\+I\+NT}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Backend/\mbox{\hyperlink{_u_s_b_8py}{U\+S\+B.\+py}}\end{DoxyCompactItemize}

@@ -1,0 +1,52 @@
+\hypertarget{_find_contours_8py}{}\doxysection{src/\+Find\+Contours.py File Reference}
+\label{_find_contours_8py}\index{src/FindContours.py@{src/FindContours.py}}
+
+
+Code voor het vinden van de contouren van de tafel.  
+
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classsrc_1_1_find_contours_1_1_find_contours}{src.\+Find\+Contours.\+Find\+Contours}}
+\begin{DoxyCompactList}\small\item\em Klasse die de contouren van het veld kan detecteren. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacesrc_1_1_find_contours}{src.\+Find\+Contours}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacesrc_1_1_find_contours_ae6af46141b36374273fb83c21c9c086a}{src.\+Find\+Contours.\+filenames}} = glob(\char`\"{}D\+:\textbackslash{}\textbackslash{}\+Stichting Hogeschool Utrecht\textbackslash{}\textbackslash{}\+N\+LE -\/ Documenten\textbackslash{}\textbackslash{}\+Test foto\textquotesingle{}s\textbackslash{}\textbackslash{}oud\textbackslash{}\textbackslash{}\+V1.\+3 cam normal Wide angle\textbackslash{}\textbackslash{}$\ast$.png\char`\"{})
+\item 
+\mbox{\hyperlink{namespacesrc_1_1_find_contours_a4be75e70dc81d3484ef53eedaed5bc05}{src.\+Find\+Contours.\+raster}} = Raster()
+\item 
+\mbox{\hyperlink{namespacesrc_1_1_find_contours_aa0943a56c33c9ba3f149799c179ef4a2}{src.\+Find\+Contours.\+img}} = cv2.\+imread(filename)
+\item 
+\mbox{\hyperlink{namespacesrc_1_1_find_contours_a6b63ca7b42d0c13a151954da57f387f1}{src.\+Find\+Contours.\+start\+Time}} = datetime.\+now()
+\item 
+\mbox{\hyperlink{namespacesrc_1_1_find_contours_ab0a405802bb8347b32dff444e12fc249}{src.\+Find\+Contours.\+cropped}} = raster.\+get\+\_\+cropped\+\_\+field()
+\item 
+\mbox{\hyperlink{namespacesrc_1_1_find_contours_af022e0b38dec35a7d06961614fb135bd}{src.\+Find\+Contours.\+key}} = cv2.\+wait\+Key(100)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Code voor het vinden van de contouren van de tafel. 
+
+\mbox{\hyperlink{_find_contours_8py}{Find\+Contours.\+py}} \begin{DoxyDate}{Date}
+21-\/1-\/2020 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+\+: 1.\+31 Modifier / Authors\+: Kelvin Sweere Chileam Bohnen 
+\end{DoxyVersion}
+\begin{DoxyParagraph}{Used\+\_\+\+I\+DE}
+Pycharm (Python 3.\+6.\+7 64-\/bit) 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Schematic}
+
+\begin{DoxyItemize}
+\item Version management\+: 1.\+0\+: Headers veranderd. 1.\+1\+: Google docstring format toegepast op functies. 1.\+20\+: Constanten W\+I\+D\+TH en H\+E\+I\+G\+HT op 640 x 360 gezet 1.\+21\+: Doxygen commentaar toegevoegd. 1.\+22\+: Spelling en grammatica commentaar nagekeken 1.\+30 return\+\_\+img verwijdert. in get\+\_\+cropped\+\_\+field wordt het geschaalde speelveld terug gegeven. 1.\+31\+: Return image toegevoegd. 
+\end{DoxyItemize}
+\end{DoxyParagraph}

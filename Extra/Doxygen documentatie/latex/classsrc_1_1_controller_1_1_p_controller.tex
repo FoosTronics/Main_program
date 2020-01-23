@@ -1,0 +1,263 @@
+\hypertarget{classsrc_1_1_controller_1_1_p_controller}{}\doxysection{src.\+Controller.\+P\+Controller Class Reference}
+\label{classsrc_1_1_controller_1_1_p_controller}\index{src.Controller.PController@{src.Controller.PController}}
+
+
+Met behulp van deze class kan er van twee coördinaat punten de benodigde keeper positie bepaald worden.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classsrc_1_1_controller_1_1_p_controller_a473cc48aa4d1aabed6863fe1cfd33182}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self)
+\begin{DoxyCompactList}\small\item\em initalisatie voor driver communicatie en verhouding bepalingen \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_controller_1_1_p_controller_a5207dc87785abb7661b66a0eeed81b74}{test\+\_\+lin\+\_\+movement}} (self, \mbox{\hyperlink{namespacesrc_1_1_controller_af76bef991ed7e2a33d584fb8e8aee312}{co}})
+\begin{DoxyCompactList}\small\item\em bepaald keeper positie en stuur opdracht naar drivers \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_controller_1_1_p_controller_ac4fdab3dbe051b4f949bbdd3d64c8497}{shoot}} (self)
+\begin{DoxyCompactList}\small\item\em Bestuur de drivers zodat er axiaal bewogen wordt. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_controller_1_1_p_controller_a2235657c2fd4f4b1800d1301e9497ae3}{bitfield}} (self, n)
+\begin{DoxyCompactList}\small\item\em Convert een bit list naar een integer list. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_controller_1_1_p_controller_abd80bfa9a00a012063bc82a3fa856f30}{go\+\_\+home}} (self, direction=0)
+\begin{DoxyCompactList}\small\item\em Beweegt de keeper terug naar de home positie. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_controller_1_1_p_controller_a0c0cacaa5089b8c6294a0685b9c65a4d}{linear\+\_\+extrapolation}} (self, pnt1, pnt2, value\+\_\+x=5, max\+\_\+y=32)
+\begin{DoxyCompactList}\small\item\em extra-\/polation om keeper coördinaten te bepalen. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsrc_1_1_controller_1_1_p_controller_a19f16c4d15e6b67a58b816c00179fef1}{driver}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_controller_1_1_p_controller_ad42f656682eb9e8462d9f1240dc15a36}{screen}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_controller_1_1_p_controller_a9653cd85aa7c6f562da1e59fb12baedc}{clock}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_controller_1_1_p_controller_ad77ccc109af90db1371910071573dd5c}{T\+A\+B\+L\+E\+\_\+\+L\+E\+N\+G\+TH}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_controller_1_1_p_controller_a63423e196ed306966ba218200865a42c}{y\+\_\+length}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_controller_1_1_p_controller_af13133df93130f3e147dd989f2c8768e}{ratio\+\_\+\+M\+M\+\_\+to\+\_\+y}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_controller_1_1_p_controller_a3b030753eed2303e57b7e946b994b002}{ratio\+\_\+y\+\_\+to\+\_\+\+MM}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_controller_1_1_p_controller_a4c5675382628c59873b9406babd4cf8f}{S\+T\+E\+P\+\_\+\+Di\+S\+T\+A\+N\+CE}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_controller_1_1_p_controller_a13fda0bf4f3f6f5694131d385283da66}{D\+\_\+\+G\+E\+AR}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_controller_1_1_p_controller_a11b93701ff25485f3938af8e3a5ca168}{K\+E\+E\+P\+E\+R\+\_\+\+D\+IS}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_controller_1_1_p_controller_ac3ba8c7530095a953760808d810ab4e9}{M\+O\+T\+O\+R\+\_\+\+S\+T\+EP}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_controller_1_1_p_controller_a0ed8cf848e76d421940ef7dcbcaab0a4}{M\+I\+C\+R\+O\+\_\+\+S\+T\+EP}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_controller_1_1_p_controller_aa5f6590072a25c1280953a9e91e2f576}{M\+O\+T\+O\+R\+\_\+\+T\+O\+T\+A\+L\+\_\+\+S\+T\+E\+PS}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_controller_1_1_p_controller_a3a72a68f72ca86cf6794f47325bdf9d2}{O\+N\+E\+\_\+\+R\+O\+T\+A\+T\+I\+ON}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_controller_1_1_p_controller_ad82edf224189dc4ecdd92d1d389dc522}{O\+N\+E\+\_\+\+S\+T\+EP}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Met behulp van deze class kan er van twee coördinaat punten de benodigde keeper positie bepaald worden. 
+
+Hierbij extra-\/polation toegepast, coördinaat naar mm geconvert, de keeper stap positie bepaald en de drivers aangestuurd.
+
+\begin{DoxyReturn}{Returns}
+
+
+void de class opzichzelf returnt niks 
+\end{DoxyReturn}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_p_controller_a473cc48aa4d1aabed6863fe1cfd33182}\label{classsrc_1_1_controller_1_1_p_controller_a473cc48aa4d1aabed6863fe1cfd33182}} 
+\index{src.Controller.PController@{src.Controller.PController}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!src.Controller.PController@{src.Controller.PController}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def src.\+Controller.\+P\+Controller.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+initalisatie voor driver communicatie en verhouding bepalingen 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_p_controller_a2235657c2fd4f4b1800d1301e9497ae3}\label{classsrc_1_1_controller_1_1_p_controller_a2235657c2fd4f4b1800d1301e9497ae3}} 
+\index{src.Controller.PController@{src.Controller.PController}!bitfield@{bitfield}}
+\index{bitfield@{bitfield}!src.Controller.PController@{src.Controller.PController}}
+\doxysubsubsection{\texorpdfstring{bitfield()}{bitfield()}}
+{\footnotesize\ttfamily def src.\+Controller.\+P\+Controller.\+bitfield (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{n }\end{DoxyParamCaption})}
+
+
+
+Convert een bit list naar een integer list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & byte die moet worden vertaald naar een integer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+
+list integer list van het byte array. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_p_controller_abd80bfa9a00a012063bc82a3fa856f30}\label{classsrc_1_1_controller_1_1_p_controller_abd80bfa9a00a012063bc82a3fa856f30}} 
+\index{src.Controller.PController@{src.Controller.PController}!go\_home@{go\_home}}
+\index{go\_home@{go\_home}!src.Controller.PController@{src.Controller.PController}}
+\doxysubsubsection{\texorpdfstring{go\_home()}{go\_home()}}
+{\footnotesize\ttfamily def src.\+Controller.\+P\+Controller.\+go\+\_\+home (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{direction = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Beweegt de keeper terug naar de home positie. 
+
+\begin{DoxyVerb}        direction (int, optional): 0 is naar links, 1 is rechts gezien vanaf de hendel. Defaults to 0 (links).
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classsrc_1_1_controller_1_1_p_controller_a0c0cacaa5089b8c6294a0685b9c65a4d}\label{classsrc_1_1_controller_1_1_p_controller_a0c0cacaa5089b8c6294a0685b9c65a4d}} 
+\index{src.Controller.PController@{src.Controller.PController}!linear\_extrapolation@{linear\_extrapolation}}
+\index{linear\_extrapolation@{linear\_extrapolation}!src.Controller.PController@{src.Controller.PController}}
+\doxysubsubsection{\texorpdfstring{linear\_extrapolation()}{linear\_extrapolation()}}
+{\footnotesize\ttfamily def src.\+Controller.\+P\+Controller.\+linear\+\_\+extrapolation (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{pnt1,  }\item[{}]{pnt2,  }\item[{}]{value\+\_\+x = {\ttfamily 5},  }\item[{}]{max\+\_\+y = {\ttfamily 32} }\end{DoxyParamCaption})}
+
+
+
+extra-\/polation om keeper coördinaten te bepalen. 
+
+\begin{DoxyVerb}        pnt1 ((int, int)): x, y coördinaten punt 1 van bal.
+        pnt2 ((int, int)): x, y coördinaten punt 2 van bal.
+        value_x (int, optional): coördinaat waar keeper staat in x. Defaults to 5.
+        max_y (int, optional): halve coördinaat afstand waar de keeper kan komen. Defaults to 32.
+\end{DoxyVerb}
+
+
+\begin{DoxyReturn}{Returns}
+(int, int)\+: x, y van keeper coördinaat positie. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_p_controller_ac4fdab3dbe051b4f949bbdd3d64c8497}\label{classsrc_1_1_controller_1_1_p_controller_ac4fdab3dbe051b4f949bbdd3d64c8497}} 
+\index{src.Controller.PController@{src.Controller.PController}!shoot@{shoot}}
+\index{shoot@{shoot}!src.Controller.PController@{src.Controller.PController}}
+\doxysubsubsection{\texorpdfstring{shoot()}{shoot()}}
+{\footnotesize\ttfamily def src.\+Controller.\+P\+Controller.\+shoot (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Bestuur de drivers zodat er axiaal bewogen wordt. 
+
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_p_controller_a5207dc87785abb7661b66a0eeed81b74}\label{classsrc_1_1_controller_1_1_p_controller_a5207dc87785abb7661b66a0eeed81b74}} 
+\index{src.Controller.PController@{src.Controller.PController}!test\_lin\_movement@{test\_lin\_movement}}
+\index{test\_lin\_movement@{test\_lin\_movement}!src.Controller.PController@{src.Controller.PController}}
+\doxysubsubsection{\texorpdfstring{test\_lin\_movement()}{test\_lin\_movement()}}
+{\footnotesize\ttfamily def src.\+Controller.\+P\+Controller.\+test\+\_\+lin\+\_\+movement (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{co }\end{DoxyParamCaption})}
+
+
+
+bepaald keeper positie en stuur opdracht naar drivers 
+
+
+\begin{DoxyParams}{Parameters}
+{\em co} & het bepaalde coördinaat voor keeper vanuit de extra-\/polation\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+
+int returns het berekende step\+\_\+positie (deze waarde is ter debug en mag genegeerd worden, want de drivers worden in deze funtie al aangestuurd.) 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_p_controller_a9653cd85aa7c6f562da1e59fb12baedc}\label{classsrc_1_1_controller_1_1_p_controller_a9653cd85aa7c6f562da1e59fb12baedc}} 
+\index{src.Controller.PController@{src.Controller.PController}!clock@{clock}}
+\index{clock@{clock}!src.Controller.PController@{src.Controller.PController}}
+\doxysubsubsection{\texorpdfstring{clock}{clock}}
+{\footnotesize\ttfamily src.\+Controller.\+P\+Controller.\+clock}
+
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_p_controller_a13fda0bf4f3f6f5694131d385283da66}\label{classsrc_1_1_controller_1_1_p_controller_a13fda0bf4f3f6f5694131d385283da66}} 
+\index{src.Controller.PController@{src.Controller.PController}!D\_GEAR@{D\_GEAR}}
+\index{D\_GEAR@{D\_GEAR}!src.Controller.PController@{src.Controller.PController}}
+\doxysubsubsection{\texorpdfstring{D\_GEAR}{D\_GEAR}}
+{\footnotesize\ttfamily src.\+Controller.\+P\+Controller.\+D\+\_\+\+G\+E\+AR}
+
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_p_controller_a19f16c4d15e6b67a58b816c00179fef1}\label{classsrc_1_1_controller_1_1_p_controller_a19f16c4d15e6b67a58b816c00179fef1}} 
+\index{src.Controller.PController@{src.Controller.PController}!driver@{driver}}
+\index{driver@{driver}!src.Controller.PController@{src.Controller.PController}}
+\doxysubsubsection{\texorpdfstring{driver}{driver}}
+{\footnotesize\ttfamily src.\+Controller.\+P\+Controller.\+driver}
+
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_p_controller_a11b93701ff25485f3938af8e3a5ca168}\label{classsrc_1_1_controller_1_1_p_controller_a11b93701ff25485f3938af8e3a5ca168}} 
+\index{src.Controller.PController@{src.Controller.PController}!KEEPER\_DIS@{KEEPER\_DIS}}
+\index{KEEPER\_DIS@{KEEPER\_DIS}!src.Controller.PController@{src.Controller.PController}}
+\doxysubsubsection{\texorpdfstring{KEEPER\_DIS}{KEEPER\_DIS}}
+{\footnotesize\ttfamily src.\+Controller.\+P\+Controller.\+K\+E\+E\+P\+E\+R\+\_\+\+D\+IS}
+
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_p_controller_a0ed8cf848e76d421940ef7dcbcaab0a4}\label{classsrc_1_1_controller_1_1_p_controller_a0ed8cf848e76d421940ef7dcbcaab0a4}} 
+\index{src.Controller.PController@{src.Controller.PController}!MICRO\_STEP@{MICRO\_STEP}}
+\index{MICRO\_STEP@{MICRO\_STEP}!src.Controller.PController@{src.Controller.PController}}
+\doxysubsubsection{\texorpdfstring{MICRO\_STEP}{MICRO\_STEP}}
+{\footnotesize\ttfamily src.\+Controller.\+P\+Controller.\+M\+I\+C\+R\+O\+\_\+\+S\+T\+EP}
+
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_p_controller_ac3ba8c7530095a953760808d810ab4e9}\label{classsrc_1_1_controller_1_1_p_controller_ac3ba8c7530095a953760808d810ab4e9}} 
+\index{src.Controller.PController@{src.Controller.PController}!MOTOR\_STEP@{MOTOR\_STEP}}
+\index{MOTOR\_STEP@{MOTOR\_STEP}!src.Controller.PController@{src.Controller.PController}}
+\doxysubsubsection{\texorpdfstring{MOTOR\_STEP}{MOTOR\_STEP}}
+{\footnotesize\ttfamily src.\+Controller.\+P\+Controller.\+M\+O\+T\+O\+R\+\_\+\+S\+T\+EP}
+
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_p_controller_aa5f6590072a25c1280953a9e91e2f576}\label{classsrc_1_1_controller_1_1_p_controller_aa5f6590072a25c1280953a9e91e2f576}} 
+\index{src.Controller.PController@{src.Controller.PController}!MOTOR\_TOTAL\_STEPS@{MOTOR\_TOTAL\_STEPS}}
+\index{MOTOR\_TOTAL\_STEPS@{MOTOR\_TOTAL\_STEPS}!src.Controller.PController@{src.Controller.PController}}
+\doxysubsubsection{\texorpdfstring{MOTOR\_TOTAL\_STEPS}{MOTOR\_TOTAL\_STEPS}}
+{\footnotesize\ttfamily src.\+Controller.\+P\+Controller.\+M\+O\+T\+O\+R\+\_\+\+T\+O\+T\+A\+L\+\_\+\+S\+T\+E\+PS}
+
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_p_controller_a3a72a68f72ca86cf6794f47325bdf9d2}\label{classsrc_1_1_controller_1_1_p_controller_a3a72a68f72ca86cf6794f47325bdf9d2}} 
+\index{src.Controller.PController@{src.Controller.PController}!ONE\_ROTATION@{ONE\_ROTATION}}
+\index{ONE\_ROTATION@{ONE\_ROTATION}!src.Controller.PController@{src.Controller.PController}}
+\doxysubsubsection{\texorpdfstring{ONE\_ROTATION}{ONE\_ROTATION}}
+{\footnotesize\ttfamily src.\+Controller.\+P\+Controller.\+O\+N\+E\+\_\+\+R\+O\+T\+A\+T\+I\+ON}
+
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_p_controller_ad82edf224189dc4ecdd92d1d389dc522}\label{classsrc_1_1_controller_1_1_p_controller_ad82edf224189dc4ecdd92d1d389dc522}} 
+\index{src.Controller.PController@{src.Controller.PController}!ONE\_STEP@{ONE\_STEP}}
+\index{ONE\_STEP@{ONE\_STEP}!src.Controller.PController@{src.Controller.PController}}
+\doxysubsubsection{\texorpdfstring{ONE\_STEP}{ONE\_STEP}}
+{\footnotesize\ttfamily src.\+Controller.\+P\+Controller.\+O\+N\+E\+\_\+\+S\+T\+EP}
+
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_p_controller_af13133df93130f3e147dd989f2c8768e}\label{classsrc_1_1_controller_1_1_p_controller_af13133df93130f3e147dd989f2c8768e}} 
+\index{src.Controller.PController@{src.Controller.PController}!ratio\_MM\_to\_y@{ratio\_MM\_to\_y}}
+\index{ratio\_MM\_to\_y@{ratio\_MM\_to\_y}!src.Controller.PController@{src.Controller.PController}}
+\doxysubsubsection{\texorpdfstring{ratio\_MM\_to\_y}{ratio\_MM\_to\_y}}
+{\footnotesize\ttfamily src.\+Controller.\+P\+Controller.\+ratio\+\_\+\+M\+M\+\_\+to\+\_\+y}
+
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_p_controller_a3b030753eed2303e57b7e946b994b002}\label{classsrc_1_1_controller_1_1_p_controller_a3b030753eed2303e57b7e946b994b002}} 
+\index{src.Controller.PController@{src.Controller.PController}!ratio\_y\_to\_MM@{ratio\_y\_to\_MM}}
+\index{ratio\_y\_to\_MM@{ratio\_y\_to\_MM}!src.Controller.PController@{src.Controller.PController}}
+\doxysubsubsection{\texorpdfstring{ratio\_y\_to\_MM}{ratio\_y\_to\_MM}}
+{\footnotesize\ttfamily src.\+Controller.\+P\+Controller.\+ratio\+\_\+y\+\_\+to\+\_\+\+MM}
+
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_p_controller_ad42f656682eb9e8462d9f1240dc15a36}\label{classsrc_1_1_controller_1_1_p_controller_ad42f656682eb9e8462d9f1240dc15a36}} 
+\index{src.Controller.PController@{src.Controller.PController}!screen@{screen}}
+\index{screen@{screen}!src.Controller.PController@{src.Controller.PController}}
+\doxysubsubsection{\texorpdfstring{screen}{screen}}
+{\footnotesize\ttfamily src.\+Controller.\+P\+Controller.\+screen}
+
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_p_controller_a4c5675382628c59873b9406babd4cf8f}\label{classsrc_1_1_controller_1_1_p_controller_a4c5675382628c59873b9406babd4cf8f}} 
+\index{src.Controller.PController@{src.Controller.PController}!STEP\_DiSTANCE@{STEP\_DiSTANCE}}
+\index{STEP\_DiSTANCE@{STEP\_DiSTANCE}!src.Controller.PController@{src.Controller.PController}}
+\doxysubsubsection{\texorpdfstring{STEP\_DiSTANCE}{STEP\_DiSTANCE}}
+{\footnotesize\ttfamily src.\+Controller.\+P\+Controller.\+S\+T\+E\+P\+\_\+\+Di\+S\+T\+A\+N\+CE}
+
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_p_controller_ad77ccc109af90db1371910071573dd5c}\label{classsrc_1_1_controller_1_1_p_controller_ad77ccc109af90db1371910071573dd5c}} 
+\index{src.Controller.PController@{src.Controller.PController}!TABLE\_LENGTH@{TABLE\_LENGTH}}
+\index{TABLE\_LENGTH@{TABLE\_LENGTH}!src.Controller.PController@{src.Controller.PController}}
+\doxysubsubsection{\texorpdfstring{TABLE\_LENGTH}{TABLE\_LENGTH}}
+{\footnotesize\ttfamily src.\+Controller.\+P\+Controller.\+T\+A\+B\+L\+E\+\_\+\+L\+E\+N\+G\+TH}
+
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_p_controller_a63423e196ed306966ba218200865a42c}\label{classsrc_1_1_controller_1_1_p_controller_a63423e196ed306966ba218200865a42c}} 
+\index{src.Controller.PController@{src.Controller.PController}!y\_length@{y\_length}}
+\index{y\_length@{y\_length}!src.Controller.PController@{src.Controller.PController}}
+\doxysubsubsection{\texorpdfstring{y\_length}{y\_length}}
+{\footnotesize\ttfamily src.\+Controller.\+P\+Controller.\+y\+\_\+length}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{_controller_8py}{Controller.\+py}}\end{DoxyCompactItemize}

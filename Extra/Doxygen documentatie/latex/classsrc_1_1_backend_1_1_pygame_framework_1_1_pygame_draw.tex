@@ -1,0 +1,326 @@
+\hypertarget{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw}{}\doxysection{src.\+Backend.\+Pygame\+Framework.\+Pygame\+Draw Class Reference}
+\label{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw}\index{src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}}
+
+
+Deze class wordt aangeroepen door Box2D en handelt de rendering.  
+
+
+Inheritance diagram for src.\+Backend.\+Pygame\+Framework.\+Pygame\+Draw\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_a0d233c83dc536e7a426b75810c57a87b}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_acdc961ce0ca22424e5ff040f5f49e35d}{test}}=None, $\ast$$\ast$kwargs)
+\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_a67c0b1ba3f39ca9a1cc2b94ad3649b7e}{Start\+Draw}} (self)
+\begin{DoxyCompactList}\small\item\em Begin met tekenen. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_aae25b9298f74651c6205408438d22d35}{End\+Draw}} (self)
+\begin{DoxyCompactList}\small\item\em Stop met tekenen. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_ae5ae58e162d21e32de7111c28b010018}{Draw\+Point}} (self, p, size, color)
+\begin{DoxyCompactList}\small\item\em Tekent een enkele punt die wordt aangeroepen. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_a573cd4f2e4f3b61cc0da3385f0b3571c}{Draw\+A\+A\+BB}} (self, aabb, color)
+\begin{DoxyCompactList}\small\item\em Tekent een lijn rond het punt A\+A\+BB met een gegeven kleur. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_a22ab76cd6b978ea5721c985deb184bd5}{Draw\+Segment}} (self, p1, p2, color)
+\begin{DoxyCompactList}\small\item\em Teken een lijn vanaf het segment p1 tot p2 met een gekozen kleur. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_a52decb8b64302d3beeac7fd35c6203a4}{Draw\+Transform}} (self, xf)
+\begin{DoxyCompactList}\small\item\em Teken de getransformeerde van xf op het scherm. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_acf5182c8da4bb5a387af5ff855e94e0b}{Draw\+Circle}} (self, \mbox{\hyperlink{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_a68c0b073d293563f99abd2fc4d162150}{center}}, radius, color, drawwidth=1)
+\begin{DoxyCompactList}\small\item\em Teken een cirkel in de simulatie. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_a7bb8207f6a748d13511873f0e91573d5}{Draw\+Solid\+Circle}} (self, \mbox{\hyperlink{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_a68c0b073d293563f99abd2fc4d162150}{center}}, radius, axis, color)
+\begin{DoxyCompactList}\small\item\em Teken een ingekleurde cirkel in de simulatie. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_a7eafe9fc5f434d55760a79616b34168f}{Draw\+Polygon}} (self, vertices, color)
+\begin{DoxyCompactList}\small\item\em Teken een polygon op het scherm. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_a898e36a6a1bbb9a76eefda0db78af27c}{Draw\+Solid\+Polygon}} (self, vertices, color)
+\begin{DoxyCompactList}\small\item\em Teken een ingekleurde polygon. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_a1123391add53df489c851f203fefe2e0}{flipX}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_aa2d6d37efdf405e028164ad05e8b0a2c}{flipY}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_a12e0e637b1c8b744f2a6bab55561f002}{convert\+Vertices}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_acdc961ce0ca22424e5ff040f5f49e35d}{test}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_a980dfcd7755ea011108250d054a29446}{zoom}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_a68c0b073d293563f99abd2fc4d162150}{center}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_ad7fc765ba49e82d5fdcb3d7256e6717e}{offset}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_a69060d73b8f2b05a3e12aa2693bb5c84}{screen\+Size}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_afc4693b641b7abb7b05eb8449847b503}{surface}} = None
+\item 
+float \mbox{\hyperlink{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_af76297854d4ee4d8d84b6c3f0a186abf}{axis\+Scale}} = 10.\+0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Deze class wordt aangeroepen door Box2D en handelt de rendering. 
+
+{\bfseries{Athor}}\+: Box2D ~\newline
+ {\bfseries{Version}}\+: 1.\+01 ~\newline
+ {\bfseries{Date}}\+: 22-\/1-\/2020 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_a0d233c83dc536e7a426b75810c57a87b}\label{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_a0d233c83dc536e7a426b75810c57a87b}} 
+\index{src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Pygame\+Framework.\+Pygame\+Draw.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{test = {\ttfamily None},  }\item[{$\ast$$\ast$}]{kwargs }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_a573cd4f2e4f3b61cc0da3385f0b3571c}\label{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_a573cd4f2e4f3b61cc0da3385f0b3571c}} 
+\index{src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}!DrawAABB@{DrawAABB}}
+\index{DrawAABB@{DrawAABB}!src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}}
+\doxysubsubsection{\texorpdfstring{DrawAABB()}{DrawAABB()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Pygame\+Framework.\+Pygame\+Draw.\+Draw\+A\+A\+BB (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{aabb,  }\item[{}]{color }\end{DoxyParamCaption})}
+
+
+
+Tekent een lijn rond het punt A\+A\+BB met een gegeven kleur. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em aabb} & (int) de te tekenen aabb waarde. \\
+\hline
+{\em color} & (tuple) de te tekenen kleur in R\+GB. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_acf5182c8da4bb5a387af5ff855e94e0b}\label{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_acf5182c8da4bb5a387af5ff855e94e0b}} 
+\index{src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}!DrawCircle@{DrawCircle}}
+\index{DrawCircle@{DrawCircle}!src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}}
+\doxysubsubsection{\texorpdfstring{DrawCircle()}{DrawCircle()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Pygame\+Framework.\+Pygame\+Draw.\+Draw\+Circle (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{center,  }\item[{}]{radius,  }\item[{}]{color,  }\item[{}]{drawwidth = {\ttfamily 1} }\end{DoxyParamCaption})}
+
+
+
+Teken een cirkel in de simulatie. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em center} & (tuple) x,y coördinaten op de simulatie. \\
+\hline
+{\em radius} & (int) pixel breedte vanaf de center. \\
+\hline
+{\em color} & (tuple) kleur die getekend moet worden in R\+GB. \\
+\hline
+{\em drawwidth} & (int, optional) dikte van de lijn. Standaard 1.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Wanneer een ingekleurde cirkel getekend moet worden gebruik\+: Draw\+Solid\+Circle. 
+\end{DoxyNote}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_ae5ae58e162d21e32de7111c28b010018}\label{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_ae5ae58e162d21e32de7111c28b010018}} 
+\index{src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}!DrawPoint@{DrawPoint}}
+\index{DrawPoint@{DrawPoint}!src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}}
+\doxysubsubsection{\texorpdfstring{DrawPoint()}{DrawPoint()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Pygame\+Framework.\+Pygame\+Draw.\+Draw\+Point (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{p,  }\item[{}]{size,  }\item[{}]{color }\end{DoxyParamCaption})}
+
+
+
+Tekent een enkele punt die wordt aangeroepen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & (tuple) pixel punt in x \& y coördinaten. \\
+\hline
+{\em size} & (int) groote van het te tekenen pixel. \\
+\hline
+{\em color} & (tuple) kleur van de te tekenen pixel in R\+GB. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_a7eafe9fc5f434d55760a79616b34168f}\label{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_a7eafe9fc5f434d55760a79616b34168f}} 
+\index{src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}!DrawPolygon@{DrawPolygon}}
+\index{DrawPolygon@{DrawPolygon}!src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}}
+\doxysubsubsection{\texorpdfstring{DrawPolygon()}{DrawPolygon()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Pygame\+Framework.\+Pygame\+Draw.\+Draw\+Polygon (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{vertices,  }\item[{}]{color }\end{DoxyParamCaption})}
+
+
+
+Teken een polygon op het scherm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vertices} & (tuple) hoekpunten van het te tekenen polygon. \\
+\hline
+{\em color} & (tuple) kleur die getekend moet worden in R\+GB. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_a22ab76cd6b978ea5721c985deb184bd5}\label{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_a22ab76cd6b978ea5721c985deb184bd5}} 
+\index{src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}!DrawSegment@{DrawSegment}}
+\index{DrawSegment@{DrawSegment}!src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}}
+\doxysubsubsection{\texorpdfstring{DrawSegment()}{DrawSegment()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Pygame\+Framework.\+Pygame\+Draw.\+Draw\+Segment (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{p1,  }\item[{}]{p2,  }\item[{}]{color }\end{DoxyParamCaption})}
+
+
+
+Teken een lijn vanaf het segment p1 tot p2 met een gekozen kleur. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p1} & (tuple) x \& y coördinaten van pixelpositie 1. \\
+\hline
+{\em p2} & (tuple) x \& y coördinaten van pixelpositie 2. \\
+\hline
+{\em color} & (tuple) kleur die getekend moet worden in R\+GB. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_a7bb8207f6a748d13511873f0e91573d5}\label{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_a7bb8207f6a748d13511873f0e91573d5}} 
+\index{src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}!DrawSolidCircle@{DrawSolidCircle}}
+\index{DrawSolidCircle@{DrawSolidCircle}!src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}}
+\doxysubsubsection{\texorpdfstring{DrawSolidCircle()}{DrawSolidCircle()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Pygame\+Framework.\+Pygame\+Draw.\+Draw\+Solid\+Circle (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{center,  }\item[{}]{radius,  }\item[{}]{axis,  }\item[{}]{color }\end{DoxyParamCaption})}
+
+
+
+Teken een ingekleurde cirkel in de simulatie. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em center} & (tuple) x,y coördinaten op de simulatie. \\
+\hline
+{\em radius} & (int) pixel breedte vanaf de center. \\
+\hline
+{\em color} & (tuple) kleur die getekend moet worden in R\+GB. \\
+\hline
+{\em drawwidth} & (int, optional) dikte van de lijn. Standaard 1.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Wanneer een niet ingekleurde cirkel getekend moet worden gebruik\+: Draw\+Circle. 
+\end{DoxyNote}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_a898e36a6a1bbb9a76eefda0db78af27c}\label{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_a898e36a6a1bbb9a76eefda0db78af27c}} 
+\index{src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}!DrawSolidPolygon@{DrawSolidPolygon}}
+\index{DrawSolidPolygon@{DrawSolidPolygon}!src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}}
+\doxysubsubsection{\texorpdfstring{DrawSolidPolygon()}{DrawSolidPolygon()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Pygame\+Framework.\+Pygame\+Draw.\+Draw\+Solid\+Polygon (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{vertices,  }\item[{}]{color }\end{DoxyParamCaption})}
+
+
+
+Teken een ingekleurde polygon. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vertices} & (tuple) hoekpunten van het te tekenen polygon. \\
+\hline
+{\em color} & (tuple) kleur die getekend moet worden in R\+GB. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Wanneer een niet ingekleurde polygon getekend moet worden kan de functi 
+\end{DoxyNote}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_a52decb8b64302d3beeac7fd35c6203a4}\label{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_a52decb8b64302d3beeac7fd35c6203a4}} 
+\index{src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}!DrawTransform@{DrawTransform}}
+\index{DrawTransform@{DrawTransform}!src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}}
+\doxysubsubsection{\texorpdfstring{DrawTransform()}{DrawTransform()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Pygame\+Framework.\+Pygame\+Draw.\+Draw\+Transform (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{xf }\end{DoxyParamCaption})}
+
+
+
+Teken de getransformeerde van xf op het scherm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em xf} & (tuple) xf waarde die moet worden getekend. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_aae25b9298f74651c6205408438d22d35}\label{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_aae25b9298f74651c6205408438d22d35}} 
+\index{src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}!EndDraw@{EndDraw}}
+\index{EndDraw@{EndDraw}!src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}}
+\doxysubsubsection{\texorpdfstring{EndDraw()}{EndDraw()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Pygame\+Framework.\+Pygame\+Draw.\+End\+Draw (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Stop met tekenen. 
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_a67c0b1ba3f39ca9a1cc2b94ad3649b7e}\label{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_a67c0b1ba3f39ca9a1cc2b94ad3649b7e}} 
+\index{src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}!StartDraw@{StartDraw}}
+\index{StartDraw@{StartDraw}!src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}}
+\doxysubsubsection{\texorpdfstring{StartDraw()}{StartDraw()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Pygame\+Framework.\+Pygame\+Draw.\+Start\+Draw (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Begin met tekenen. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_af76297854d4ee4d8d84b6c3f0a186abf}\label{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_af76297854d4ee4d8d84b6c3f0a186abf}} 
+\index{src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}!axisScale@{axisScale}}
+\index{axisScale@{axisScale}!src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}}
+\doxysubsubsection{\texorpdfstring{axisScale}{axisScale}}
+{\footnotesize\ttfamily float src.\+Backend.\+Pygame\+Framework.\+Pygame\+Draw.\+axis\+Scale = 10.\+0\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_a68c0b073d293563f99abd2fc4d162150}\label{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_a68c0b073d293563f99abd2fc4d162150}} 
+\index{src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}!center@{center}}
+\index{center@{center}!src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}}
+\doxysubsubsection{\texorpdfstring{center}{center}}
+{\footnotesize\ttfamily src.\+Backend.\+Pygame\+Framework.\+Pygame\+Draw.\+center}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_a12e0e637b1c8b744f2a6bab55561f002}\label{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_a12e0e637b1c8b744f2a6bab55561f002}} 
+\index{src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}!convertVertices@{convertVertices}}
+\index{convertVertices@{convertVertices}!src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}}
+\doxysubsubsection{\texorpdfstring{convertVertices}{convertVertices}}
+{\footnotesize\ttfamily src.\+Backend.\+Pygame\+Framework.\+Pygame\+Draw.\+convert\+Vertices}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_a1123391add53df489c851f203fefe2e0}\label{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_a1123391add53df489c851f203fefe2e0}} 
+\index{src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}!flipX@{flipX}}
+\index{flipX@{flipX}!src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}}
+\doxysubsubsection{\texorpdfstring{flipX}{flipX}}
+{\footnotesize\ttfamily src.\+Backend.\+Pygame\+Framework.\+Pygame\+Draw.\+flipX}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_aa2d6d37efdf405e028164ad05e8b0a2c}\label{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_aa2d6d37efdf405e028164ad05e8b0a2c}} 
+\index{src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}!flipY@{flipY}}
+\index{flipY@{flipY}!src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}}
+\doxysubsubsection{\texorpdfstring{flipY}{flipY}}
+{\footnotesize\ttfamily src.\+Backend.\+Pygame\+Framework.\+Pygame\+Draw.\+flipY}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_ad7fc765ba49e82d5fdcb3d7256e6717e}\label{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_ad7fc765ba49e82d5fdcb3d7256e6717e}} 
+\index{src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}!offset@{offset}}
+\index{offset@{offset}!src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}}
+\doxysubsubsection{\texorpdfstring{offset}{offset}}
+{\footnotesize\ttfamily src.\+Backend.\+Pygame\+Framework.\+Pygame\+Draw.\+offset}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_a69060d73b8f2b05a3e12aa2693bb5c84}\label{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_a69060d73b8f2b05a3e12aa2693bb5c84}} 
+\index{src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}!screenSize@{screenSize}}
+\index{screenSize@{screenSize}!src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}}
+\doxysubsubsection{\texorpdfstring{screenSize}{screenSize}}
+{\footnotesize\ttfamily src.\+Backend.\+Pygame\+Framework.\+Pygame\+Draw.\+screen\+Size}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_afc4693b641b7abb7b05eb8449847b503}\label{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_afc4693b641b7abb7b05eb8449847b503}} 
+\index{src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}!surface@{surface}}
+\index{surface@{surface}!src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}}
+\doxysubsubsection{\texorpdfstring{surface}{surface}}
+{\footnotesize\ttfamily src.\+Backend.\+Pygame\+Framework.\+Pygame\+Draw.\+surface = None\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_acdc961ce0ca22424e5ff040f5f49e35d}\label{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_acdc961ce0ca22424e5ff040f5f49e35d}} 
+\index{src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}!test@{test}}
+\index{test@{test}!src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}}
+\doxysubsubsection{\texorpdfstring{test}{test}}
+{\footnotesize\ttfamily src.\+Backend.\+Pygame\+Framework.\+Pygame\+Draw.\+test}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_a980dfcd7755ea011108250d054a29446}\label{classsrc_1_1_backend_1_1_pygame_framework_1_1_pygame_draw_a980dfcd7755ea011108250d054a29446}} 
+\index{src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}!zoom@{zoom}}
+\index{zoom@{zoom}!src.Backend.PygameFramework.PygameDraw@{src.Backend.PygameFramework.PygameDraw}}
+\doxysubsubsection{\texorpdfstring{zoom}{zoom}}
+{\footnotesize\ttfamily src.\+Backend.\+Pygame\+Framework.\+Pygame\+Draw.\+zoom}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Backend/\mbox{\hyperlink{_pygame_framework_8py}{Pygame\+Framework.\+py}}\end{DoxyCompactItemize}

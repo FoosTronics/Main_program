@@ -1,0 +1,313 @@
+\hypertarget{classmain_1_1_foostronics}{}\doxysection{main.\+Foostronics Class Reference}
+\label{classmain_1_1_foostronics}\index{main.Foostronics@{main.Foostronics}}
+
+
+Klasse van de main applicatie.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classmain_1_1_foostronics_a1e685903d9e1e4240b9f3770737993be}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, keeper\+\_\+sim)
+\begin{DoxyCompactList}\small\item\em initialisatie main. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classmain_1_1_foostronics_a2a05158ccae42b49e606236767cd7453}{calibration}} (self)
+\item 
+def \mbox{\hyperlink{classmain_1_1_foostronics_a5460b18642829ff33bb715414f649633}{start\+\_\+get\+\_\+ball\+\_\+thread}} (self)
+\begin{DoxyCompactList}\small\item\em Opstarten van een nieuw proces die de functie update\+\_\+ball\+\_\+position uitvoert. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classmain_1_1_foostronics_a9a7c1ccff080b0fb82f18b418e424836}{update\+\_\+ball\+\_\+position}} (self)
+\begin{DoxyCompactList}\small\item\em Opstarten van bal detectie proces dat een afbeelding uit van de gstreamer of van een bestand haalt. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classmain_1_1_foostronics_afc491dba1db81955d5ed8e7cae699631}{map\+\_\+function}} (self, val, in\+\_\+min, in\+\_\+max, out\+\_\+min, out\+\_\+max)
+\begin{DoxyCompactList}\small\item\em Map functie (zoals in de Arduino I\+DE) die input waarde (in\+\_\+min \& in\+\_\+max) schaald in verhouding naar de output (out\+\_\+min \& out\+\_\+max). \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classmain_1_1_foostronics_a502535d984d2390f9023b3f058abae67}{execute\+\_\+action}} (self, action, old\+\_\+action)
+\begin{DoxyCompactList}\small\item\em Voer de actie uit, die de AI heeft gekozen, op de stappenmotoren. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classmain_1_1_foostronics_a52eceb1beb6c25e2d8dba07b8c838f29}{determine\+\_\+goal}} (self, vel\+\_\+x, vel\+\_\+x\+\_\+old)
+\begin{DoxyCompactList}\small\item\em Bepaal of er een goal is gescoord. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classmain_1_1_foostronics_af4e3c1061bec0cec1eebfa796faa7283}{run}} (self)
+\begin{DoxyCompactList}\small\item\em Deze functie wordt na iedere frame aangeroepen en kan gezien worden als de mainloop. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classmain_1_1_foostronics_a28cff9e8a43da47fac1d7f1322c046d8}{file}}
+\item 
+\mbox{\hyperlink{classmain_1_1_foostronics_a321547df0410fb69f8b75070ee8c1c8e}{camera}}
+\item 
+\mbox{\hyperlink{classmain_1_1_foostronics_a9762f53c97a06203559752c18033e5a5}{ks}}
+\item 
+\mbox{\hyperlink{classmain_1_1_foostronics_abd7761c181fa8e00da5f575817dbba16}{find\+\_\+contours}}
+\item 
+\mbox{\hyperlink{classmain_1_1_foostronics_a82a082095020b795db40b5ea5cb6318c}{ball\+\_\+detection}}
+\item 
+\mbox{\hyperlink{classmain_1_1_foostronics_a78108b7bde8211826b6d6d283aa76d66}{W\+I\+D\+T\+H\+\_\+\+I\+MG}}
+\item 
+\mbox{\hyperlink{classmain_1_1_foostronics_aba7c8a3d0d24894c6f68402bb4b22e86}{H\+E\+I\+G\+H\+T\+\_\+\+I\+MG}}
+\item 
+\mbox{\hyperlink{classmain_1_1_foostronics_a4e572f5a85031dd2cf055b1237227dbf}{dql}}
+\item 
+\mbox{\hyperlink{classmain_1_1_foostronics_a3a163dab0f6ad2cfbde84f793dd340b3}{que}}
+\item 
+\mbox{\hyperlink{classmain_1_1_foostronics_a7dac9fa8a2d620387b3b3b731a273ba2}{con}}
+\item 
+\mbox{\hyperlink{classmain_1_1_foostronics_acb5242d686f6d12b395e0f945ce0a7aa}{met\+\_\+drivers}}
+\item 
+\mbox{\hyperlink{classmain_1_1_foostronics_a7c3201b9a96aed3e2b05c6ac61f0eed9}{points\+\_\+array}}
+\item 
+\mbox{\hyperlink{classmain_1_1_foostronics_a024d985674c849773faf6f766d0341dd}{scored}}
+\item 
+\mbox{\hyperlink{classmain_1_1_foostronics_af9100aaebbe65598267af33990fa10b2}{old\+\_\+ball\+\_\+positions}}
+\item 
+\mbox{\hyperlink{classmain_1_1_foostronics_ada08970fe1ecc26d8bfb9cb61dbd4d31}{reused\+\_\+counter}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classmain_1_1_foostronics_a6cf991d78030ff6777fec1dd8b980768}{\+\_\+convert2\+\_\+sim\+\_\+cor}} (self, x\+\_\+p, y\+\_\+p)
+\begin{DoxyCompactList}\small\item\em Zet de pixel positie van de beeldherkenning verhoudingsgewijs om naar pixel positie van de simulatie. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Klasse van de main applicatie. 
+
+{\bfseries{Author}}\+: ~\newline
+ Daniël Boon ~\newline
+ Kelvin Sweere ~\newline
+ Chileam Bohnen~\newline
+ Sipke Vellinga~\newline
+ {\bfseries{Version}}\+: 1.\+49 ~\newline
+ {\bfseries{Date}}\+: 23-\/1-\/2020 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classmain_1_1_foostronics_a1e685903d9e1e4240b9f3770737993be}\label{classmain_1_1_foostronics_a1e685903d9e1e4240b9f3770737993be}} 
+\index{main.Foostronics@{main.Foostronics}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!main.Foostronics@{main.Foostronics}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def main.\+Foostronics.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{keeper\+\_\+sim }\end{DoxyParamCaption})}
+
+
+
+initialisatie main. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em keeper\+\_\+sim} & (class) adres van draaiende keeper simulatie om variabelen op te halen. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classmain_1_1_foostronics_a6cf991d78030ff6777fec1dd8b980768}\label{classmain_1_1_foostronics_a6cf991d78030ff6777fec1dd8b980768}} 
+\index{main.Foostronics@{main.Foostronics}!\_convert2\_sim\_cor@{\_convert2\_sim\_cor}}
+\index{\_convert2\_sim\_cor@{\_convert2\_sim\_cor}!main.Foostronics@{main.Foostronics}}
+\doxysubsubsection{\texorpdfstring{\_convert2\_sim\_cor()}{\_convert2\_sim\_cor()}}
+{\footnotesize\ttfamily def main.\+Foostronics.\+\_\+convert2\+\_\+sim\+\_\+cor (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{x\+\_\+p,  }\item[{}]{y\+\_\+p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Zet de pixel positie van de beeldherkenning verhoudingsgewijs om naar pixel positie van de simulatie. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+\_\+p} & (int) x coördinaat van de pixelpositie. \\
+\hline
+{\em y\+\_\+p} & (int) y coördinaat van de pixelpositie.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+(tuple) x \& y coördinaten van de simulatie. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmain_1_1_foostronics_a2a05158ccae42b49e606236767cd7453}\label{classmain_1_1_foostronics_a2a05158ccae42b49e606236767cd7453}} 
+\index{main.Foostronics@{main.Foostronics}!calibration@{calibration}}
+\index{calibration@{calibration}!main.Foostronics@{main.Foostronics}}
+\doxysubsubsection{\texorpdfstring{calibration()}{calibration()}}
+{\footnotesize\ttfamily def main.\+Foostronics.\+calibration (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classmain_1_1_foostronics_a52eceb1beb6c25e2d8dba07b8c838f29}\label{classmain_1_1_foostronics_a52eceb1beb6c25e2d8dba07b8c838f29}} 
+\index{main.Foostronics@{main.Foostronics}!determine\_goal@{determine\_goal}}
+\index{determine\_goal@{determine\_goal}!main.Foostronics@{main.Foostronics}}
+\doxysubsubsection{\texorpdfstring{determine\_goal()}{determine\_goal()}}
+{\footnotesize\ttfamily def main.\+Foostronics.\+determine\+\_\+goal (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{vel\+\_\+x,  }\item[{}]{vel\+\_\+x\+\_\+old }\end{DoxyParamCaption})}
+
+
+
+Bepaal of er een goal is gescoord. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vel\+\_\+x} & (int) huidige x coördinaat van de simulatie. \\
+\hline
+{\em vel\+\_\+x\+\_\+old} & (int) vorige x coördinaat van de simulatie.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+(tuple) done, goal -\/ done checkt of ronde klaar is met een bool, goal is een int die aantal goals optelt. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmain_1_1_foostronics_a502535d984d2390f9023b3f058abae67}\label{classmain_1_1_foostronics_a502535d984d2390f9023b3f058abae67}} 
+\index{main.Foostronics@{main.Foostronics}!execute\_action@{execute\_action}}
+\index{execute\_action@{execute\_action}!main.Foostronics@{main.Foostronics}}
+\doxysubsubsection{\texorpdfstring{execute\_action()}{execute\_action()}}
+{\footnotesize\ttfamily def main.\+Foostronics.\+execute\+\_\+action (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{action,  }\item[{}]{old\+\_\+action }\end{DoxyParamCaption})}
+
+
+
+Voer de actie uit, die de AI heeft gekozen, op de stappenmotoren. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em action} & (list) acties die de AI gekozen heeft. \\
+\hline
+{\em old\+\_\+action} & (list) de vorige actie die de AI gekozen heeft. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classmain_1_1_foostronics_afc491dba1db81955d5ed8e7cae699631}\label{classmain_1_1_foostronics_afc491dba1db81955d5ed8e7cae699631}} 
+\index{main.Foostronics@{main.Foostronics}!map\_function@{map\_function}}
+\index{map\_function@{map\_function}!main.Foostronics@{main.Foostronics}}
+\doxysubsubsection{\texorpdfstring{map\_function()}{map\_function()}}
+{\footnotesize\ttfamily def main.\+Foostronics.\+map\+\_\+function (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{val,  }\item[{}]{in\+\_\+min,  }\item[{}]{in\+\_\+max,  }\item[{}]{out\+\_\+min,  }\item[{}]{out\+\_\+max }\end{DoxyParamCaption})}
+
+
+
+Map functie (zoals in de Arduino I\+DE) die input waarde (in\+\_\+min \& in\+\_\+max) schaald in verhouding naar de output (out\+\_\+min \& out\+\_\+max). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em val} & (int) waarde die geschaald moet worden. \\
+\hline
+{\em in\+\_\+min} & (int) minimale waarde die de input kan hebben. \\
+\hline
+{\em in\+\_\+max} & (int) maximale waarde die de input kan hebben. \\
+\hline
+{\em out\+\_\+min} & (int) minimale waarde die de output mag krijgen. \\
+\hline
+{\em out\+\_\+max} & (int) maximale waarde die de output mag krijgen.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+(int) geschaalde waarde van de input. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classmain_1_1_foostronics_af4e3c1061bec0cec1eebfa796faa7283}\label{classmain_1_1_foostronics_af4e3c1061bec0cec1eebfa796faa7283}} 
+\index{main.Foostronics@{main.Foostronics}!run@{run}}
+\index{run@{run}!main.Foostronics@{main.Foostronics}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily def main.\+Foostronics.\+run (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Deze functie wordt na iedere frame aangeroepen en kan gezien worden als de mainloop. 
+
+\mbox{\Hypertarget{classmain_1_1_foostronics_a5460b18642829ff33bb715414f649633}\label{classmain_1_1_foostronics_a5460b18642829ff33bb715414f649633}} 
+\index{main.Foostronics@{main.Foostronics}!start\_get\_ball\_thread@{start\_get\_ball\_thread}}
+\index{start\_get\_ball\_thread@{start\_get\_ball\_thread}!main.Foostronics@{main.Foostronics}}
+\doxysubsubsection{\texorpdfstring{start\_get\_ball\_thread()}{start\_get\_ball\_thread()}}
+{\footnotesize\ttfamily def main.\+Foostronics.\+start\+\_\+get\+\_\+ball\+\_\+thread (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Opstarten van een nieuw proces die de functie update\+\_\+ball\+\_\+position uitvoert. 
+
+\mbox{\Hypertarget{classmain_1_1_foostronics_a9a7c1ccff080b0fb82f18b418e424836}\label{classmain_1_1_foostronics_a9a7c1ccff080b0fb82f18b418e424836}} 
+\index{main.Foostronics@{main.Foostronics}!update\_ball\_position@{update\_ball\_position}}
+\index{update\_ball\_position@{update\_ball\_position}!main.Foostronics@{main.Foostronics}}
+\doxysubsubsection{\texorpdfstring{update\_ball\_position()}{update\_ball\_position()}}
+{\footnotesize\ttfamily def main.\+Foostronics.\+update\+\_\+ball\+\_\+position (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Opstarten van bal detectie proces dat een afbeelding uit van de gstreamer of van een bestand haalt. 
+
+Zie Image\+Capture voor het ophalen van afbeeldingen, Find\+Contours om het speelveld te schalen en Ball\+Detect voor de bal detectie. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classmain_1_1_foostronics_a82a082095020b795db40b5ea5cb6318c}\label{classmain_1_1_foostronics_a82a082095020b795db40b5ea5cb6318c}} 
+\index{main.Foostronics@{main.Foostronics}!ball\_detection@{ball\_detection}}
+\index{ball\_detection@{ball\_detection}!main.Foostronics@{main.Foostronics}}
+\doxysubsubsection{\texorpdfstring{ball\_detection}{ball\_detection}}
+{\footnotesize\ttfamily main.\+Foostronics.\+ball\+\_\+detection}
+
+\mbox{\Hypertarget{classmain_1_1_foostronics_a321547df0410fb69f8b75070ee8c1c8e}\label{classmain_1_1_foostronics_a321547df0410fb69f8b75070ee8c1c8e}} 
+\index{main.Foostronics@{main.Foostronics}!camera@{camera}}
+\index{camera@{camera}!main.Foostronics@{main.Foostronics}}
+\doxysubsubsection{\texorpdfstring{camera}{camera}}
+{\footnotesize\ttfamily main.\+Foostronics.\+camera}
+
+\mbox{\Hypertarget{classmain_1_1_foostronics_a7dac9fa8a2d620387b3b3b731a273ba2}\label{classmain_1_1_foostronics_a7dac9fa8a2d620387b3b3b731a273ba2}} 
+\index{main.Foostronics@{main.Foostronics}!con@{con}}
+\index{con@{con}!main.Foostronics@{main.Foostronics}}
+\doxysubsubsection{\texorpdfstring{con}{con}}
+{\footnotesize\ttfamily main.\+Foostronics.\+con}
+
+\mbox{\Hypertarget{classmain_1_1_foostronics_a4e572f5a85031dd2cf055b1237227dbf}\label{classmain_1_1_foostronics_a4e572f5a85031dd2cf055b1237227dbf}} 
+\index{main.Foostronics@{main.Foostronics}!dql@{dql}}
+\index{dql@{dql}!main.Foostronics@{main.Foostronics}}
+\doxysubsubsection{\texorpdfstring{dql}{dql}}
+{\footnotesize\ttfamily main.\+Foostronics.\+dql}
+
+\mbox{\Hypertarget{classmain_1_1_foostronics_a28cff9e8a43da47fac1d7f1322c046d8}\label{classmain_1_1_foostronics_a28cff9e8a43da47fac1d7f1322c046d8}} 
+\index{main.Foostronics@{main.Foostronics}!file@{file}}
+\index{file@{file}!main.Foostronics@{main.Foostronics}}
+\doxysubsubsection{\texorpdfstring{file}{file}}
+{\footnotesize\ttfamily main.\+Foostronics.\+file}
+
+\mbox{\Hypertarget{classmain_1_1_foostronics_abd7761c181fa8e00da5f575817dbba16}\label{classmain_1_1_foostronics_abd7761c181fa8e00da5f575817dbba16}} 
+\index{main.Foostronics@{main.Foostronics}!find\_contours@{find\_contours}}
+\index{find\_contours@{find\_contours}!main.Foostronics@{main.Foostronics}}
+\doxysubsubsection{\texorpdfstring{find\_contours}{find\_contours}}
+{\footnotesize\ttfamily main.\+Foostronics.\+find\+\_\+contours}
+
+\mbox{\Hypertarget{classmain_1_1_foostronics_aba7c8a3d0d24894c6f68402bb4b22e86}\label{classmain_1_1_foostronics_aba7c8a3d0d24894c6f68402bb4b22e86}} 
+\index{main.Foostronics@{main.Foostronics}!HEIGHT\_IMG@{HEIGHT\_IMG}}
+\index{HEIGHT\_IMG@{HEIGHT\_IMG}!main.Foostronics@{main.Foostronics}}
+\doxysubsubsection{\texorpdfstring{HEIGHT\_IMG}{HEIGHT\_IMG}}
+{\footnotesize\ttfamily main.\+Foostronics.\+H\+E\+I\+G\+H\+T\+\_\+\+I\+MG}
+
+\mbox{\Hypertarget{classmain_1_1_foostronics_a9762f53c97a06203559752c18033e5a5}\label{classmain_1_1_foostronics_a9762f53c97a06203559752c18033e5a5}} 
+\index{main.Foostronics@{main.Foostronics}!ks@{ks}}
+\index{ks@{ks}!main.Foostronics@{main.Foostronics}}
+\doxysubsubsection{\texorpdfstring{ks}{ks}}
+{\footnotesize\ttfamily main.\+Foostronics.\+ks}
+
+\mbox{\Hypertarget{classmain_1_1_foostronics_acb5242d686f6d12b395e0f945ce0a7aa}\label{classmain_1_1_foostronics_acb5242d686f6d12b395e0f945ce0a7aa}} 
+\index{main.Foostronics@{main.Foostronics}!met\_drivers@{met\_drivers}}
+\index{met\_drivers@{met\_drivers}!main.Foostronics@{main.Foostronics}}
+\doxysubsubsection{\texorpdfstring{met\_drivers}{met\_drivers}}
+{\footnotesize\ttfamily main.\+Foostronics.\+met\+\_\+drivers}
+
+\mbox{\Hypertarget{classmain_1_1_foostronics_af9100aaebbe65598267af33990fa10b2}\label{classmain_1_1_foostronics_af9100aaebbe65598267af33990fa10b2}} 
+\index{main.Foostronics@{main.Foostronics}!old\_ball\_positions@{old\_ball\_positions}}
+\index{old\_ball\_positions@{old\_ball\_positions}!main.Foostronics@{main.Foostronics}}
+\doxysubsubsection{\texorpdfstring{old\_ball\_positions}{old\_ball\_positions}}
+{\footnotesize\ttfamily main.\+Foostronics.\+old\+\_\+ball\+\_\+positions}
+
+\mbox{\Hypertarget{classmain_1_1_foostronics_a7c3201b9a96aed3e2b05c6ac61f0eed9}\label{classmain_1_1_foostronics_a7c3201b9a96aed3e2b05c6ac61f0eed9}} 
+\index{main.Foostronics@{main.Foostronics}!points\_array@{points\_array}}
+\index{points\_array@{points\_array}!main.Foostronics@{main.Foostronics}}
+\doxysubsubsection{\texorpdfstring{points\_array}{points\_array}}
+{\footnotesize\ttfamily main.\+Foostronics.\+points\+\_\+array}
+
+\mbox{\Hypertarget{classmain_1_1_foostronics_a3a163dab0f6ad2cfbde84f793dd340b3}\label{classmain_1_1_foostronics_a3a163dab0f6ad2cfbde84f793dd340b3}} 
+\index{main.Foostronics@{main.Foostronics}!que@{que}}
+\index{que@{que}!main.Foostronics@{main.Foostronics}}
+\doxysubsubsection{\texorpdfstring{que}{que}}
+{\footnotesize\ttfamily main.\+Foostronics.\+que}
+
+\mbox{\Hypertarget{classmain_1_1_foostronics_ada08970fe1ecc26d8bfb9cb61dbd4d31}\label{classmain_1_1_foostronics_ada08970fe1ecc26d8bfb9cb61dbd4d31}} 
+\index{main.Foostronics@{main.Foostronics}!reused\_counter@{reused\_counter}}
+\index{reused\_counter@{reused\_counter}!main.Foostronics@{main.Foostronics}}
+\doxysubsubsection{\texorpdfstring{reused\_counter}{reused\_counter}}
+{\footnotesize\ttfamily main.\+Foostronics.\+reused\+\_\+counter}
+
+\mbox{\Hypertarget{classmain_1_1_foostronics_a024d985674c849773faf6f766d0341dd}\label{classmain_1_1_foostronics_a024d985674c849773faf6f766d0341dd}} 
+\index{main.Foostronics@{main.Foostronics}!scored@{scored}}
+\index{scored@{scored}!main.Foostronics@{main.Foostronics}}
+\doxysubsubsection{\texorpdfstring{scored}{scored}}
+{\footnotesize\ttfamily main.\+Foostronics.\+scored}
+
+\mbox{\Hypertarget{classmain_1_1_foostronics_a78108b7bde8211826b6d6d283aa76d66}\label{classmain_1_1_foostronics_a78108b7bde8211826b6d6d283aa76d66}} 
+\index{main.Foostronics@{main.Foostronics}!WIDTH\_IMG@{WIDTH\_IMG}}
+\index{WIDTH\_IMG@{WIDTH\_IMG}!main.Foostronics@{main.Foostronics}}
+\doxysubsubsection{\texorpdfstring{WIDTH\_IMG}{WIDTH\_IMG}}
+{\footnotesize\ttfamily main.\+Foostronics.\+W\+I\+D\+T\+H\+\_\+\+I\+MG}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{main_8py}{main.\+py}}\end{DoxyCompactItemize}

@@ -1,0 +1,385 @@
+\hypertarget{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050}{}\doxysection{src.\+Backend.\+M\+P\+U6050.\+M\+P\+U6050 Class Reference}
+\label{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050}\index{src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}}
+
+
+Klasse om de mpu6050 gyroscoop aan te sturen dmv I2C.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a8d79e09080c632a1d0ee5847f9342ec1}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, i2c\+\_\+address=0x68, threading=False, \mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a7c5a784aed19c382d93c940a9f42651a}{debug}}=False)
+\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a75eca2dc64ada575f87bcd80c6687c63}{get\+\_\+y\+\_\+rotation}} (self)
+\begin{DoxyCompactList}\small\item\em Return de hoek van de de y-\/as van de \mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050}{M\+P\+U6050}}. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a5e1ccceaf261b18a72c0a1de379d67e6}{get\+\_\+x\+\_\+rotation}} (self)
+\begin{DoxyCompactList}\small\item\em Return de hoek van de de x-\/as van de \mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050}{M\+P\+U6050}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a515cd2d916f4817003dbc6290d993325}{bus}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a607cd7314256d313a6afab1dd8276d7c}{address}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_ae80c3ee1c2b79afceba3a939cf202a4e}{thread\+\_\+act}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a7c5a784aed19c382d93c940a9f42651a}{debug}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_aeb4f0c85ebc3887d3b33c2efbca0862a}{init\+\_\+hoek\+\_\+x}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a610f9e39d8c26e763eb58794ad9a6748}{init\+\_\+hoek\+\_\+y}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a3c34b03552f4a54150abb5c89b08e353}{y\+\_\+hoek}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a782d5e3f65ec47115851ae43d7c3942e}{x\+\_\+hoek}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a6242eab90180e11e6846591dba33a677}{T\+H\+R\+E\+A\+D\+\_\+\+R\+E\+G\+\_\+\+T\+I\+ME}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a1b6ab973ec1e0f8a437120887448c919}{t\+\_\+t}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a28c2fdb169b368aa63006c509b8906d7}{gyro\+\_\+xout}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_aa1261bffdef8a7aa3fcb6d9ae6a596e4}{gyro\+\_\+yout}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a0f8f743b5ec7fdd086e3967c484bd2c1}{gyro\+\_\+zout}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_aec6b37803d0a1a66d5dd0449421eb076}{accel\+\_\+xout}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a8af2e23b5277fca478ca696ce1d1fa3f}{accel\+\_\+yout}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a2b791c5cd9c9a098a3578c79f5a7607e}{accel\+\_\+zout}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a8a8c68c08c7fe1e80eb2a8c3f07cda76}{accel\+\_\+xout\+\_\+scaled}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_acb2314e22ffff9d9161ef66fe1c086ab}{accel\+\_\+yout\+\_\+scaled}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a9e33810ea2210db4d213508654a2e0d8}{accel\+\_\+zout\+\_\+scaled}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a399bb818a535d42da1095697c6e9a0f2}{\+\_\+init\+\_\+thread}} (self)
+\begin{DoxyCompactList}\small\item\em Initialiseer de timer thread. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a0d8392351cebac8a8d4dfeee37d18fdf}{\+\_\+thread\+\_\+for\+\_\+registers}} (self)
+\begin{DoxyCompactList}\small\item\em Geactiveerde functie door de thread, leest de waardes van de gyroscoop. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_aa515e9d43a34d8fb7d2498a2b52d889e}{\+\_\+init\+\_\+angle\+\_\+cor}} (self)
+\begin{DoxyCompactList}\small\item\em Zorg dat de hoek zoals deze nu staat het nulpunt is. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_aa320c3bf0cae2d58bd74ac57aa0c4739}{\+\_\+read\+\_\+word}} (self, adr)
+\begin{DoxyCompactList}\small\item\em Lezen van de bus via I2C. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a2d8da2a1a2a15c9354e2d1f3727aa503}{\+\_\+read\+\_\+word\+\_\+2c}} (self, adr)
+\begin{DoxyCompactList}\small\item\em leest twee registers uit dmv de functie \+\_\+read\+\_\+word(adr) \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a35468fdd0c825e92eb76ab89ad86fe3b}{\+\_\+get\+\_\+all\+\_\+register\+\_\+values}} (self)
+\begin{DoxyCompactList}\small\item\em Leest alle registers uit van de \mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050}{M\+P\+U6050}}. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_aaa1e8d1eb306deaa9a10aaf3635cb1ef}{\+\_\+dist}} (self, a, b)
+\begin{DoxyCompactList}\small\item\em Bereken de hoek dmv pythagoras. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_ab0d28a4b06f40a589c6344e11a9ec2b7}{\+\_\+get\+\_\+y\+\_\+rotation}} (self)
+\begin{DoxyCompactList}\small\item\em Bereken de rotatie van de y-\/as in graden. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a6c1516c21689e86e2b4170bc1237ecc6}{\+\_\+get\+\_\+x\+\_\+rotation}} (self)
+\begin{DoxyCompactList}\small\item\em Bereken de rotatie van de x-\/as in graden. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a9712365bfe8c4265b7e00a7afd0b6f10}{\+\_\+try\+\_\+to\+\_\+connect}} (self)
+\begin{DoxyCompactList}\small\item\em Probeer verbinding te maken met de \mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050}{M\+P\+U6050}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Klasse om de mpu6050 gyroscoop aan te sturen dmv I2C. 
+
+{\bfseries{Author}}\+: Kelvin Sweere ~\newline
+ {\bfseries{Version}}\+: 1.\+31 ~\newline
+ {\bfseries{Date}}\+: 20-\/1-\/2020 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a8d79e09080c632a1d0ee5847f9342ec1}\label{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a8d79e09080c632a1d0ee5847f9342ec1}} 
+\index{src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def src.\+Backend.\+M\+P\+U6050.\+M\+P\+U6050.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{i2c\+\_\+address = {\ttfamily 0x68},  }\item[{}]{threading = {\ttfamily False},  }\item[{}]{debug = {\ttfamily False} }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em i2c\+\_\+address} & (hexadecimal, optional) I2C adres van de gyroscoop. Standaard I2C adres van de mpu6050 is 0x68. \\
+\hline
+{\em threading} & (bool) Keuze om het threaden aan te zetten. Variabelen die deze parameter aanpast is\+: T\+H\+R\+E\+A\+D\+\_\+\+R\+E\+G\+\_\+\+T\+I\+ME. Standaard False. \\
+\hline
+{\em debug} & (bool) Keuze om debug berichten weer te geven. Standaard False. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_aaa1e8d1eb306deaa9a10aaf3635cb1ef}\label{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_aaa1e8d1eb306deaa9a10aaf3635cb1ef}} 
+\index{src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}!\_dist@{\_dist}}
+\index{\_dist@{\_dist}!src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}}
+\doxysubsubsection{\texorpdfstring{\_dist()}{\_dist()}}
+{\footnotesize\ttfamily def src.\+Backend.\+M\+P\+U6050.\+M\+P\+U6050.\+\_\+dist (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{a,  }\item[{}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Bereken de hoek dmv pythagoras. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & (int) vector 1. \\
+\hline
+{\em b} & (int) vector 2.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+(int) resulterende vector. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a35468fdd0c825e92eb76ab89ad86fe3b}\label{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a35468fdd0c825e92eb76ab89ad86fe3b}} 
+\index{src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}!\_get\_all\_register\_values@{\_get\_all\_register\_values}}
+\index{\_get\_all\_register\_values@{\_get\_all\_register\_values}!src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}}
+\doxysubsubsection{\texorpdfstring{\_get\_all\_register\_values()}{\_get\_all\_register\_values()}}
+{\footnotesize\ttfamily def src.\+Backend.\+M\+P\+U6050.\+M\+P\+U6050.\+\_\+get\+\_\+all\+\_\+register\+\_\+values (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Leest alle registers uit van de \mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050}{M\+P\+U6050}}. 
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a6c1516c21689e86e2b4170bc1237ecc6}\label{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a6c1516c21689e86e2b4170bc1237ecc6}} 
+\index{src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}!\_get\_x\_rotation@{\_get\_x\_rotation}}
+\index{\_get\_x\_rotation@{\_get\_x\_rotation}!src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}}
+\doxysubsubsection{\texorpdfstring{\_get\_x\_rotation()}{\_get\_x\_rotation()}}
+{\footnotesize\ttfamily def src.\+Backend.\+M\+P\+U6050.\+M\+P\+U6050.\+\_\+get\+\_\+x\+\_\+rotation (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Bereken de rotatie van de x-\/as in graden. 
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_ab0d28a4b06f40a589c6344e11a9ec2b7}\label{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_ab0d28a4b06f40a589c6344e11a9ec2b7}} 
+\index{src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}!\_get\_y\_rotation@{\_get\_y\_rotation}}
+\index{\_get\_y\_rotation@{\_get\_y\_rotation}!src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}}
+\doxysubsubsection{\texorpdfstring{\_get\_y\_rotation()}{\_get\_y\_rotation()}}
+{\footnotesize\ttfamily def src.\+Backend.\+M\+P\+U6050.\+M\+P\+U6050.\+\_\+get\+\_\+y\+\_\+rotation (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Bereken de rotatie van de y-\/as in graden. 
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_aa515e9d43a34d8fb7d2498a2b52d889e}\label{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_aa515e9d43a34d8fb7d2498a2b52d889e}} 
+\index{src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}!\_init\_angle\_cor@{\_init\_angle\_cor}}
+\index{\_init\_angle\_cor@{\_init\_angle\_cor}!src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}}
+\doxysubsubsection{\texorpdfstring{\_init\_angle\_cor()}{\_init\_angle\_cor()}}
+{\footnotesize\ttfamily def src.\+Backend.\+M\+P\+U6050.\+M\+P\+U6050.\+\_\+init\+\_\+angle\+\_\+cor (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Zorg dat de hoek zoals deze nu staat het nulpunt is. 
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a399bb818a535d42da1095697c6e9a0f2}\label{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a399bb818a535d42da1095697c6e9a0f2}} 
+\index{src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}!\_init\_thread@{\_init\_thread}}
+\index{\_init\_thread@{\_init\_thread}!src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}}
+\doxysubsubsection{\texorpdfstring{\_init\_thread()}{\_init\_thread()}}
+{\footnotesize\ttfamily def src.\+Backend.\+M\+P\+U6050.\+M\+P\+U6050.\+\_\+init\+\_\+thread (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initialiseer de timer thread. 
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_aa320c3bf0cae2d58bd74ac57aa0c4739}\label{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_aa320c3bf0cae2d58bd74ac57aa0c4739}} 
+\index{src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}!\_read\_word@{\_read\_word}}
+\index{\_read\_word@{\_read\_word}!src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}}
+\doxysubsubsection{\texorpdfstring{\_read\_word()}{\_read\_word()}}
+{\footnotesize\ttfamily def src.\+Backend.\+M\+P\+U6050.\+M\+P\+U6050.\+\_\+read\+\_\+word (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{adr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Lezen van de bus via I2C. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em adr} & (uint16\+\_\+t) adres naar het te lezen register.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+(uint16\+\_\+t) register waarde van het adres. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a2d8da2a1a2a15c9354e2d1f3727aa503}\label{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a2d8da2a1a2a15c9354e2d1f3727aa503}} 
+\index{src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}!\_read\_word\_2c@{\_read\_word\_2c}}
+\index{\_read\_word\_2c@{\_read\_word\_2c}!src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}}
+\doxysubsubsection{\texorpdfstring{\_read\_word\_2c()}{\_read\_word\_2c()}}
+{\footnotesize\ttfamily def src.\+Backend.\+M\+P\+U6050.\+M\+P\+U6050.\+\_\+read\+\_\+word\+\_\+2c (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{adr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+leest twee registers uit dmv de functie \+\_\+read\+\_\+word(adr) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em adr} & (uint16\+\_\+t) adres van registers\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+(uint16\+\_\+t) register waardes. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a0d8392351cebac8a8d4dfeee37d18fdf}\label{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a0d8392351cebac8a8d4dfeee37d18fdf}} 
+\index{src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}!\_thread\_for\_registers@{\_thread\_for\_registers}}
+\index{\_thread\_for\_registers@{\_thread\_for\_registers}!src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}}
+\doxysubsubsection{\texorpdfstring{\_thread\_for\_registers()}{\_thread\_for\_registers()}}
+{\footnotesize\ttfamily def src.\+Backend.\+M\+P\+U6050.\+M\+P\+U6050.\+\_\+thread\+\_\+for\+\_\+registers (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Geactiveerde functie door de thread, leest de waardes van de gyroscoop. 
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a9712365bfe8c4265b7e00a7afd0b6f10}\label{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a9712365bfe8c4265b7e00a7afd0b6f10}} 
+\index{src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}!\_try\_to\_connect@{\_try\_to\_connect}}
+\index{\_try\_to\_connect@{\_try\_to\_connect}!src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}}
+\doxysubsubsection{\texorpdfstring{\_try\_to\_connect()}{\_try\_to\_connect()}}
+{\footnotesize\ttfamily def src.\+Backend.\+M\+P\+U6050.\+M\+P\+U6050.\+\_\+try\+\_\+to\+\_\+connect (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Probeer verbinding te maken met de \mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050}{M\+P\+U6050}}. 
+
+\begin{DoxyReturn}{Returns}
+(bool) returnt True als de \mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050}{M\+P\+U6050}} is gevonden. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a5e1ccceaf261b18a72c0a1de379d67e6}\label{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a5e1ccceaf261b18a72c0a1de379d67e6}} 
+\index{src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}!get\_x\_rotation@{get\_x\_rotation}}
+\index{get\_x\_rotation@{get\_x\_rotation}!src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}}
+\doxysubsubsection{\texorpdfstring{get\_x\_rotation()}{get\_x\_rotation()}}
+{\footnotesize\ttfamily def src.\+Backend.\+M\+P\+U6050.\+M\+P\+U6050.\+get\+\_\+x\+\_\+rotation (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Return de hoek van de de x-\/as van de \mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050}{M\+P\+U6050}}. 
+
+\begin{DoxyNote}{Note}
+{\bfseries{I\+O\+Error}}\+: Pinnen van de \mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050}{M\+P\+U6050}} niet (goed) aangesloten. 
+\end{DoxyNote}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a75eca2dc64ada575f87bcd80c6687c63}\label{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a75eca2dc64ada575f87bcd80c6687c63}} 
+\index{src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}!get\_y\_rotation@{get\_y\_rotation}}
+\index{get\_y\_rotation@{get\_y\_rotation}!src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}}
+\doxysubsubsection{\texorpdfstring{get\_y\_rotation()}{get\_y\_rotation()}}
+{\footnotesize\ttfamily def src.\+Backend.\+M\+P\+U6050.\+M\+P\+U6050.\+get\+\_\+y\+\_\+rotation (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Return de hoek van de de y-\/as van de \mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050}{M\+P\+U6050}}. 
+
+\begin{DoxyNote}{Note}
+{\bfseries{I\+O\+Error}}\+: Pinnen van de \mbox{\hyperlink{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050}{M\+P\+U6050}} niet (goed) aangesloten. 
+\end{DoxyNote}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_aec6b37803d0a1a66d5dd0449421eb076}\label{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_aec6b37803d0a1a66d5dd0449421eb076}} 
+\index{src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}!accel\_xout@{accel\_xout}}
+\index{accel\_xout@{accel\_xout}!src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}}
+\doxysubsubsection{\texorpdfstring{accel\_xout}{accel\_xout}}
+{\footnotesize\ttfamily src.\+Backend.\+M\+P\+U6050.\+M\+P\+U6050.\+accel\+\_\+xout}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a8a8c68c08c7fe1e80eb2a8c3f07cda76}\label{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a8a8c68c08c7fe1e80eb2a8c3f07cda76}} 
+\index{src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}!accel\_xout\_scaled@{accel\_xout\_scaled}}
+\index{accel\_xout\_scaled@{accel\_xout\_scaled}!src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}}
+\doxysubsubsection{\texorpdfstring{accel\_xout\_scaled}{accel\_xout\_scaled}}
+{\footnotesize\ttfamily src.\+Backend.\+M\+P\+U6050.\+M\+P\+U6050.\+accel\+\_\+xout\+\_\+scaled}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a8af2e23b5277fca478ca696ce1d1fa3f}\label{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a8af2e23b5277fca478ca696ce1d1fa3f}} 
+\index{src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}!accel\_yout@{accel\_yout}}
+\index{accel\_yout@{accel\_yout}!src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}}
+\doxysubsubsection{\texorpdfstring{accel\_yout}{accel\_yout}}
+{\footnotesize\ttfamily src.\+Backend.\+M\+P\+U6050.\+M\+P\+U6050.\+accel\+\_\+yout}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_acb2314e22ffff9d9161ef66fe1c086ab}\label{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_acb2314e22ffff9d9161ef66fe1c086ab}} 
+\index{src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}!accel\_yout\_scaled@{accel\_yout\_scaled}}
+\index{accel\_yout\_scaled@{accel\_yout\_scaled}!src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}}
+\doxysubsubsection{\texorpdfstring{accel\_yout\_scaled}{accel\_yout\_scaled}}
+{\footnotesize\ttfamily src.\+Backend.\+M\+P\+U6050.\+M\+P\+U6050.\+accel\+\_\+yout\+\_\+scaled}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a2b791c5cd9c9a098a3578c79f5a7607e}\label{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a2b791c5cd9c9a098a3578c79f5a7607e}} 
+\index{src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}!accel\_zout@{accel\_zout}}
+\index{accel\_zout@{accel\_zout}!src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}}
+\doxysubsubsection{\texorpdfstring{accel\_zout}{accel\_zout}}
+{\footnotesize\ttfamily src.\+Backend.\+M\+P\+U6050.\+M\+P\+U6050.\+accel\+\_\+zout}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a9e33810ea2210db4d213508654a2e0d8}\label{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a9e33810ea2210db4d213508654a2e0d8}} 
+\index{src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}!accel\_zout\_scaled@{accel\_zout\_scaled}}
+\index{accel\_zout\_scaled@{accel\_zout\_scaled}!src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}}
+\doxysubsubsection{\texorpdfstring{accel\_zout\_scaled}{accel\_zout\_scaled}}
+{\footnotesize\ttfamily src.\+Backend.\+M\+P\+U6050.\+M\+P\+U6050.\+accel\+\_\+zout\+\_\+scaled}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a607cd7314256d313a6afab1dd8276d7c}\label{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a607cd7314256d313a6afab1dd8276d7c}} 
+\index{src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}!address@{address}}
+\index{address@{address}!src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}}
+\doxysubsubsection{\texorpdfstring{address}{address}}
+{\footnotesize\ttfamily src.\+Backend.\+M\+P\+U6050.\+M\+P\+U6050.\+address}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a515cd2d916f4817003dbc6290d993325}\label{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a515cd2d916f4817003dbc6290d993325}} 
+\index{src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}!bus@{bus}}
+\index{bus@{bus}!src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}}
+\doxysubsubsection{\texorpdfstring{bus}{bus}}
+{\footnotesize\ttfamily src.\+Backend.\+M\+P\+U6050.\+M\+P\+U6050.\+bus}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a7c5a784aed19c382d93c940a9f42651a}\label{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a7c5a784aed19c382d93c940a9f42651a}} 
+\index{src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}!debug@{debug}}
+\index{debug@{debug}!src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}}
+\doxysubsubsection{\texorpdfstring{debug}{debug}}
+{\footnotesize\ttfamily src.\+Backend.\+M\+P\+U6050.\+M\+P\+U6050.\+debug}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a28c2fdb169b368aa63006c509b8906d7}\label{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a28c2fdb169b368aa63006c509b8906d7}} 
+\index{src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}!gyro\_xout@{gyro\_xout}}
+\index{gyro\_xout@{gyro\_xout}!src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}}
+\doxysubsubsection{\texorpdfstring{gyro\_xout}{gyro\_xout}}
+{\footnotesize\ttfamily src.\+Backend.\+M\+P\+U6050.\+M\+P\+U6050.\+gyro\+\_\+xout}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_aa1261bffdef8a7aa3fcb6d9ae6a596e4}\label{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_aa1261bffdef8a7aa3fcb6d9ae6a596e4}} 
+\index{src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}!gyro\_yout@{gyro\_yout}}
+\index{gyro\_yout@{gyro\_yout}!src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}}
+\doxysubsubsection{\texorpdfstring{gyro\_yout}{gyro\_yout}}
+{\footnotesize\ttfamily src.\+Backend.\+M\+P\+U6050.\+M\+P\+U6050.\+gyro\+\_\+yout}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a0f8f743b5ec7fdd086e3967c484bd2c1}\label{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a0f8f743b5ec7fdd086e3967c484bd2c1}} 
+\index{src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}!gyro\_zout@{gyro\_zout}}
+\index{gyro\_zout@{gyro\_zout}!src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}}
+\doxysubsubsection{\texorpdfstring{gyro\_zout}{gyro\_zout}}
+{\footnotesize\ttfamily src.\+Backend.\+M\+P\+U6050.\+M\+P\+U6050.\+gyro\+\_\+zout}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_aeb4f0c85ebc3887d3b33c2efbca0862a}\label{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_aeb4f0c85ebc3887d3b33c2efbca0862a}} 
+\index{src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}!init\_hoek\_x@{init\_hoek\_x}}
+\index{init\_hoek\_x@{init\_hoek\_x}!src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}}
+\doxysubsubsection{\texorpdfstring{init\_hoek\_x}{init\_hoek\_x}}
+{\footnotesize\ttfamily src.\+Backend.\+M\+P\+U6050.\+M\+P\+U6050.\+init\+\_\+hoek\+\_\+x}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a610f9e39d8c26e763eb58794ad9a6748}\label{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a610f9e39d8c26e763eb58794ad9a6748}} 
+\index{src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}!init\_hoek\_y@{init\_hoek\_y}}
+\index{init\_hoek\_y@{init\_hoek\_y}!src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}}
+\doxysubsubsection{\texorpdfstring{init\_hoek\_y}{init\_hoek\_y}}
+{\footnotesize\ttfamily src.\+Backend.\+M\+P\+U6050.\+M\+P\+U6050.\+init\+\_\+hoek\+\_\+y}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a1b6ab973ec1e0f8a437120887448c919}\label{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a1b6ab973ec1e0f8a437120887448c919}} 
+\index{src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}!t\_t@{t\_t}}
+\index{t\_t@{t\_t}!src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}}
+\doxysubsubsection{\texorpdfstring{t\_t}{t\_t}}
+{\footnotesize\ttfamily src.\+Backend.\+M\+P\+U6050.\+M\+P\+U6050.\+t\+\_\+t}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_ae80c3ee1c2b79afceba3a939cf202a4e}\label{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_ae80c3ee1c2b79afceba3a939cf202a4e}} 
+\index{src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}!thread\_act@{thread\_act}}
+\index{thread\_act@{thread\_act}!src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}}
+\doxysubsubsection{\texorpdfstring{thread\_act}{thread\_act}}
+{\footnotesize\ttfamily src.\+Backend.\+M\+P\+U6050.\+M\+P\+U6050.\+thread\+\_\+act}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a6242eab90180e11e6846591dba33a677}\label{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a6242eab90180e11e6846591dba33a677}} 
+\index{src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}!THREAD\_REG\_TIME@{THREAD\_REG\_TIME}}
+\index{THREAD\_REG\_TIME@{THREAD\_REG\_TIME}!src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}}
+\doxysubsubsection{\texorpdfstring{THREAD\_REG\_TIME}{THREAD\_REG\_TIME}}
+{\footnotesize\ttfamily src.\+Backend.\+M\+P\+U6050.\+M\+P\+U6050.\+T\+H\+R\+E\+A\+D\+\_\+\+R\+E\+G\+\_\+\+T\+I\+ME}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a782d5e3f65ec47115851ae43d7c3942e}\label{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a782d5e3f65ec47115851ae43d7c3942e}} 
+\index{src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}!x\_hoek@{x\_hoek}}
+\index{x\_hoek@{x\_hoek}!src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}}
+\doxysubsubsection{\texorpdfstring{x\_hoek}{x\_hoek}}
+{\footnotesize\ttfamily src.\+Backend.\+M\+P\+U6050.\+M\+P\+U6050.\+x\+\_\+hoek}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a3c34b03552f4a54150abb5c89b08e353}\label{classsrc_1_1_backend_1_1_m_p_u6050_1_1_m_p_u6050_a3c34b03552f4a54150abb5c89b08e353}} 
+\index{src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}!y\_hoek@{y\_hoek}}
+\index{y\_hoek@{y\_hoek}!src.Backend.MPU6050.MPU6050@{src.Backend.MPU6050.MPU6050}}
+\doxysubsubsection{\texorpdfstring{y\_hoek}{y\_hoek}}
+{\footnotesize\ttfamily src.\+Backend.\+M\+P\+U6050.\+M\+P\+U6050.\+y\+\_\+hoek}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Backend/\mbox{\hyperlink{_m_p_u6050_8py}{M\+P\+U6050.\+py}}\end{DoxyCompactItemize}

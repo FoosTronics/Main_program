@@ -1,0 +1,538 @@
+\hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim}{}\doxysection{src.\+Keeper\+Sim.\+Keeper\+Sim Class Reference}
+\label{classsrc_1_1_keeper_sim_1_1_keeper_sim}\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+
+
+Maakt de simulatie objecten aan, regelt de keeper bewegingen, bal schieten en of er wel of niet gescoord is.  
+
+
+Inheritance diagram for src.\+Keeper\+Sim.\+Keeper\+Sim\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classsrc_1_1_keeper_sim_1_1_keeper_sim}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_aec1256eb6cf2b18e411f66b1cae5a8c0}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, up\+\_\+speed=100, down\+\_\+speed=-\/100, \mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_a2c9dc1902aeebbb3506102bd7b741b6c}{shoot\+\_\+bool}}=True)
+\begin{DoxyCompactList}\small\item\em Initialisatie van de \mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim}{Keeper\+Sim}} klasse. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_afd14acea263897bf2d363b1853b86d93}{set\+\_\+\+Foostronics}} (self, foostronics)
+\begin{DoxyCompactList}\small\item\em Foostronics klasse initialiseren in de \mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim}{Keeper\+Sim}} klasse. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_a99411d6f010e1073c89ddc18a6176a22}{Keyboard}} (self, key, settings)
+\begin{DoxyCompactList}\small\item\em Wanneer een toets wordt ingedrukt, ga in deze functie. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_adb449156098a38e0704d98b29a1298ff}{Keyboard\+\_\+up}} (self, key)
+\begin{DoxyCompactList}\small\item\em Wanneer een toets wordt losgelaten, ga naar deze functie. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_a86a2383991c8ea7f033e2ba4f65aceef}{create\+\_\+keeper}} (self, pos)
+\begin{DoxyCompactList}\small\item\em Maak keeper object in het veld. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_ac99aafdec9a85144b6a282d146d79406}{create\+\_\+targetpoint}} (self, pos)
+\begin{DoxyCompactList}\small\item\em Creëer targetpoint (gewenste positie keeper) in de simulatie die weergegeven moet worden. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_ad635fae78e0f4d3d73b9af9a42df47a5}{delete\+\_\+targetpoint}} (self)
+\begin{DoxyCompactList}\small\item\em Delete targetpoint als die er is. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_aac500b17c745591b432e4ee8c719ddca}{set\+\_\+ball}} (self, pos)
+\begin{DoxyCompactList}\small\item\em Maak een bal aan. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_a751255e61ccd5d3297405e39f3896f60}{Step}} (self, settings)
+\begin{DoxyCompactList}\small\item\em Functie die bij elke frame wordt aangeroepen en hierbij de bepaling van de keeper positie/snelheid regelt. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_a8c8c4105c70c5b97d727a4a47a055d39}{print\+\_\+ai\+\_\+stats}} (self)
+\begin{DoxyCompactList}\small\item\em Print alle statistieken van de performance van de AI in Pygame. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_a734f7cedefb4925befba28639720de56}{S\+I\+M\+\_\+\+L\+E\+FT}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_adef985bcddb324a43aa2fc65c78e3951}{S\+I\+M\+\_\+\+R\+I\+G\+HT}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_a95da2f25da5a75d5f4a5d5e447af477d}{S\+I\+M\+\_\+\+T\+OP}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_acf2bc0ae4acb671c092e7e1fc54ec4ed}{S\+I\+M\+\_\+\+B\+O\+T\+T\+OM}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_a6a8e8867ce8eda5bbb6c5f39d8673bdf}{K\+E\+E\+P\+E\+R\+\_\+\+S\+P\+E\+ED}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_a0ba7440ab4e0f23fb577ed3958e1051c}{F\+O\+R\+C\+E\+\_\+\+M\+AX}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_a2351280a58cb9d00dc01f026b73400c6}{F\+O\+R\+C\+E\+\_\+\+M\+IN}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_a0a51f27bda99fdf4673b7b8eacb9f4c1}{radius}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_ad22b190ecd2e39b6f13b2d198b66e60b}{M\+I\+D\+D\+E\+L\+P\+U\+N\+T\+\_\+\+K\+E\+E\+P\+ER}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_af9dbf6b4e25e90f771a3f73c61cdd398}{scaler}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_a9fe55de74f8d4bc51b3b81643555ab25}{target}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_a53379e68f65a0b2002df65d9b5da4a11}{pressed\+\_\+keys}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_ad45128b736e7a6428b33f008fe13d745}{time}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_a6ebe9589583779a60ff3d47a65093ae3}{time\+\_\+change}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_a1e60907e34bee5cc972663cffb24d7d5}{goals}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_a2180e1978de571c45b07d6ae8d340b4e}{blocks}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_a3b5d35330590007237ea896be6847ba5}{control}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_af821a0144099e976b5a526d1d4e1e79c}{action}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_abdef5a04d2e36cc25b7e8b3b0c95a77c}{ratio}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_a1293b950ce46bc6c55c167b072741e77}{tp}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_a2c9dc1902aeebbb3506102bd7b741b6c}{shoot\+\_\+bool}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_acb02026a03bde38d083282a90f29f688}{force\+\_\+param}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_a1b9b91a487d971b13de28d5fb4086cdd}{fs}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_a7bbc062a9b914747f13b33916b5906ea}{body}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_a43ec896909a8a1cf7ee8814df841537c}{fixture}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_ad6676db745916e79f681d68dd9135521}{fixture\+\_\+tp}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_ad8b528008a0c5db7ba7e2d8efbb459eb}{fixture\+\_\+tp2}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_acc05bad88ccb91f287ffb8b491799a90}{ball}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_aa437e4453b12204fd62d9e437c9ef8d3}{name}} = \char`\"{}Keeper\+Sim\char`\"{}
+\item 
+string \mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_ac80b9611bdcfc200730c3e2de44efbf9}{description}} = \char`\"{}Druk op C om het spel te starten.\char`\"{}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_ae79fd29dd80b2c94febe33a1071c34d8}{\+\_\+create\+\_\+ball}} (self, pos)
+\begin{DoxyCompactList}\small\item\em Creëren van een bal in Box2D omgeving. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_a00d6490344271c0a18af9fc92fd3803e}{\+\_\+calculate\+\_\+force\+\_\+ball}} (self, pos)
+\begin{DoxyCompactList}\small\item\em Bereken de kracht die op de bal moet worden uitgeoefend. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim_abf649bb96f69561407885a1bb47df88e}{\+\_\+reset\+\_\+ball}} (self)
+\begin{DoxyCompactList}\small\item\em Functie die de bal reset aan de hand van of er beeldherkenning wordt gebruikt. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Maakt de simulatie objecten aan, regelt de keeper bewegingen, bal schieten en of er wel of niet gescoord is. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Framework} & (Framework\+Base) De basis van het hoofd van het spel Framework.\\
+\hline
+\end{DoxyParams}
+{\bfseries{Author}}\+: ~\newline
+ Daniël Boon ~\newline
+ Kelvin Sweere ~\newline
+ {\bfseries{Version}}\+: 1.\+53 ~\newline
+ {\bfseries{Date}}\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{22-\/1-\/2020}
+\end{DoxyCode}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_aec1256eb6cf2b18e411f66b1cae5a8c0}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_aec1256eb6cf2b18e411f66b1cae5a8c0}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def src.\+Keeper\+Sim.\+Keeper\+Sim.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{up\+\_\+speed = {\ttfamily 100},  }\item[{}]{down\+\_\+speed = {\ttfamily -\/100},  }\item[{}]{shoot\+\_\+bool = {\ttfamily True} }\end{DoxyParamCaption})}
+
+
+
+Initialisatie van de \mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim}{Keeper\+Sim}} klasse. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em up\+\_\+speed} & (int, optional) snelheid van de keeper lateraal. Standaard 100. \\
+\hline
+{\em down\+\_\+speed} & (int, optional) negatieve snelheid van de keeper lateraal. Standaard -\/100. \\
+\hline
+{\em shoot\+\_\+bool} & (bool, optional) keuze of beeldherkenning wordt gebruikt voor de simulatie. Standaard True. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_a00d6490344271c0a18af9fc92fd3803e}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_a00d6490344271c0a18af9fc92fd3803e}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!\_calculate\_force\_ball@{\_calculate\_force\_ball}}
+\index{\_calculate\_force\_ball@{\_calculate\_force\_ball}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{\_calculate\_force\_ball()}{\_calculate\_force\_ball()}}
+{\footnotesize\ttfamily def src.\+Keeper\+Sim.\+Keeper\+Sim.\+\_\+calculate\+\_\+force\+\_\+ball (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Bereken de kracht die op de bal moet worden uitgeoefend. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & (tuple) x,y coördinaten van de bal.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+(int) kracht van de bal naar de keeper. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_ae79fd29dd80b2c94febe33a1071c34d8}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_ae79fd29dd80b2c94febe33a1071c34d8}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!\_create\_ball@{\_create\_ball}}
+\index{\_create\_ball@{\_create\_ball}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{\_create\_ball()}{\_create\_ball()}}
+{\footnotesize\ttfamily def src.\+Keeper\+Sim.\+Keeper\+Sim.\+\_\+create\+\_\+ball (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Creëren van een bal in Box2D omgeving. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & (tuple) x,y coördinaten van de bal. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_abf649bb96f69561407885a1bb47df88e}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_abf649bb96f69561407885a1bb47df88e}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!\_reset\_ball@{\_reset\_ball}}
+\index{\_reset\_ball@{\_reset\_ball}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{\_reset\_ball()}{\_reset\_ball()}}
+{\footnotesize\ttfamily def src.\+Keeper\+Sim.\+Keeper\+Sim.\+\_\+reset\+\_\+ball (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Functie die de bal reset aan de hand van of er beeldherkenning wordt gebruikt. 
+
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_a86a2383991c8ea7f033e2ba4f65aceef}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_a86a2383991c8ea7f033e2ba4f65aceef}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!create\_keeper@{create\_keeper}}
+\index{create\_keeper@{create\_keeper}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{create\_keeper()}{create\_keeper()}}
+{\footnotesize\ttfamily def src.\+Keeper\+Sim.\+Keeper\+Sim.\+create\+\_\+keeper (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{pos }\end{DoxyParamCaption})}
+
+
+
+Maak keeper object in het veld. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & (tuple) x \& y coördinaten waar de keeper moet komen te staan. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_ac99aafdec9a85144b6a282d146d79406}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_ac99aafdec9a85144b6a282d146d79406}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!create\_targetpoint@{create\_targetpoint}}
+\index{create\_targetpoint@{create\_targetpoint}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{create\_targetpoint()}{create\_targetpoint()}}
+{\footnotesize\ttfamily def src.\+Keeper\+Sim.\+Keeper\+Sim.\+create\+\_\+targetpoint (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{pos }\end{DoxyParamCaption})}
+
+
+
+Creëer targetpoint (gewenste positie keeper) in de simulatie die weergegeven moet worden. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & (tuple) x \& y coördinaten waar het targetpoint moet komen te staan. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_ad635fae78e0f4d3d73b9af9a42df47a5}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_ad635fae78e0f4d3d73b9af9a42df47a5}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!delete\_targetpoint@{delete\_targetpoint}}
+\index{delete\_targetpoint@{delete\_targetpoint}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{delete\_targetpoint()}{delete\_targetpoint()}}
+{\footnotesize\ttfamily def src.\+Keeper\+Sim.\+Keeper\+Sim.\+delete\+\_\+targetpoint (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Delete targetpoint als die er is. 
+
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_a99411d6f010e1073c89ddc18a6176a22}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_a99411d6f010e1073c89ddc18a6176a22}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!Keyboard@{Keyboard}}
+\index{Keyboard@{Keyboard}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{Keyboard()}{Keyboard()}}
+{\footnotesize\ttfamily def src.\+Keeper\+Sim.\+Keeper\+Sim.\+Keyboard (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{key,  }\item[{}]{settings }\end{DoxyParamCaption})}
+
+
+
+Wanneer een toets wordt ingedrukt, ga in deze functie. 
+
+\begin{DoxyParagraph}{Toetsen}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Toets  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Opmerking   }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Toets  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Opmerking   }\\\cline{1-2}
+\endhead
+c  &Bal oproepen   \\\cline{1-2}
+w  &Keeper naar boven   \\\cline{1-2}
+s  &Keeper naar beneden   \\\cline{1-2}
+a  &Keeper naar links   \\\cline{1-2}
+d  &Keeper naar rechts   \\\cline{1-2}
+j  &Versnel de keeper simulatie (is instabiel)   \\\cline{1-2}
+m  &Sla de gecreerde data van de ai op   \\\cline{1-2}
+r  &Herstel een opgeslagen ai bestand   \\\cline{1-2}
+\end{longtabu}
+
+\end{DoxyParagraph}
+
+\begin{DoxyParams}{Parameters}
+{\em key} & (int) nummer input toets die word ingedrukt. \\
+\hline
+{\em settings} & (class) klasse met parameter instellingen. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_adb449156098a38e0704d98b29a1298ff}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_adb449156098a38e0704d98b29a1298ff}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!Keyboard\_up@{Keyboard\_up}}
+\index{Keyboard\_up@{Keyboard\_up}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{Keyboard\_up()}{Keyboard\_up()}}
+{\footnotesize\ttfamily def src.\+Keeper\+Sim.\+Keeper\+Sim.\+Keyboard\+\_\+up (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{key }\end{DoxyParamCaption})}
+
+
+
+Wanneer een toets wordt losgelaten, ga naar deze functie. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & (int) nummer input toets die werd losgelaten. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_a8c8c4105c70c5b97d727a4a47a055d39}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_a8c8c4105c70c5b97d727a4a47a055d39}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!print\_ai\_stats@{print\_ai\_stats}}
+\index{print\_ai\_stats@{print\_ai\_stats}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{print\_ai\_stats()}{print\_ai\_stats()}}
+{\footnotesize\ttfamily def src.\+Keeper\+Sim.\+Keeper\+Sim.\+print\+\_\+ai\+\_\+stats (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Print alle statistieken van de performance van de AI in Pygame. 
+
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_aac500b17c745591b432e4ee8c719ddca}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_aac500b17c745591b432e4ee8c719ddca}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!set\_ball@{set\_ball}}
+\index{set\_ball@{set\_ball}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{set\_ball()}{set\_ball()}}
+{\footnotesize\ttfamily def src.\+Keeper\+Sim.\+Keeper\+Sim.\+set\+\_\+ball (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{pos }\end{DoxyParamCaption})}
+
+
+
+Maak een bal aan. 
+
+Hierbij zijn self.\+ball.\+x \& self.\+ball.\+y de coördinaten van de bal.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & (tuple) positie van de bal. \\
+\hline
+{\em force\+\_\+param} & (bool, optional) debug parameter die bepaald of er een kracht op de bal moet worden uitgeoefend. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_afd14acea263897bf2d363b1853b86d93}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_afd14acea263897bf2d363b1853b86d93}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!set\_Foostronics@{set\_Foostronics}}
+\index{set\_Foostronics@{set\_Foostronics}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{set\_Foostronics()}{set\_Foostronics()}}
+{\footnotesize\ttfamily def src.\+Keeper\+Sim.\+Keeper\+Sim.\+set\+\_\+\+Foostronics (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{foostronics }\end{DoxyParamCaption})}
+
+
+
+Foostronics klasse initialiseren in de \mbox{\hyperlink{classsrc_1_1_keeper_sim_1_1_keeper_sim}{Keeper\+Sim}} klasse. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Foostronics} & (class) klasse van de main applicatie. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_a751255e61ccd5d3297405e39f3896f60}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_a751255e61ccd5d3297405e39f3896f60}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!Step@{Step}}
+\index{Step@{Step}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{Step()}{Step()}}
+{\footnotesize\ttfamily def src.\+Keeper\+Sim.\+Keeper\+Sim.\+Step (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{settings }\end{DoxyParamCaption})}
+
+
+
+Functie die bij elke frame wordt aangeroepen en hierbij de bepaling van de keeper positie/snelheid regelt. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em settings} & (Class) de instellingen die vooraf zijn gedefinieerd. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_af821a0144099e976b5a526d1d4e1e79c}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_af821a0144099e976b5a526d1d4e1e79c}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!action@{action}}
+\index{action@{action}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{action}{action}}
+{\footnotesize\ttfamily src.\+Keeper\+Sim.\+Keeper\+Sim.\+action}
+
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_acc05bad88ccb91f287ffb8b491799a90}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_acc05bad88ccb91f287ffb8b491799a90}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!ball@{ball}}
+\index{ball@{ball}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{ball}{ball}}
+{\footnotesize\ttfamily src.\+Keeper\+Sim.\+Keeper\+Sim.\+ball}
+
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_a2180e1978de571c45b07d6ae8d340b4e}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_a2180e1978de571c45b07d6ae8d340b4e}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!blocks@{blocks}}
+\index{blocks@{blocks}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{blocks}{blocks}}
+{\footnotesize\ttfamily src.\+Keeper\+Sim.\+Keeper\+Sim.\+blocks}
+
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_a7bbc062a9b914747f13b33916b5906ea}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_a7bbc062a9b914747f13b33916b5906ea}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!body@{body}}
+\index{body@{body}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{body}{body}}
+{\footnotesize\ttfamily src.\+Keeper\+Sim.\+Keeper\+Sim.\+body}
+
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_a3b5d35330590007237ea896be6847ba5}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_a3b5d35330590007237ea896be6847ba5}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!control@{control}}
+\index{control@{control}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{control}{control}}
+{\footnotesize\ttfamily src.\+Keeper\+Sim.\+Keeper\+Sim.\+control}
+
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_ac80b9611bdcfc200730c3e2de44efbf9}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_ac80b9611bdcfc200730c3e2de44efbf9}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!description@{description}}
+\index{description@{description}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{description}{description}}
+{\footnotesize\ttfamily string src.\+Keeper\+Sim.\+Keeper\+Sim.\+description = \char`\"{}Druk op C om het spel te starten.\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_a43ec896909a8a1cf7ee8814df841537c}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_a43ec896909a8a1cf7ee8814df841537c}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!fixture@{fixture}}
+\index{fixture@{fixture}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{fixture}{fixture}}
+{\footnotesize\ttfamily src.\+Keeper\+Sim.\+Keeper\+Sim.\+fixture}
+
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_ad6676db745916e79f681d68dd9135521}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_ad6676db745916e79f681d68dd9135521}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!fixture\_tp@{fixture\_tp}}
+\index{fixture\_tp@{fixture\_tp}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{fixture\_tp}{fixture\_tp}}
+{\footnotesize\ttfamily src.\+Keeper\+Sim.\+Keeper\+Sim.\+fixture\+\_\+tp}
+
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_ad8b528008a0c5db7ba7e2d8efbb459eb}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_ad8b528008a0c5db7ba7e2d8efbb459eb}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!fixture\_tp2@{fixture\_tp2}}
+\index{fixture\_tp2@{fixture\_tp2}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{fixture\_tp2}{fixture\_tp2}}
+{\footnotesize\ttfamily src.\+Keeper\+Sim.\+Keeper\+Sim.\+fixture\+\_\+tp2}
+
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_a0ba7440ab4e0f23fb577ed3958e1051c}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_a0ba7440ab4e0f23fb577ed3958e1051c}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!FORCE\_MAX@{FORCE\_MAX}}
+\index{FORCE\_MAX@{FORCE\_MAX}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{FORCE\_MAX}{FORCE\_MAX}}
+{\footnotesize\ttfamily src.\+Keeper\+Sim.\+Keeper\+Sim.\+F\+O\+R\+C\+E\+\_\+\+M\+AX}
+
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_a2351280a58cb9d00dc01f026b73400c6}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_a2351280a58cb9d00dc01f026b73400c6}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!FORCE\_MIN@{FORCE\_MIN}}
+\index{FORCE\_MIN@{FORCE\_MIN}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{FORCE\_MIN}{FORCE\_MIN}}
+{\footnotesize\ttfamily src.\+Keeper\+Sim.\+Keeper\+Sim.\+F\+O\+R\+C\+E\+\_\+\+M\+IN}
+
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_acb02026a03bde38d083282a90f29f688}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_acb02026a03bde38d083282a90f29f688}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!force\_param@{force\_param}}
+\index{force\_param@{force\_param}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{force\_param}{force\_param}}
+{\footnotesize\ttfamily src.\+Keeper\+Sim.\+Keeper\+Sim.\+force\+\_\+param}
+
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_a1b9b91a487d971b13de28d5fb4086cdd}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_a1b9b91a487d971b13de28d5fb4086cdd}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!fs@{fs}}
+\index{fs@{fs}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{fs}{fs}}
+{\footnotesize\ttfamily src.\+Keeper\+Sim.\+Keeper\+Sim.\+fs}
+
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_a1e60907e34bee5cc972663cffb24d7d5}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_a1e60907e34bee5cc972663cffb24d7d5}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!goals@{goals}}
+\index{goals@{goals}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{goals}{goals}}
+{\footnotesize\ttfamily src.\+Keeper\+Sim.\+Keeper\+Sim.\+goals}
+
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_a6a8e8867ce8eda5bbb6c5f39d8673bdf}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_a6a8e8867ce8eda5bbb6c5f39d8673bdf}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!KEEPER\_SPEED@{KEEPER\_SPEED}}
+\index{KEEPER\_SPEED@{KEEPER\_SPEED}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{KEEPER\_SPEED}{KEEPER\_SPEED}}
+{\footnotesize\ttfamily src.\+Keeper\+Sim.\+Keeper\+Sim.\+K\+E\+E\+P\+E\+R\+\_\+\+S\+P\+E\+ED}
+
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_ad22b190ecd2e39b6f13b2d198b66e60b}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_ad22b190ecd2e39b6f13b2d198b66e60b}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!MIDDELPUNT\_KEEPER@{MIDDELPUNT\_KEEPER}}
+\index{MIDDELPUNT\_KEEPER@{MIDDELPUNT\_KEEPER}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{MIDDELPUNT\_KEEPER}{MIDDELPUNT\_KEEPER}}
+{\footnotesize\ttfamily src.\+Keeper\+Sim.\+Keeper\+Sim.\+M\+I\+D\+D\+E\+L\+P\+U\+N\+T\+\_\+\+K\+E\+E\+P\+ER}
+
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_aa437e4453b12204fd62d9e437c9ef8d3}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_aa437e4453b12204fd62d9e437c9ef8d3}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!name@{name}}
+\index{name@{name}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily string src.\+Keeper\+Sim.\+Keeper\+Sim.\+name = \char`\"{}Keeper\+Sim\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_a53379e68f65a0b2002df65d9b5da4a11}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_a53379e68f65a0b2002df65d9b5da4a11}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!pressed\_keys@{pressed\_keys}}
+\index{pressed\_keys@{pressed\_keys}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{pressed\_keys}{pressed\_keys}}
+{\footnotesize\ttfamily src.\+Keeper\+Sim.\+Keeper\+Sim.\+pressed\+\_\+keys}
+
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_a0a51f27bda99fdf4673b7b8eacb9f4c1}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_a0a51f27bda99fdf4673b7b8eacb9f4c1}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!radius@{radius}}
+\index{radius@{radius}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{radius}{radius}}
+{\footnotesize\ttfamily src.\+Keeper\+Sim.\+Keeper\+Sim.\+radius}
+
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_abdef5a04d2e36cc25b7e8b3b0c95a77c}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_abdef5a04d2e36cc25b7e8b3b0c95a77c}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!ratio@{ratio}}
+\index{ratio@{ratio}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{ratio}{ratio}}
+{\footnotesize\ttfamily src.\+Keeper\+Sim.\+Keeper\+Sim.\+ratio}
+
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_af9dbf6b4e25e90f771a3f73c61cdd398}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_af9dbf6b4e25e90f771a3f73c61cdd398}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!scaler@{scaler}}
+\index{scaler@{scaler}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{scaler}{scaler}}
+{\footnotesize\ttfamily src.\+Keeper\+Sim.\+Keeper\+Sim.\+scaler}
+
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_a2c9dc1902aeebbb3506102bd7b741b6c}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_a2c9dc1902aeebbb3506102bd7b741b6c}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!shoot\_bool@{shoot\_bool}}
+\index{shoot\_bool@{shoot\_bool}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{shoot\_bool}{shoot\_bool}}
+{\footnotesize\ttfamily src.\+Keeper\+Sim.\+Keeper\+Sim.\+shoot\+\_\+bool}
+
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_acf2bc0ae4acb671c092e7e1fc54ec4ed}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_acf2bc0ae4acb671c092e7e1fc54ec4ed}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!SIM\_BOTTOM@{SIM\_BOTTOM}}
+\index{SIM\_BOTTOM@{SIM\_BOTTOM}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{SIM\_BOTTOM}{SIM\_BOTTOM}}
+{\footnotesize\ttfamily src.\+Keeper\+Sim.\+Keeper\+Sim.\+S\+I\+M\+\_\+\+B\+O\+T\+T\+OM}
+
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_a734f7cedefb4925befba28639720de56}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_a734f7cedefb4925befba28639720de56}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!SIM\_LEFT@{SIM\_LEFT}}
+\index{SIM\_LEFT@{SIM\_LEFT}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{SIM\_LEFT}{SIM\_LEFT}}
+{\footnotesize\ttfamily src.\+Keeper\+Sim.\+Keeper\+Sim.\+S\+I\+M\+\_\+\+L\+E\+FT}
+
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_adef985bcddb324a43aa2fc65c78e3951}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_adef985bcddb324a43aa2fc65c78e3951}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!SIM\_RIGHT@{SIM\_RIGHT}}
+\index{SIM\_RIGHT@{SIM\_RIGHT}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{SIM\_RIGHT}{SIM\_RIGHT}}
+{\footnotesize\ttfamily src.\+Keeper\+Sim.\+Keeper\+Sim.\+S\+I\+M\+\_\+\+R\+I\+G\+HT}
+
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_a95da2f25da5a75d5f4a5d5e447af477d}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_a95da2f25da5a75d5f4a5d5e447af477d}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!SIM\_TOP@{SIM\_TOP}}
+\index{SIM\_TOP@{SIM\_TOP}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{SIM\_TOP}{SIM\_TOP}}
+{\footnotesize\ttfamily src.\+Keeper\+Sim.\+Keeper\+Sim.\+S\+I\+M\+\_\+\+T\+OP}
+
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_a9fe55de74f8d4bc51b3b81643555ab25}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_a9fe55de74f8d4bc51b3b81643555ab25}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!target@{target}}
+\index{target@{target}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{target}{target}}
+{\footnotesize\ttfamily src.\+Keeper\+Sim.\+Keeper\+Sim.\+target}
+
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_ad45128b736e7a6428b33f008fe13d745}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_ad45128b736e7a6428b33f008fe13d745}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!time@{time}}
+\index{time@{time}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{time}{time}}
+{\footnotesize\ttfamily src.\+Keeper\+Sim.\+Keeper\+Sim.\+time}
+
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_a6ebe9589583779a60ff3d47a65093ae3}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_a6ebe9589583779a60ff3d47a65093ae3}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!time\_change@{time\_change}}
+\index{time\_change@{time\_change}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{time\_change}{time\_change}}
+{\footnotesize\ttfamily src.\+Keeper\+Sim.\+Keeper\+Sim.\+time\+\_\+change}
+
+\mbox{\Hypertarget{classsrc_1_1_keeper_sim_1_1_keeper_sim_a1293b950ce46bc6c55c167b072741e77}\label{classsrc_1_1_keeper_sim_1_1_keeper_sim_a1293b950ce46bc6c55c167b072741e77}} 
+\index{src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}!tp@{tp}}
+\index{tp@{tp}!src.KeeperSim.KeeperSim@{src.KeeperSim.KeeperSim}}
+\doxysubsubsection{\texorpdfstring{tp}{tp}}
+{\footnotesize\ttfamily src.\+Keeper\+Sim.\+Keeper\+Sim.\+tp}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{_keeper_sim_8py}{Keeper\+Sim.\+py}}\end{DoxyCompactItemize}

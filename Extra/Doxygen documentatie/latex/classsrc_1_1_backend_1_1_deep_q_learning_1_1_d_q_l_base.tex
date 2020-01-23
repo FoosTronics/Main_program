@@ -1,0 +1,394 @@
+\hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base}{}\doxysection{src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+L\+Base Class Reference}
+\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base}\index{src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}}
+
+
+Klasse voor de Deep-\/\+Q-\/\+Learning.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_ae7a9064b4975f21aa464540c45bd3f41}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, debug=False)
+\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a16a33f9034f30b200b7d218faf2a163d}{get\+\_\+ai\+\_\+action}} (self)
+\begin{DoxyCompactList}\small\item\em De AI besluit wat voor acties moeten worden genomen. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a71492d1d5dc2703868d9100cc9dc7b37}{update\+\_\+data}} (self, done, ball, keeper)
+\begin{DoxyCompactList}\small\item\em Update de data naar de memory klasse. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_ae439eb0cef79efa81d32b7f5cf1bc574}{prepare\+\_\+new\+\_\+round}} (self, goal, ball, keeper)
+\begin{DoxyCompactList}\small\item\em Zorgt dat de AI wordt klaargemaakt voor een nieuwe ronde. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_ad6db20db257db4231e8e06835b61442d}{possible\+\_\+actions}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a33b3d5891dd0d53abb0192c5165b70fb}{stack\+\_\+size}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a6a16cb0c1c8560aed2ff1d83b6c2e7ba}{stacked\+\_\+states}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_ab680dc249ab654175e991c6019dfc4c4}{max\+\_\+steps}}
+\begin{DoxyCompactList}\small\item\em M\+O\+D\+EL H\+Y\+P\+E\+R\+P\+A\+R\+A\+M\+E\+T\+E\+RS De input is een stack van 4 frames, daarom 84x84x4 (Breedte, hoogte, kanalen). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a908806454c502a3c15da1a5205a55173}{batch\+\_\+size}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a78fd3ff67b8b5424befd6af5baf10f58}{explore\+\_\+start}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a530ce7dbe34a002590d682f99028a3bc}{explore\+\_\+stop}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_ae15225e5668bf65bda6c5077677802d9}{decay\+\_\+rate}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a2cd9e56892d5c1f58f316128754a8674}{gamma}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a08f5142cd79b2f3eb6c138be508dec37}{D\+Q\+Network}}
+\begin{DoxyCompactList}\small\item\em M\+E\+M\+O\+RY H\+Y\+P\+E\+R\+P\+A\+R\+A\+M\+E\+T\+E\+RS Aantal ervaringen die worden opgeslagen in het geheugen wanneer er voor het eerst wordt geinitialiseerd. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a6617328725f18a8e438852c9ebe0246f}{memory}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a031dfb627dde7598b01d71fc7bfd5c80}{writer}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a0d69f71417c452c6d6a0219fd98b68c1}{write\+\_\+op}}
+\begin{DoxyCompactList}\small\item\em Verliezen. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a5ebd83a5825ed0d6eba6191f3c635e2d}{saver}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a8ec888f609e2c3f3079be731579f8c81}{sess}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a4da7ba57e52da687014baf0a0b9e89b2}{decay\+\_\+step}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_aa14c9772cc6aea59dc610ff806ac6467}{step}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a454e23cca8421450792e8fe285381955}{episode\+\_\+rewards}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a75e261ac7ec8836bf7f57f05b2d5e5a2}{state}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a17d867f378af580ceccdc2f11cd9ce9e}{goals\+\_\+old}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a4fd5b0a35cd0cd5fea22c36ff19a1c22}{blocks\+\_\+old}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a371fed8ffbc5eaca5f9c863484b7d8e2}{vel\+\_\+x\+\_\+old}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a49279b689b4abcc3932b5f17e32feee5}{vel\+\_\+y\+\_\+old}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_af8a1d419db1c004588626e8a00523326}{reward}}
+\begin{DoxyCompactList}\small\item\em L\+E\+ER G\+E\+D\+E\+E\+L\+TE Verkrijg willekeurige mini-\/batch van het geheugen . \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_ad534d6d75de8155bcc182051ddf13a6a}{total\+\_\+reward}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a9da57d5a6ba0d88fe75f5c8e5b389e28}{episode}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a7c99b251e9d6804cd6c1a0c3c5e615bd}{action}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_ae2e02aef1a54a433eb71c9458c91f978}{vel\+\_\+x}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_ac9c4d5db00806096d4691fae71c1c44b}{vel\+\_\+y}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Klasse voor de Deep-\/\+Q-\/\+Learning. 
+
+Dit bestand betreft opzet en data verwerking van de AI
+
+{\bfseries{Author}}\+: Daniël Boon ~\newline
+ {\bfseries{Version}}\+: 1.\+13 ~\newline
+ {\bfseries{Date}}\+: 22-\/1-\/2020 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_ae7a9064b4975f21aa464540c45bd3f41}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_ae7a9064b4975f21aa464540c45bd3f41}} 
+\index{src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+L\+Base.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{debug = {\ttfamily False} }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a16a33f9034f30b200b7d218faf2a163d}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a16a33f9034f30b200b7d218faf2a163d}} 
+\index{src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}!get\_ai\_action@{get\_ai\_action}}
+\index{get\_ai\_action@{get\_ai\_action}!src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}}
+\doxysubsubsection{\texorpdfstring{get\_ai\_action()}{get\_ai\_action()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+L\+Base.\+get\+\_\+ai\+\_\+action (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+De AI besluit wat voor acties moeten worden genomen. 
+
+\begin{DoxyReturn}{Returns}
+(tuple) action, old\+\_\+action, target, vel\+\_\+x, old\+\_\+vel\+\_\+x
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Table}
+Possible actions (output AI) 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Acties  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ list waarde   }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Acties  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ list waarde   }\\\cline{1-2}
+\endhead
+Up  &0   \\\cline{1-2}
+Down  &1   \\\cline{1-2}
+Shoot  &2   \\\cline{1-2}
+Still  &3   \\\cline{1-2}
+\end{longtabu}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Table}
+self.\+state -\/$>$ argument \mbox{[}x\mbox{]}\mbox{[}\mbox{]} uit 2D array. \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Param  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ list waarde   }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Param  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ list waarde   }\\\cline{1-2}
+\endhead
+bal\+\_\+x  &0   \\\cline{1-2}
+bal\+\_\+y  &1   \\\cline{1-2}
+keep\+\_\+x  &2   \\\cline{1-2}
+keep\+\_\+y  &3   \\\cline{1-2}
+\end{longtabu}
+
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Table}
+self.\+state -\/$>$ argument \mbox{[}\mbox{]}\mbox{[}x\mbox{]} uit 2D array. 3 is huidig, 2 is eentje ouder in de tijd, etc. 
+\end{DoxyParagraph}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_ae439eb0cef79efa81d32b7f5cf1bc574}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_ae439eb0cef79efa81d32b7f5cf1bc574}} 
+\index{src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}!prepare\_new\_round@{prepare\_new\_round}}
+\index{prepare\_new\_round@{prepare\_new\_round}!src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}}
+\doxysubsubsection{\texorpdfstring{prepare\_new\_round()}{prepare\_new\_round()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+L\+Base.\+prepare\+\_\+new\+\_\+round (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{goal,  }\item[{}]{ball,  }\item[{}]{keeper }\end{DoxyParamCaption})}
+
+
+
+Zorgt dat de AI wordt klaargemaakt voor een nieuwe ronde. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em goals} & (bool) checkt of de ronde is afgelopen. \\
+\hline
+{\em ball} & (tuple) positie van de bal. \\
+\hline
+{\em keeper} & (tuple) positie van de keeper. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+(tuple) episode\+\_\+rewards, total\+\_\+reward -\/ rewards die de ronde zijn behaald. Totale rewards die de AI behaald heeft. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a71492d1d5dc2703868d9100cc9dc7b37}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a71492d1d5dc2703868d9100cc9dc7b37}} 
+\index{src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}!update\_data@{update\_data}}
+\index{update\_data@{update\_data}!src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}}
+\doxysubsubsection{\texorpdfstring{update\_data()}{update\_data()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+L\+Base.\+update\+\_\+data (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{done,  }\item[{}]{ball,  }\item[{}]{keeper }\end{DoxyParamCaption})}
+
+
+
+Update de data naar de memory klasse. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em done} & (bool) controleert of de ronde is afgelopen. \\
+\hline
+{\em ball} & (tuple) coördinaten van de bal. \\
+\hline
+{\em keeper} & (tuple) coördinaten van de keeper. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a7c99b251e9d6804cd6c1a0c3c5e615bd}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a7c99b251e9d6804cd6c1a0c3c5e615bd}} 
+\index{src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}!action@{action}}
+\index{action@{action}!src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}}
+\doxysubsubsection{\texorpdfstring{action}{action}}
+{\footnotesize\ttfamily src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+L\+Base.\+action}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a908806454c502a3c15da1a5205a55173}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a908806454c502a3c15da1a5205a55173}} 
+\index{src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}!batch\_size@{batch\_size}}
+\index{batch\_size@{batch\_size}!src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}}
+\doxysubsubsection{\texorpdfstring{batch\_size}{batch\_size}}
+{\footnotesize\ttfamily src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+L\+Base.\+batch\+\_\+size}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a4fd5b0a35cd0cd5fea22c36ff19a1c22}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a4fd5b0a35cd0cd5fea22c36ff19a1c22}} 
+\index{src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}!blocks\_old@{blocks\_old}}
+\index{blocks\_old@{blocks\_old}!src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}}
+\doxysubsubsection{\texorpdfstring{blocks\_old}{blocks\_old}}
+{\footnotesize\ttfamily src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+L\+Base.\+blocks\+\_\+old}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_ae15225e5668bf65bda6c5077677802d9}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_ae15225e5668bf65bda6c5077677802d9}} 
+\index{src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}!decay\_rate@{decay\_rate}}
+\index{decay\_rate@{decay\_rate}!src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}}
+\doxysubsubsection{\texorpdfstring{decay\_rate}{decay\_rate}}
+{\footnotesize\ttfamily src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+L\+Base.\+decay\+\_\+rate}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a4da7ba57e52da687014baf0a0b9e89b2}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a4da7ba57e52da687014baf0a0b9e89b2}} 
+\index{src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}!decay\_step@{decay\_step}}
+\index{decay\_step@{decay\_step}!src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}}
+\doxysubsubsection{\texorpdfstring{decay\_step}{decay\_step}}
+{\footnotesize\ttfamily src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+L\+Base.\+decay\+\_\+step}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a08f5142cd79b2f3eb6c138be508dec37}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a08f5142cd79b2f3eb6c138be508dec37}} 
+\index{src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}!DQNetwork@{DQNetwork}}
+\index{DQNetwork@{DQNetwork}!src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}}
+\doxysubsubsection{\texorpdfstring{DQNetwork}{DQNetwork}}
+{\footnotesize\ttfamily src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+L\+Base.\+D\+Q\+Network}
+
+
+
+M\+E\+M\+O\+RY H\+Y\+P\+E\+R\+P\+A\+R\+A\+M\+E\+T\+E\+RS Aantal ervaringen die worden opgeslagen in het geheugen wanneer er voor het eerst wordt geinitialiseerd. 
+
+M\+O\+D\+I\+FY T\+H\+IS TO F\+A\+L\+SE IF Y\+OU J\+U\+ST W\+A\+NT TO S\+EE T\+HE T\+R\+A\+I\+N\+ED A\+G\+E\+NT Verander naar T\+R\+UE als je de Environment wilt renderen \mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a9da57d5a6ba0d88fe75f5c8e5b389e28}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a9da57d5a6ba0d88fe75f5c8e5b389e28}} 
+\index{src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}!episode@{episode}}
+\index{episode@{episode}!src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}}
+\doxysubsubsection{\texorpdfstring{episode}{episode}}
+{\footnotesize\ttfamily src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+L\+Base.\+episode}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a454e23cca8421450792e8fe285381955}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a454e23cca8421450792e8fe285381955}} 
+\index{src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}!episode\_rewards@{episode\_rewards}}
+\index{episode\_rewards@{episode\_rewards}!src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}}
+\doxysubsubsection{\texorpdfstring{episode\_rewards}{episode\_rewards}}
+{\footnotesize\ttfamily src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+L\+Base.\+episode\+\_\+rewards}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a78fd3ff67b8b5424befd6af5baf10f58}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a78fd3ff67b8b5424befd6af5baf10f58}} 
+\index{src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}!explore\_start@{explore\_start}}
+\index{explore\_start@{explore\_start}!src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}}
+\doxysubsubsection{\texorpdfstring{explore\_start}{explore\_start}}
+{\footnotesize\ttfamily src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+L\+Base.\+explore\+\_\+start}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a530ce7dbe34a002590d682f99028a3bc}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a530ce7dbe34a002590d682f99028a3bc}} 
+\index{src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}!explore\_stop@{explore\_stop}}
+\index{explore\_stop@{explore\_stop}!src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}}
+\doxysubsubsection{\texorpdfstring{explore\_stop}{explore\_stop}}
+{\footnotesize\ttfamily src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+L\+Base.\+explore\+\_\+stop}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a2cd9e56892d5c1f58f316128754a8674}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a2cd9e56892d5c1f58f316128754a8674}} 
+\index{src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}!gamma@{gamma}}
+\index{gamma@{gamma}!src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}}
+\doxysubsubsection{\texorpdfstring{gamma}{gamma}}
+{\footnotesize\ttfamily src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+L\+Base.\+gamma}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a17d867f378af580ceccdc2f11cd9ce9e}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a17d867f378af580ceccdc2f11cd9ce9e}} 
+\index{src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}!goals\_old@{goals\_old}}
+\index{goals\_old@{goals\_old}!src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}}
+\doxysubsubsection{\texorpdfstring{goals\_old}{goals\_old}}
+{\footnotesize\ttfamily src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+L\+Base.\+goals\+\_\+old}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_ab680dc249ab654175e991c6019dfc4c4}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_ab680dc249ab654175e991c6019dfc4c4}} 
+\index{src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}!max\_steps@{max\_steps}}
+\index{max\_steps@{max\_steps}!src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}}
+\doxysubsubsection{\texorpdfstring{max\_steps}{max\_steps}}
+{\footnotesize\ttfamily src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+L\+Base.\+max\+\_\+steps}
+
+
+
+M\+O\+D\+EL H\+Y\+P\+E\+R\+P\+A\+R\+A\+M\+E\+T\+E\+RS De input is een stack van 4 frames, daarom 84x84x4 (Breedte, hoogte, kanalen). 
+
+T\+R\+A\+I\+N\+I\+NG H\+Y\+P\+E\+R\+P\+A\+R\+A\+M\+E\+T\+E\+RS \mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a6617328725f18a8e438852c9ebe0246f}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a6617328725f18a8e438852c9ebe0246f}} 
+\index{src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}!memory@{memory}}
+\index{memory@{memory}!src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}}
+\doxysubsubsection{\texorpdfstring{memory}{memory}}
+{\footnotesize\ttfamily src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+L\+Base.\+memory}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_ad6db20db257db4231e8e06835b61442d}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_ad6db20db257db4231e8e06835b61442d}} 
+\index{src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}!possible\_actions@{possible\_actions}}
+\index{possible\_actions@{possible\_actions}!src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}}
+\doxysubsubsection{\texorpdfstring{possible\_actions}{possible\_actions}}
+{\footnotesize\ttfamily src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+L\+Base.\+possible\+\_\+actions}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_af8a1d419db1c004588626e8a00523326}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_af8a1d419db1c004588626e8a00523326}} 
+\index{src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}!reward@{reward}}
+\index{reward@{reward}!src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}}
+\doxysubsubsection{\texorpdfstring{reward}{reward}}
+{\footnotesize\ttfamily src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+L\+Base.\+reward}
+
+
+
+L\+E\+ER G\+E\+D\+E\+E\+L\+TE Verkrijg willekeurige mini-\/batch van het geheugen . 
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a5ebd83a5825ed0d6eba6191f3c635e2d}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a5ebd83a5825ed0d6eba6191f3c635e2d}} 
+\index{src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}!saver@{saver}}
+\index{saver@{saver}!src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}}
+\doxysubsubsection{\texorpdfstring{saver}{saver}}
+{\footnotesize\ttfamily src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+L\+Base.\+saver}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a8ec888f609e2c3f3079be731579f8c81}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a8ec888f609e2c3f3079be731579f8c81}} 
+\index{src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}!sess@{sess}}
+\index{sess@{sess}!src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}}
+\doxysubsubsection{\texorpdfstring{sess}{sess}}
+{\footnotesize\ttfamily src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+L\+Base.\+sess}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a33b3d5891dd0d53abb0192c5165b70fb}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a33b3d5891dd0d53abb0192c5165b70fb}} 
+\index{src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}!stack\_size@{stack\_size}}
+\index{stack\_size@{stack\_size}!src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}}
+\doxysubsubsection{\texorpdfstring{stack\_size}{stack\_size}}
+{\footnotesize\ttfamily src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+L\+Base.\+stack\+\_\+size}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a6a16cb0c1c8560aed2ff1d83b6c2e7ba}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a6a16cb0c1c8560aed2ff1d83b6c2e7ba}} 
+\index{src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}!stacked\_states@{stacked\_states}}
+\index{stacked\_states@{stacked\_states}!src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}}
+\doxysubsubsection{\texorpdfstring{stacked\_states}{stacked\_states}}
+{\footnotesize\ttfamily src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+L\+Base.\+stacked\+\_\+states}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a75e261ac7ec8836bf7f57f05b2d5e5a2}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a75e261ac7ec8836bf7f57f05b2d5e5a2}} 
+\index{src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}!state@{state}}
+\index{state@{state}!src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}}
+\doxysubsubsection{\texorpdfstring{state}{state}}
+{\footnotesize\ttfamily src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+L\+Base.\+state}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_aa14c9772cc6aea59dc610ff806ac6467}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_aa14c9772cc6aea59dc610ff806ac6467}} 
+\index{src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}!step@{step}}
+\index{step@{step}!src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}}
+\doxysubsubsection{\texorpdfstring{step}{step}}
+{\footnotesize\ttfamily src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+L\+Base.\+step}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_ad534d6d75de8155bcc182051ddf13a6a}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_ad534d6d75de8155bcc182051ddf13a6a}} 
+\index{src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}!total\_reward@{total\_reward}}
+\index{total\_reward@{total\_reward}!src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}}
+\doxysubsubsection{\texorpdfstring{total\_reward}{total\_reward}}
+{\footnotesize\ttfamily src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+L\+Base.\+total\+\_\+reward}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_ae2e02aef1a54a433eb71c9458c91f978}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_ae2e02aef1a54a433eb71c9458c91f978}} 
+\index{src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}!vel\_x@{vel\_x}}
+\index{vel\_x@{vel\_x}!src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}}
+\doxysubsubsection{\texorpdfstring{vel\_x}{vel\_x}}
+{\footnotesize\ttfamily src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+L\+Base.\+vel\+\_\+x}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a371fed8ffbc5eaca5f9c863484b7d8e2}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a371fed8ffbc5eaca5f9c863484b7d8e2}} 
+\index{src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}!vel\_x\_old@{vel\_x\_old}}
+\index{vel\_x\_old@{vel\_x\_old}!src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}}
+\doxysubsubsection{\texorpdfstring{vel\_x\_old}{vel\_x\_old}}
+{\footnotesize\ttfamily src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+L\+Base.\+vel\+\_\+x\+\_\+old}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_ac9c4d5db00806096d4691fae71c1c44b}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_ac9c4d5db00806096d4691fae71c1c44b}} 
+\index{src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}!vel\_y@{vel\_y}}
+\index{vel\_y@{vel\_y}!src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}}
+\doxysubsubsection{\texorpdfstring{vel\_y}{vel\_y}}
+{\footnotesize\ttfamily src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+L\+Base.\+vel\+\_\+y}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a49279b689b4abcc3932b5f17e32feee5}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a49279b689b4abcc3932b5f17e32feee5}} 
+\index{src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}!vel\_y\_old@{vel\_y\_old}}
+\index{vel\_y\_old@{vel\_y\_old}!src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}}
+\doxysubsubsection{\texorpdfstring{vel\_y\_old}{vel\_y\_old}}
+{\footnotesize\ttfamily src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+L\+Base.\+vel\+\_\+y\+\_\+old}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a0d69f71417c452c6d6a0219fd98b68c1}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a0d69f71417c452c6d6a0219fd98b68c1}} 
+\index{src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}!write\_op@{write\_op}}
+\index{write\_op@{write\_op}!src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}}
+\doxysubsubsection{\texorpdfstring{write\_op}{write\_op}}
+{\footnotesize\ttfamily src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+L\+Base.\+write\+\_\+op}
+
+
+
+Verliezen. 
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a031dfb627dde7598b01d71fc7bfd5c80}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base_a031dfb627dde7598b01d71fc7bfd5c80}} 
+\index{src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}!writer@{writer}}
+\index{writer@{writer}!src.Backend.DeepQLearning.DQLBase@{src.Backend.DeepQLearning.DQLBase}}
+\doxysubsubsection{\texorpdfstring{writer}{writer}}
+{\footnotesize\ttfamily src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+L\+Base.\+writer}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Backend/\mbox{\hyperlink{_deep_q_learning_8py}{Deep\+Q\+Learning.\+py}}\end{DoxyCompactItemize}

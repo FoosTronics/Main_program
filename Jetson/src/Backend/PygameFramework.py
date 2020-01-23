@@ -164,7 +164,6 @@ class PygameDraw(b2DrawExtended):
         pygame.draw.aaline(self.surface, (0, 255, 0), p1, p3)
 
 
-kleur die getekend moet worden in RGB.
     def DrawCircle(self, center, radius, color, drawwidth=1):
         """Teken een cirkel in de simulatie.
         

@@ -5,9 +5,9 @@
     File:
         main.py
     Date:
-        22-1-2020
+        23-1-2020
     Version:
-        1.47
+        1.48
     Author:
         Daniël Boon
         Kelvin Sweere
@@ -37,6 +37,8 @@
             mogelijke fix toegevoegd voor blocked niet kunnen registreren
         1.47:
             overtollig commetaar verwijdert 
+        1.48:
+            nieuwe feature ball wordt niet meer weergegeven in simulatie waneer uit het veld
 """ 
 #pylint: disable=E1101
 
@@ -72,9 +74,9 @@ class Foostronics:
         Kelvin Sweere \n
         Chileam Bohnen\n
     **Version**:
-        1.47          \n
+        1.48          \n
     **Date**:
-        22-1-2020 
+        23-1-2020 
     """
     def __init__(self, keeper_sim):
         """initialisatie main.
@@ -110,6 +112,7 @@ class Foostronics:
         self.points_array = []
         self.scored = 0
         self.old_ball_positions = []
+        self.reused_counter = 0
 
     def start_get_ball_thread(self):
         """Opstarten van een nieuw proces die de functie update_ball_position uitvoert.
@@ -146,7 +149,7 @@ class Foostronics:
                 cor = self.ball_detection.getball_pos()
                 cv2.imshow("ball detection", self.ball_detection.frame)
                 # convert image pixel values to simulation values
-                self.que.put(self._convert2_sim_cor(cor[0], cor[1]))
+                self.que.put(self._convert2_sim_cor(cor[0], cor[1]), self.ball_detection.reused)
             cv2.waitKey(1)
 
     def _convert2_sim_cor(self, x_p, y_p):
@@ -280,7 +283,7 @@ class Foostronics:
         """Deze functie wordt na iedere frame aangeroepen en kan gezien worden als de mainloop.
         """
         if(not self.ks.shoot_bool):
-            self.ks.ball.position = self.que.get()
+            self.ks.ball.position, reused = self.que.get()
         action, old_action, target, vel_x, vel_x_old = self.dql.get_ai_action()
         print(target)
         self.ks.action = action
@@ -307,7 +310,14 @@ class Foostronics:
                     self.con.go_home(1)
         else:
             self.dql.update_data(done, self.ks.ball, self.ks.body)
-
+        if(not self.ks.shoot_bool):
+            if(reused):
+                self.reused_counter += 1
+                if(self.reused_counter > 5):
+                    self.ks.ball.position = (200, 200)
+            elif((not reused) and self.reused_counter):
+                self.reused_counter = 0
+        
 
 if __name__ == "__main__":
     """start main code

@@ -350,6 +350,7 @@ def create_environment():
         possible_actions: (list) lijst van mogelijke acties.
     
     Tabel:
+        possible_actions - 
         |Acties | list waarde   |
         |:------|---------------|
         | Up    |       0       |

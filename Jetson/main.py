@@ -5,9 +5,9 @@
     File:
         main.py
     Date:
-        22-1-2020
+        23-1-2020
     Version:
-        1.47
+        1.49
     Author:
         Daniël Boon
         Kelvin Sweere
@@ -37,6 +37,10 @@
             mogelijke fix toegevoegd voor blocked niet kunnen registreren
         1.47:
             overtollig commetaar verwijdert 
+        1.48:
+            nieuwe feature ball wordt niet meer weergegeven in simulatie waneer uit het veld
+        1.49:
+            Loop toegevoegd zodat de simulatie niet opent wanneer de trackbars openstaan.
 """ 
 #pylint: disable=E1101
 
@@ -56,6 +60,7 @@ import cv2
 import time
 from threading import Thread
 from queue import Queue
+import sys
 
 from glob import glob
 import os
@@ -71,10 +76,11 @@ class Foostronics:
         Daniël Boon   \n
         Kelvin Sweere \n
         Chileam Bohnen\n
+        Sipke Vellinga\n
     **Version**:
-        1.47          \n
+        1.49          \n
     **Date**:
-        22-1-2020 
+        23-1-2020 
     """
     def __init__(self, keeper_sim):
         """initialisatie main.
@@ -88,20 +94,21 @@ class Foostronics:
             self.camera = ImageCapture(file=self.file[0])
         else:
             self.camera = ImageCapture()
-        self.find_contours = FindContours()
-        self.ball_detection = BallDetection()
-        self.ball_detection.create_trackbar()
+
+        self.ks = keeper_sim
+        # print(self.ks.screen)
+        if not self.ks.shoot_bool:
+            self.find_contours = FindContours()
+            self.ball_detection = BallDetection()
 
         self.WIDTH_IMG = 640
         self.HEIGHT_IMG = 360
 
         self.dql = DQLBase()
-        self.ks = keeper_sim
-        print(self.ks.screen)
         self.que = Queue(2)
 
         try:
-            self.con = Controller
+            self.con = Controller()
             self.met_drivers = True
         except:
             self.met_drivers = False
@@ -110,13 +117,46 @@ class Foostronics:
         self.points_array = []
         self.scored = 0
         self.old_ball_positions = []
+        self.reused_counter = 0
+
+    def calibration(self):
+        print("gebruik 'q' om kalibratie te stoppen, en 'n' om de simulatie te starten.")
+        while True:
+            # get new frame from camera buffer
+            _frame = self.camera.get_frame()
+            # set new frame in find_contours object for image cropping
+            self.find_contours.new_img(_frame)
+
+            # get cropped image from find_contours
+            _field = self.find_contours.get_cropped_field()
+            cv2.imshow("field", self.find_contours.drawing_img)
+
+            # set height and width parameters
+            self.HEIGHT_IMG, self.WIDTH_IMG, _ = _field.shape
+            # set new cropped image in ball_detection object
+            self.ball_detection.new_frame(_field)
+            # get new ball position coordinates in image pixel values
+            cor = self.ball_detection.getball_pos()
+            cv2.imshow("ball detection", self.ball_detection.frame)
+            # convert image pixel values to simulation values
+
+            key = cv2.waitKey(5)
+            if key == ord('q'):
+                return False
+            elif key == ord('n'):
+                return True
 
     def start_get_ball_thread(self):
         """Opstarten van een nieuw proces die de functie update_ball_position uitvoert.
         """
-        ball_thread = Thread(target=self.update_ball_position, args=())
-        ball_thread.daemon = True
-        ball_thread.start()
+        if self.calibration(): 
+            ball_thread = Thread(target=self.update_ball_position, args=())
+            ball_thread.daemon = True
+            ball_thread.start()
+        else:
+            self.camera.camera.release()
+            self.ks.running = False
+            sys.exit()
 
     def update_ball_position(self):
         """Opstarten van bal detectie proces dat een afbeelding uit van de gstreamer of van een bestand haalt.
@@ -137,7 +177,6 @@ class Foostronics:
 
                 # get cropped image from find_contours
                 _field = self.find_contours.get_cropped_field()
-                cv2.imshow("field", self.find_contours.drawing_img)
 
                 # set height and width parameters
                 self.HEIGHT_IMG, self.WIDTH_IMG, _ = _field.shape
@@ -145,9 +184,8 @@ class Foostronics:
                 self.ball_detection.new_frame(_field)
                 # get new ball position coordinates in image pixel values
                 cor = self.ball_detection.getball_pos()
-                cv2.imshow("ball detection", self.ball_detection.frame)
                 # convert image pixel values to simulation values
-                self.que.put(self._convert2_sim_cor(cor[0], cor[1]))
+                self.que.put((self._convert2_sim_cor(cor[0], cor[1]), self.ball_detection.reused))
             cv2.waitKey(1)
 
     def _convert2_sim_cor(self, x_p, y_p):
@@ -164,7 +202,7 @@ class Foostronics:
         x_s = self.map_function(x_p, 0, self.WIDTH_IMG, self.ks.SIM_LEFT, self.ks.SIM_RIGHT)    #-19.35, 19.35
         #y_s = self.map_function(y_p, 0, self.HEIGHT_IMG, self.ks.SIM_TOP, self.ks.SIM_BOTTOM)   #20, 0
         y_s = self.map_function(y_p, 0, self.HEIGHT_IMG, self.ks.SIM_BOTTOM, self.ks.SIM_TOP)
-        return x_s, y_s
+        return (x_s, y_s)
     
     def map_function(self, val, in_min, in_max, out_min, out_max):
         """Map functie (zoals in de Arduino IDE) die input waarde (in_min & in_max) schaald in verhouding naar de output (out_min & out_max).
@@ -281,9 +319,9 @@ class Foostronics:
         """Deze functie wordt na iedere frame aangeroepen en kan gezien worden als de mainloop.
         """
         if(not self.ks.shoot_bool):
-            self.ks.ball.position = self.que.get()
+            #print(self.que.get())
+            self.ks.ball.position, reused = self.que.get()
         action, old_action, target, vel_x, vel_x_old = self.dql.get_ai_action()
-        print(target)
         self.ks.action = action
         
         self.execute_action(action, old_action)
@@ -308,7 +346,14 @@ class Foostronics:
                     self.con.go_home(1)
         else:
             self.dql.update_data(done, self.ks.ball, self.ks.body)
-
+        if(not self.ks.shoot_bool):
+            if(reused):
+                self.reused_counter += 1
+                if(self.reused_counter > 5):
+                    self.ks.ball.position = (200, 200)
+            elif((not reused) and self.reused_counter):
+                self.reused_counter = 0
+        
 
 if __name__ == "__main__":
     """start main code
@@ -316,8 +361,7 @@ if __name__ == "__main__":
     keeperSim = KeeperSim()
     foosTronics = Foostronics(keeperSim)
     if not keeperSim.shoot_bool:
+        foosTronics.ball_detection.create_trackbar()
         foosTronics.start_get_ball_thread()
-    if foosTronics.met_drivers:
-        foosTronics.con = Controller()
     keeperSim.set_Foostronics(foosTronics)
     main(keeperSim)

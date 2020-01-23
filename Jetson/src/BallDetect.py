@@ -4,9 +4,9 @@
     File:
         BallDetect.py
     Date:
-        20-1-2020
+        23-1-2020
     Version:
-        3.5
+        3.51
     Modifier:
         Sipke Vellinga
         Chileam Bohnen
@@ -33,6 +33,8 @@
             commentaar gevalideerd
         3.5:
             cv2.imshow uit get_balpos() procedure.
+        3.51:
+            nieuwe feature ball wordt niet meer weergegeven in simulatie waneer uit het veld
 """
 
 import numpy as np
@@ -48,9 +50,9 @@ class BallDetection:
         Sipke Vellinga  \n
         Chileam Bohnen  \n
     **Version**:
-        3.5             \n
+        3.51            \n
     **Date**:
-        21-1-2020  
+        23-1-2020  
     """
     def __init__(self, file=None):
         """
@@ -68,6 +70,7 @@ class BallDetection:
         self.dim    =       (640, 480)
         self.frame_capture =[]
         self.frame_counter = 0
+        self.reused        = False
 
         if type(file) == str:
             if file.split(".")[-1] == "png" or file.split(".")[-1] == "jpg":
@@ -210,6 +213,7 @@ class BallDetection:
         if len(cnts) > 0:
             # vind het grootste contour in het masker en gebruik deze
             # om de minimale enclosing circle en centroid te berekenen
+            self.reused = False
             c = max(cnts, key=cv2.contourArea)
             ((x, y), radius) = cv2.minEnclosingCircle(c)
             M = cv2.moments(c)
@@ -222,9 +226,15 @@ class BallDetection:
                 cv2.circle(self.frame, self.center, 5, (0, 0, 255), -1)
                 center2 = self.center
                 return center2
+        else:
+            self.reused = True
+        #print(self.center)
+        #if self.center == (0, 0):
+       #     self.reused = True
+       #     self.center = center2
+        #else:
+        #    self.reused = False
 
-        if self.center == (0, 0):
-            self.center = center2
 
     def show_frame(self):
         """Laat het beeld zien dat met de get_frame functie is opgehaald.

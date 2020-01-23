@@ -68,7 +68,7 @@ class DQLBase:
 
         ### TRAINING HYPERPARAMETERS
         total_episodes = 500        # Totaal aantal episodes per training .
-        self.max_steps = 1000              # Maximaal aantal stappen in een episode.
+        self.max_steps = 1000       # Maximaal aantal stappen in een episode.
         #orgineel was 64
         self.batch_size = 32
 
@@ -141,19 +141,45 @@ class DQLBase:
         self.action = 0
         self.vel_x = 0
         self.vel_y = 0
-    
+        
+
     def get_ai_action(self):
         """De AI besluit wat voor acties moeten worden genomen.
         
         Returns:
             (tuple) action, old_action, target, vel_x, old_vel_x
+        
+        Table:
+            Possible actions (output AI)
+
+            |Acties | list waarde   |
+            |:------|---------------|
+            | Up    |       0       |
+            | Down  |       1       |
+            | Shoot |       2       |
+            | Still |       3       |
+
+        Table:
+            self.state -> argument [x][] uit 2D array.
+            |Param   | list waarde |
+            |:-------|-------------|
+            | bal_x  |       0     |
+            | bal_y  |       1     |
+            | keep_x |       2     |
+            | keep_y |       3     |
+
+        Table:
+            self.state -> argument [][x] uit 2D array.
+            3 is huidig, 2 is eentje ouder in de tijd, etc.
         """
+
         for i in range(len(self.state[0])-1):
             self.vel_x = self.state[0][i+1] - self.state[0][i]
             self.vel_y = self.state[1][i+1] - self.state[1][i]
 
         target = self.state[1][3]+(((-16.72-self.state[0][3])/self.vel_x) * self.vel_y)
-
+        
+        # Bereken target
         if((self.vel_x > 0) or (target > 13.33) or (target < 6.6)):
             target = np.nan
 
@@ -162,6 +188,15 @@ class DQLBase:
 
         action, explore_probability = predict_action(self.explore_start, self.explore_stop, self.decay_rate, self.decay_step, self.state, self.possible_actions, self.sess, self.DQNetwork)
         self.action = action
+        """
+        |Acties | list waarde   |
+        |:------|---------------|
+        | Up    |       0       |
+        | Down  |       1       |
+        | Shoot |       2       |
+        | Still |       3       |
+        """
+        # TODO: Minpunten geven wanneer wordt geschoten terwijl de bal ver van de keeper is.
         if (not np.isnan(target)):
             if (np.array_equal(action, self.possible_actions[0])):
                 if(target > self.state[3][3]):
@@ -175,9 +210,12 @@ class DQLBase:
                 else:
                     self.reward -= 0.05*(5.1-abs(self.state[3][3]-target))
 
-        if np.array_equal(action, self.possible_actions[2]):
-            if( (self.state[0][3] > -16) and (self.state[0][3] < -14) and (abs(self.state[3][3]-self.state[1][3]) < 0.37)):
-                self.reward += 0.5
+        # TEST: testen of 
+        if np.array_equal(action, self.possible_actions[2]):    #schieten
+            # TODO: getallen aanpassen naar constantes (6.67 = 1/3, 13.33 = 2/3)
+            if (self.state[0][3] > -17.774 ) and (self.state[0][3] < -12.183):  #Binnen de x positie.
+                if (self.state[1][3] > 6.67) and (self.state[1][3] < 13.33):    #binnen de y positie.
+                    self.reward += 0.5
             else:
                 self.reward -= 0.1
         
@@ -310,6 +348,14 @@ def create_environment():
     
     Returns:
         possible_actions: (list) lijst van mogelijke acties.
+    
+    Tabel:
+        |Acties | list waarde   |
+        |:------|---------------|
+        | Up    |       0       |
+        | Down  |       1       |
+        | Shoot |       2       |
+        | Still |       3       |
     """
     
     # Hier zijn de mogelijke acties.

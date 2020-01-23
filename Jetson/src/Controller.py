@@ -221,7 +221,7 @@ class Controller:
         """Beweeg motor met high speed instelling.
         
         Args:
-            direction (int, optional): 0 = JOG_MIN en 1 = JOG_PLUS. Defaults to 0.
+            direction: (int, optional) 0 = JOG_MIN en 1 = JOG_PLUS. Defaults to 0.
         """
         self.driver.transceive_message(0, Commands.STOP)
         if(direction):

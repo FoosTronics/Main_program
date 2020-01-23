@@ -92,8 +92,8 @@ class KeeperSim(Framework):
         Kelvin Sweere   \n
     **Version**:
         1.53            \n
-    **Date**:
-        22-1-2020   
+    **Date**:           
+        22-1-2020       
     """
     name = "KeeperSim"
     description = "Druk op C om het spel te starten."
@@ -132,7 +132,6 @@ class KeeperSim(Framework):
         
         # Bal straal instellen
         self.radius = radius = 0.5
-        
 
         # Keeper maken
         self.create_keeper((-16.72,10.0))
@@ -177,15 +176,17 @@ class KeeperSim(Framework):
         """Wanneer een toets wordt ingedrukt, ga in deze functie.
 
         Toetsen:
-            'c' = Bal oproepen
-            'w' = Keeper naar boven
-            's' = Keeper naar beneden
-            'a' = Keeper naar links
-            'd' = Keeper naar rechts
-            'j' = Versnel de keeper simulatie (is instabiel)
-            'm' = Sla de gecreerde data van de ai op
-            'r' = Herstel een opgeslagen ai bestand
-        
+            | Toets | Opmerking                                     |
+            |:------|-----------------------------------------------|
+            | c     | Bal oproepen                                  |
+            | w     | Keeper naar boven                             |
+            | s     | Keeper naar beneden                           |
+            | a     | Keeper naar links                             |
+            | d     | Keeper naar rechts                            |
+            | j     | Versnel de keeper simulatie (is instabiel)    |
+            | m     | Sla de gecreerde data van de ai op            |
+            | r     | Herstel een opgeslagen ai bestand             |
+
         Args:
             key: (int) nummer input toets die word ingedrukt.
             settings: (class) klasse met parameter instellingen.

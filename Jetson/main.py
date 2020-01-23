@@ -103,7 +103,7 @@ class Foostronics:
         self.que = Queue(2)
 
         try:
-            self.con = Controller()
+            self.con = Controller
             self.met_drivers = True
         except:
             self.met_drivers = False
@@ -326,5 +326,7 @@ if __name__ == "__main__":
     foosTronics = Foostronics(keeperSim)
     if not keeperSim.shoot_bool:
         foosTronics.start_get_ball_thread()
+    if foosTronics.met_drivers:
+        foosTronics.con = Controller()
     keeperSim.set_Foostronics(foosTronics)
     main(keeperSim)

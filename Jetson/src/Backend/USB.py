@@ -46,21 +46,22 @@ class Driver:
 
         Args:
             device_count: (int) aantal verbonden USB motordrivers.
+        
+        Tabel:
+            | Motordriver instellingen | Waarden |
+            |:-------------------------|:--------|
+            | VENDOR_ID                | 0x1589  |
+            | PRODUCT_ID               | 0xA101  |
+            | WRITE ENDPOINT           | 0x02    |
+            | READ ENDPOINT            | 0x82    |
 
-        | Motordriver instellingen | Waarden |
-        |:------------------------:|:-------:|
-        | VENDOR_ID                | 0x1589  |
-        | PRODUCT_ID               | 0xA101  |
-        | WRITE ENDPOINT           | 0x02    |
-        | READ ENDPOINT            | 0x82    |
-
-        | Motordriver instellingen | Driver 0 | Driver 1 |
-        |:-------------------------|:---------|:---------|
-        | DRIVER_ID                | 2500     | 1500     |
-        | HIGH_SPEED               | 250      | 250      |
-        | LOW_SPEED                | 150      | 150      |
-        | ACCELERATION             | 25       | 150      |
-        | MAX_CURRENT              | 1000     | 1000     |
+            | Motordriver instellingen | Driver 0 | Driver 1 |
+            |:-------------------------|:---------|:---------|
+            | DRIVER_ID                | 2500     | 1500     |
+            | HIGH_SPEED               | 250      | 250      |
+            | LOW_SPEED                | 150      | 150      |
+            | ACCELERATION             | 25       | 150      |
+            | MAX_CURRENT              | 1000     | 1000     |
 
         """
         self.VENDOR_ID = 0x1589
@@ -187,7 +188,7 @@ class Driver:
         """Deze functie selecteerd een driver uit de lijst van motordrivers.
 
         Args:
-            (int) nummer van een aangesloten device.
+            device_number: (int) nummer van een aangesloten device.
         """
         self.device = self.performax_devices[device_number]
 
@@ -195,7 +196,7 @@ class Driver:
         """Deze functie haalt het serienummer en productnummer van een aangesloten driver op.
         
         Args:
-            (int) nummer van een aangesloten device.
+            device: (int) nummer van een aangesloten device.
         """
         self.descriptors.append([device.getSerialNumberDescriptor(), device.getProductDescriptor()])
 
@@ -228,7 +229,7 @@ class Driver:
         De verbinding wordt gemaakt met een geslecteerde driver. zie select_performaxe_device(self, device_number).
         
         Args:
-            (int) nummer van een aangesloten device.
+            device_num: (int) nummer van een aangesloten device.
         """
 
         # USB context opent een USB afhandelaar
@@ -247,7 +248,7 @@ class Driver:
         """Deze functie laat de USB interface los en sluit de USB verbinding.
         
         Args:
-            (handler) afhandelaar van het USB-interface.
+            handler: (handler) afhandelaar van het USB-interface.
         """
         # USB afhandelaar sluit de verbinding.
         self._close_port(handler)
@@ -267,6 +268,7 @@ class Driver:
         """Deze functie verstuurd commando's naar een USB apparaat.
 
         Args:
+            handler_num: (handler_num) nummer van een aangesloten handler.
             command: (Commands) een commando uit de klasse 'Commands'.
 
         Kwargs:
@@ -353,53 +355,54 @@ class Commands(Enum):
 
     Args:
         Enum (Enum): Enum van lijst van commando's.
+        
+    Tabel:
+        | Commando      | Waarde   |
+        |:--------------|----------|
+        | OK            | b'OK'    |
+        | STOP          | b'STOP'  |
+        | ABORT         | b'ABORT' |
+        | LIMIT_PLUS    | b'L+'    |
+        | LIMIT_MIN     | b'L-'    |
+        | HOME_PLUS     | b'H+'    |
+        | HOME_MIN      | b'H-'    |
+        | JPLUS         | b'J+'    |
+        | JMIN          | b'J-'    |
+        | ABS           | b'ABS'   |
+        | INC           | b'INC'   |
+        | MM            | b'MM'    |
+        | RW            | b'RW'    |
+        | RR            | b'RR'    |
+        | HOME_PLUS_LOW | b'HL+'   |
+        | HOME_MIN_LOW  | b'HL-'   |
 
-    | Commando      | Waarde   |
-    |:--------------|----------|
-    | OK            | b'OK'    |
-    | STOP          | b'STOP'  |
-    | ABORT         | b'ABORT' |
-    | LIMIT_PLUS    | b'L+'    |
-    | LIMIT_MIN     | b'L-'    |
-    | HOME_PLUS     | b'H+'    |
-    | HOME_MIN      | b'H-'    |
-    | JPLUS         | b'J+'    |
-    | JMIN          | b'J-'    |
-    | ABS           | b'ABS'   |
-    | INC           | b'INC'   |
-    | MM            | b'MM'    |
-    | RW            | b'RW'    |
-    | RR            | b'RR'    |
-    | HOME_PLUS_LOW | b'HL+'   |
-    | HOME_MIN_LOW  | b'HL-'   |
+        | Commando  | Waarde    |
+        |:----------|-----------|
+        | SET_DN    | b'DN='    |
+        | SET_EO    | b'EO='    |
+        | SET_HSPD  | b'HSPD='  |
+        | SET_LSPD  | b'LSPD='  |
+        | SET_ACC   | b'ACC='   |
+        | SET_DEC   | b'DEC='   |
+        | SET_X     | b'X'      |
+        | SET_PX    | b'PX='    |
+        | SET_DRVRC | b'DRVRC=' |
+        | SET_DRVMS | b'DRVMS=' |
 
-    | Commando  | Waarde    |
-    |:----------|-----------|
-    | SET_DN    | b'DN='    |
-    | SET_EO    | b'EO='    |
-    | SET_HSPD  | b'HSPD='  |
-    | SET_LSPD  | b'LSPD='  |
-    | SET_ACC   | b'ACC='   |
-    | SET_DEC   | b'DEC='   |
-    | SET_X     | b'X'      |
-    | SET_PX    | b'PX='    |
-    | SET_DRVRC | b'DRVRC=' |
-    | SET_DRVMS | b'DRVMS=' |
-
-    | Commando  | Waarde    |
-    |:----------|-----------|
-    | GET_ID    | b'ID'     |
-    | GET_DN    | b'DN'     |
-    | GET_EO    | b'EO'     |
-    | GET_HSPD  | b'HSPD'   |
-    | GET_LSPD  | b'LSDP'   |
-    | GET_ACC   | b'ACC'    |
-    | GET_DEC   | b'DEC'    |
-    | GET_MST   | b'MST'    |
-    | GET_PX    | b'PX'     |
-    | GET_DRVIC | b'DRVIC'  |
-    | GET_DRVMS | b'DRVMS'  |
-    | GET_PS    | b'PS'     |
+        | Commando  | Waarde    |
+        |:----------|-----------|
+        | GET_ID    | b'ID'     |
+        | GET_DN    | b'DN'     |
+        | GET_EO    | b'EO'     |
+        | GET_HSPD  | b'HSPD'   |
+        | GET_LSPD  | b'LSDP'   |
+        | GET_ACC   | b'ACC'    |
+        | GET_DEC   | b'DEC'    |
+        | GET_MST   | b'MST'    |
+        | GET_PX    | b'PX'     |
+        | GET_DRVIC | b'DRVIC'  |
+        | GET_DRVMS | b'DRVMS'  |
+        | GET_PS    | b'PS'     |
 
     """
     def __init__(self, value, name):

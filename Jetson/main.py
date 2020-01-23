@@ -125,6 +125,7 @@ class Foostronics:
         while True:
             if not self.ks.running:
                 self.camera.camera.release()
+                self.con.stop_controller_thread()
                 cv2.destroyAllWindows()
                 break
 

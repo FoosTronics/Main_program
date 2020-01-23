@@ -39,11 +39,13 @@ import time
 import cv2
 import numpy as np
 from math import pi
+from threading import Thread
+from queue import Queue
 import struct
 from src.Backend.USB import Driver
 from src.Backend.USB import Commands
 
-from src.Backend.MPU6050 import  MPU6050
+from src.Backend.MPU6050 import MPU6050
 
 class Controller:
     """In deze klasse kan er met behulp van twee coördinaat punten de benodigde keeper positie worden bepaald.
@@ -85,6 +87,45 @@ class Controller:
         self.ONE_ROTATION = self.D_GEAR*pi
         self.ONE_STEP = self.ONE_ROTATION/self.MOTOR_TOTAL_STEPS
         # self.step_correction()
+
+        # threads parameters
+        self.que = Queue(1)
+        self.running = False
+
+    def start_controller_thread(self):
+        """Opstarten van een nieuw proces die de functie get_ai_motion uitvoert.
+        """
+        ball_thread = Thread(target=self.get_ai_motion, args=())
+        ball_thread.daemon = True
+        self.running = True
+        ball_thread.start()
+
+    def get_ai_motion(self):
+        while self.running:
+            if not self.que.empty():
+                motion = self.que.get()
+                # UP
+                if motion == 0:
+                    self.jog_motor(motion)
+                    pass
+                # DOWN
+                elif motion == 1:
+                    self.jog_motor(motion)
+                    pass
+                # SHOOT
+                elif motion == 2:
+                    self.shoot()
+                # STILL
+                elif motion == 3:
+                    self.stop_motor()
+                    pass
+                # go home
+                elif motion == 4:
+                    self.go_home()
+
+    def stop_controller_thread(self):
+        self.running = False
+        self.driver.close_connections()
 
     def test_lin_movement(self, co):
         """Bepaald de positie van de keeper en stuurt een opdracht naar drivers.
@@ -224,6 +265,8 @@ class Controller:
             direction (int, optional): 0 = JOG_MIN en 1 = JOG_PLUS. Defaults to 0.
         """
         self.driver.transceive_message(0, Commands.STOP)
+        while(int(self.driver.transceive_message(0, Commands.GET_PS).decode("utf-8"))):
+            pass
         if(direction):
             self.driver.transceive_message(0, Commands.JPLUS)
         else:

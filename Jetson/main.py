@@ -56,6 +56,7 @@ import cv2
 import time
 from threading import Thread
 from queue import Queue
+import sys
 
 from glob import glob
 import os
@@ -111,12 +112,44 @@ class Foostronics:
         self.scored = 0
         self.old_ball_positions = []
 
+    def calibration(self):
+        print("gebruik 'q' om kalibratie te stoppen, en 'n' om de simulatie te starten.")
+        while True:
+            # get new frame from camera buffer
+            _frame = self.camera.get_frame()
+            # set new frame in find_contours object for image cropping
+            self.find_contours.new_img(_frame)
+
+            # get cropped image from find_contours
+            _field = self.find_contours.get_cropped_field()
+            cv2.imshow("field", self.find_contours.drawing_img)
+
+            # set height and width parameters
+            self.HEIGHT_IMG, self.WIDTH_IMG, _ = _field.shape
+            # set new cropped image in ball_detection object
+            self.ball_detection.new_frame(_field)
+            # get new ball position coordinates in image pixel values
+            cor = self.ball_detection.getball_pos()
+            cv2.imshow("ball detection", self.ball_detection.frame)
+            # convert image pixel values to simulation values
+
+            key = cv2.waitKey(5)
+            if key == ord('q'):
+                return False
+            elif key == ord('n'):
+                return True
+
     def start_get_ball_thread(self):
         """Opstarten van een nieuw proces die de functie update_ball_position uitvoert.
         """
-        ball_thread = Thread(target=self.update_ball_position, args=())
-        ball_thread.daemon = True
-        ball_thread.start()
+        if self.calibration(): 
+            ball_thread = Thread(target=self.update_ball_position, args=())
+            ball_thread.daemon = True
+            ball_thread.start()
+        else:
+            self.camera.camera.release()
+            self.ks.running = False
+            sys.exit()
 
     def update_ball_position(self):
         """Opstarten van bal detectie proces dat een afbeelding uit van de gstreamer of van een bestand haalt.
@@ -136,7 +169,6 @@ class Foostronics:
 
                 # get cropped image from find_contours
                 _field = self.find_contours.get_cropped_field()
-                cv2.imshow("field", self.find_contours.drawing_img)
 
                 # set height and width parameters
                 self.HEIGHT_IMG, self.WIDTH_IMG, _ = _field.shape
@@ -144,10 +176,8 @@ class Foostronics:
                 self.ball_detection.new_frame(_field)
                 # get new ball position coordinates in image pixel values
                 cor = self.ball_detection.getball_pos()
-                cv2.imshow("ball detection", self.ball_detection.frame)
                 # convert image pixel values to simulation values
                 self.que.put(self._convert2_sim_cor(cor[0], cor[1]))
-            cv2.waitKey(1)
 
     def _convert2_sim_cor(self, x_p, y_p):
         """Zet de pixel positie van de beeldherkenning verhoudingsgewijs om naar pixel positie van de simulatie.

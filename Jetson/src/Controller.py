@@ -43,7 +43,11 @@ import struct
 from src.Backend.USB import Driver
 from src.Backend.USB import Commands
 
-from src.Backend.MPU6050 import  MPU6050
+try:
+    from src.Backend.MPU6050 import  MPU6050
+except ModuleNotFoundError:
+    print("MPU niet gevonden")
+    pass
 
 class Controller:
     """In deze klasse kan er met behulp van twee coördinaat punten de benodigde keeper positie worden bepaald.

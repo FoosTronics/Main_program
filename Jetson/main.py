@@ -7,7 +7,7 @@
     Date:
         23-1-2020
     Version:
-        1.48
+        1.49
     Author:
         Daniël Boon
         Kelvin Sweere
@@ -76,8 +76,9 @@ class Foostronics:
         Daniël Boon   \n
         Kelvin Sweere \n
         Chileam Bohnen\n
+        Sipke Vellinga\n
     **Version**:
-        1.48          \n
+        1.49          \n
     **Date**:
         23-1-2020 
     """

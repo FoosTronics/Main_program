@@ -52,7 +52,6 @@ except ModuleNotFoundError:
     print("MPU niet gevonden")
     MET_GYROS = False
 
-
 class Controller:
     """In deze klasse kan er met behulp van twee coördinaat punten de benodigde keeper positie worden bepaald.
     Hierbij wordt: extra-polation toegepast, coördinaat naar mm geconverteerd, de keeper stap positie bepaald,
@@ -80,7 +79,6 @@ class Controller:
             self.go_home()
         else:
             print("ERROR, PANIEK! --> geen stepper motor drivers gevonden!")
-            exit()
 
         self.TABLE_LENGTH = 540 #mm
         self.y_length = 200 #coördinates

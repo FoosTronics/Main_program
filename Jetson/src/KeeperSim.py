@@ -114,7 +114,9 @@ class KeeperSim(Framework):
         self.SIM_RIGHT = 19.35
         self.SIM_TOP = 0.0 # Boven tot onder is 540mm.
         self.SIM_BOTTOM = 20.0
-        
+        # 21mm tot 100mm vanuit de doellijn
+        # 71mm keeper vanuit de doellijn.
+
         # Veld opstellen 
         ground = self.world.CreateStaticBody(
             shapes=[b2EdgeShape(vertices=[(self.SIM_LEFT, self.SIM_TOP), (self.SIM_RIGHT, self.SIM_TOP)]), # Bovenste lijn
@@ -133,8 +135,10 @@ class KeeperSim(Framework):
         # Bal straal instellen
         self.radius = radius = 0.5
 
+        self.MIDDELPUNT_KEEPER = -16.72     # x coördinaat waarin de keeper begint.
+
         # Keeper maken
-        self.create_keeper((-16.72,10.0))
+        self.create_keeper((self.MIDDELPUNT_KEEPER, 10.0))
         self.scaler = 15/self.SIM_RIGHT
         self.target = 0 #Eindpunt voor het schot van de bal.
         
@@ -153,7 +157,7 @@ class KeeperSim(Framework):
         self.tp = None
 
         #TODO: debug waarde!
-        shoot_bool = True   # Boolean die bepaald of er wordt geschoten (False is schieten!)
+        shoot_bool = True   # Boolean die bepaald of er wordt geschoten (False is schieten!).
         # ! ---------------
 
         self.shoot_bool = not(shoot_bool)  # Flag die checkt of beeldherkenning aanstaat.
@@ -401,7 +405,7 @@ class KeeperSim(Framework):
         self.Print('Doelpunten = %d' % self.goals)
         self.Print('Geblokt = %d' % self.blocks)
         self.Print('Rondes = %d' % (self.goals+self.blocks))
-        self.Print('Ratio laatste 100 geblokt/doelpunten = %d' % (self.ratio))
+        self.Print('Ratio laatste 500 geblokt/doelpunten = %d' % (self.ratio))
         if self.goals:
             self.Print('Ratio totaal geblokt/doelpunten = %d' %
                        ((self.blocks*100)/(self.goals+self.blocks)))

@@ -105,7 +105,6 @@ class Foostronics:
         self.HEIGHT_IMG = 360
 
         self.dql = DQLBase()
-        
         self.que = Queue(2)
 
         try:

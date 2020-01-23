@@ -1,0 +1,96 @@
+\hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_memory}{}\doxysection{src.\+Backend.\+Deep\+Q\+Learning.\+Memory Class Reference}
+\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_memory}\index{src.Backend.DeepQLearning.Memory@{src.Backend.DeepQLearning.Memory}}
+
+
+Onthoud alle AI ervaringen.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_memory_a6021ad658090bf2d0084ebea6cd614d2}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, max\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Initialiseer geheugen grootte. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_memory_a750c37e1f84272c6efa4c12876659b56}{add}} (self, experience)
+\begin{DoxyCompactList}\small\item\em Voeg AI ervaring toe. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_memory_a192f84a3628fe8904b88263745ac8de3}{sample}} (self, batch\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Haal geheugen buffer op. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_memory_ade1513e9fcd1ba01e107f85579ed3f39}{buffer}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Onthoud alle AI ervaringen. 
+
+{\bfseries{Author}}\+: Daniël Boon ~\newline
+ {\bfseries{Version}}\+: 1.\+13 ~\newline
+ {\bfseries{Date}}\+: 22-\/1-\/2020 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_memory_a6021ad658090bf2d0084ebea6cd614d2}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_memory_a6021ad658090bf2d0084ebea6cd614d2}} 
+\index{src.Backend.DeepQLearning.Memory@{src.Backend.DeepQLearning.Memory}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!src.Backend.DeepQLearning.Memory@{src.Backend.DeepQLearning.Memory}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Deep\+Q\+Learning.\+Memory.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{max\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Initialiseer geheugen grootte. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em max\+\_\+size} & (int) hoeveelheid laatste acties en states om te onthouden. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_memory_a750c37e1f84272c6efa4c12876659b56}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_memory_a750c37e1f84272c6efa4c12876659b56}} 
+\index{src.Backend.DeepQLearning.Memory@{src.Backend.DeepQLearning.Memory}!add@{add}}
+\index{add@{add}!src.Backend.DeepQLearning.Memory@{src.Backend.DeepQLearning.Memory}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Deep\+Q\+Learning.\+Memory.\+add (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{experience }\end{DoxyParamCaption})}
+
+
+
+Voeg AI ervaring toe. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em experience} & (array\mbox{[}5\mbox{]}) array van (state, action, reward, next\+\_\+state, done) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_memory_a192f84a3628fe8904b88263745ac8de3}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_memory_a192f84a3628fe8904b88263745ac8de3}} 
+\index{src.Backend.DeepQLearning.Memory@{src.Backend.DeepQLearning.Memory}!sample@{sample}}
+\index{sample@{sample}!src.Backend.DeepQLearning.Memory@{src.Backend.DeepQLearning.Memory}}
+\doxysubsubsection{\texorpdfstring{sample()}{sample()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Deep\+Q\+Learning.\+Memory.\+sample (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{batch\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Haal geheugen buffer op. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em batch\+\_\+size} & (int) hoeveelheid ervaringen er opgehaalt moeten worden\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+(deque\mbox{[}4\mbox{]}) deque array van nieuwe laatste 4 states 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_memory_ade1513e9fcd1ba01e107f85579ed3f39}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_memory_ade1513e9fcd1ba01e107f85579ed3f39}} 
+\index{src.Backend.DeepQLearning.Memory@{src.Backend.DeepQLearning.Memory}!buffer@{buffer}}
+\index{buffer@{buffer}!src.Backend.DeepQLearning.Memory@{src.Backend.DeepQLearning.Memory}}
+\doxysubsubsection{\texorpdfstring{buffer}{buffer}}
+{\footnotesize\ttfamily src.\+Backend.\+Deep\+Q\+Learning.\+Memory.\+buffer}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Backend/\mbox{\hyperlink{_deep_q_learning_8py}{Deep\+Q\+Learning.\+py}}\end{DoxyCompactItemize}

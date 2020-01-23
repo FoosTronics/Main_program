@@ -1,0 +1,150 @@
+\hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network}{}\doxysection{src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+Network Class Reference}
+\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network}\index{src.Backend.DeepQLearning.DQNetwork@{src.Backend.DeepQLearning.DQNetwork}}
+
+
+Klasse voor het opbouwen van het neurale netwerk.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network_ae0e942135e684bbe5a16dfd66a7410eb}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network_a41d23d6f50df796754620a17a9649476}{state\+\_\+size}}, \mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network_a59b6a919f36ae58fd09e2f557b9c8d86}{action\+\_\+size}}, \mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network_a0aba16d0399912bebeb9daf4b868b5a4}{learning\+\_\+rate}}, name=\textquotesingle{}\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network}{D\+Q\+Network}}\textquotesingle{})
+\begin{DoxyCompactList}\small\item\em initialiseer AI parameters. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network_a41d23d6f50df796754620a17a9649476}{state\+\_\+size}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network_a59b6a919f36ae58fd09e2f557b9c8d86}{action\+\_\+size}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network_a0aba16d0399912bebeb9daf4b868b5a4}{learning\+\_\+rate}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network_a0867ad8f7f67c3d4b5a6881df2fffd8c}{inputs\+\_\+}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network_a63c4287f4130c84cb41ebb40006316f1}{actions\+\_\+}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network_a483a8e3693c95642085c5625e1287136}{target\+\_\+Q}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network_a9a9341e8f978e03f3d13a161aade91b2}{flatten}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network_a050bdb9ba7e610966b8c5244f09748ff}{fc}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network_ac6df5b92094b7a8e17500459c09f597c}{output}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network_ae780d4d94fbcca5e005b94eb8cf88215}{Q}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network_aa8db14ff3bc6257d9c4f6849cdabd4c0}{loss}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network_a5f501c59057d96d88017a62ba79fc3cf}{optimizer}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Klasse voor het opbouwen van het neurale netwerk. 
+
+{\bfseries{Author}}\+: Daniël Boon ~\newline
+ {\bfseries{Version}}\+: 1.\+13 ~\newline
+ {\bfseries{Date}}\+: 22-\/1-\/2020 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network_ae0e942135e684bbe5a16dfd66a7410eb}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network_ae0e942135e684bbe5a16dfd66a7410eb}} 
+\index{src.Backend.DeepQLearning.DQNetwork@{src.Backend.DeepQLearning.DQNetwork}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!src.Backend.DeepQLearning.DQNetwork@{src.Backend.DeepQLearning.DQNetwork}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+Network.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{state\+\_\+size,  }\item[{}]{action\+\_\+size,  }\item[{}]{learning\+\_\+rate,  }\item[{}]{name = {\ttfamily \textquotesingle{}\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network}{D\+Q\+Network}}\textquotesingle{}} }\end{DoxyParamCaption})}
+
+
+
+initialiseer AI parameters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state\+\_\+size} & (int) hoeveelheid voorgaande states onthouden \\
+\hline
+{\em action\+\_\+size} & (int) hoeveelheid mogelijke acties voor AI output \\
+\hline
+{\em learning\+\_\+rate} & (float) leersnelheid tussen ramdom acties en AI gekozen acties \\
+\hline
+{\em name} & (str, optional) scope benaming. Standaard \textquotesingle{}\mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network}{D\+Q\+Network}}\textquotesingle{}. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network_a59b6a919f36ae58fd09e2f557b9c8d86}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network_a59b6a919f36ae58fd09e2f557b9c8d86}} 
+\index{src.Backend.DeepQLearning.DQNetwork@{src.Backend.DeepQLearning.DQNetwork}!action\_size@{action\_size}}
+\index{action\_size@{action\_size}!src.Backend.DeepQLearning.DQNetwork@{src.Backend.DeepQLearning.DQNetwork}}
+\doxysubsubsection{\texorpdfstring{action\_size}{action\_size}}
+{\footnotesize\ttfamily src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+Network.\+action\+\_\+size}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network_a63c4287f4130c84cb41ebb40006316f1}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network_a63c4287f4130c84cb41ebb40006316f1}} 
+\index{src.Backend.DeepQLearning.DQNetwork@{src.Backend.DeepQLearning.DQNetwork}!actions\_@{actions\_}}
+\index{actions\_@{actions\_}!src.Backend.DeepQLearning.DQNetwork@{src.Backend.DeepQLearning.DQNetwork}}
+\doxysubsubsection{\texorpdfstring{actions\_}{actions\_}}
+{\footnotesize\ttfamily src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+Network.\+actions\+\_\+}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network_a050bdb9ba7e610966b8c5244f09748ff}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network_a050bdb9ba7e610966b8c5244f09748ff}} 
+\index{src.Backend.DeepQLearning.DQNetwork@{src.Backend.DeepQLearning.DQNetwork}!fc@{fc}}
+\index{fc@{fc}!src.Backend.DeepQLearning.DQNetwork@{src.Backend.DeepQLearning.DQNetwork}}
+\doxysubsubsection{\texorpdfstring{fc}{fc}}
+{\footnotesize\ttfamily src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+Network.\+fc}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network_a9a9341e8f978e03f3d13a161aade91b2}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network_a9a9341e8f978e03f3d13a161aade91b2}} 
+\index{src.Backend.DeepQLearning.DQNetwork@{src.Backend.DeepQLearning.DQNetwork}!flatten@{flatten}}
+\index{flatten@{flatten}!src.Backend.DeepQLearning.DQNetwork@{src.Backend.DeepQLearning.DQNetwork}}
+\doxysubsubsection{\texorpdfstring{flatten}{flatten}}
+{\footnotesize\ttfamily src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+Network.\+flatten}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network_a0867ad8f7f67c3d4b5a6881df2fffd8c}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network_a0867ad8f7f67c3d4b5a6881df2fffd8c}} 
+\index{src.Backend.DeepQLearning.DQNetwork@{src.Backend.DeepQLearning.DQNetwork}!inputs\_@{inputs\_}}
+\index{inputs\_@{inputs\_}!src.Backend.DeepQLearning.DQNetwork@{src.Backend.DeepQLearning.DQNetwork}}
+\doxysubsubsection{\texorpdfstring{inputs\_}{inputs\_}}
+{\footnotesize\ttfamily src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+Network.\+inputs\+\_\+}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network_a0aba16d0399912bebeb9daf4b868b5a4}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network_a0aba16d0399912bebeb9daf4b868b5a4}} 
+\index{src.Backend.DeepQLearning.DQNetwork@{src.Backend.DeepQLearning.DQNetwork}!learning\_rate@{learning\_rate}}
+\index{learning\_rate@{learning\_rate}!src.Backend.DeepQLearning.DQNetwork@{src.Backend.DeepQLearning.DQNetwork}}
+\doxysubsubsection{\texorpdfstring{learning\_rate}{learning\_rate}}
+{\footnotesize\ttfamily src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+Network.\+learning\+\_\+rate}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network_aa8db14ff3bc6257d9c4f6849cdabd4c0}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network_aa8db14ff3bc6257d9c4f6849cdabd4c0}} 
+\index{src.Backend.DeepQLearning.DQNetwork@{src.Backend.DeepQLearning.DQNetwork}!loss@{loss}}
+\index{loss@{loss}!src.Backend.DeepQLearning.DQNetwork@{src.Backend.DeepQLearning.DQNetwork}}
+\doxysubsubsection{\texorpdfstring{loss}{loss}}
+{\footnotesize\ttfamily src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+Network.\+loss}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network_a5f501c59057d96d88017a62ba79fc3cf}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network_a5f501c59057d96d88017a62ba79fc3cf}} 
+\index{src.Backend.DeepQLearning.DQNetwork@{src.Backend.DeepQLearning.DQNetwork}!optimizer@{optimizer}}
+\index{optimizer@{optimizer}!src.Backend.DeepQLearning.DQNetwork@{src.Backend.DeepQLearning.DQNetwork}}
+\doxysubsubsection{\texorpdfstring{optimizer}{optimizer}}
+{\footnotesize\ttfamily src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+Network.\+optimizer}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network_ac6df5b92094b7a8e17500459c09f597c}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network_ac6df5b92094b7a8e17500459c09f597c}} 
+\index{src.Backend.DeepQLearning.DQNetwork@{src.Backend.DeepQLearning.DQNetwork}!output@{output}}
+\index{output@{output}!src.Backend.DeepQLearning.DQNetwork@{src.Backend.DeepQLearning.DQNetwork}}
+\doxysubsubsection{\texorpdfstring{output}{output}}
+{\footnotesize\ttfamily src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+Network.\+output}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network_ae780d4d94fbcca5e005b94eb8cf88215}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network_ae780d4d94fbcca5e005b94eb8cf88215}} 
+\index{src.Backend.DeepQLearning.DQNetwork@{src.Backend.DeepQLearning.DQNetwork}!Q@{Q}}
+\index{Q@{Q}!src.Backend.DeepQLearning.DQNetwork@{src.Backend.DeepQLearning.DQNetwork}}
+\doxysubsubsection{\texorpdfstring{Q}{Q}}
+{\footnotesize\ttfamily src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+Network.\+Q}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network_a41d23d6f50df796754620a17a9649476}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network_a41d23d6f50df796754620a17a9649476}} 
+\index{src.Backend.DeepQLearning.DQNetwork@{src.Backend.DeepQLearning.DQNetwork}!state\_size@{state\_size}}
+\index{state\_size@{state\_size}!src.Backend.DeepQLearning.DQNetwork@{src.Backend.DeepQLearning.DQNetwork}}
+\doxysubsubsection{\texorpdfstring{state\_size}{state\_size}}
+{\footnotesize\ttfamily src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+Network.\+state\+\_\+size}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network_a483a8e3693c95642085c5625e1287136}\label{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network_a483a8e3693c95642085c5625e1287136}} 
+\index{src.Backend.DeepQLearning.DQNetwork@{src.Backend.DeepQLearning.DQNetwork}!target\_Q@{target\_Q}}
+\index{target\_Q@{target\_Q}!src.Backend.DeepQLearning.DQNetwork@{src.Backend.DeepQLearning.DQNetwork}}
+\doxysubsubsection{\texorpdfstring{target\_Q}{target\_Q}}
+{\footnotesize\ttfamily src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+Network.\+target\+\_\+Q}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Backend/\mbox{\hyperlink{_deep_q_learning_8py}{Deep\+Q\+Learning.\+py}}\end{DoxyCompactItemize}

@@ -1,0 +1,297 @@
+\hypertarget{classsrc_1_1_ball_detect_1_1_ball_detection}{}\doxysection{src.\+Ball\+Detect.\+Ball\+Detection Class Reference}
+\label{classsrc_1_1_ball_detect_1_1_ball_detection}\index{src.BallDetect.BallDetection@{src.BallDetect.BallDetection}}
+
+
+Klasse om de bal uit een afbeelding te extraheren.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classsrc_1_1_ball_detect_1_1_ball_detection_af654530f89c0d583ec7ff42ccc00a76e}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, file=None)
+\item 
+def \mbox{\hyperlink{classsrc_1_1_ball_detect_1_1_ball_detection_aa0574167551913c9cca6e47d9a10851b}{create\+\_\+trackbar}} (self)
+\begin{DoxyCompactList}\small\item\em Maakt een trackbar aan waarmee de parameters van de gedefinieerde kleurruimte veranderd kunnen worden. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_ball_detect_1_1_ball_detection_afa58cfe2ed8993ed897f97c50fcf0d37}{get\+\_\+trackbarpos}} (self)
+\begin{DoxyCompactList}\small\item\em Slaat de ingestelde waardes van de trackbar op in de variabelen. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_ball_detect_1_1_ball_detection_a79606ddebef428b4327ebba9dcfcdd6a}{getball\+\_\+pos}} (self)
+\begin{DoxyCompactList}\small\item\em Roept de functies aan die nodig zijn om de bal te detecteren. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_ball_detect_1_1_ball_detection_a8895c975efe4fb8da7eea38193e01d90}{new\+\_\+frame}} (self, \mbox{\hyperlink{namespacesrc_1_1_ball_detect_a7404f9dfb2c1a1f13d11f86b7c218b12}{img}})
+\begin{DoxyCompactList}\small\item\em Zet een afbeelding om naar het frame binnen de klasse. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_ball_detect_1_1_ball_detection_aa7c486d7bd289eb6bd65bc5ffdfa8369}{get\+\_\+img}} (self)
+\begin{DoxyCompactList}\small\item\em Haalt een bijgesneden afbeelding binnen. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_ball_detect_1_1_ball_detection_afa9727089d1c021170f8bbb885df6a5a}{image\+\_\+filter}} (self)
+\begin{DoxyCompactList}\small\item\em Set van beeldfilters waarmee een mask wordt gecreeerd om de bal te kunnen volgen. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_ball_detect_1_1_ball_detection_a63b2c4be6c85c3520d6e9698ee79eee3}{ball\+\_\+detect}} (self)
+\begin{DoxyCompactList}\small\item\em Volgt de bal op het speelveld met behulp van de functie image\+\_\+filter. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_ball_detect_1_1_ball_detection_a1462602d0a49f7b978a0b825a885c2a0}{show\+\_\+frame}} (self)
+\begin{DoxyCompactList}\small\item\em Laat het beeld zien dat met de get\+\_\+frame functie is opgehaald. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsrc_1_1_ball_detect_1_1_ball_detection_a999ddd4807249841a46a2c0ee162030e}{ilowY}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_ball_detect_1_1_ball_detection_a0a16a007bcf4f3f48701408c7978f45d}{ihighY}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_ball_detect_1_1_ball_detection_a9a9af76a9e7f19399b04d0893d6ce416}{ilowU}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_ball_detect_1_1_ball_detection_a692a42f8d028cc173a93eed67a325a1b}{ihighU}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_ball_detect_1_1_ball_detection_a52b2f29033b0e4792b2de8d92a8f20f2}{ilowV}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_ball_detect_1_1_ball_detection_a611983c6b0400a0c600053644fe550d9}{ihighV}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_ball_detect_1_1_ball_detection_ac9af234e6df29dca38353a1a02b9974c}{mask}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_ball_detect_1_1_ball_detection_aafd5c760febb2d2203ad3d4f19fef8e3}{dim}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_ball_detect_1_1_ball_detection_a53378e94da218c4e823372b190f1c651}{frame\+\_\+capture}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_ball_detect_1_1_ball_detection_a59c0410f785157f267edbc37229551f6}{frame\+\_\+counter}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_ball_detect_1_1_ball_detection_a4c740ead2dece34bb79b0e417ef8a52e}{reused}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_ball_detect_1_1_ball_detection_a4fe4ef912cd9a89a3be9246a07b09987}{frame}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_ball_detect_1_1_ball_detection_ac7e45e0f5c1129adda9f7bd6cd8076c9}{cap}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_ball_detect_1_1_ball_detection_a2ef94e787ec05896663e2e6db0194d0b}{center}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classsrc_1_1_ball_detect_1_1_ball_detection_a4dc7872e4ad4250c139bb5d6f8814126}{\+\_\+callback}} (self, x)
+\begin{DoxyCompactList}\small\item\em Functienaam voor het aanmaken van de trackbar. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Klasse om de bal uit een afbeelding te extraheren. 
+
+{\bfseries{Author}}\+: ~\newline
+ Sipke Vellinga ~\newline
+ Chileam Bohnen ~\newline
+ {\bfseries{Version}}\+: 3.\+51 ~\newline
+ {\bfseries{Date}}\+: 23-\/1-\/2020 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classsrc_1_1_ball_detect_1_1_ball_detection_af654530f89c0d583ec7ff42ccc00a76e}\label{classsrc_1_1_ball_detect_1_1_ball_detection_af654530f89c0d583ec7ff42ccc00a76e}} 
+\index{src.BallDetect.BallDetection@{src.BallDetect.BallDetection}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!src.BallDetect.BallDetection@{src.BallDetect.BallDetection}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def src.\+Ball\+Detect.\+Ball\+Detection.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{file = {\ttfamily None} }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classsrc_1_1_ball_detect_1_1_ball_detection_a4dc7872e4ad4250c139bb5d6f8814126}\label{classsrc_1_1_ball_detect_1_1_ball_detection_a4dc7872e4ad4250c139bb5d6f8814126}} 
+\index{src.BallDetect.BallDetection@{src.BallDetect.BallDetection}!\_callback@{\_callback}}
+\index{\_callback@{\_callback}!src.BallDetect.BallDetection@{src.BallDetect.BallDetection}}
+\doxysubsubsection{\texorpdfstring{\_callback()}{\_callback()}}
+{\footnotesize\ttfamily def src.\+Ball\+Detect.\+Ball\+Detection.\+\_\+callback (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Functienaam voor het aanmaken van de trackbar. 
+
+De trackbar genereert een pointer die deze functie aanroept wanneer de slider van positie verandert.
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & (int) variabelen die wordt meegegeven met Open\+CV. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classsrc_1_1_ball_detect_1_1_ball_detection_a63b2c4be6c85c3520d6e9698ee79eee3}\label{classsrc_1_1_ball_detect_1_1_ball_detection_a63b2c4be6c85c3520d6e9698ee79eee3}} 
+\index{src.BallDetect.BallDetection@{src.BallDetect.BallDetection}!ball\_detect@{ball\_detect}}
+\index{ball\_detect@{ball\_detect}!src.BallDetect.BallDetection@{src.BallDetect.BallDetection}}
+\doxysubsubsection{\texorpdfstring{ball\_detect()}{ball\_detect()}}
+{\footnotesize\ttfamily def src.\+Ball\+Detect.\+Ball\+Detection.\+ball\+\_\+detect (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Volgt de bal op het speelveld met behulp van de functie image\+\_\+filter. 
+
+\begin{DoxyAuthor}{Author}
+\+: Adrian Rosebrock (\href{https://www.pyimagesearch.com/2015/09/14/ball-tracking-with-opencv/}{\texttt{ https\+://www.\+pyimagesearch.\+com/2015/09/14/ball-\/tracking-\/with-\/opencv/}})
+\end{DoxyAuthor}
+\begin{DoxyReturn}{Returns}
+(tuple) x,y coördinaten van de bal op een frame.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+{\bfseries{Type\+Error}}\+: voeg eerst een frame toe dmv de functie new\+\_\+frame(img). 
+\end{DoxyNote}
+\mbox{\Hypertarget{classsrc_1_1_ball_detect_1_1_ball_detection_aa0574167551913c9cca6e47d9a10851b}\label{classsrc_1_1_ball_detect_1_1_ball_detection_aa0574167551913c9cca6e47d9a10851b}} 
+\index{src.BallDetect.BallDetection@{src.BallDetect.BallDetection}!create\_trackbar@{create\_trackbar}}
+\index{create\_trackbar@{create\_trackbar}!src.BallDetect.BallDetection@{src.BallDetect.BallDetection}}
+\doxysubsubsection{\texorpdfstring{create\_trackbar()}{create\_trackbar()}}
+{\footnotesize\ttfamily def src.\+Ball\+Detect.\+Ball\+Detection.\+create\+\_\+trackbar (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Maakt een trackbar aan waarmee de parameters van de gedefinieerde kleurruimte veranderd kunnen worden. 
+
+\mbox{\Hypertarget{classsrc_1_1_ball_detect_1_1_ball_detection_aa7c486d7bd289eb6bd65bc5ffdfa8369}\label{classsrc_1_1_ball_detect_1_1_ball_detection_aa7c486d7bd289eb6bd65bc5ffdfa8369}} 
+\index{src.BallDetect.BallDetection@{src.BallDetect.BallDetection}!get\_img@{get\_img}}
+\index{get\_img@{get\_img}!src.BallDetect.BallDetection@{src.BallDetect.BallDetection}}
+\doxysubsubsection{\texorpdfstring{get\_img()}{get\_img()}}
+{\footnotesize\ttfamily def src.\+Ball\+Detect.\+Ball\+Detection.\+get\+\_\+img (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Haalt een bijgesneden afbeelding binnen. 
+
+\begin{DoxyReturn}{Returns}
+(np.\+array) geeft de verkleinde image terug. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classsrc_1_1_ball_detect_1_1_ball_detection_afa58cfe2ed8993ed897f97c50fcf0d37}\label{classsrc_1_1_ball_detect_1_1_ball_detection_afa58cfe2ed8993ed897f97c50fcf0d37}} 
+\index{src.BallDetect.BallDetection@{src.BallDetect.BallDetection}!get\_trackbarpos@{get\_trackbarpos}}
+\index{get\_trackbarpos@{get\_trackbarpos}!src.BallDetect.BallDetection@{src.BallDetect.BallDetection}}
+\doxysubsubsection{\texorpdfstring{get\_trackbarpos()}{get\_trackbarpos()}}
+{\footnotesize\ttfamily def src.\+Ball\+Detect.\+Ball\+Detection.\+get\+\_\+trackbarpos (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Slaat de ingestelde waardes van de trackbar op in de variabelen. 
+
+\mbox{\Hypertarget{classsrc_1_1_ball_detect_1_1_ball_detection_a79606ddebef428b4327ebba9dcfcdd6a}\label{classsrc_1_1_ball_detect_1_1_ball_detection_a79606ddebef428b4327ebba9dcfcdd6a}} 
+\index{src.BallDetect.BallDetection@{src.BallDetect.BallDetection}!getball\_pos@{getball\_pos}}
+\index{getball\_pos@{getball\_pos}!src.BallDetect.BallDetection@{src.BallDetect.BallDetection}}
+\doxysubsubsection{\texorpdfstring{getball\_pos()}{getball\_pos()}}
+{\footnotesize\ttfamily def src.\+Ball\+Detect.\+Ball\+Detection.\+getball\+\_\+pos (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Roept de functies aan die nodig zijn om de bal te detecteren. 
+
+\begin{DoxyReturn}{Returns}
+(tuple) geeft de x,y pixel positie van de bal terug. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classsrc_1_1_ball_detect_1_1_ball_detection_afa9727089d1c021170f8bbb885df6a5a}\label{classsrc_1_1_ball_detect_1_1_ball_detection_afa9727089d1c021170f8bbb885df6a5a}} 
+\index{src.BallDetect.BallDetection@{src.BallDetect.BallDetection}!image\_filter@{image\_filter}}
+\index{image\_filter@{image\_filter}!src.BallDetect.BallDetection@{src.BallDetect.BallDetection}}
+\doxysubsubsection{\texorpdfstring{image\_filter()}{image\_filter()}}
+{\footnotesize\ttfamily def src.\+Ball\+Detect.\+Ball\+Detection.\+image\+\_\+filter (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Set van beeldfilters waarmee een mask wordt gecreeerd om de bal te kunnen volgen. 
+
+\mbox{\Hypertarget{classsrc_1_1_ball_detect_1_1_ball_detection_a8895c975efe4fb8da7eea38193e01d90}\label{classsrc_1_1_ball_detect_1_1_ball_detection_a8895c975efe4fb8da7eea38193e01d90}} 
+\index{src.BallDetect.BallDetection@{src.BallDetect.BallDetection}!new\_frame@{new\_frame}}
+\index{new\_frame@{new\_frame}!src.BallDetect.BallDetection@{src.BallDetect.BallDetection}}
+\doxysubsubsection{\texorpdfstring{new\_frame()}{new\_frame()}}
+{\footnotesize\ttfamily def src.\+Ball\+Detect.\+Ball\+Detection.\+new\+\_\+frame (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{img }\end{DoxyParamCaption})}
+
+
+
+Zet een afbeelding om naar het frame binnen de klasse. 
+
+~\newline
+ Hier zal de bal vanaf worden geëxtraheerd.
+
+
+\begin{DoxyParams}{Parameters}
+{\em img} & (np.\+array) maakt een frame. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classsrc_1_1_ball_detect_1_1_ball_detection_a1462602d0a49f7b978a0b825a885c2a0}\label{classsrc_1_1_ball_detect_1_1_ball_detection_a1462602d0a49f7b978a0b825a885c2a0}} 
+\index{src.BallDetect.BallDetection@{src.BallDetect.BallDetection}!show\_frame@{show\_frame}}
+\index{show\_frame@{show\_frame}!src.BallDetect.BallDetection@{src.BallDetect.BallDetection}}
+\doxysubsubsection{\texorpdfstring{show\_frame()}{show\_frame()}}
+{\footnotesize\ttfamily def src.\+Ball\+Detect.\+Ball\+Detection.\+show\+\_\+frame (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Laat het beeld zien dat met de get\+\_\+frame functie is opgehaald. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classsrc_1_1_ball_detect_1_1_ball_detection_ac7e45e0f5c1129adda9f7bd6cd8076c9}\label{classsrc_1_1_ball_detect_1_1_ball_detection_ac7e45e0f5c1129adda9f7bd6cd8076c9}} 
+\index{src.BallDetect.BallDetection@{src.BallDetect.BallDetection}!cap@{cap}}
+\index{cap@{cap}!src.BallDetect.BallDetection@{src.BallDetect.BallDetection}}
+\doxysubsubsection{\texorpdfstring{cap}{cap}}
+{\footnotesize\ttfamily src.\+Ball\+Detect.\+Ball\+Detection.\+cap}
+
+\mbox{\Hypertarget{classsrc_1_1_ball_detect_1_1_ball_detection_a2ef94e787ec05896663e2e6db0194d0b}\label{classsrc_1_1_ball_detect_1_1_ball_detection_a2ef94e787ec05896663e2e6db0194d0b}} 
+\index{src.BallDetect.BallDetection@{src.BallDetect.BallDetection}!center@{center}}
+\index{center@{center}!src.BallDetect.BallDetection@{src.BallDetect.BallDetection}}
+\doxysubsubsection{\texorpdfstring{center}{center}}
+{\footnotesize\ttfamily src.\+Ball\+Detect.\+Ball\+Detection.\+center}
+
+\mbox{\Hypertarget{classsrc_1_1_ball_detect_1_1_ball_detection_aafd5c760febb2d2203ad3d4f19fef8e3}\label{classsrc_1_1_ball_detect_1_1_ball_detection_aafd5c760febb2d2203ad3d4f19fef8e3}} 
+\index{src.BallDetect.BallDetection@{src.BallDetect.BallDetection}!dim@{dim}}
+\index{dim@{dim}!src.BallDetect.BallDetection@{src.BallDetect.BallDetection}}
+\doxysubsubsection{\texorpdfstring{dim}{dim}}
+{\footnotesize\ttfamily src.\+Ball\+Detect.\+Ball\+Detection.\+dim}
+
+\mbox{\Hypertarget{classsrc_1_1_ball_detect_1_1_ball_detection_a4fe4ef912cd9a89a3be9246a07b09987}\label{classsrc_1_1_ball_detect_1_1_ball_detection_a4fe4ef912cd9a89a3be9246a07b09987}} 
+\index{src.BallDetect.BallDetection@{src.BallDetect.BallDetection}!frame@{frame}}
+\index{frame@{frame}!src.BallDetect.BallDetection@{src.BallDetect.BallDetection}}
+\doxysubsubsection{\texorpdfstring{frame}{frame}}
+{\footnotesize\ttfamily src.\+Ball\+Detect.\+Ball\+Detection.\+frame}
+
+\mbox{\Hypertarget{classsrc_1_1_ball_detect_1_1_ball_detection_a53378e94da218c4e823372b190f1c651}\label{classsrc_1_1_ball_detect_1_1_ball_detection_a53378e94da218c4e823372b190f1c651}} 
+\index{src.BallDetect.BallDetection@{src.BallDetect.BallDetection}!frame\_capture@{frame\_capture}}
+\index{frame\_capture@{frame\_capture}!src.BallDetect.BallDetection@{src.BallDetect.BallDetection}}
+\doxysubsubsection{\texorpdfstring{frame\_capture}{frame\_capture}}
+{\footnotesize\ttfamily src.\+Ball\+Detect.\+Ball\+Detection.\+frame\+\_\+capture}
+
+\mbox{\Hypertarget{classsrc_1_1_ball_detect_1_1_ball_detection_a59c0410f785157f267edbc37229551f6}\label{classsrc_1_1_ball_detect_1_1_ball_detection_a59c0410f785157f267edbc37229551f6}} 
+\index{src.BallDetect.BallDetection@{src.BallDetect.BallDetection}!frame\_counter@{frame\_counter}}
+\index{frame\_counter@{frame\_counter}!src.BallDetect.BallDetection@{src.BallDetect.BallDetection}}
+\doxysubsubsection{\texorpdfstring{frame\_counter}{frame\_counter}}
+{\footnotesize\ttfamily src.\+Ball\+Detect.\+Ball\+Detection.\+frame\+\_\+counter}
+
+\mbox{\Hypertarget{classsrc_1_1_ball_detect_1_1_ball_detection_a692a42f8d028cc173a93eed67a325a1b}\label{classsrc_1_1_ball_detect_1_1_ball_detection_a692a42f8d028cc173a93eed67a325a1b}} 
+\index{src.BallDetect.BallDetection@{src.BallDetect.BallDetection}!ihighU@{ihighU}}
+\index{ihighU@{ihighU}!src.BallDetect.BallDetection@{src.BallDetect.BallDetection}}
+\doxysubsubsection{\texorpdfstring{ihighU}{ihighU}}
+{\footnotesize\ttfamily src.\+Ball\+Detect.\+Ball\+Detection.\+ihighU}
+
+\mbox{\Hypertarget{classsrc_1_1_ball_detect_1_1_ball_detection_a611983c6b0400a0c600053644fe550d9}\label{classsrc_1_1_ball_detect_1_1_ball_detection_a611983c6b0400a0c600053644fe550d9}} 
+\index{src.BallDetect.BallDetection@{src.BallDetect.BallDetection}!ihighV@{ihighV}}
+\index{ihighV@{ihighV}!src.BallDetect.BallDetection@{src.BallDetect.BallDetection}}
+\doxysubsubsection{\texorpdfstring{ihighV}{ihighV}}
+{\footnotesize\ttfamily src.\+Ball\+Detect.\+Ball\+Detection.\+ihighV}
+
+\mbox{\Hypertarget{classsrc_1_1_ball_detect_1_1_ball_detection_a0a16a007bcf4f3f48701408c7978f45d}\label{classsrc_1_1_ball_detect_1_1_ball_detection_a0a16a007bcf4f3f48701408c7978f45d}} 
+\index{src.BallDetect.BallDetection@{src.BallDetect.BallDetection}!ihighY@{ihighY}}
+\index{ihighY@{ihighY}!src.BallDetect.BallDetection@{src.BallDetect.BallDetection}}
+\doxysubsubsection{\texorpdfstring{ihighY}{ihighY}}
+{\footnotesize\ttfamily src.\+Ball\+Detect.\+Ball\+Detection.\+ihighY}
+
+\mbox{\Hypertarget{classsrc_1_1_ball_detect_1_1_ball_detection_a9a9af76a9e7f19399b04d0893d6ce416}\label{classsrc_1_1_ball_detect_1_1_ball_detection_a9a9af76a9e7f19399b04d0893d6ce416}} 
+\index{src.BallDetect.BallDetection@{src.BallDetect.BallDetection}!ilowU@{ilowU}}
+\index{ilowU@{ilowU}!src.BallDetect.BallDetection@{src.BallDetect.BallDetection}}
+\doxysubsubsection{\texorpdfstring{ilowU}{ilowU}}
+{\footnotesize\ttfamily src.\+Ball\+Detect.\+Ball\+Detection.\+ilowU}
+
+\mbox{\Hypertarget{classsrc_1_1_ball_detect_1_1_ball_detection_a52b2f29033b0e4792b2de8d92a8f20f2}\label{classsrc_1_1_ball_detect_1_1_ball_detection_a52b2f29033b0e4792b2de8d92a8f20f2}} 
+\index{src.BallDetect.BallDetection@{src.BallDetect.BallDetection}!ilowV@{ilowV}}
+\index{ilowV@{ilowV}!src.BallDetect.BallDetection@{src.BallDetect.BallDetection}}
+\doxysubsubsection{\texorpdfstring{ilowV}{ilowV}}
+{\footnotesize\ttfamily src.\+Ball\+Detect.\+Ball\+Detection.\+ilowV}
+
+\mbox{\Hypertarget{classsrc_1_1_ball_detect_1_1_ball_detection_a999ddd4807249841a46a2c0ee162030e}\label{classsrc_1_1_ball_detect_1_1_ball_detection_a999ddd4807249841a46a2c0ee162030e}} 
+\index{src.BallDetect.BallDetection@{src.BallDetect.BallDetection}!ilowY@{ilowY}}
+\index{ilowY@{ilowY}!src.BallDetect.BallDetection@{src.BallDetect.BallDetection}}
+\doxysubsubsection{\texorpdfstring{ilowY}{ilowY}}
+{\footnotesize\ttfamily src.\+Ball\+Detect.\+Ball\+Detection.\+ilowY}
+
+\mbox{\Hypertarget{classsrc_1_1_ball_detect_1_1_ball_detection_ac9af234e6df29dca38353a1a02b9974c}\label{classsrc_1_1_ball_detect_1_1_ball_detection_ac9af234e6df29dca38353a1a02b9974c}} 
+\index{src.BallDetect.BallDetection@{src.BallDetect.BallDetection}!mask@{mask}}
+\index{mask@{mask}!src.BallDetect.BallDetection@{src.BallDetect.BallDetection}}
+\doxysubsubsection{\texorpdfstring{mask}{mask}}
+{\footnotesize\ttfamily src.\+Ball\+Detect.\+Ball\+Detection.\+mask}
+
+\mbox{\Hypertarget{classsrc_1_1_ball_detect_1_1_ball_detection_a4c740ead2dece34bb79b0e417ef8a52e}\label{classsrc_1_1_ball_detect_1_1_ball_detection_a4c740ead2dece34bb79b0e417ef8a52e}} 
+\index{src.BallDetect.BallDetection@{src.BallDetect.BallDetection}!reused@{reused}}
+\index{reused@{reused}!src.BallDetect.BallDetection@{src.BallDetect.BallDetection}}
+\doxysubsubsection{\texorpdfstring{reused}{reused}}
+{\footnotesize\ttfamily src.\+Ball\+Detect.\+Ball\+Detection.\+reused}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{_ball_detect_8py}{Ball\+Detect.\+py}}\end{DoxyCompactItemize}

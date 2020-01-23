@@ -1,0 +1,503 @@
+\hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base}{}\doxysection{src.\+Backend.\+Framework.\+Framework\+Base Class Reference}
+\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base}\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+
+
+De basis van het hoofd testbed geraamte.  
+
+
+Inheritance diagram for src.\+Backend.\+Framework.\+Framework\+Base\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classsrc_1_1_backend_1_1_framework_1_1_framework_base}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a3152227f14cd9572b44d35b6f4d3e5d7}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self)
+\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a5bf3ca4eb4d8b94172cf45668904bd68}{\+\_\+\+\_\+del\+\_\+\+\_\+}} (self)
+\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_ae14bb02dc5556d5ed5a07a6c0eb49c3c}{Step}} (self, \mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_aab966a73de38f5f9094d091c060d477d}{settings}})
+\begin{DoxyCompactList}\small\item\em De belangrijkste stap voor de fysica. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_acd66969726ca68879b191ce995760f09}{Shift\+Mouse\+Down}} (self, p)
+\begin{DoxyCompactList}\small\item\em Indicatie dat er een linker klik op punt p aanwezig was (wereld coördinaten) met de linker shift-\/toets ingedrukt. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_ab2a284cd0e55741647c41f834bf9da8a}{Mouse\+Down}} (self, p)
+\begin{DoxyCompactList}\small\item\em Indicatie dat er een linker klik op punt p aanwezig was (wereld coördinaten) \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_ac7d48b8bf02b80b16f3da8d6890ac99c}{Mouse\+Up}} (self, p)
+\begin{DoxyCompactList}\small\item\em Linker mouse knop omhoog. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a96d455e075e199faa8a1b27d11f37669}{Mouse\+Move}} (self, p)
+\begin{DoxyCompactList}\small\item\em Mouse verschoven naar punt p, in wereld coördinaten. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_ae4fa4f6e98a2dfe817e179b0a554e97c}{Spawn\+Bomb}} (self, world\+Pt)
+\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a3a01588b4bac2517bdf035a1dfbed29f}{Complete\+Bomb\+Spawn}} (self, p)
+\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a00922350a34529573dfb8065967006a8}{Launch\+Bomb}} (self, position, velocity)
+\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a3e08dd5b8bf8a7eb9cba5ac0039773d7}{Launch\+Random\+Bomb}} (self)
+\begin{DoxyCompactList}\small\item\em Create a new bomb and launch it at the testbed. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_aad6b76b0c1b9cd351832d6b3b5d0cd19}{Simulation\+Loop}} (self)
+\begin{DoxyCompactList}\small\item\em The main simulation loop. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_ae582f05ff7ec613a250005d0628d39bc}{Convert\+Screen\+To\+World}} (self, x, y)
+\begin{DoxyCompactList}\small\item\em Return a b2\+Vec2 in world coordinates of the passed in screen. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a9b3d2c9cefb73c7f09ab103452d0599b}{Draw\+String\+At}} (self, x, y, str, color=(229, 153, 153, 255))
+\begin{DoxyCompactList}\small\item\em Draw some text, str, at screen coordinates (x, y). \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a30000e5145f624ff1e47e2a09cb7e3ca}{Print}} (self, str, color=(229, 153, 153, 255))
+\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a588b12280e4b424d12fb2ed9822b7d8e}{Pre\+Solve}} (self, contact, old\+\_\+manifold)
+\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_af2763f4d7623899a1a3a4094c3aef66e}{Begin\+Contact}} (self, contact)
+\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_ab1fdaccb23719dcefc9d65477caef065}{End\+Contact}} (self, contact)
+\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a29c7e67be6285621f2bcf4d4771f1d7b}{Post\+Solve}} (self, contact, impulse)
+\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_af28b14279277c316e09b890bfef01410}{Fixture\+Destroyed}} (self, fixture)
+\begin{DoxyCompactList}\small\item\em Callback indicating \textquotesingle{}fixture\textquotesingle{} has been destroyed. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a4c3a13d6a099fe79fcee23bfec9da799}{Joint\+Destroyed}} (self, joint)
+\begin{DoxyCompactList}\small\item\em Callback indicating \textquotesingle{}joint\textquotesingle{} has been destroyed. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a1d0127288684e705c79fde3c5e06298c}{Keyboard}} (self, key, \mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_aab966a73de38f5f9094d091c060d477d}{settings}})
+\begin{DoxyCompactList}\small\item\em Callback indicating \textquotesingle{}key\textquotesingle{} has been pressed down. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a36bb4e1a9399d57a115c2387a0d60cad}{Keyboard\+Up}} (self, key)
+\begin{DoxyCompactList}\small\item\em Callback indicating \textquotesingle{}key\textquotesingle{} has been released. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_aa49c8414cf08d533fa40d1a7a9a04966}{points}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a9b727b5ff125c1e3e7e0cc25729026b1}{world}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a5055c763a8aa8c09377bf84f872b792c}{bomb}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a680a31da8a18236fc8ac0c29f1a23e9f}{mouse\+Joint}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_aab966a73de38f5f9094d091c060d477d}{settings}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_aa5e68847108361ffb0ccbd4098c6db41}{bomb\+Spawning}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a235fd18a1861f0e22b3fd23f9acd0d91}{bomb\+Spawn\+Point}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_aad10c5e65e5f93dd90727b764cde0810}{mouse\+World}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a3ba63718853b1442f4dc1540341d7ee4}{using\+\_\+contacts}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_aa09c485b1cd378c7fdcd3ed32fd9d36f}{step\+Count}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_aefb77bc49d1d79fa235e0b3f34026220}{destruction\+Listener}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a06564cb0bd8431238d009a8e85686228}{renderer}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_af440c32fcfe48d0a55ed4c263235b581}{t\+\_\+draws}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_afa41b1fa47f9d485fda15d8dd4b4d71d}{fps}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a0b0d7ba72ff96509f28e54ed8dedab00}{groundbody}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a2443e5b47b37d2daba3f3ed1b5612c92}{text\+Line}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a54c4fd7c8278fe959399b214b6e8e9c6}{name}} = \char`\"{}None\char`\"{}
+\item 
+\mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a565afa706fb1379a4be50b2d365d5047}{description}} = None
+\item 
+int \mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a06237c993e2bb7b3521fbf1d5a16dc8c}{T\+E\+X\+T\+L\+I\+N\+E\+\_\+\+S\+T\+A\+RT}} = 30
+\item 
+dictionary \mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_aecc29db76cdbd12bfc94881ff2e4f236}{colors}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a5ed294b6c7dd19aa35167133413b4e93}{\+\_\+\+\_\+reset}} (self)
+\begin{DoxyCompactList}\small\item\em Herstel alle variabelen naar hun start waardes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+De basis van het hoofd testbed geraamte. 
+
+If you are planning on using the testbed framework and\+:
+\begin{DoxyItemize}
+\item Want to implement your own renderer (other than Pygame, etc.)\+: You should derive your class from this one to implement your own tests. See empty.\+py or any of the other tests for more information.
+\item Do N\+OT want to implement your own renderer\+: You should derive your class from \mbox{\hyperlink{namespacesrc_1_1_backend_1_1_framework}{Framework}}. The renderer chosen in fw\+Settings (see \mbox{\hyperlink{_settings_8py}{settings.\+py}}) or on the command line will automatically be used for your test. Als u van plan bent het testbed-\/framework te gebruiken en\+:
+\begin{DoxyItemize}
+\item U wilt uw eigen renderer implementeren (anders dan Pygame, etc.)\+: Leid hieruit je eigen klas om je eigen testen te implementeren. Zie empty.\+py of een van de andere tests voor meer informatie.
+\item Wilt u uw eigen renderer N\+I\+ET implementeren\+: Leid je klas uit \mbox{\hyperlink{namespacesrc_1_1_backend_1_1_framework}{Framework}}. De gekozen renderer in fw\+Settings (zie \mbox{\hyperlink{_settings_8py}{settings.\+py}}) of op de opdrachtregel wordt automatisch gebruikt voor uw test. 
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a3152227f14cd9572b44d35b6f4d3e5d7}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a3152227f14cd9572b44d35b6f4d3e5d7}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Framework.\+Framework\+Base.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a5bf3ca4eb4d8b94172cf45668904bd68}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a5bf3ca4eb4d8b94172cf45668904bd68}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!\_\_del\_\_@{\_\_del\_\_}}
+\index{\_\_del\_\_@{\_\_del\_\_}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{\_\_del\_\_()}{\_\_del\_\_()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Framework.\+Framework\+Base.\+\_\+\+\_\+del\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a5ed294b6c7dd19aa35167133413b4e93}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a5ed294b6c7dd19aa35167133413b4e93}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!\_\_reset@{\_\_reset}}
+\index{\_\_reset@{\_\_reset}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{\_\_reset()}{\_\_reset()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Framework.\+Framework\+Base.\+\_\+\+\_\+reset (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Herstel alle variabelen naar hun start waardes. 
+
+Niet aanroepen behalve bij initialisatie. \mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_af2763f4d7623899a1a3a4094c3aef66e}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_af2763f4d7623899a1a3a4094c3aef66e}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!BeginContact@{BeginContact}}
+\index{BeginContact@{BeginContact}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{BeginContact()}{BeginContact()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Framework.\+Framework\+Base.\+Begin\+Contact (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{contact }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a3a01588b4bac2517bdf035a1dfbed29f}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a3a01588b4bac2517bdf035a1dfbed29f}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!CompleteBombSpawn@{CompleteBombSpawn}}
+\index{CompleteBombSpawn@{CompleteBombSpawn}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{CompleteBombSpawn()}{CompleteBombSpawn()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Framework.\+Framework\+Base.\+Complete\+Bomb\+Spawn (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{p }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_ae582f05ff7ec613a250005d0628d39bc}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_ae582f05ff7ec613a250005d0628d39bc}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!ConvertScreenToWorld@{ConvertScreenToWorld}}
+\index{ConvertScreenToWorld@{ConvertScreenToWorld}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{ConvertScreenToWorld()}{ConvertScreenToWorld()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Framework.\+Framework\+Base.\+Convert\+Screen\+To\+World (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{x,  }\item[{}]{y }\end{DoxyParamCaption})}
+
+
+
+Return a b2\+Vec2 in world coordinates of the passed in screen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & x cordinaat. \\
+\hline
+{\em y} & y cordinaat.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Not\+Implemented\+Error} & Error dat het nog niet is aangemaakt. \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a9b3d2c9cefb73c7f09ab103452d0599b}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a9b3d2c9cefb73c7f09ab103452d0599b}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!DrawStringAt@{DrawStringAt}}
+\index{DrawStringAt@{DrawStringAt}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{DrawStringAt()}{DrawStringAt()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Framework.\+Framework\+Base.\+Draw\+String\+At (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{x,  }\item[{}]{y,  }\item[{}]{str,  }\item[{}]{color = {\ttfamily (229,~153,~153,~255)} }\end{DoxyParamCaption})}
+
+
+
+Draw some text, str, at screen coordinates (x, y). 
+
+\begin{DoxyNote}{Note}
+Renderer subclasses must implement this 
+\end{DoxyNote}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_ab1fdaccb23719dcefc9d65477caef065}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_ab1fdaccb23719dcefc9d65477caef065}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!EndContact@{EndContact}}
+\index{EndContact@{EndContact}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{EndContact()}{EndContact()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Framework.\+Framework\+Base.\+End\+Contact (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{contact }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_af28b14279277c316e09b890bfef01410}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_af28b14279277c316e09b890bfef01410}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!FixtureDestroyed@{FixtureDestroyed}}
+\index{FixtureDestroyed@{FixtureDestroyed}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{FixtureDestroyed()}{FixtureDestroyed()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Framework.\+Framework\+Base.\+Fixture\+Destroyed (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{fixture }\end{DoxyParamCaption})}
+
+
+
+Callback indicating \textquotesingle{}fixture\textquotesingle{} has been destroyed. 
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a4c3a13d6a099fe79fcee23bfec9da799}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a4c3a13d6a099fe79fcee23bfec9da799}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!JointDestroyed@{JointDestroyed}}
+\index{JointDestroyed@{JointDestroyed}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{JointDestroyed()}{JointDestroyed()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Framework.\+Framework\+Base.\+Joint\+Destroyed (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{joint }\end{DoxyParamCaption})}
+
+
+
+Callback indicating \textquotesingle{}joint\textquotesingle{} has been destroyed. 
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a1d0127288684e705c79fde3c5e06298c}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a1d0127288684e705c79fde3c5e06298c}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!Keyboard@{Keyboard}}
+\index{Keyboard@{Keyboard}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{Keyboard()}{Keyboard()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Framework.\+Framework\+Base.\+Keyboard (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{key,  }\item[{}]{settings }\end{DoxyParamCaption})}
+
+
+
+Callback indicating \textquotesingle{}key\textquotesingle{} has been pressed down. 
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a36bb4e1a9399d57a115c2387a0d60cad}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a36bb4e1a9399d57a115c2387a0d60cad}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!KeyboardUp@{KeyboardUp}}
+\index{KeyboardUp@{KeyboardUp}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{KeyboardUp()}{KeyboardUp()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Framework.\+Framework\+Base.\+Keyboard\+Up (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{key }\end{DoxyParamCaption})}
+
+
+
+Callback indicating \textquotesingle{}key\textquotesingle{} has been released. 
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a00922350a34529573dfb8065967006a8}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a00922350a34529573dfb8065967006a8}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!LaunchBomb@{LaunchBomb}}
+\index{LaunchBomb@{LaunchBomb}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{LaunchBomb()}{LaunchBomb()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Framework.\+Framework\+Base.\+Launch\+Bomb (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{position,  }\item[{}]{velocity }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a3e08dd5b8bf8a7eb9cba5ac0039773d7}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a3e08dd5b8bf8a7eb9cba5ac0039773d7}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!LaunchRandomBomb@{LaunchRandomBomb}}
+\index{LaunchRandomBomb@{LaunchRandomBomb}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{LaunchRandomBomb()}{LaunchRandomBomb()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Framework.\+Framework\+Base.\+Launch\+Random\+Bomb (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Create a new bomb and launch it at the testbed. 
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_ab2a284cd0e55741647c41f834bf9da8a}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_ab2a284cd0e55741647c41f834bf9da8a}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!MouseDown@{MouseDown}}
+\index{MouseDown@{MouseDown}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{MouseDown()}{MouseDown()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Framework.\+Framework\+Base.\+Mouse\+Down (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{p }\end{DoxyParamCaption})}
+
+
+
+Indicatie dat er een linker klik op punt p aanwezig was (wereld coördinaten) 
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a96d455e075e199faa8a1b27d11f37669}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a96d455e075e199faa8a1b27d11f37669}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!MouseMove@{MouseMove}}
+\index{MouseMove@{MouseMove}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{MouseMove()}{MouseMove()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Framework.\+Framework\+Base.\+Mouse\+Move (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{p }\end{DoxyParamCaption})}
+
+
+
+Mouse verschoven naar punt p, in wereld coördinaten. 
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_ac7d48b8bf02b80b16f3da8d6890ac99c}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_ac7d48b8bf02b80b16f3da8d6890ac99c}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!MouseUp@{MouseUp}}
+\index{MouseUp@{MouseUp}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{MouseUp()}{MouseUp()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Framework.\+Framework\+Base.\+Mouse\+Up (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{p }\end{DoxyParamCaption})}
+
+
+
+Linker mouse knop omhoog. 
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a29c7e67be6285621f2bcf4d4771f1d7b}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a29c7e67be6285621f2bcf4d4771f1d7b}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!PostSolve@{PostSolve}}
+\index{PostSolve@{PostSolve}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{PostSolve()}{PostSolve()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Framework.\+Framework\+Base.\+Post\+Solve (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{contact,  }\item[{}]{impulse }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a588b12280e4b424d12fb2ed9822b7d8e}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a588b12280e4b424d12fb2ed9822b7d8e}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!PreSolve@{PreSolve}}
+\index{PreSolve@{PreSolve}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{PreSolve()}{PreSolve()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Framework.\+Framework\+Base.\+Pre\+Solve (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{contact,  }\item[{}]{old\+\_\+manifold }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a30000e5145f624ff1e47e2a09cb7e3ca}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a30000e5145f624ff1e47e2a09cb7e3ca}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!Print@{Print}}
+\index{Print@{Print}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{Print()}{Print()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Framework.\+Framework\+Base.\+Print (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{str,  }\item[{}]{color = {\ttfamily (229,~153,~153,~255)} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_acd66969726ca68879b191ce995760f09}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_acd66969726ca68879b191ce995760f09}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!ShiftMouseDown@{ShiftMouseDown}}
+\index{ShiftMouseDown@{ShiftMouseDown}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{ShiftMouseDown()}{ShiftMouseDown()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Framework.\+Framework\+Base.\+Shift\+Mouse\+Down (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{p }\end{DoxyParamCaption})}
+
+
+
+Indicatie dat er een linker klik op punt p aanwezig was (wereld coördinaten) met de linker shift-\/toets ingedrukt. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & \mbox{[}description\mbox{]} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_aad6b76b0c1b9cd351832d6b3b5d0cd19}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_aad6b76b0c1b9cd351832d6b3b5d0cd19}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!SimulationLoop@{SimulationLoop}}
+\index{SimulationLoop@{SimulationLoop}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{SimulationLoop()}{SimulationLoop()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Framework.\+Framework\+Base.\+Simulation\+Loop (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+The main simulation loop. 
+
+Don\textquotesingle{}t override this, override Step instead. \mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_ae4fa4f6e98a2dfe817e179b0a554e97c}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_ae4fa4f6e98a2dfe817e179b0a554e97c}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!SpawnBomb@{SpawnBomb}}
+\index{SpawnBomb@{SpawnBomb}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{SpawnBomb()}{SpawnBomb()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Framework.\+Framework\+Base.\+Spawn\+Bomb (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{world\+Pt }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_ae14bb02dc5556d5ed5a07a6c0eb49c3c}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_ae14bb02dc5556d5ed5a07a6c0eb49c3c}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!Step@{Step}}
+\index{Step@{Step}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{Step()}{Step()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Framework.\+Framework\+Base.\+Step (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{settings }\end{DoxyParamCaption})}
+
+
+
+De belangrijkste stap voor de fysica. 
+
+\begin{DoxyVerb}   Zorg voor de natuurkundige tekening (callacks worden uitgevoerd na de world.Step() )
+   en voor het tekeningen van aanvullende informatie.
+\end{DoxyVerb}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em settings} & instellingen van de simulatie. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a5055c763a8aa8c09377bf84f872b792c}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a5055c763a8aa8c09377bf84f872b792c}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!bomb@{bomb}}
+\index{bomb@{bomb}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{bomb}{bomb}}
+{\footnotesize\ttfamily src.\+Backend.\+Framework.\+Framework\+Base.\+bomb}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_aa5e68847108361ffb0ccbd4098c6db41}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_aa5e68847108361ffb0ccbd4098c6db41}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!bombSpawning@{bombSpawning}}
+\index{bombSpawning@{bombSpawning}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{bombSpawning}{bombSpawning}}
+{\footnotesize\ttfamily src.\+Backend.\+Framework.\+Framework\+Base.\+bomb\+Spawning}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a235fd18a1861f0e22b3fd23f9acd0d91}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a235fd18a1861f0e22b3fd23f9acd0d91}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!bombSpawnPoint@{bombSpawnPoint}}
+\index{bombSpawnPoint@{bombSpawnPoint}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{bombSpawnPoint}{bombSpawnPoint}}
+{\footnotesize\ttfamily src.\+Backend.\+Framework.\+Framework\+Base.\+bomb\+Spawn\+Point}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_aecc29db76cdbd12bfc94881ff2e4f236}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_aecc29db76cdbd12bfc94881ff2e4f236}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!colors@{colors}}
+\index{colors@{colors}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{colors}{colors}}
+{\footnotesize\ttfamily dictionary src.\+Backend.\+Framework.\+Framework\+Base.\+colors\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=  \{}
+\DoxyCodeLine{        \textcolor{stringliteral}{'mouse\_point'}: b2Color(0, 1, 0),}
+\DoxyCodeLine{        \textcolor{stringliteral}{'bomb\_center'}: b2Color(0, 0, 1.0),}
+\DoxyCodeLine{        \textcolor{stringliteral}{'bomb\_line'}: b2Color(0, 1.0, 1.0),}
+\DoxyCodeLine{        \textcolor{stringliteral}{'joint\_line'}: b2Color(0.8, 0.8, 0.8),}
+\DoxyCodeLine{        \textcolor{stringliteral}{'contact\_add'}: b2Color(0.3, 0.95, 0.3),}
+\DoxyCodeLine{        \textcolor{stringliteral}{'contact\_persist'}: b2Color(0.3, 0.3, 0.95),}
+\DoxyCodeLine{        \textcolor{stringliteral}{'contact\_normal'}: b2Color(0.4, 0.9, 0.4),}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a565afa706fb1379a4be50b2d365d5047}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a565afa706fb1379a4be50b2d365d5047}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!description@{description}}
+\index{description@{description}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{description}{description}}
+{\footnotesize\ttfamily src.\+Backend.\+Framework.\+Framework\+Base.\+description = None\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_aefb77bc49d1d79fa235e0b3f34026220}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_aefb77bc49d1d79fa235e0b3f34026220}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!destructionListener@{destructionListener}}
+\index{destructionListener@{destructionListener}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{destructionListener}{destructionListener}}
+{\footnotesize\ttfamily src.\+Backend.\+Framework.\+Framework\+Base.\+destruction\+Listener}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_afa41b1fa47f9d485fda15d8dd4b4d71d}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_afa41b1fa47f9d485fda15d8dd4b4d71d}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!fps@{fps}}
+\index{fps@{fps}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{fps}{fps}}
+{\footnotesize\ttfamily src.\+Backend.\+Framework.\+Framework\+Base.\+fps}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a0b0d7ba72ff96509f28e54ed8dedab00}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a0b0d7ba72ff96509f28e54ed8dedab00}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!groundbody@{groundbody}}
+\index{groundbody@{groundbody}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{groundbody}{groundbody}}
+{\footnotesize\ttfamily src.\+Backend.\+Framework.\+Framework\+Base.\+groundbody}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a680a31da8a18236fc8ac0c29f1a23e9f}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a680a31da8a18236fc8ac0c29f1a23e9f}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!mouseJoint@{mouseJoint}}
+\index{mouseJoint@{mouseJoint}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{mouseJoint}{mouseJoint}}
+{\footnotesize\ttfamily src.\+Backend.\+Framework.\+Framework\+Base.\+mouse\+Joint}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_aad10c5e65e5f93dd90727b764cde0810}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_aad10c5e65e5f93dd90727b764cde0810}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!mouseWorld@{mouseWorld}}
+\index{mouseWorld@{mouseWorld}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{mouseWorld}{mouseWorld}}
+{\footnotesize\ttfamily src.\+Backend.\+Framework.\+Framework\+Base.\+mouse\+World}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a54c4fd7c8278fe959399b214b6e8e9c6}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a54c4fd7c8278fe959399b214b6e8e9c6}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!name@{name}}
+\index{name@{name}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily string src.\+Backend.\+Framework.\+Framework\+Base.\+name = \char`\"{}None\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_aa49c8414cf08d533fa40d1a7a9a04966}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_aa49c8414cf08d533fa40d1a7a9a04966}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!points@{points}}
+\index{points@{points}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{points}{points}}
+{\footnotesize\ttfamily src.\+Backend.\+Framework.\+Framework\+Base.\+points}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a06564cb0bd8431238d009a8e85686228}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a06564cb0bd8431238d009a8e85686228}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!renderer@{renderer}}
+\index{renderer@{renderer}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{renderer}{renderer}}
+{\footnotesize\ttfamily src.\+Backend.\+Framework.\+Framework\+Base.\+renderer}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_aab966a73de38f5f9094d091c060d477d}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_aab966a73de38f5f9094d091c060d477d}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!settings@{settings}}
+\index{settings@{settings}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{settings}{settings}}
+{\footnotesize\ttfamily src.\+Backend.\+Framework.\+Framework\+Base.\+settings}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_aa09c485b1cd378c7fdcd3ed32fd9d36f}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_aa09c485b1cd378c7fdcd3ed32fd9d36f}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!stepCount@{stepCount}}
+\index{stepCount@{stepCount}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{stepCount}{stepCount}}
+{\footnotesize\ttfamily src.\+Backend.\+Framework.\+Framework\+Base.\+step\+Count}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_af440c32fcfe48d0a55ed4c263235b581}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_af440c32fcfe48d0a55ed4c263235b581}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!t\_draws@{t\_draws}}
+\index{t\_draws@{t\_draws}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{t\_draws}{t\_draws}}
+{\footnotesize\ttfamily src.\+Backend.\+Framework.\+Framework\+Base.\+t\+\_\+draws}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a2443e5b47b37d2daba3f3ed1b5612c92}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a2443e5b47b37d2daba3f3ed1b5612c92}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!textLine@{textLine}}
+\index{textLine@{textLine}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{textLine}{textLine}}
+{\footnotesize\ttfamily src.\+Backend.\+Framework.\+Framework\+Base.\+text\+Line}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a06237c993e2bb7b3521fbf1d5a16dc8c}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a06237c993e2bb7b3521fbf1d5a16dc8c}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!TEXTLINE\_START@{TEXTLINE\_START}}
+\index{TEXTLINE\_START@{TEXTLINE\_START}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{TEXTLINE\_START}{TEXTLINE\_START}}
+{\footnotesize\ttfamily int src.\+Backend.\+Framework.\+Framework\+Base.\+T\+E\+X\+T\+L\+I\+N\+E\+\_\+\+S\+T\+A\+RT = 30\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a3ba63718853b1442f4dc1540341d7ee4}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a3ba63718853b1442f4dc1540341d7ee4}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!using\_contacts@{using\_contacts}}
+\index{using\_contacts@{using\_contacts}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{using\_contacts}{using\_contacts}}
+{\footnotesize\ttfamily src.\+Backend.\+Framework.\+Framework\+Base.\+using\+\_\+contacts}
+
+\mbox{\Hypertarget{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a9b727b5ff125c1e3e7e0cc25729026b1}\label{classsrc_1_1_backend_1_1_framework_1_1_framework_base_a9b727b5ff125c1e3e7e0cc25729026b1}} 
+\index{src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}!world@{world}}
+\index{world@{world}!src.Backend.Framework.FrameworkBase@{src.Backend.Framework.FrameworkBase}}
+\doxysubsubsection{\texorpdfstring{world}{world}}
+{\footnotesize\ttfamily src.\+Backend.\+Framework.\+Framework\+Base.\+world}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+Backend/\mbox{\hyperlink{_framework_8py}{Framework.\+py}}\end{DoxyCompactItemize}

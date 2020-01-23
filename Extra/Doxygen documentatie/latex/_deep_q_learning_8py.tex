@@ -1,0 +1,52 @@
+\hypertarget{_deep_q_learning_8py}{}\doxysection{src/\+Backend/\+Deep\+Q\+Learning.py File Reference}
+\label{_deep_q_learning_8py}\index{src/Backend/DeepQLearning.py@{src/Backend/DeepQLearning.py}}
+
+
+Dit bestand betreft opzet en data verwerking van de AI.  
+
+
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base}{src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+L\+Base}}
+\begin{DoxyCompactList}\small\item\em Klasse voor de Deep-\/\+Q-\/\+Learning. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network}{src.\+Backend.\+Deep\+Q\+Learning.\+D\+Q\+Network}}
+\begin{DoxyCompactList}\small\item\em Klasse voor het opbouwen van het neurale netwerk. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_memory}{src.\+Backend.\+Deep\+Q\+Learning.\+Memory}}
+\begin{DoxyCompactList}\small\item\em Onthoud alle AI ervaringen. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespacesrc_1_1_backend_1_1_deep_q_learning}{src.\+Backend.\+Deep\+Q\+Learning}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespacesrc_1_1_backend_1_1_deep_q_learning_ac6d7b6f8584830f75bfbc4d989e53760}{src.\+Backend.\+Deep\+Q\+Learning.\+create\+\_\+environment}} ()
+\begin{DoxyCompactList}\small\item\em Functie om de Box2D environment te creëeren. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespacesrc_1_1_backend_1_1_deep_q_learning_a5390404bfd07107bb6b8c543e37ba1c2}{src.\+Backend.\+Deep\+Q\+Learning.\+test\+\_\+environment}} (self)
+\begin{DoxyCompactList}\small\item\em Voer willekeurige acties uit om de Environment te testen. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespacesrc_1_1_backend_1_1_deep_q_learning_ae445054c3d3cf000ad4f6a2bcff49aeb}{src.\+Backend.\+Deep\+Q\+Learning.\+stack\+\_\+states}} (stacked\+\_\+states, new\+\_\+state, is\+\_\+new\+\_\+episode, stack\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Onthoudt de laatste 4 statussen in een array. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespacesrc_1_1_backend_1_1_deep_q_learning_a769b253f41781a07b4759f3c8f1a8a1b}{src.\+Backend.\+Deep\+Q\+Learning.\+predict\+\_\+action}} (explore\+\_\+start, explore\+\_\+stop, decay\+\_\+rate, decay\+\_\+step, state, actions, sess, D\+Q\+Network)
+\begin{DoxyCompactList}\small\item\em Bepaal AI actie of random actie. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Dit bestand betreft opzet en data verwerking van de AI. 
+
+\mbox{\hyperlink{_deep_q_learning_8py}{Deep\+Q\+Learning.\+py}} \begin{DoxyDate}{Date}
+22-\/1-\/2020 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+\+: 1.\+13 
+\end{DoxyVersion}
+\begin{DoxyParagraph}{Modifier}
+Daniël Boon 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Used\+\_\+\+I\+DE}
+Visual Studio Code (Python 3.\+6.\+7 64-\/bit) 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Schematic}
+Lucidchart N\+L\+E/\+A\+I/\+L\+LD AI Version management\+: 1.\+0\+: Headers up-\/to-\/date. 1.\+10\+: Docstrings aangepast naar Google-\/format. 1.\+11\+: Spelling en grammatica commentaren nagekeken Engels vertaald naar Nederlands 1.\+12\+: state volgorde omgedraait 1.\+13\+: Doxygen cometaar gecontroleerd + overtollig commetaar verwijdert 
+\end{DoxyParagraph}

@@ -1,13 +1,13 @@
-"""
-    Library of extra functionalities for the vision application. 
-    Developed by third-party developers.         
+"""    
+    Library van extra functionaliteiten voor de vision applicatie.
+    Ontwikkeld door third-party ontwikkelaars.
 
     File:
         Extra.py
     Date:
-        16-1-2020
+        20-1-2020
     Version:
-        1.0
+        1.12
     Modifier:
         Kelvin Sweere
     Used_IDE:
@@ -15,23 +15,26 @@
     Schematic:
         -
     Version management:
-        1.0:
+        1.00:
             Headers aangepast
-        
+        1.11:
+            Doxygen commentaar aangepast
+        1.12:
+            Spelling en grammatica nagekeken
 """
 
 import cv2 as cv
 import numpy as np
 
 def intersection(line1, line2):
-    """Vindt de intersection tussen twee lijnen doormiddel van de Hesse normal form. 
+    """Vindt de intersectie tussen twee lijnen doormiddel van de Hesse normal form. 
     
     Args:
-        line1 (tuple): x,y cordinaten van lijn 1. 
-        line2 (tuple): x,y cordinaten van lijn 2.
+        line1: (tuple) x,y coördinaten van lijn 1. 
+        line2: (tuple) x,y coördinaten van lijn 2.
     
     Returns:
-        x,y (tuple) : tuple van de x & y snijpunten.
+        (tuple) x & y snijpuntcoördinaten.
     """
 
     rho1, theta1 = line1
@@ -46,31 +49,29 @@ def intersection(line1, line2):
     x0, y0 = int(np.round(x0)), int(np.round(y0))
     return (x0, y0)
 
-    """
-    :param edges:
-    :return cpy, x_y_cor:
-    """
-#teken rechte lijnen die voorkomen in de afbeelding.
+
+# Teken rechte lijnen die voorkomen in de afbeelding.
 def hough_line_transform(edges):
     """Voert het hough line transformatie algoritme uit.    
     
     Args:
-        edges (tuple): cordinaten die worden gebruikt voor cv.HoughLines transform.
+        edges: (tuple) coördinaten die worden gebruikt voor cv.HoughLines transform.
     
     Returns:
-        cpy (np.array): Getekende lijn op een zwart veld.
-        cor (tuple): rho & theta waarde van de lijn.
+        cpy: (np.array) getekende lijn op een zwart veld.
+        cor: (tuple) rho & theta waarde van de lijn.
     """
-    #maximale lengtes van de x,y cordianten.
+
+    # Maximale lengtes van de x,y cordianten.
     cdst = cv.cvtColor(edges, cv.COLOR_GRAY2BGR)
-    #black frame
+    # Zwart frame.
     cpy = np.zeros_like(cdst)
 
-    #gevoeligheid van aantal lijnen.
+    # Gevoeligheid van aantal lijnen.
     lines = cv.HoughLines(edges, 2, np.pi / 180, 150, None, 0, 0)
     cor = []
 
-    #krijg cordinaten + plot image
+    # Krijg cordinaten + plot afbeelding.
     for line in lines:
         rho, theta = line[0]
         a = np.cos(theta)
@@ -91,6 +92,6 @@ def nothing(x):
     die deze functie aanroept wanneer de slider van positie verandert.
     
     Args:
-        x (None): Variablen die moet worden meegegeven van OpenCV.
+        x: (None) variablen die moet worden meegegeven van OpenCV.
     """
     pass

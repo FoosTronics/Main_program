@@ -1,0 +1,132 @@
+\hypertarget{namespacesrc_1_1_backend_1_1_deep_q_learning}{}\doxysection{src.\+Backend.\+Deep\+Q\+Learning Namespace Reference}
+\label{namespacesrc_1_1_backend_1_1_deep_q_learning}\index{src.Backend.DeepQLearning@{src.Backend.DeepQLearning}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_l_base}{D\+Q\+L\+Base}}
+\begin{DoxyCompactList}\small\item\em Klasse voor de Deep-\/\+Q-\/\+Learning. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network}{D\+Q\+Network}}
+\begin{DoxyCompactList}\small\item\em Klasse voor het opbouwen van het neurale netwerk. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_memory}{Memory}}
+\begin{DoxyCompactList}\small\item\em Onthoud alle AI ervaringen. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespacesrc_1_1_backend_1_1_deep_q_learning_ac6d7b6f8584830f75bfbc4d989e53760}{create\+\_\+environment}} ()
+\begin{DoxyCompactList}\small\item\em Functie om de Box2D environment te creëeren. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespacesrc_1_1_backend_1_1_deep_q_learning_a5390404bfd07107bb6b8c543e37ba1c2}{test\+\_\+environment}} (self)
+\begin{DoxyCompactList}\small\item\em Voer willekeurige acties uit om de Environment te testen. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespacesrc_1_1_backend_1_1_deep_q_learning_ae445054c3d3cf000ad4f6a2bcff49aeb}{stack\+\_\+states}} (stacked\+\_\+states, new\+\_\+state, is\+\_\+new\+\_\+episode, stack\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Onthoudt de laatste 4 statussen in een array. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespacesrc_1_1_backend_1_1_deep_q_learning_a769b253f41781a07b4759f3c8f1a8a1b}{predict\+\_\+action}} (explore\+\_\+start, explore\+\_\+stop, decay\+\_\+rate, decay\+\_\+step, state, actions, sess, \mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network}{D\+Q\+Network}})
+\begin{DoxyCompactList}\small\item\em Bepaal AI actie of random actie. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacesrc_1_1_backend_1_1_deep_q_learning_ac6d7b6f8584830f75bfbc4d989e53760}\label{namespacesrc_1_1_backend_1_1_deep_q_learning_ac6d7b6f8584830f75bfbc4d989e53760}} 
+\index{src.Backend.DeepQLearning@{src.Backend.DeepQLearning}!create\_environment@{create\_environment}}
+\index{create\_environment@{create\_environment}!src.Backend.DeepQLearning@{src.Backend.DeepQLearning}}
+\doxysubsubsection{\texorpdfstring{create\_environment()}{create\_environment()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Deep\+Q\+Learning.\+create\+\_\+environment (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Functie om de Box2D environment te creëeren. 
+
+\begin{DoxyReturn}{Returns}
+
+
+possible\+\_\+actions (list) lijst van mogelijke acties.
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Tabel}
+possible\+\_\+actions -\/ \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Acties  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ list waarde   }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Acties  }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ list waarde   }\\\cline{1-2}
+\endhead
+Up  &0   \\\cline{1-2}
+Down  &1   \\\cline{1-2}
+Shoot  &2   \\\cline{1-2}
+Still  &3   \\\cline{1-2}
+\end{longtabu}
+
+\end{DoxyParagraph}
+\mbox{\Hypertarget{namespacesrc_1_1_backend_1_1_deep_q_learning_a769b253f41781a07b4759f3c8f1a8a1b}\label{namespacesrc_1_1_backend_1_1_deep_q_learning_a769b253f41781a07b4759f3c8f1a8a1b}} 
+\index{src.Backend.DeepQLearning@{src.Backend.DeepQLearning}!predict\_action@{predict\_action}}
+\index{predict\_action@{predict\_action}!src.Backend.DeepQLearning@{src.Backend.DeepQLearning}}
+\doxysubsubsection{\texorpdfstring{predict\_action()}{predict\_action()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Deep\+Q\+Learning.\+predict\+\_\+action (\begin{DoxyParamCaption}\item[{}]{explore\+\_\+start,  }\item[{}]{explore\+\_\+stop,  }\item[{}]{decay\+\_\+rate,  }\item[{}]{decay\+\_\+step,  }\item[{}]{state,  }\item[{}]{actions,  }\item[{}]{sess,  }\item[{}]{D\+Q\+Network }\end{DoxyParamCaption})}
+
+
+
+Bepaal AI actie of random actie. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em explore\+\_\+start} & (float) begin percentage ratio random actie tot AI bepaalde actie. \\
+\hline
+{\em explore\+\_\+stop} & (float) eind percentage ratio random actie tot AI bepaalde actie. \\
+\hline
+{\em decay\+\_\+rate} & (float) snelheid van explore\+\_\+start tot explore\+\_\+stop. \\
+\hline
+{\em decay\+\_\+step} & (int) hoeveelheid gemaakte stappen. \\
+\hline
+{\em state} & (numpy array) numpy array van state. \\
+\hline
+{\em actions} & (list) lijst van mogelijke acties voor ai. \\
+\hline
+{\em sess} & (tf.\+Session()) Tensor\+Flow session. \\
+\hline
+{\em \mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network}{D\+Q\+Network}}} & (class) \mbox{\hyperlink{classsrc_1_1_backend_1_1_deep_q_learning_1_1_d_q_network}{D\+Q\+Network}} klasse.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+
+action (list) lijst waarin een boolean aangeeft welke actie genomen dient te worden. 
+
+explore\+\_\+probability (float) willekeurige waarde die aangeeft of een willekeurige actie uitgevoerd moet worden. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacesrc_1_1_backend_1_1_deep_q_learning_ae445054c3d3cf000ad4f6a2bcff49aeb}\label{namespacesrc_1_1_backend_1_1_deep_q_learning_ae445054c3d3cf000ad4f6a2bcff49aeb}} 
+\index{src.Backend.DeepQLearning@{src.Backend.DeepQLearning}!stack\_states@{stack\_states}}
+\index{stack\_states@{stack\_states}!src.Backend.DeepQLearning@{src.Backend.DeepQLearning}}
+\doxysubsubsection{\texorpdfstring{stack\_states()}{stack\_states()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Deep\+Q\+Learning.\+stack\+\_\+states (\begin{DoxyParamCaption}\item[{}]{stacked\+\_\+states,  }\item[{}]{new\+\_\+state,  }\item[{}]{is\+\_\+new\+\_\+episode,  }\item[{}]{stack\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Onthoudt de laatste 4 statussen in een array. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stacked\+\_\+states} & (deque\mbox{[}4\mbox{]}) deque array van afgelopen laatste 4 states \\
+\hline
+{\em new\+\_\+state} & (numpy array) numpy array van nieuwe state \\
+\hline
+{\em is\+\_\+new\+\_\+episode} & (bool) aangeven of er een nieuwe episode begint \\
+\hline
+{\em stack\+\_\+size} & (int) hoeveelheid voorgaande states onthouden\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+
+stacked\+\_\+state (list) stacked\+\_\+states omgezet in numpy array voor AI state 
+
+stacked\+\_\+states (deque\mbox{[}list\mbox{]}) deque array geupdate van afgelopen laatste 4 states 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacesrc_1_1_backend_1_1_deep_q_learning_a5390404bfd07107bb6b8c543e37ba1c2}\label{namespacesrc_1_1_backend_1_1_deep_q_learning_a5390404bfd07107bb6b8c543e37ba1c2}} 
+\index{src.Backend.DeepQLearning@{src.Backend.DeepQLearning}!test\_environment@{test\_environment}}
+\index{test\_environment@{test\_environment}!src.Backend.DeepQLearning@{src.Backend.DeepQLearning}}
+\doxysubsubsection{\texorpdfstring{test\_environment()}{test\_environment()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Deep\+Q\+Learning.\+test\+\_\+environment (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Voer willekeurige acties uit om de Environment te testen. 
+

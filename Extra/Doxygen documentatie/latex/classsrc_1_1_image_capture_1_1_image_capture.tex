@@ -1,0 +1,194 @@
+\hypertarget{classsrc_1_1_image_capture_1_1_image_capture}{}\doxysection{src.\+Image\+Capture.\+Image\+Capture Class Reference}
+\label{classsrc_1_1_image_capture_1_1_image_capture}\index{src.ImageCapture.ImageCapture@{src.ImageCapture.ImageCapture}}
+
+
+Klasse voor het maken en ophalen van afbeeldingen met behulp van een webcam of raspi cam.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classsrc_1_1_image_capture_1_1_image_capture_a426aba202ce3d01890558570787b3bba}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, res=(640, 360), file=None, save=False)
+\item 
+def \mbox{\hyperlink{classsrc_1_1_image_capture_1_1_image_capture_a15b8006d786501f5c2bc98d498833e13}{start\+\_\+camera}} (self)
+\begin{DoxyCompactList}\small\item\em Het configuren van het camera object. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_image_capture_1_1_image_capture_a9a1c0ac643427e68a120d2c96943fd39}{get\+\_\+frame}} (self)
+\begin{DoxyCompactList}\small\item\em Het ophalen van een afbeelding uit het geheugen. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_image_capture_1_1_image_capture_a7f3be25ec877a6edf3502855658d311a}{save\+\_\+frame}} (self)
+\begin{DoxyCompactList}\small\item\em Het wegschrijven van een afbeelding naar het geheugen. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsrc_1_1_image_capture_1_1_image_capture_a10955feb3aadc39a8e47beb78837f13e}{S\+A\+VE}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_image_capture_1_1_image_capture_a3f0a866c483db39fa695cf9c664dc7b8}{F\+I\+LE}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_image_capture_1_1_image_capture_a53ac418f797393725e1122d562c883bf}{R\+E\+S\+O\+L\+U\+T\+I\+ON}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_image_capture_1_1_image_capture_af16a7917d1cffda9dbe6fa46fb4e2b5a}{F\+PS}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_image_capture_1_1_image_capture_a3cf512d6e4babd791d2b50ca9a2810ea}{S\+T\+A\+B\+I\+L\+I\+Z\+A\+T\+I\+ON}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_image_capture_1_1_image_capture_af3046995340c110a24c81899fc91c85a}{S\+H\+U\+T\+T\+E\+R\+\_\+\+T\+I\+ME}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_image_capture_1_1_image_capture_a6211a4355a1c6b504087bf62f135114f}{camera}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_image_capture_1_1_image_capture_acddd1210d3ba77f84809464316d76db2}{fourcc}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_image_capture_1_1_image_capture_a0a8bfaa01529ecdfdcc88107d5fcf4db}{writer}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_image_capture_1_1_image_capture_aae4fc40041b7a4aee2a026adec49fa12}{frame}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classsrc_1_1_image_capture_1_1_image_capture_a4bd528e4d4a1a7063a02b2875ec083aa}{\+\_\+gstreamer\+\_\+pipeline}} (self, capture\+\_\+width=1280, capture\+\_\+height=720, display\+\_\+width=640, display\+\_\+height=360, framerate=60, flip\+\_\+method=0)
+\begin{DoxyCompactList}\small\item\em Initialisatie van de Gstreamer pipeline. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Klasse voor het maken en ophalen van afbeeldingen met behulp van een webcam of raspi cam. 
+
+{\bfseries{Author}}\+: Chileam Bohnen ~\newline
+ {\bfseries{Version}}\+: 1.\+22 ~\newline
+ {\bfseries{Date}}\+: 20-\/1-\/2020 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classsrc_1_1_image_capture_1_1_image_capture_a426aba202ce3d01890558570787b3bba}\label{classsrc_1_1_image_capture_1_1_image_capture_a426aba202ce3d01890558570787b3bba}} 
+\index{src.ImageCapture.ImageCapture@{src.ImageCapture.ImageCapture}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!src.ImageCapture.ImageCapture@{src.ImageCapture.ImageCapture}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def src.\+Image\+Capture.\+Image\+Capture.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{res = {\ttfamily (640,~360)},  }\item[{}]{file = {\ttfamily None},  }\item[{}]{save = {\ttfamily False} }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classsrc_1_1_image_capture_1_1_image_capture_a4bd528e4d4a1a7063a02b2875ec083aa}\label{classsrc_1_1_image_capture_1_1_image_capture_a4bd528e4d4a1a7063a02b2875ec083aa}} 
+\index{src.ImageCapture.ImageCapture@{src.ImageCapture.ImageCapture}!\_gstreamer\_pipeline@{\_gstreamer\_pipeline}}
+\index{\_gstreamer\_pipeline@{\_gstreamer\_pipeline}!src.ImageCapture.ImageCapture@{src.ImageCapture.ImageCapture}}
+\doxysubsubsection{\texorpdfstring{\_gstreamer\_pipeline()}{\_gstreamer\_pipeline()}}
+{\footnotesize\ttfamily def src.\+Image\+Capture.\+Image\+Capture.\+\_\+gstreamer\+\_\+pipeline (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{capture\+\_\+width = {\ttfamily 1280},  }\item[{}]{capture\+\_\+height = {\ttfamily 720},  }\item[{}]{display\+\_\+width = {\ttfamily 640},  }\item[{}]{display\+\_\+height = {\ttfamily 360},  }\item[{}]{framerate = {\ttfamily 60},  }\item[{}]{flip\+\_\+method = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initialisatie van de Gstreamer pipeline. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em capture\+\_\+width} & (int, optional) breedte van de te nemen foto. Standaard 1280. \\
+\hline
+{\em capture\+\_\+height} & (int, optional) hoogte van de te nemen foto. Standaard 720. \\
+\hline
+{\em display\+\_\+width} & (int, optional) breedte voor het weergeven van de beelden. Standaard 640. \\
+\hline
+{\em display\+\_\+height} & (int, optional) hoogte voor het weergeven van de beelden. Standaard 360. \\
+\hline
+{\em framerate} & (int, optional) snelheid van de camera in fps. Standaard 120. \\
+\hline
+{\em flip\+\_\+method} & (int, optional) kant waarop het camerabeeld toewijst. Standaard 2.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+(str) instellingen voor het aansturen van de camera met de parameters erin vewerkt. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classsrc_1_1_image_capture_1_1_image_capture_a9a1c0ac643427e68a120d2c96943fd39}\label{classsrc_1_1_image_capture_1_1_image_capture_a9a1c0ac643427e68a120d2c96943fd39}} 
+\index{src.ImageCapture.ImageCapture@{src.ImageCapture.ImageCapture}!get\_frame@{get\_frame}}
+\index{get\_frame@{get\_frame}!src.ImageCapture.ImageCapture@{src.ImageCapture.ImageCapture}}
+\doxysubsubsection{\texorpdfstring{get\_frame()}{get\_frame()}}
+{\footnotesize\ttfamily def src.\+Image\+Capture.\+Image\+Capture.\+get\+\_\+frame (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Het ophalen van een afbeelding uit het geheugen. 
+
+\begin{DoxyReturn}{Returns}
+(np.\+ndarray) een afbeelding als numpy array in de vorm van \mbox{[}hoogte, breedte, kleurdiepte\mbox{]}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classsrc_1_1_image_capture_1_1_image_capture_a7f3be25ec877a6edf3502855658d311a}\label{classsrc_1_1_image_capture_1_1_image_capture_a7f3be25ec877a6edf3502855658d311a}} 
+\index{src.ImageCapture.ImageCapture@{src.ImageCapture.ImageCapture}!save\_frame@{save\_frame}}
+\index{save\_frame@{save\_frame}!src.ImageCapture.ImageCapture@{src.ImageCapture.ImageCapture}}
+\doxysubsubsection{\texorpdfstring{save\_frame()}{save\_frame()}}
+{\footnotesize\ttfamily def src.\+Image\+Capture.\+Image\+Capture.\+save\+\_\+frame (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Het wegschrijven van een afbeelding naar het geheugen. 
+
+\mbox{\Hypertarget{classsrc_1_1_image_capture_1_1_image_capture_a15b8006d786501f5c2bc98d498833e13}\label{classsrc_1_1_image_capture_1_1_image_capture_a15b8006d786501f5c2bc98d498833e13}} 
+\index{src.ImageCapture.ImageCapture@{src.ImageCapture.ImageCapture}!start\_camera@{start\_camera}}
+\index{start\_camera@{start\_camera}!src.ImageCapture.ImageCapture@{src.ImageCapture.ImageCapture}}
+\doxysubsubsection{\texorpdfstring{start\_camera()}{start\_camera()}}
+{\footnotesize\ttfamily def src.\+Image\+Capture.\+Image\+Capture.\+start\+\_\+camera (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Het configuren van het camera object. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classsrc_1_1_image_capture_1_1_image_capture_a6211a4355a1c6b504087bf62f135114f}\label{classsrc_1_1_image_capture_1_1_image_capture_a6211a4355a1c6b504087bf62f135114f}} 
+\index{src.ImageCapture.ImageCapture@{src.ImageCapture.ImageCapture}!camera@{camera}}
+\index{camera@{camera}!src.ImageCapture.ImageCapture@{src.ImageCapture.ImageCapture}}
+\doxysubsubsection{\texorpdfstring{camera}{camera}}
+{\footnotesize\ttfamily src.\+Image\+Capture.\+Image\+Capture.\+camera}
+
+\mbox{\Hypertarget{classsrc_1_1_image_capture_1_1_image_capture_a3f0a866c483db39fa695cf9c664dc7b8}\label{classsrc_1_1_image_capture_1_1_image_capture_a3f0a866c483db39fa695cf9c664dc7b8}} 
+\index{src.ImageCapture.ImageCapture@{src.ImageCapture.ImageCapture}!FILE@{FILE}}
+\index{FILE@{FILE}!src.ImageCapture.ImageCapture@{src.ImageCapture.ImageCapture}}
+\doxysubsubsection{\texorpdfstring{FILE}{FILE}}
+{\footnotesize\ttfamily src.\+Image\+Capture.\+Image\+Capture.\+F\+I\+LE}
+
+\mbox{\Hypertarget{classsrc_1_1_image_capture_1_1_image_capture_acddd1210d3ba77f84809464316d76db2}\label{classsrc_1_1_image_capture_1_1_image_capture_acddd1210d3ba77f84809464316d76db2}} 
+\index{src.ImageCapture.ImageCapture@{src.ImageCapture.ImageCapture}!fourcc@{fourcc}}
+\index{fourcc@{fourcc}!src.ImageCapture.ImageCapture@{src.ImageCapture.ImageCapture}}
+\doxysubsubsection{\texorpdfstring{fourcc}{fourcc}}
+{\footnotesize\ttfamily src.\+Image\+Capture.\+Image\+Capture.\+fourcc}
+
+\mbox{\Hypertarget{classsrc_1_1_image_capture_1_1_image_capture_af16a7917d1cffda9dbe6fa46fb4e2b5a}\label{classsrc_1_1_image_capture_1_1_image_capture_af16a7917d1cffda9dbe6fa46fb4e2b5a}} 
+\index{src.ImageCapture.ImageCapture@{src.ImageCapture.ImageCapture}!FPS@{FPS}}
+\index{FPS@{FPS}!src.ImageCapture.ImageCapture@{src.ImageCapture.ImageCapture}}
+\doxysubsubsection{\texorpdfstring{FPS}{FPS}}
+{\footnotesize\ttfamily src.\+Image\+Capture.\+Image\+Capture.\+F\+PS}
+
+\mbox{\Hypertarget{classsrc_1_1_image_capture_1_1_image_capture_aae4fc40041b7a4aee2a026adec49fa12}\label{classsrc_1_1_image_capture_1_1_image_capture_aae4fc40041b7a4aee2a026adec49fa12}} 
+\index{src.ImageCapture.ImageCapture@{src.ImageCapture.ImageCapture}!frame@{frame}}
+\index{frame@{frame}!src.ImageCapture.ImageCapture@{src.ImageCapture.ImageCapture}}
+\doxysubsubsection{\texorpdfstring{frame}{frame}}
+{\footnotesize\ttfamily src.\+Image\+Capture.\+Image\+Capture.\+frame}
+
+\mbox{\Hypertarget{classsrc_1_1_image_capture_1_1_image_capture_a53ac418f797393725e1122d562c883bf}\label{classsrc_1_1_image_capture_1_1_image_capture_a53ac418f797393725e1122d562c883bf}} 
+\index{src.ImageCapture.ImageCapture@{src.ImageCapture.ImageCapture}!RESOLUTION@{RESOLUTION}}
+\index{RESOLUTION@{RESOLUTION}!src.ImageCapture.ImageCapture@{src.ImageCapture.ImageCapture}}
+\doxysubsubsection{\texorpdfstring{RESOLUTION}{RESOLUTION}}
+{\footnotesize\ttfamily src.\+Image\+Capture.\+Image\+Capture.\+R\+E\+S\+O\+L\+U\+T\+I\+ON}
+
+\mbox{\Hypertarget{classsrc_1_1_image_capture_1_1_image_capture_a10955feb3aadc39a8e47beb78837f13e}\label{classsrc_1_1_image_capture_1_1_image_capture_a10955feb3aadc39a8e47beb78837f13e}} 
+\index{src.ImageCapture.ImageCapture@{src.ImageCapture.ImageCapture}!SAVE@{SAVE}}
+\index{SAVE@{SAVE}!src.ImageCapture.ImageCapture@{src.ImageCapture.ImageCapture}}
+\doxysubsubsection{\texorpdfstring{SAVE}{SAVE}}
+{\footnotesize\ttfamily src.\+Image\+Capture.\+Image\+Capture.\+S\+A\+VE}
+
+\mbox{\Hypertarget{classsrc_1_1_image_capture_1_1_image_capture_af3046995340c110a24c81899fc91c85a}\label{classsrc_1_1_image_capture_1_1_image_capture_af3046995340c110a24c81899fc91c85a}} 
+\index{src.ImageCapture.ImageCapture@{src.ImageCapture.ImageCapture}!SHUTTER\_TIME@{SHUTTER\_TIME}}
+\index{SHUTTER\_TIME@{SHUTTER\_TIME}!src.ImageCapture.ImageCapture@{src.ImageCapture.ImageCapture}}
+\doxysubsubsection{\texorpdfstring{SHUTTER\_TIME}{SHUTTER\_TIME}}
+{\footnotesize\ttfamily src.\+Image\+Capture.\+Image\+Capture.\+S\+H\+U\+T\+T\+E\+R\+\_\+\+T\+I\+ME}
+
+\mbox{\Hypertarget{classsrc_1_1_image_capture_1_1_image_capture_a3cf512d6e4babd791d2b50ca9a2810ea}\label{classsrc_1_1_image_capture_1_1_image_capture_a3cf512d6e4babd791d2b50ca9a2810ea}} 
+\index{src.ImageCapture.ImageCapture@{src.ImageCapture.ImageCapture}!STABILIZATION@{STABILIZATION}}
+\index{STABILIZATION@{STABILIZATION}!src.ImageCapture.ImageCapture@{src.ImageCapture.ImageCapture}}
+\doxysubsubsection{\texorpdfstring{STABILIZATION}{STABILIZATION}}
+{\footnotesize\ttfamily src.\+Image\+Capture.\+Image\+Capture.\+S\+T\+A\+B\+I\+L\+I\+Z\+A\+T\+I\+ON}
+
+\mbox{\Hypertarget{classsrc_1_1_image_capture_1_1_image_capture_a0a8bfaa01529ecdfdcc88107d5fcf4db}\label{classsrc_1_1_image_capture_1_1_image_capture_a0a8bfaa01529ecdfdcc88107d5fcf4db}} 
+\index{src.ImageCapture.ImageCapture@{src.ImageCapture.ImageCapture}!writer@{writer}}
+\index{writer@{writer}!src.ImageCapture.ImageCapture@{src.ImageCapture.ImageCapture}}
+\doxysubsubsection{\texorpdfstring{writer}{writer}}
+{\footnotesize\ttfamily src.\+Image\+Capture.\+Image\+Capture.\+writer}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{_image_capture_8py}{Image\+Capture.\+py}}\end{DoxyCompactItemize}

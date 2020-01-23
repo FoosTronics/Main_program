@@ -1,432 +1,377 @@
 """
-    Hoofdclass FoosTronics en main code. 
+    Hoofdklasse FoosTronics.
     De onderdelen voor beeldherkenning, AI en motor aansturing komen in dit bestand bijelkaar.
-    In dit bestand bestaat voor grootendeels uit de regeling van de AI.
 
     File:
         main.py
     Date:
-        16.1.2020
+        23-1-2020
     Version:
-        V1.2
+        1.49
     Author:
         Daniël Boon
         Kelvin Sweere
+        Chileam Bohnen
     Used_IDE:
         Visual Studio Code (Python 3.6.7 64-bit)
-
     Version management:
         1.1:
             functie: _initAISettings() toegevoegd voor de parameters van de AI in de init.
         1.2:
             Constantes zijn hoofdletters.
-
-
+        1.3:
+            objecten: ImageCapture, FindContours, BallDetect toegevoegd om de Raspi cam te gebruiken
+        1.40:
+            fixed moving keeper + dubble object keeper_sim
+        1.41:
+            Doxygen commentaar toegevoegd.
+        1.42:
+            Spelling en grammatica commentaar nagekeken
+        1.43:
+            go_home functie operationeel zonder hardware sensor voor home positie
+        1.44:
+            Proces van afbeelding ophalen tot positie van detecteren in een eigen Thread
+        1.45:
+            fixed te vaak achterelkaar goals maken
+        1.46:
+            mogelijke fix toegevoegd voor blocked niet kunnen registreren
+        1.47:
+            overtollig commetaar verwijdert 
+        1.48:
+            nieuwe feature ball wordt niet meer weergegeven in simulatie waneer uit het veld
+        1.49:
+            Loop toegevoegd zodat de simulatie niet opent wanneer de trackbars openstaan.
 """ 
 #pylint: disable=E1101
 
-from src.KeeperSim import KeeperSim
+from src.ImageCapture import *
+from src.FindContours import *
+from src.BallDetect import *
+from src.KeeperSim import *
+from src.Controller import *
+
 from src.Backend.Framework import main
-import src.Backend.DeepQLearning as DQL
-from src.Backend.USB import Commands
-from src.Controller import PController
+from src.Backend.DeepQLearning import DQLBase
 
-import matplotlib.pylab as plt
-from datetime import datetime
+#import matplotlib.pylab as plt
+import numpy as np
 
+import cv2
 import time
-from src.Backend.BeeldKoppeling import BeeldKoppeling
+from threading import Thread
+from queue import Queue
+import sys
 
-KEEPER_SPEED = 40
+from glob import glob
+import os
+
+# False wanneer de camera gebruikt moet worden, True wanneer een video afgespeeld moet worden.
+DEBUG_VIDEO = False
+
 
 class Foostronics:
+    """Klasse van de main applicatie.
+    
+    **Author**:       \n
+        Daniël Boon   \n
+        Kelvin Sweere \n
+        Chileam Bohnen\n
+        Sipke Vellinga\n
+    **Version**:
+        1.49          \n
+    **Date**:
+        23-1-2020 
+    """
     def __init__(self, keeper_sim):
         """initialisatie main.
-           bestaat voornamelijk uit AI initialisatie.
         
         Args:
-            keeper_sim (class): adress van draaiende keeper simulatie om variabelen op te halen.
+            keeper_sim: (class) adres van draaiende keeper simulatie om variabelen op te halen.
         """
-        self.ks = KeeperSim()
+        if DEBUG_VIDEO:
+            self.file = glob("D:\\Stichting Hogeschool Utrecht\\NLE - Documenten\\Test foto's\\new frame\\1.png")
+            # self.file = glob("C:\\Users\\" + os.getlogin() + "\\Stichting Hogeschool Utrecht\\NLE - Documenten\\Test foto's\\V1.3 cam normal Wide angle + ball\\output_fast.avi")
+            self.camera = ImageCapture(file=self.file[0])
+        else:
+            self.camera = ImageCapture()
 
-        # TODO: BeeldKoppeling wordt vervangen
-        self.bk = BeeldKoppeling(debug_flag=True)     # class die de beeldherkenning afhandeld. debug_flag=True (trackbars worden afgemaakt).
+        self.ks = keeper_sim
+        # print(self.ks.screen)
+        if not self.ks.shoot_bool:
+            self.find_contours = FindContours()
+            self.ball_detection = BallDetection()
 
-        self.possible_actions = DQL.create_environment()
+        self.WIDTH_IMG = 640
+        self.HEIGHT_IMG = 360
 
-        self.stack_size = 4 # We stack 4 frames
+        self.dql = DQLBase()
+        self.que = Queue(2)
 
-        # Initialize deque with zero-images one array for each image
-        self.stacked_states = DQL.deque([DQL.np.zeros(4, dtype=DQL.np.float) for i in range(self.stack_size)], maxlen=4) 
-
-        # init alle parameters voor de AI.
-        STATE_SIZE, ACTION_SIZE, LEARNING_RATE, MEMORY_SIZE = self._initAISettings()
-       
-        ### MODIFY THIS TO FALSE IF YOU JUST WANT TO SEE THE TRAINED AGENT
-        training = True
-
-        ## TURN THIS TO TRUE IF YOU WANT TO RENDER THE ENVIRONMENT
-        episode_render = False
-
-        # Reset the graph
-        DQL.tf.reset_default_graph()
-
-        # Instantiate the DQNetwork
-        self.DQNetwork = DQL.DQNetwork(STATE_SIZE, ACTION_SIZE, LEARNING_RATE)
-        
-        # Instantiate memory
-        self.memory = DQL.Memory(max_size = MEMORY_SIZE)
-
-        # Setup TensorBoard Writer
-        self.writer = DQL.tf.summary.FileWriter("/tensorboard/dqn/1")
-
-        ## Losses
-        DQL.tf.summary.scalar("Loss", self.DQNetwork.loss)
-
-        self.write_op = DQL.tf.summary.merge_all()
-
-        # Saver will help us to save our model
-        self.saver = DQL.tf.train.Saver()
-
-        #with DQL.tf.Session() as self.sess:
-        self.sess = DQL.tf.Session()
-        # Initialize the variables
-        self.sess.run(DQL.tf.global_variables_initializer())
-        
-        # Initialize the decay rate (that will use to reduce epsilon) 
-        self.decay_step = 0
-                    # Set step to 0
-        self.step = 0
-        
-        # Initialize the rewards of the episode
-        self.episode_rewards = []
-
-        # Make a new episode and observe the first state
-        #game.new_episode()
-        self.state = DQL.np.array([ks.ball.position.x, ks.ball.position.y, ks.body.position.x, ks.body.position.y])
-        
-        # Remember that stack frame function also call our preprocess function.
-        self.state, self.stacked_states = DQL.stack_states(self.stacked_states, self.state, True, self.stack_size)
-        self.goals_old = 0
-        self.blocks_old = 0
-        self.vel_x_old = 0
-        self.vel_y_old = 0
-        self.reward = 0
-        self.total_reward = []
-        self.episode = 0
-        self.action = 0
-
-        self.hl, = plt.plot([], [])
-        self.points_array = []
-        self.met_drivers = False
         try:
-            self.pc = PController()
+            self.con = Controller()
             self.met_drivers = True
         except:
-            pass
-    
-    def _initAISettings(self):
-        ### MODEL HYPERPARAMETERS
-        # Our input is a stack of 4 frames hence 84x84x4 (Width, height, channels)
-        STATE_SIZE = [4, 4]
-        ACTION_SIZE = 4  # game.get_available_buttons_size()              # 3 possible actions: left, right, shoot
-        #NOTE: was 0.0002
-        LEARNING_RATE = 0.01      # Alpha (aka learning rate)
+            self.met_drivers = False
 
-        ### TRAINING HYPERPARAMETERS
-        total_episodes = 500        # Total episodes for training
-        self.max_steps = 1000              # Max possible steps in an episode
-        #NOTE: was 64
-        self.batch_size = 32
+        # self.hl, = plt.plot([], [])
+        self.points_array = []
+        self.scored = 0
+        self.old_ball_positions = []
+        self.reused_counter = 0
 
-        # Exploration parameters for epsilon greedy strategy
-        #NOTE: explore_start was 1.0
-        self.explore_start = 1.0            # exploration probability at start
-        self.explore_stop = 0.01            # minimum exploration probability
-        self.decay_rate = 0.0001            # exponential decay rate for exploration prob
+    def calibration(self):
+        print("gebruik 'q' om kalibratie te stoppen, en 'n' om de simulatie te starten.")
+        while True:
+            # get new frame from camera buffer
+            _frame = self.camera.get_frame()
+            # set new frame in find_contours object for image cropping
+            self.find_contours.new_img(_frame)
 
-        # Q learning hyperparameters
-        self.gamma = 0.95               # Discounting rate
+            # get cropped image from find_contours
+            _field = self.find_contours.get_cropped_field()
+            cv2.imshow("field", self.find_contours.drawing_img)
 
-        ### MEMORY HYPERPARAMETERS
-        # Number of experiences stored in the Memory when initialized for the first time
-        pretrain_length = self.batch_size
-        MEMORY_SIZE = 10000          # Number of experiences the Memory can keep
+            # set height and width parameters
+            self.HEIGHT_IMG, self.WIDTH_IMG, _ = _field.shape
+            # set new cropped image in ball_detection object
+            self.ball_detection.new_frame(_field)
+            # get new ball position coordinates in image pixel values
+            cor = self.ball_detection.getball_pos()
+            cv2.imshow("ball detection", self.ball_detection.frame)
+            # convert image pixel values to simulation values
 
-        return (STATE_SIZE, ACTION_SIZE, LEARNING_RATE, MEMORY_SIZE)
+            key = cv2.waitKey(5)
+            if key == ord('q'):
+                cv2.destroyAllWindows()
+                return False
+            elif key == ord('n'):
+                cv2.destroyAllWindows()
+                return True
 
+    def start_get_ball_thread(self):
+        """Opstarten van een nieuw proces die de functie update_ball_position uitvoert.
+        """
+        if self.calibration(): 
+            ball_thread = Thread(target=self.update_ball_position, args=())
+            ball_thread.daemon = True
+            ball_thread.start()
+        else:
+            self.camera.camera.release()
+            self.ks.running = False
+            sys.exit()
 
-    # TODO opdelen in functies en waarom staat dit niet in de simulatie files?
-    def run(self, ball, keeper, control, target, goals, blocks):
-        """Deze functie wordt om iedere frame aangeroepen en kan gezien worden als de mainloop.
+    def update_ball_position(self):
+        """Opstarten van bal detectie proces dat een afbeelding uit van de gstreamer of van een bestand haalt.
+        Zie ImageCapture voor het ophalen van afbeeldingen, FindContours om het speelveld te schalen en BallDetect voor de bal detectie.
+        """
+        while True:
+            if not self.ks.running:
+                self.camera.camera.release()
+                self.con.stop_controller_thread()
+                cv2.destroyAllWindows()
+                break
+
+            if not self.que.full():
+                # get new frame from camera buffer
+                _frame = self.camera.get_frame()
+                # set new frame in find_contours object for image cropping
+                self.find_contours.new_img(_frame)
+
+                # get cropped image from find_contours
+                _field = self.find_contours.get_cropped_field()
+
+                # set height and width parameters
+                self.HEIGHT_IMG, self.WIDTH_IMG, _ = _field.shape
+                # set new cropped image in ball_detection object
+                self.ball_detection.new_frame(_field)
+                # get new ball position coordinates in image pixel values
+                cor = self.ball_detection.getball_pos()
+                # convert image pixel values to simulation values
+                self.que.put((self._convert2_sim_cor(cor[0], cor[1]), self.ball_detection.reused))
+            cv2.waitKey(1)
+
+    def _convert2_sim_cor(self, x_p, y_p):
+        """Zet de pixel positie van de beeldherkenning verhoudingsgewijs om naar pixel positie van de simulatie.
         
         Args:
-            ball (Box2D object): Box2D object voor ball positie uitlezen
-            keeper (Box2D object): Box2D object voor aansturen keeper door AI
-            control (class): object voor richtingbepaling van keeper
-            target (int): gewenste y positie van keeper om bal tegen te houden
-            goals (int): totaal aantal goals
-            blocks (int): totaal aantal ballen tegengehouden
+            x_p: (int) x coördinaat van de pixelpositie.
+            y_p: (int) y coördinaat van de pixelpositie.
         
         Returns:
-            ball (Box2D object): update nieuwe ball positie in simulatie
-            keeper (Box2D object): update nieuwe keeper aansturing in simulatie
-            control (class): update gekozen richting van keeper
-            action (int): update gekozen actie van AI in simulatie
-
+            (tuple) x & y coördinaten van de simulatie.
         """
-        # time.sleep(0.03)
-                # wanneer de beeldherkenning aanstaat. Krijg de balpositie.
-        if self.ks.shoot_bool:     #voer uit als de beeldherkenning aan hoort.
-            ball_pos_old = ball.position
-            ball.position = self.bk.get_pos_vision()
-            # * print de cordinaten van de simulatie.
-            # print(self.bk.x_s, self.bk.y_s)
-
-        vel_x = 0
-        vel_y = 0
+        # x_simulatie posite
+        x_s = self.map_function(x_p, 0, self.WIDTH_IMG, self.ks.SIM_LEFT, self.ks.SIM_RIGHT)    #-19.35, 19.35
+        #y_s = self.map_function(y_p, 0, self.HEIGHT_IMG, self.ks.SIM_TOP, self.ks.SIM_BOTTOM)   #20, 0
+        y_s = self.map_function(y_p, 0, self.HEIGHT_IMG, self.ks.SIM_BOTTOM, self.ks.SIM_TOP)
+        return (x_s, y_s)
+    
+    def map_function(self, val, in_min, in_max, out_min, out_max):
+        """Map functie (zoals in de Arduino IDE) die input waarde (in_min & in_max) schaald in verhouding naar de output (out_min & out_max).
         
-        for i in range(len(self.state[0])-1):
-            vel_x = self.state[0][i+1] - self.state[0][i]
-            vel_y = self.state[1][i+1] - self.state[1][i]
-
-        target = self.state[1][0]+(((-15-self.state[0][0])/vel_x) * vel_y)
+        Args:
+            val: (int) waarde die geschaald moet worden.
+            in_min: (int) minimale waarde die de input kan hebben.
+            in_max: (int) maximale waarde die de input kan hebben.
+            out_min: (int) minimale waarde die de output mag krijgen.
+            out_max: (int) maximale waarde die de output mag krijgen.
         
-        if(ks.tp):
-            ks.delete_targetpoint()
+        Returns:
+            (int) geschaalde waarde van de input.
+        """
+        return (val - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
 
-        if((vel_x > 0) or (target > 11.26) or (target < 6.16)):
-            target = DQL.np.nan
-        elif(not DQL.np.isnan(target)):
-            ks.create_targetpoint((-15, target))
+    def execute_action(self, action, old_action):
+        """Voer de actie uit, die de AI heeft gekozen, op de stappenmotoren.
+        
+        Args:
+            action: (list) acties die de AI gekozen heeft.
+            old_action: (list) de vorige actie die de AI gekozen heeft.
+        """
+        if not self.con.que.full():
+            if np.array_equal(action, self.dql.possible_actions[0]):
+                self.ks.control.y = self.ks.KEEPER_SPEED
+                if(self.met_drivers and (not np.array_equal(action, old_action))):
+                    self.con.que.put(0)
+                    #self.con.jog_motor(0) #JOG_MIN
 
-        print(target)
+            elif np.array_equal(action, self.dql.possible_actions[1]):
+                self.ks.control.y = -self.ks.KEEPER_SPEED
+                if(self.met_drivers and (not np.array_equal(action, old_action))):
+                    self.con.que.put(1)
+                    #self.con.jog_motor(1) #JOG_PLUS
+            else:
+                self.ks.control.y = 0
+                self.ks.body.linearVelocity.y = 0
 
+            if np.array_equal(action, self.dql.possible_actions[2]):
+                self.ks.control.y = 0
+                self.ks.body.linearVelocity.y = 0
+                
+                if(self.met_drivers):
+                    self.con.que.put(2)
+                    #self.con.stop_motor()
+                    #self.con.shoot()
+            
+            if np.array_equal(action, self.dql.possible_actions[3]):
+                self.ks.control.x = 0
+                self.ks.control.y = 0
+                self.ks.body.linearVelocity.x = 0
+                self.ks.body.linearVelocity.y = 0
+                if(self.met_drivers):
+                    self.con.que.put(3)
+                    #self.con.stop_motor()
+
+    def determine_goal(self, vel_x, vel_x_old):
+        """Bepaal of er een goal is gescoord.
+        
+        Args:
+            vel_x: (int) huidige x coördinaat van de simulatie.
+            vel_x_old: (int) vorige x coördinaat van de simulatie.
+        
+        Returns:
+            (tuple) done, goal - done checkt of ronde klaar is met een bool, goal is een int die aantal goals optelt.
+        """
         done = 0
-        old_action = self.action
+        goal = 0
 
-        action, explore_probability = DQL.predict_action(self.explore_start, self.explore_stop, self.decay_rate, self.decay_step, self.state, self.possible_actions, self.sess, self.DQNetwork)
-        self.action = action
-
-        if DQL.np.array_equal(action, self.possible_actions[0]):
-            control.y = KEEPER_SPEED
-            if(self.met_drivers and (not DQL.np.array_equal(action, old_action))):
-                self.pc.driver.transceive_message(0, Commands.STOP)
-                self.pc.driver.transceive_message(0, Commands.JOG_MIN)
-            if(DQL.np.isnan(target)):
-                pass
-            elif(target > keeper.position.y):
-                self.reward += 0.2*abs(keeper.position.y-target)
-            else:
-                self.reward -= 0.05*(5.1-abs(keeper.position.y-target))
-        elif DQL.np.array_equal(action, self.possible_actions[1]):
-            control.y = -KEEPER_SPEED
-            if(self.met_drivers and (not DQL.np.array_equal(action, old_action))):
-                self.pc.driver.transceive_message(0, Commands.STOP)
-                self.pc.driver.transceive_message(0, Commands.JOG_PLUS)
-            if(DQL.np.isnan(target)):
-                pass
-            elif(target < keeper.position.y):
-                self.reward += 0.2*abs(keeper.position.y-target)
-            else:
-                self.reward -= 0.05*(5.1-abs(keeper.position.y-target))
+        if(len(self.old_ball_positions)<4):
+            self.old_ball_positions.append(self.ks.ball.position)
         else:
-            control.y = 0
-            keeper.linearVelocity.y = 0
-
-        if DQL.np.array_equal(action, self.possible_actions[2]):
-            old_ball_pos = ball.position
-            control.y = 0
-            keeper.linearVelocity.y = 0
-            
-            status = 0
-            if(self.met_drivers):
-                self.pc.driver.transceive_message(0, Commands.STOP)
-                self.pc.shoot()
-            elif(1):    # True?
-                pass
-            else:   # de code tussen 231 en 266 wordt niets mee gedaan.
-                control.x = -KEEPER_SPEED
-                while(1):
-                    # time.sleep(0.03)
-                    running = self.checkEvents()
-                    self.screen.fill((0, 0, 0))
-
-                    # Check keys that should be checked every loop (not only on initial
-                    # keydown)
-                    self.CheckKeys()
-
-                    # Run the simulation loop
-                    self.SimulationLoop()
-
-                    if GUIEnabled and self.settings.drawMenu:
-                        self.gui_app.paint(self.screen)
-
-                    pygame.display.flip()
-                    clock.tick(self.settings.c_hz)
-                    self.fps = clock.get_fps()
-
-                    self.step += 1
-                        
-                    # Increase decay_step
-                    self.decay_step +=1
-
-                    if((keeper.position.x < -16.59) and (status == 0)):
-                        control.x = KEEPER_SPEED
-                        status = 1
-                    elif((keeper.position.x > -14.41) and (status == 1)):
-                        control.x = -KEEPER_SPEED
-                        status = 2
-                    elif(keeper.position.x < -15 and (status== 2)):
-                        control.x = 0
-                        keeper.linearVelocity.x = 0
-                        break
-
-            if(((ball.position.x - old_ball_pos.x) > 10) and (old_ball_pos.x < -11)):
-                self.reward += 0.5
-            else:
-                self.reward -= 0.1
+            self.old_ball_positions.pop(0)
+            self.old_ball_positions.append(self.ks.ball.position)
         
-        if DQL.np.array_equal(action, self.possible_actions[3]):
-            control.x = 0
-            control.y = 0
-            keeper.linearVelocity.x = 0
-            keeper.linearVelocity.y = 0
-            if(self.met_drivers):
-                self.pc.driver.transceive_message(0, Commands.STOP)
-            if(DQL.np.isnan(target)):
-                self.reward += 0.01
-            elif(abs(keeper.position.y-target) < 0.37):
-                self.reward += 0.3
-            else:
-                self.reward -= 0.05
-
-        if((ball.position.x < -18) and (ball.position.y < 11.26) and (ball.position.y > 6.16)):
-            #self.bk.center
-            self.reward += 0
-            ks.goals += 1
-            self.goals_old = goals
-            self.points_array.append(0)
-            if (len(self.points_array)>100):
-                self.points_array.pop(0)
-            self.ratio = (100*self.points_array.count(1))/len(self.points_array)
-            
+        if(
+            ((self.ks.ball.position.x < -18.5) and (self.ks.ball.position.y < (self.ks.SIM_BOTTOM*2/3)) and (self.ks.ball.position.y > (self.ks.SIM_BOTTOM*1/3))) or 
+            (self.ks.ball.position.x < self.ks.SIM_LEFT)
+          ):
+            if(not self.scored):
+                self.old_ball_positions = []
+                goal = 1
+                done = 1
+                self.ks.goals += 1
+                self.points_array.append(0)
+                if (len(self.points_array)>100):
+                    self.points_array.pop(0)
+                self.ks.ratio = (100*self.points_array.count(1))/len(self.points_array)
+                self.ks.body.position = (-16.72,(self.ks.SIM_BOTTOM/2))
+                if(self.ks.shoot_bool):
+                    self.ks.world.DestroyBody(self.ks.ball)
+                    self.ks._reset_ball()
+                self.scored = 1
+        elif(
+              ((vel_x_old < 0) and (vel_x > 0) and (self.old_ball_positions[0].x < -7) and (self.old_ball_positions[0].y < (self.ks.SIM_BOTTOM*2/3)) and (self.old_ball_positions[0].y> (self.ks.SIM_BOTTOM*1/3))) or
+              (self.ks.shoot_bool and ((abs(self.ks.ball.linearVelocity.x) < 1) or self.ks.ball.linearVelocity.x > 1))
+            ):
+            self.old_ball_positions = []
+            goal = 0
             done = 1
-        if((self.vel_x_old < 0) and (vel_x > 0) and (ball.position.x < -13) and (ball.position.y < 11.26) and (ball.position.y > 6.16)):#ball.position):
-            self.reward += 1
-            self.blocks_old += 1
+            self.ks.blocks += 1
             self.points_array.append(1)
             if (len(self.points_array)>100):
                 self.points_array.pop(0)
-            self.ratio = (100*self.points_array.count(1))/len(self.points_array)
-            done = 1  
+            self.ks.ratio = (100*self.points_array.count(1))/len(self.points_array)
+            self.ks.body.position = (-16.72,(self.ks.SIM_BOTTOM/2))
+            if(self.ks.shoot_bool):
+                self.ks.world.DestroyBody(self.ks.ball)
+                self.ks._reset_ball()
+            self.scored = 0
+        elif(self.scored):
+            self.scored = 0
+        
+        return done, goal
 
-        self.vel_x_old = vel_x
+    def run(self):
+        """Deze functie wordt na iedere frame aangeroepen en kan gezien worden als de mainloop.
+        """
+        if(not self.ks.shoot_bool):
+            #print(self.que.get())
+            self.ks.ball.position, reused = self.que.get()
+        action, old_action, target, vel_x, vel_x_old = self.dql.get_ai_action()
+        self.ks.action = action
         
+        self.execute_action(action, old_action)
 
-        # Add the reward to total reward
-        self.episode_rewards.append(self.reward)
-        
-        
-        # If the game is finished
+        done, goal = self.determine_goal(vel_x, vel_x_old)  
+
         if done:
-            #self.bk.resetCoordinates()
+            episode_rewards, total_reward = self.dql.prepare_new_round(goal, self.ks.ball, self.ks.body)
+            # print(np.sum(episode_rewards))
+            # self.hl.set_xdata(np.append(self.hl.get_xdata(), (len(total_reward)-1)))
+            # self.hl.set_ydata(np.append(self.hl.get_ydata(), np.sum(episode_rewards)))                    
+            # plt.axis([0, len(total_reward), min(total_reward), max(total_reward)])
+            # plt.draw()
+            # plt.pause(0.0001)
+            # plt.show
+
             if(self.met_drivers):
-                self.pc.driver.transceive_message(0, Commands.STOP)
-                if(keeper.position.y >=8.71):
-                    self.pc.go_home()
-                else:
-                    self.pc.go_home(1)
-            # the episode ends so no next state
-            next_state = DQL.np.zeros((4), dtype=DQL.np.float)
-            next_state, self.stacked_states = DQL.stack_states(self.stacked_states, next_state, False, self.stack_size)
-
-            # Set step = max_steps to end the episode
-            self.step = self.max_steps
-
-            # Get the total reward of the episode
-            self.total_reward.append(DQL.np.sum(self.episode_rewards))
-
-            self.hl.set_xdata(DQL.np.append(self.hl.get_xdata(), (len(self.total_reward)-1)))
-            self.hl.set_ydata(DQL.np.append(self.hl.get_ydata(), DQL.np.sum(self.episode_rewards)))                    
-            plt.axis([0, len(self.total_reward), min(self.total_reward), max(self.total_reward)])
-            plt.draw()
-            plt.pause(0.0001)
-            plt.show
-
-            self.episode_rewards = []
-            done = 0
-            if self.episode % 500 == 0:
-                date_time = datetime.now().strftime("%m-%d-%Y,%H-%M-%S")
-                save_path = self.saver.save(self.sess, "AI_models/AI_save_%s_episode_%d.ckpt" % (date_time, self.episode))
-                print("AI model saved")
-            self.episode += 1
-
-            self.memory.add((self.state, action, self.reward, next_state, done))
-
+                #self.con.stop_motor()
+                if not self.con.que.full():
+                    if(self.ks.body.position.y >=8.71):
+                        self.con.que.put(4)
+                        #self.con.go_home()
+                    else:
+                        self.con.que.put(5)
+                        #self.con.go_home(1)
         else:
-            # Get the next state
-            next_state =  DQL.np.array([ball.position.x, ball.position.y, keeper.position.x, keeper.position.y])
-            
-            # Stack the frame of the next_state
-            next_state, self.stacked_states = DQL.stack_states(self.stacked_states, next_state, False, self.stack_size)
-            
-
-            # Add experience to memory
-            self.memory.add((self.state, action, self.reward, next_state, done))
-            
-            # st+1 is now our current state
-            self.state = next_state
-
-
-        ### LEARNING PART            
-        # Obtain random mini-batch from memory
-        batch = self.memory.sample(self.batch_size)
-        states_mb = DQL.np.array([each[0] for each in batch], ndmin=3)
-        actions_mb = DQL.np.array([each[1] for each in batch])
-        rewards_mb = DQL.np.array([each[2] for each in batch]) 
-        next_states_mb = DQL.np.array([each[3] for each in batch], ndmin=3)
-        dones_mb = DQL.np.array([each[4] for each in batch])
-
-        target_Qs_batch = []
-
-            # Get Q values for next_state 
-        Qs_next_state = self.sess.run(self.DQNetwork.output, feed_dict = {self.DQNetwork.inputs_: next_states_mb})
+            self.dql.update_data(done, self.ks.ball, self.ks.body)
+        if(not self.ks.shoot_bool):
+            if(reused):
+                self.reused_counter += 1
+                if(self.reused_counter > 5):
+                    self.ks.ball.position = (200, 200)
+            elif((not reused) and self.reused_counter):
+                self.reused_counter = 0
         
-        # Set Q_target = r if the episode ends at s+1, otherwise set Q_target = r + gamma*maxQ(s', a')
-        for i in range(0, len(batch)):
-            terminal = dones_mb[i]
-
-            # If we are in a terminal state, only equals reward
-            if terminal:
-                target_Qs_batch.append(rewards_mb[i])
-                
-            else:
-                target_ai = rewards_mb[i] + self.gamma * DQL.np.max(Qs_next_state[i])
-                target_Qs_batch.append(target_ai)
-                
-
-        targets_mb = DQL.np.array([each for each in target_Qs_batch])
-
-        loss, _ = self.sess.run([self.DQNetwork.loss, self.DQNetwork.optimizer],
-                            feed_dict={self.DQNetwork.inputs_: states_mb,
-                                        self.DQNetwork.target_Q: targets_mb,
-                                        self.DQNetwork.actions_: actions_mb})
-
-        # Write TF Summaries
-        summary = self.sess.run(self.write_op, feed_dict={self.DQNetwork.inputs_: states_mb,
-                                            self.DQNetwork.target_Q: targets_mb,
-                                            self.DQNetwork.actions_: actions_mb})
-        self.writer.add_summary(summary,1)
-        self.writer.flush()
-        self.reward = 0
-
-        return ball, keeper, control, action
-
 
 if __name__ == "__main__":
     """start main code
     """
-    ks = KeeperSim()
-    ks.set_Foostronics(Foostronics)
-    main(ks)
+    keeperSim = KeeperSim()
+    foosTronics = Foostronics(keeperSim)
+    if not keeperSim.shoot_bool:
+        foosTronics.ball_detection.create_trackbar()
+        foosTronics.start_get_ball_thread()
+        foosTronics.con.start_controller_thread()
+    keeperSim.set_Foostronics(foosTronics)
+    main(keeperSim)

@@ -1,14 +1,15 @@
 """
-    Detecting the ball on the field. 
+    Detecteerd de bal op het veld. 
 
     File:
-        BallDetectClass.py
+        BallDetect.py
     Date:
-        15-11-2019
+        23-1-2020
     Version:
-        3.3
+        3.51
     Modifier:
         Sipke Vellinga
+        Chileam Bohnen
     Used_IDE:
         Pycharm (Python 3.6.7 64-bit)
     Schematic:
@@ -24,6 +25,16 @@
             Functies met underscore gemaakt ipv C++ lowerCamelCase style.
         3.3:
             Google docstring format toegepast op functies.
+        3.40:
+            Nieuwe afbeeldingen en/of camera frames worden met de functie new_frame() in geladen.
+        3.41:
+            Doxygen commentaar toegevoegd.
+        3.42: 
+            commentaar gevalideerd
+        3.5:
+            cv2.imshow uit get_balpos() procedure.
+        3.51:
+            nieuwe feature ball wordt niet meer weergegeven in simulatie waneer uit het veld
 """
 
 import numpy as np
@@ -32,15 +43,24 @@ import imutils
 
 center2 = (0, 0)
 
-class BallDetection: #of Beeldherkenning?
+class BallDetection:
+    """Klasse om de bal uit een afbeelding te extraheren.
 
+    **Author**:         \n
+        Sipke Vellinga  \n
+        Chileam Bohnen  \n
+    **Version**:
+        3.51            \n
+    **Date**:
+        23-1-2020  
+    """
     def __init__(self, file=None):
         """
-        Lijst van vaste parameters
+        Lijst van vaste parameters.
         Args:
-            file: bestand voor de input van de frames
+            file: bestand voor de input van de frames.
         """
-        self.ilowY  =       110 # 0
+        self.ilowY  =       130 # 0
         self.ihighY =       255 # 255
         self.ilowU  =       65 # 0
         self.ihighU =       255 # 111
@@ -49,6 +69,8 @@ class BallDetection: #of Beeldherkenning?
         self.mask   =       []
         self.dim    =       (640, 480)
         self.frame_capture =[]
+        self.frame_counter = 0
+        self.reused        = False
 
         if type(file) == str:
             if file.split(".")[-1] == "png" or file.split(".")[-1] == "jpg":
@@ -67,13 +89,12 @@ class BallDetection: #of Beeldherkenning?
         die deze functie aanroept wanneer de slider van positie verandert.
         
         Args:
-            x (int): variabelen die wordt meegegeven met OpenCV.
+            x: (int) variabelen die wordt meegegeven met OpenCV.
         """
         pass
 
     def create_trackbar(self):
-        """
-        Maakt een trackbar aan waarmee de parameters van de gedefinieerde kleurruimte
+        """Maakt een trackbar aan waarmee de parameters van de gedefinieerde kleurruimte
         veranderd kunnen worden.
         """
         cv2.namedWindow('Trackbar')
@@ -88,8 +109,7 @@ class BallDetection: #of Beeldherkenning?
         cv2.createTrackbar('highV', 'Trackbar', self.ihighV, 255, self._callback)
 
     def get_trackbarpos(self):
-        """
-        Slaat de ingestelde waardes van de trackbar op in de variabelen.
+        """Slaat de ingestelde waardes van de trackbar op in de variabelen.
         """
         self.ilowY = cv2.getTrackbarPos('lowY', 'Trackbar')
         self.ihighY = cv2.getTrackbarPos('highY', 'Trackbar')
@@ -104,34 +124,37 @@ class BallDetection: #of Beeldherkenning?
         """Roept de functies aan die nodig zijn om de bal te detecteren.
         
         Returns:
-            tuple: Geeft de x,y pixel positie van de bal terug.
+            (tuple) geeft de x,y pixel positie van de bal terug.
         """
-        #self.getFrame()
-        #self.get_trackbarpos()
+        #self.get_frame()
+        self.get_trackbarpos()
         self.image_filter()
         self.ball_detect()
-        #self.show_frame()
 
         return self.center
 
     def new_frame(self, img):
-        """Zet een image om naar het frame binnen de class. \n
+        """Zet een afbeelding om naar het frame binnen de klasse. \n
         Hier zal de bal vanaf worden geëxtraheerd.
         
         Args:
-            img (np.array): image van de foto.
+            img: (np.array) maakt een frame.
         """
         self.frame = img
 
-    def get_frame(self):
-        """Haalt een frame binnen en resized deze.
-            
-            Returns: 
-                (np.array) = Geeft de verkleinde image terug.
+    def get_img(self):
+        """Haalt een bijgesneden afbeelding binnen.
+        
+        Returns: 
+            (np.array) geeft de verkleinde image terug.
         """
         if self.frame_capture == 'video':
             ret, frame_capture = self.cap.read()
-            cv2.waitKey(10)
+            self.frame_counter += 1
+            if (self.frame_counter > self.cap.get(1)):
+                frame_counter = 0
+                self.cap.set(1, 0)
+            # cv2.waitKey(10)
             if frame_capture is not None:
                 self.frame = cv2.resize(frame_capture, self.dim)
                 return self.frame
@@ -167,17 +190,16 @@ class BallDetection: #of Beeldherkenning?
         #cv2.imshow("mask", self.mask)
 
     def ball_detect(self):
-        """Volgt de bal op het speelveld met behulp van de functie image_filter
+        """Volgt de bal op het speelveld met behulp van de functie image_filter.
         
-        Athor:
-            Adrian Rosebrock https://www.pyimagesearch.com/2015/09/14/ball-tracking-with-opencv/
+        Author:
+            Adrian Rosebrock (https://www.pyimagesearch.com/2015/09/14/ball-tracking-with-opencv/)
         
         Returns:
-            center2 (tuple)]: x,y cordinaten van de bal op een frame.
+            (tuple) x,y coördinaten van de bal op een frame.
         
-        Raises:
-            TypeError:
-                Voeg eerst een frame toe d.m.v. de functie new_frame(img).
+        Note:
+            **TypeError**: voeg eerst een frame toe dmv de functie new_frame(img).
         """
         # Vind de contouren in het masker en
         # initialiseer het huidige (x, y) middelpunt van de bal
@@ -191,6 +213,7 @@ class BallDetection: #of Beeldherkenning?
         if len(cnts) > 0:
             # vind het grootste contour in het masker en gebruik deze
             # om de minimale enclosing circle en centroid te berekenen
+            self.reused = False
             c = max(cnts, key=cv2.contourArea)
             ((x, y), radius) = cv2.minEnclosingCircle(c)
             M = cv2.moments(c)
@@ -203,14 +226,20 @@ class BallDetection: #of Beeldherkenning?
                 cv2.circle(self.frame, self.center, 5, (0, 0, 255), -1)
                 center2 = self.center
                 return center2
+        else:
+            self.reused = True
+        #print(self.center)
+        #if self.center == (0, 0):
+       #     self.reused = True
+       #     self.center = center2
+        #else:
+        #    self.reused = False
 
-        if self.center == (0, 0):
-            self.center = center2
 
     def show_frame(self):
-        """Laat het beeld zien dat met de get_frame functie is opgehaald
+        """Laat het beeld zien dat met de get_frame functie is opgehaald.
         """
-        print(self.center)
+        # print(self.center)
         cv2.putText(self.frame, str(self.center), (10, 30),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
         cv2.imshow("FrameYUV", self.frame)
@@ -221,11 +250,10 @@ class BallDetection: #of Beeldherkenning?
         #     cv2.destroyAllWindows()
 
 
-
 if __name__ == "__main__":
     """
-    test script om te testen of de code het doet. 
-    De code checkt in: /Test foto's/ball/   map naar alle foto's en stuurt deze in de class om te testen. 
+    Test script om te testen of de code het doet. 
+    De code checkt in: /Test foto's/ball/   map naar alle foto's en stuurt deze in de klasse om te testen. 
     """
     from glob import glob
 

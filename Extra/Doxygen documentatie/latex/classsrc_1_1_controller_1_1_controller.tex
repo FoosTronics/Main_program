@@ -1,0 +1,360 @@
+\hypertarget{classsrc_1_1_controller_1_1_controller}{}\doxysection{src.\+Controller.\+Controller Class Reference}
+\label{classsrc_1_1_controller_1_1_controller}\index{src.Controller.Controller@{src.Controller.Controller}}
+
+
+In deze klasse kan er met behulp van twee coördinaat punten de benodigde keeper positie worden bepaald.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classsrc_1_1_controller_1_1_controller_a193b6eee32284ba86594fc1b02aad363}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self)
+\begin{DoxyCompactList}\small\item\em Initialiseren van de communicatie met de drivers en het bepalen van de verhoudingen. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_controller_1_1_controller_a36dc727ea334d5e57f02d2a022a5a0dd}{start\+\_\+controller\+\_\+thread}} (self)
+\begin{DoxyCompactList}\small\item\em Opstarten van een nieuw proces die de functie get\+\_\+ai\+\_\+motion uitvoert. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_controller_1_1_controller_af1041f7f5748cd56b804332f94417435}{get\+\_\+ai\+\_\+motion}} (self)
+\item 
+def \mbox{\hyperlink{classsrc_1_1_controller_1_1_controller_ac750761d85a59f04ac24acfd4f653303}{stop\+\_\+controller\+\_\+thread}} (self)
+\item 
+def \mbox{\hyperlink{classsrc_1_1_controller_1_1_controller_ac09327cda5f2a23d3807bf19673f3863}{test\+\_\+lin\+\_\+movement}} (self, co)
+\begin{DoxyCompactList}\small\item\em Bepaald de positie van de keeper en stuurt een opdracht naar drivers. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_controller_1_1_controller_abaa63a9a8f7edf392fea594f250bdae4}{step\+\_\+correction}} (self)
+\begin{DoxyCompactList}\small\item\em haalt stapcorrectie van de gyroscoop op regelt de hendel terug naar 0 graden (begin positie). \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_controller_1_1_controller_aeddcc6ee25b3dee00d72493050761084}{shoot}} (self)
+\begin{DoxyCompactList}\small\item\em Bestuurt de drivers zodat er axiaal bewogen wordt. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_controller_1_1_controller_ade87f7f16621f583e185f1932a279a09}{bitfield}} (self, n)
+\begin{DoxyCompactList}\small\item\em Converteerd een bit list naar een integer list. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_controller_1_1_controller_a21c843ce4fb1e9781d5991b1d64e9877}{calibrate\+\_\+go\+\_\+home}} (self)
+\begin{DoxyCompactList}\small\item\em Kalibreer halve doel afstand waarde. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_controller_1_1_controller_a2d8547ca47c7015f9235a652a8053ed1}{go\+\_\+home}} (self, direction=0)
+\begin{DoxyCompactList}\small\item\em Beweegt de keeper terug naar de home positie. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_controller_1_1_controller_a17b870220e4f951f89887e4da5456770}{stop\+\_\+motor}} (self)
+\begin{DoxyCompactList}\small\item\em Stop motor. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_controller_1_1_controller_ad45daed7d078b0652990677fc31049ba}{jog\+\_\+motor}} (self, direction=0)
+\begin{DoxyCompactList}\small\item\em Beweeg motor met high speed instelling. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{classsrc_1_1_controller_1_1_controller_a343bf0ef67b4b27d8efe7b056b412a0d}{linear\+\_\+extrapolation}} (self, pnt1, pnt2, value\+\_\+x=5, max\+\_\+y=32)
+\begin{DoxyCompactList}\small\item\em Toepassen van extra-\/polation om de keeper coördinaten te bepalen. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsrc_1_1_controller_1_1_controller_ab8edbee63cd07b702dd1332e2d639589}{driver}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_controller_1_1_controller_a3b26275965a1ce830d1f14f61ddec74c}{gyroscoop}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_controller_1_1_controller_ac4d16e72edc9178535835e1e28fa0fce}{T\+A\+B\+L\+E\+\_\+\+L\+E\+N\+G\+TH}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_controller_1_1_controller_a72aaa4bfa0e61658b4b61bf7e1ea230b}{y\+\_\+length}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_controller_1_1_controller_a024582b6496511891d8a73a659583659}{ratio\+\_\+\+M\+M\+\_\+to\+\_\+y}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_controller_1_1_controller_a4efe60c2f4fe0f5349f1036ba3414246}{ratio\+\_\+y\+\_\+to\+\_\+\+MM}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_controller_1_1_controller_a7a014d583188202e97271e8e152193b9}{S\+T\+E\+P\+\_\+\+Di\+S\+T\+A\+N\+CE}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_controller_1_1_controller_ad3556795a1b84a9a2d2b306aa2277929}{D\+\_\+\+G\+E\+AR}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_controller_1_1_controller_a165979cd3dd070860c6a8ad3f1424314}{K\+E\+E\+P\+E\+R\+\_\+\+D\+IS}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_controller_1_1_controller_a514b69e84a73c8c062fe3b36c2dc034d}{M\+O\+T\+O\+R\+\_\+\+S\+T\+EP}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_controller_1_1_controller_a0a0008c951b9d81c2f3ce291f96bb307}{M\+I\+C\+R\+O\+\_\+\+S\+T\+EP}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_controller_1_1_controller_a0173709888a50add756313efb9a9c03c}{M\+O\+T\+O\+R\+\_\+\+T\+O\+T\+A\+L\+\_\+\+S\+T\+E\+PS}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_controller_1_1_controller_a058ca5a3466f55172edb2c0df895b06f}{O\+N\+E\+\_\+\+R\+O\+T\+A\+T\+I\+ON}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_controller_1_1_controller_aaf71c709e5cc716dd584ec9e59494784}{O\+N\+E\+\_\+\+S\+T\+EP}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_controller_1_1_controller_acada1d932f6b0bc55e606b62434c97ec}{que}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_controller_1_1_controller_a6df4bc7fef95f6cb741bb074f23bfcce}{running}}
+\item 
+\mbox{\hyperlink{classsrc_1_1_controller_1_1_controller_a09f3f5432ae6424f360a7d164a467ebc}{half\+\_\+dis}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+In deze klasse kan er met behulp van twee coördinaat punten de benodigde keeper positie worden bepaald. 
+
+Hierbij extra-\/polation toegepast, coördinaat naar mm geconverteerd, de keeper stap positie bepaald, laterale motor naar home positie gezet, axiale motor wordt mee geschoten en de drivers aangestuurd.
+
+{\bfseries{Author}}\+: Daniël Boon ~\newline
+ {\bfseries{Version}}\+: 1.\+36 ~\newline
+ {\bfseries{Date}}\+: 23-\/1-\/2020 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_controller_a193b6eee32284ba86594fc1b02aad363}\label{classsrc_1_1_controller_1_1_controller_a193b6eee32284ba86594fc1b02aad363}} 
+\index{src.Controller.Controller@{src.Controller.Controller}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!src.Controller.Controller@{src.Controller.Controller}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def src.\+Controller.\+Controller.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Initialiseren van de communicatie met de drivers en het bepalen van de verhoudingen. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_controller_ade87f7f16621f583e185f1932a279a09}\label{classsrc_1_1_controller_1_1_controller_ade87f7f16621f583e185f1932a279a09}} 
+\index{src.Controller.Controller@{src.Controller.Controller}!bitfield@{bitfield}}
+\index{bitfield@{bitfield}!src.Controller.Controller@{src.Controller.Controller}}
+\doxysubsubsection{\texorpdfstring{bitfield()}{bitfield()}}
+{\footnotesize\ttfamily def src.\+Controller.\+Controller.\+bitfield (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{n }\end{DoxyParamCaption})}
+
+
+
+Converteerd een bit list naar een integer list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & (byte) byte die moet worden vertaald naar een integer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+(list) integer list van het byte array. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_controller_a21c843ce4fb1e9781d5991b1d64e9877}\label{classsrc_1_1_controller_1_1_controller_a21c843ce4fb1e9781d5991b1d64e9877}} 
+\index{src.Controller.Controller@{src.Controller.Controller}!calibrate\_go\_home@{calibrate\_go\_home}}
+\index{calibrate\_go\_home@{calibrate\_go\_home}!src.Controller.Controller@{src.Controller.Controller}}
+\doxysubsubsection{\texorpdfstring{calibrate\_go\_home()}{calibrate\_go\_home()}}
+{\footnotesize\ttfamily def src.\+Controller.\+Controller.\+calibrate\+\_\+go\+\_\+home (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Kalibreer halve doel afstand waarde. 
+
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_controller_af1041f7f5748cd56b804332f94417435}\label{classsrc_1_1_controller_1_1_controller_af1041f7f5748cd56b804332f94417435}} 
+\index{src.Controller.Controller@{src.Controller.Controller}!get\_ai\_motion@{get\_ai\_motion}}
+\index{get\_ai\_motion@{get\_ai\_motion}!src.Controller.Controller@{src.Controller.Controller}}
+\doxysubsubsection{\texorpdfstring{get\_ai\_motion()}{get\_ai\_motion()}}
+{\footnotesize\ttfamily def src.\+Controller.\+Controller.\+get\+\_\+ai\+\_\+motion (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_controller_a2d8547ca47c7015f9235a652a8053ed1}\label{classsrc_1_1_controller_1_1_controller_a2d8547ca47c7015f9235a652a8053ed1}} 
+\index{src.Controller.Controller@{src.Controller.Controller}!go\_home@{go\_home}}
+\index{go\_home@{go\_home}!src.Controller.Controller@{src.Controller.Controller}}
+\doxysubsubsection{\texorpdfstring{go\_home()}{go\_home()}}
+{\footnotesize\ttfamily def src.\+Controller.\+Controller.\+go\+\_\+home (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{direction = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Beweegt de keeper terug naar de home positie. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em direction} & (int, optional) 0 is naar links, 1 is rechts gezien vanaf de hendel. Standaard 0 (links). \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_controller_ad45daed7d078b0652990677fc31049ba}\label{classsrc_1_1_controller_1_1_controller_ad45daed7d078b0652990677fc31049ba}} 
+\index{src.Controller.Controller@{src.Controller.Controller}!jog\_motor@{jog\_motor}}
+\index{jog\_motor@{jog\_motor}!src.Controller.Controller@{src.Controller.Controller}}
+\doxysubsubsection{\texorpdfstring{jog\_motor()}{jog\_motor()}}
+{\footnotesize\ttfamily def src.\+Controller.\+Controller.\+jog\+\_\+motor (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{direction = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Beweeg motor met high speed instelling. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em direction} & (int, optional) 0 = J\+O\+G\+\_\+\+M\+IN en 1 = J\+O\+G\+\_\+\+P\+L\+US. Defaults to 0. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_controller_a343bf0ef67b4b27d8efe7b056b412a0d}\label{classsrc_1_1_controller_1_1_controller_a343bf0ef67b4b27d8efe7b056b412a0d}} 
+\index{src.Controller.Controller@{src.Controller.Controller}!linear\_extrapolation@{linear\_extrapolation}}
+\index{linear\_extrapolation@{linear\_extrapolation}!src.Controller.Controller@{src.Controller.Controller}}
+\doxysubsubsection{\texorpdfstring{linear\_extrapolation()}{linear\_extrapolation()}}
+{\footnotesize\ttfamily def src.\+Controller.\+Controller.\+linear\+\_\+extrapolation (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{pnt1,  }\item[{}]{pnt2,  }\item[{}]{value\+\_\+x = {\ttfamily 5},  }\item[{}]{max\+\_\+y = {\ttfamily 32} }\end{DoxyParamCaption})}
+
+
+
+Toepassen van extra-\/polation om de keeper coördinaten te bepalen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pnt1} & (tuple) x, y coördinaten punt 1 van bal. \\
+\hline
+{\em pnt2} & (tuple) x, y coördinaten punt 2 van bal. \\
+\hline
+{\em value\+\_\+x} & (int, optional) coördinaat waar keeper staat in x. Standaard 5. \\
+\hline
+{\em max\+\_\+y} & (int, optional) halve coördinaat afstand waar de keeper kan komen. Standaard 32.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+(tuple) x, y snijpunt coördinaten van keeper en de vector van de bal. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_controller_aeddcc6ee25b3dee00d72493050761084}\label{classsrc_1_1_controller_1_1_controller_aeddcc6ee25b3dee00d72493050761084}} 
+\index{src.Controller.Controller@{src.Controller.Controller}!shoot@{shoot}}
+\index{shoot@{shoot}!src.Controller.Controller@{src.Controller.Controller}}
+\doxysubsubsection{\texorpdfstring{shoot()}{shoot()}}
+{\footnotesize\ttfamily def src.\+Controller.\+Controller.\+shoot (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Bestuurt de drivers zodat er axiaal bewogen wordt. 
+
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_controller_a36dc727ea334d5e57f02d2a022a5a0dd}\label{classsrc_1_1_controller_1_1_controller_a36dc727ea334d5e57f02d2a022a5a0dd}} 
+\index{src.Controller.Controller@{src.Controller.Controller}!start\_controller\_thread@{start\_controller\_thread}}
+\index{start\_controller\_thread@{start\_controller\_thread}!src.Controller.Controller@{src.Controller.Controller}}
+\doxysubsubsection{\texorpdfstring{start\_controller\_thread()}{start\_controller\_thread()}}
+{\footnotesize\ttfamily def src.\+Controller.\+Controller.\+start\+\_\+controller\+\_\+thread (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Opstarten van een nieuw proces die de functie get\+\_\+ai\+\_\+motion uitvoert. 
+
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_controller_abaa63a9a8f7edf392fea594f250bdae4}\label{classsrc_1_1_controller_1_1_controller_abaa63a9a8f7edf392fea594f250bdae4}} 
+\index{src.Controller.Controller@{src.Controller.Controller}!step\_correction@{step\_correction}}
+\index{step\_correction@{step\_correction}!src.Controller.Controller@{src.Controller.Controller}}
+\doxysubsubsection{\texorpdfstring{step\_correction()}{step\_correction()}}
+{\footnotesize\ttfamily def src.\+Controller.\+Controller.\+step\+\_\+correction (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+haalt stapcorrectie van de gyroscoop op regelt de hendel terug naar 0 graden (begin positie). 
+
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_controller_ac750761d85a59f04ac24acfd4f653303}\label{classsrc_1_1_controller_1_1_controller_ac750761d85a59f04ac24acfd4f653303}} 
+\index{src.Controller.Controller@{src.Controller.Controller}!stop\_controller\_thread@{stop\_controller\_thread}}
+\index{stop\_controller\_thread@{stop\_controller\_thread}!src.Controller.Controller@{src.Controller.Controller}}
+\doxysubsubsection{\texorpdfstring{stop\_controller\_thread()}{stop\_controller\_thread()}}
+{\footnotesize\ttfamily def src.\+Controller.\+Controller.\+stop\+\_\+controller\+\_\+thread (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_controller_a17b870220e4f951f89887e4da5456770}\label{classsrc_1_1_controller_1_1_controller_a17b870220e4f951f89887e4da5456770}} 
+\index{src.Controller.Controller@{src.Controller.Controller}!stop\_motor@{stop\_motor}}
+\index{stop\_motor@{stop\_motor}!src.Controller.Controller@{src.Controller.Controller}}
+\doxysubsubsection{\texorpdfstring{stop\_motor()}{stop\_motor()}}
+{\footnotesize\ttfamily def src.\+Controller.\+Controller.\+stop\+\_\+motor (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Stop motor. 
+
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_controller_ac09327cda5f2a23d3807bf19673f3863}\label{classsrc_1_1_controller_1_1_controller_ac09327cda5f2a23d3807bf19673f3863}} 
+\index{src.Controller.Controller@{src.Controller.Controller}!test\_lin\_movement@{test\_lin\_movement}}
+\index{test\_lin\_movement@{test\_lin\_movement}!src.Controller.Controller@{src.Controller.Controller}}
+\doxysubsubsection{\texorpdfstring{test\_lin\_movement()}{test\_lin\_movement()}}
+{\footnotesize\ttfamily def src.\+Controller.\+Controller.\+test\+\_\+lin\+\_\+movement (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{co }\end{DoxyParamCaption})}
+
+
+
+Bepaald de positie van de keeper en stuurt een opdracht naar drivers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em co} & (int) het bepaalde coördinaat voor keeper vanuit de extra-\/polation.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+(int) returns De berekende stap positie (deze waarde is ter debug en mag genegeerd worden, want de drivers worden in deze funtie al aangestuurd). 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_controller_ad3556795a1b84a9a2d2b306aa2277929}\label{classsrc_1_1_controller_1_1_controller_ad3556795a1b84a9a2d2b306aa2277929}} 
+\index{src.Controller.Controller@{src.Controller.Controller}!D\_GEAR@{D\_GEAR}}
+\index{D\_GEAR@{D\_GEAR}!src.Controller.Controller@{src.Controller.Controller}}
+\doxysubsubsection{\texorpdfstring{D\_GEAR}{D\_GEAR}}
+{\footnotesize\ttfamily src.\+Controller.\+Controller.\+D\+\_\+\+G\+E\+AR}
+
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_controller_ab8edbee63cd07b702dd1332e2d639589}\label{classsrc_1_1_controller_1_1_controller_ab8edbee63cd07b702dd1332e2d639589}} 
+\index{src.Controller.Controller@{src.Controller.Controller}!driver@{driver}}
+\index{driver@{driver}!src.Controller.Controller@{src.Controller.Controller}}
+\doxysubsubsection{\texorpdfstring{driver}{driver}}
+{\footnotesize\ttfamily src.\+Controller.\+Controller.\+driver}
+
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_controller_a3b26275965a1ce830d1f14f61ddec74c}\label{classsrc_1_1_controller_1_1_controller_a3b26275965a1ce830d1f14f61ddec74c}} 
+\index{src.Controller.Controller@{src.Controller.Controller}!gyroscoop@{gyroscoop}}
+\index{gyroscoop@{gyroscoop}!src.Controller.Controller@{src.Controller.Controller}}
+\doxysubsubsection{\texorpdfstring{gyroscoop}{gyroscoop}}
+{\footnotesize\ttfamily src.\+Controller.\+Controller.\+gyroscoop}
+
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_controller_a09f3f5432ae6424f360a7d164a467ebc}\label{classsrc_1_1_controller_1_1_controller_a09f3f5432ae6424f360a7d164a467ebc}} 
+\index{src.Controller.Controller@{src.Controller.Controller}!half\_dis@{half\_dis}}
+\index{half\_dis@{half\_dis}!src.Controller.Controller@{src.Controller.Controller}}
+\doxysubsubsection{\texorpdfstring{half\_dis}{half\_dis}}
+{\footnotesize\ttfamily src.\+Controller.\+Controller.\+half\+\_\+dis}
+
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_controller_a165979cd3dd070860c6a8ad3f1424314}\label{classsrc_1_1_controller_1_1_controller_a165979cd3dd070860c6a8ad3f1424314}} 
+\index{src.Controller.Controller@{src.Controller.Controller}!KEEPER\_DIS@{KEEPER\_DIS}}
+\index{KEEPER\_DIS@{KEEPER\_DIS}!src.Controller.Controller@{src.Controller.Controller}}
+\doxysubsubsection{\texorpdfstring{KEEPER\_DIS}{KEEPER\_DIS}}
+{\footnotesize\ttfamily src.\+Controller.\+Controller.\+K\+E\+E\+P\+E\+R\+\_\+\+D\+IS}
+
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_controller_a0a0008c951b9d81c2f3ce291f96bb307}\label{classsrc_1_1_controller_1_1_controller_a0a0008c951b9d81c2f3ce291f96bb307}} 
+\index{src.Controller.Controller@{src.Controller.Controller}!MICRO\_STEP@{MICRO\_STEP}}
+\index{MICRO\_STEP@{MICRO\_STEP}!src.Controller.Controller@{src.Controller.Controller}}
+\doxysubsubsection{\texorpdfstring{MICRO\_STEP}{MICRO\_STEP}}
+{\footnotesize\ttfamily src.\+Controller.\+Controller.\+M\+I\+C\+R\+O\+\_\+\+S\+T\+EP}
+
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_controller_a514b69e84a73c8c062fe3b36c2dc034d}\label{classsrc_1_1_controller_1_1_controller_a514b69e84a73c8c062fe3b36c2dc034d}} 
+\index{src.Controller.Controller@{src.Controller.Controller}!MOTOR\_STEP@{MOTOR\_STEP}}
+\index{MOTOR\_STEP@{MOTOR\_STEP}!src.Controller.Controller@{src.Controller.Controller}}
+\doxysubsubsection{\texorpdfstring{MOTOR\_STEP}{MOTOR\_STEP}}
+{\footnotesize\ttfamily src.\+Controller.\+Controller.\+M\+O\+T\+O\+R\+\_\+\+S\+T\+EP}
+
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_controller_a0173709888a50add756313efb9a9c03c}\label{classsrc_1_1_controller_1_1_controller_a0173709888a50add756313efb9a9c03c}} 
+\index{src.Controller.Controller@{src.Controller.Controller}!MOTOR\_TOTAL\_STEPS@{MOTOR\_TOTAL\_STEPS}}
+\index{MOTOR\_TOTAL\_STEPS@{MOTOR\_TOTAL\_STEPS}!src.Controller.Controller@{src.Controller.Controller}}
+\doxysubsubsection{\texorpdfstring{MOTOR\_TOTAL\_STEPS}{MOTOR\_TOTAL\_STEPS}}
+{\footnotesize\ttfamily src.\+Controller.\+Controller.\+M\+O\+T\+O\+R\+\_\+\+T\+O\+T\+A\+L\+\_\+\+S\+T\+E\+PS}
+
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_controller_a058ca5a3466f55172edb2c0df895b06f}\label{classsrc_1_1_controller_1_1_controller_a058ca5a3466f55172edb2c0df895b06f}} 
+\index{src.Controller.Controller@{src.Controller.Controller}!ONE\_ROTATION@{ONE\_ROTATION}}
+\index{ONE\_ROTATION@{ONE\_ROTATION}!src.Controller.Controller@{src.Controller.Controller}}
+\doxysubsubsection{\texorpdfstring{ONE\_ROTATION}{ONE\_ROTATION}}
+{\footnotesize\ttfamily src.\+Controller.\+Controller.\+O\+N\+E\+\_\+\+R\+O\+T\+A\+T\+I\+ON}
+
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_controller_aaf71c709e5cc716dd584ec9e59494784}\label{classsrc_1_1_controller_1_1_controller_aaf71c709e5cc716dd584ec9e59494784}} 
+\index{src.Controller.Controller@{src.Controller.Controller}!ONE\_STEP@{ONE\_STEP}}
+\index{ONE\_STEP@{ONE\_STEP}!src.Controller.Controller@{src.Controller.Controller}}
+\doxysubsubsection{\texorpdfstring{ONE\_STEP}{ONE\_STEP}}
+{\footnotesize\ttfamily src.\+Controller.\+Controller.\+O\+N\+E\+\_\+\+S\+T\+EP}
+
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_controller_acada1d932f6b0bc55e606b62434c97ec}\label{classsrc_1_1_controller_1_1_controller_acada1d932f6b0bc55e606b62434c97ec}} 
+\index{src.Controller.Controller@{src.Controller.Controller}!que@{que}}
+\index{que@{que}!src.Controller.Controller@{src.Controller.Controller}}
+\doxysubsubsection{\texorpdfstring{que}{que}}
+{\footnotesize\ttfamily src.\+Controller.\+Controller.\+que}
+
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_controller_a024582b6496511891d8a73a659583659}\label{classsrc_1_1_controller_1_1_controller_a024582b6496511891d8a73a659583659}} 
+\index{src.Controller.Controller@{src.Controller.Controller}!ratio\_MM\_to\_y@{ratio\_MM\_to\_y}}
+\index{ratio\_MM\_to\_y@{ratio\_MM\_to\_y}!src.Controller.Controller@{src.Controller.Controller}}
+\doxysubsubsection{\texorpdfstring{ratio\_MM\_to\_y}{ratio\_MM\_to\_y}}
+{\footnotesize\ttfamily src.\+Controller.\+Controller.\+ratio\+\_\+\+M\+M\+\_\+to\+\_\+y}
+
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_controller_a4efe60c2f4fe0f5349f1036ba3414246}\label{classsrc_1_1_controller_1_1_controller_a4efe60c2f4fe0f5349f1036ba3414246}} 
+\index{src.Controller.Controller@{src.Controller.Controller}!ratio\_y\_to\_MM@{ratio\_y\_to\_MM}}
+\index{ratio\_y\_to\_MM@{ratio\_y\_to\_MM}!src.Controller.Controller@{src.Controller.Controller}}
+\doxysubsubsection{\texorpdfstring{ratio\_y\_to\_MM}{ratio\_y\_to\_MM}}
+{\footnotesize\ttfamily src.\+Controller.\+Controller.\+ratio\+\_\+y\+\_\+to\+\_\+\+MM}
+
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_controller_a6df4bc7fef95f6cb741bb074f23bfcce}\label{classsrc_1_1_controller_1_1_controller_a6df4bc7fef95f6cb741bb074f23bfcce}} 
+\index{src.Controller.Controller@{src.Controller.Controller}!running@{running}}
+\index{running@{running}!src.Controller.Controller@{src.Controller.Controller}}
+\doxysubsubsection{\texorpdfstring{running}{running}}
+{\footnotesize\ttfamily src.\+Controller.\+Controller.\+running}
+
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_controller_a7a014d583188202e97271e8e152193b9}\label{classsrc_1_1_controller_1_1_controller_a7a014d583188202e97271e8e152193b9}} 
+\index{src.Controller.Controller@{src.Controller.Controller}!STEP\_DiSTANCE@{STEP\_DiSTANCE}}
+\index{STEP\_DiSTANCE@{STEP\_DiSTANCE}!src.Controller.Controller@{src.Controller.Controller}}
+\doxysubsubsection{\texorpdfstring{STEP\_DiSTANCE}{STEP\_DiSTANCE}}
+{\footnotesize\ttfamily src.\+Controller.\+Controller.\+S\+T\+E\+P\+\_\+\+Di\+S\+T\+A\+N\+CE}
+
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_controller_ac4d16e72edc9178535835e1e28fa0fce}\label{classsrc_1_1_controller_1_1_controller_ac4d16e72edc9178535835e1e28fa0fce}} 
+\index{src.Controller.Controller@{src.Controller.Controller}!TABLE\_LENGTH@{TABLE\_LENGTH}}
+\index{TABLE\_LENGTH@{TABLE\_LENGTH}!src.Controller.Controller@{src.Controller.Controller}}
+\doxysubsubsection{\texorpdfstring{TABLE\_LENGTH}{TABLE\_LENGTH}}
+{\footnotesize\ttfamily src.\+Controller.\+Controller.\+T\+A\+B\+L\+E\+\_\+\+L\+E\+N\+G\+TH}
+
+\mbox{\Hypertarget{classsrc_1_1_controller_1_1_controller_a72aaa4bfa0e61658b4b61bf7e1ea230b}\label{classsrc_1_1_controller_1_1_controller_a72aaa4bfa0e61658b4b61bf7e1ea230b}} 
+\index{src.Controller.Controller@{src.Controller.Controller}!y\_length@{y\_length}}
+\index{y\_length@{y\_length}!src.Controller.Controller@{src.Controller.Controller}}
+\doxysubsubsection{\texorpdfstring{y\_length}{y\_length}}
+{\footnotesize\ttfamily src.\+Controller.\+Controller.\+y\+\_\+length}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{_controller_8py}{Controller.\+py}}\end{DoxyCompactItemize}

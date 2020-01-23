@@ -1,0 +1,73 @@
+\hypertarget{namespacesrc_1_1_backend_1_1_extra}{}\doxysection{src.\+Backend.\+Extra Namespace Reference}
+\label{namespacesrc_1_1_backend_1_1_extra}\index{src.Backend.Extra@{src.Backend.Extra}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespacesrc_1_1_backend_1_1_extra_a00f6a855c5cf20ece69abca833d239dc}{intersection}} (line1, line2)
+\begin{DoxyCompactList}\small\item\em Vindt de intersectie tussen twee lijnen doormiddel van de Hesse normal form. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespacesrc_1_1_backend_1_1_extra_abef7e33fb5a65e4014e500e54dbbdce1}{hough\+\_\+line\+\_\+transform}} (edges)
+\begin{DoxyCompactList}\small\item\em Voert het hough line transformatie algoritme uit. \end{DoxyCompactList}\item 
+def \mbox{\hyperlink{namespacesrc_1_1_backend_1_1_extra_a5d18466675c805b565e29ec23bea22c2}{nothing}} (x)
+\begin{DoxyCompactList}\small\item\em Functienaam voor het aanmaken van de trackbar. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacesrc_1_1_backend_1_1_extra_abef7e33fb5a65e4014e500e54dbbdce1}\label{namespacesrc_1_1_backend_1_1_extra_abef7e33fb5a65e4014e500e54dbbdce1}} 
+\index{src.Backend.Extra@{src.Backend.Extra}!hough\_line\_transform@{hough\_line\_transform}}
+\index{hough\_line\_transform@{hough\_line\_transform}!src.Backend.Extra@{src.Backend.Extra}}
+\doxysubsubsection{\texorpdfstring{hough\_line\_transform()}{hough\_line\_transform()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Extra.\+hough\+\_\+line\+\_\+transform (\begin{DoxyParamCaption}\item[{}]{edges }\end{DoxyParamCaption})}
+
+
+
+Voert het hough line transformatie algoritme uit. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em edges} & (tuple) coördinaten die worden gebruikt voor cv.\+Hough\+Lines transform.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+
+cpy (np.\+array) getekende lijn op een zwart veld. 
+
+cor (tuple) rho \& theta waarde van de lijn. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacesrc_1_1_backend_1_1_extra_a00f6a855c5cf20ece69abca833d239dc}\label{namespacesrc_1_1_backend_1_1_extra_a00f6a855c5cf20ece69abca833d239dc}} 
+\index{src.Backend.Extra@{src.Backend.Extra}!intersection@{intersection}}
+\index{intersection@{intersection}!src.Backend.Extra@{src.Backend.Extra}}
+\doxysubsubsection{\texorpdfstring{intersection()}{intersection()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Extra.\+intersection (\begin{DoxyParamCaption}\item[{}]{line1,  }\item[{}]{line2 }\end{DoxyParamCaption})}
+
+
+
+Vindt de intersectie tussen twee lijnen doormiddel van de Hesse normal form. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em line1} & (tuple) x,y coördinaten van lijn 1. \\
+\hline
+{\em line2} & (tuple) x,y coördinaten van lijn 2.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+(tuple) x \& y snijpuntcoördinaten. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespacesrc_1_1_backend_1_1_extra_a5d18466675c805b565e29ec23bea22c2}\label{namespacesrc_1_1_backend_1_1_extra_a5d18466675c805b565e29ec23bea22c2}} 
+\index{src.Backend.Extra@{src.Backend.Extra}!nothing@{nothing}}
+\index{nothing@{nothing}!src.Backend.Extra@{src.Backend.Extra}}
+\doxysubsubsection{\texorpdfstring{nothing()}{nothing()}}
+{\footnotesize\ttfamily def src.\+Backend.\+Extra.\+nothing (\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})}
+
+
+
+Functienaam voor het aanmaken van de trackbar. 
+
+De trackbar genereert een pointer die deze functie aanroept wanneer de slider van positie verandert.
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & (None) variablen die moet worden meegegeven van Open\+CV. \\
+\hline
+\end{DoxyParams}

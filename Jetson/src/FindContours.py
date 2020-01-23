@@ -284,11 +284,6 @@ class FindContours:
             return_img = self._crop_img_till_contour(self.cropped_img, contour)
             return cv2.resize(return_img, (640, 360))
         else:
-            self.left_border = cv2.getTrackbarPos("Linkerrand", "Handmatig bijsnijden")
-            self.right_border = cv2.getTrackbarPos("Rechterrand", "Handmatig bijsnijden")
-            self.top_border = cv2.getTrackbarPos("Bovenrand", "Handmatig bijsnijden")
-            self.bottom_border = cv2.getTrackbarPos("Onderrand", "Handmatig bijsnijden")
-
             cv2.line(self.drawing_img, (self.left_border, 0), (self.left_border, self.HEIGHT), (0, 0, 255), 3)
             cv2.line(self.drawing_img, (self.right_border, 0), (self.right_border, self.HEIGHT), (0, 0, 255), 3)
             cv2.line(self.drawing_img, (0, self.top_border), (self.WIDTH, self.top_border), (0, 0, 255), 3)
@@ -297,6 +292,12 @@ class FindContours:
             return_img =  self._crop_img_till_contour(self.img)
             return cv2.resize(return_img, (640, 360))
 
+    def get_trackbar_pos(self):
+        self.left_border = cv2.getTrackbarPos("Linkerrand", "Handmatig bijsnijden")
+        self.right_border = cv2.getTrackbarPos("Rechterrand", "Handmatig bijsnijden")
+        self.top_border = cv2.getTrackbarPos("Bovenrand", "Handmatig bijsnijden")
+        self.bottom_border = cv2.getTrackbarPos("Onderrand", "Handmatig bijsnijden")
+    
     def get_mask(self):
         """Geeft de mask terug van de klasse.
         

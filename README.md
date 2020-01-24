@@ -1,13 +1,9 @@
 # ![pageres](https://github.com/FoosTronics/Extra_files/blob/master/Promo/promo.jpg)
 
 # FoosTronics
-> AI gestuurde tafelvoetbaltafel
+> De AI gestuurde voetbaltafel.
 
-FoosTronics is een NLE minor project waarbij de keeper van een fysieke voetbaltafel wordt bestuurd doormiddel van een AI. Hierbij is beeldherkenning gebruikt om de bal te detecteren. 
-
-## Mappen
-Jetson Nano is de main applicatie waarop de motoren, gyroscoop, etc. op kunnen worden aangesloten.
-Dit is de huidige eindversie van het systeem, waarop het systeem dus werkend is.
+FoosTronics is een NLE minor project van de Hogeschool Utrecht (HU), waarbij de keeper van een fysieke voetbaltafel wordt bestuurd doormiddel van een AI. 
 
 ## Motivatie
 Het project is gekozen om meer te leren over: AI, beeldherkenning, mechanica en hardware. 
